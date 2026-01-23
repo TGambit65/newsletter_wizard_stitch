@@ -1,0 +1,11 @@
+[functions.upload-document]
+verify_jwt = false
+
+[functions.process-source]
+verify_jwt = false
+
+[functions.rag-search]
+verify_jwt = false
+
+[functions.generate-content]
+verify_jwt = false

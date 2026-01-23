@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Newsletter Wizard API Documentation</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #1f2937; background: #f9fafb; }
+    .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+    h1 { font-size: 2.5rem; margin-bottom: 1rem; color: #111827; }
+    h2 { font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 1rem; color: #1f2937; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem; }
+    h3 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem; color: #374151; }
+    h4 { font-size: 1rem; margin-top: 1rem; margin-bottom: 0.5rem; color: #4b5563; }
+    p { margin-bottom: 1rem; color: #4b5563; }
+    code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-family: 'Monaco', 'Menlo', monospace; font-size: 0.9em; }
+    pre { background: #1f2937; color: #f9fafb; padding: 16px; border-radius: 8px; overflow-x: auto; margin: 1rem 0; }
+    pre code { background: none; padding: 0; color: inherit; }
+    .endpoint { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; margin: 1rem 0; }
+    .method { display: inline-block; padding: 4px 8px; border-radius: 4px; font-weight: 600; font-size: 0.875rem; margin-right: 8px; }
+    .method.post { background: #dbeafe; color: #1d4ed8; }
+    .method.get { background: #d1fae5; color: #059669; }
+    .method.delete { background: #fee2e2; color: #dc2626; }
+    .url { font-family: monospace; color: #6366f1; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid #e5e7eb; }
+    th { background: #f9fafb; font-weight: 600; }
+    .required { color: #dc2626; font-size: 0.75rem; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; }
+    .badge.success { background: #d1fae5; color: #059669; }
+    .badge.error { background: #fee2e2; color: #dc2626; }
+    .badge.warning { background: #fef3c7; color: #d97706; }
+    .intro { background: #eef2ff; border-left: 4px solid #6366f1; padding: 16px; border-radius: 0 8px 8px 0; margin-bottom: 2rem; }
+    .toc { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px; margin: 1rem 0; }
+    .toc ul { list-style: none; padding-left: 1rem; }
+    .toc a { color: #6366f1; text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Newsletter Wizard API</h1>
+    <p>Programmatic access to Newsletter Wizard for automation and integrations.</p>
+    
+    <div class="intro">
+      <strong>Base URL:</strong> <code>https://yaijwaencohqshkahuhb.supabase.co/functions/v1</code>
+    </div>
+
+    <div class="toc">
+      <h3>Table of Contents</h3>
+      <ul>
+        <li><a href="#authentication">Authentication</a></li>
+        <li><a href="#rate-limits">Rate Limits</a></li>
+        <li><a href="#endpoints">Endpoints</a>
+          <ul>
+            <li><a href="#api-keys">API Key Management</a></li>
+            <li><a href="#content-generation">Content Generation</a></li>
+            <li><a href="#knowledge-base">Knowledge Base</a></li>
+            <li><a href="#newsletters">Newsletters</a></li>
+            <li><a href="#webhooks">Webhooks</a></li>
+            <li><a href="#audit">Audit Logging</a></li>
+          </ul>
+        </li>
+        <li><a href="#errors">Error Responses</a></li>
+        <li><a href="#security">Security Headers</a></li>
+      </ul>
+    </div>
+
+    <h2 id="authentication">Authentication</h2>
+    <p>All API requests require authentication using an API key. Include your key in the <code>X-API-Key</code> header:</p>
+    <pre><code>curl -X POST \
+  -H "X-API-Key: nw_your_api_key_here" \
+  -H "Content-Type: application/json" \
+  https://yaijwaencohqshkahuhb.supabase.co/functions/v1/generate-content</code></pre>
+    
+    <h3>Getting an API Key</h3>
+    <p>Generate API keys from the <a href="/settings/api-keys">API Keys settings page</a>. Each key can have specific permissions:</p>
+    <table>
+      <tr><th>Permission</th><th>Description</th></tr>
+      <tr><td><code>sources:read</code></td><td>Read knowledge base sources</td></tr>
+      <tr><td><code>sources:write</code></td><td>Create and update sources</td></tr>
+      <tr><td><code>newsletters:read</code></td><td>Read newsletters</td></tr>
+      <tr><td><code>newsletters:write</code></td><td>Create and send newsletters</td></tr>
+      <tr><td><code>analytics:read</code></td><td>Access analytics data</td></tr>
+    </table>
+
+    <h2 id="rate-limits">Rate Limits</h2>
+    <p>API requests are rate-limited per key. The default limit is <strong>1000 requests per hour</strong>. You can configure this when creating a key.</p>
+    <p>When you exceed the rate limit, you'll receive a <code>429 Too Many Requests</code> response with a <code>Retry-After</code> header.</p>
+
+    <h2 id="endpoints">Endpoints</h2>
+
+    <h3 id="api-keys">API Key Management</h3>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/manage-api-keys</span></h3>
+      <p>Manage API keys for your tenant. Requires Bearer token authentication.</p>
+      
+      <h4>Actions</h4>
+      <table>
+        <tr><th>Action</th><th>Description</th></tr>
+        <tr><td><code>list</code></td><td>List all API keys</td></tr>
+        <tr><td><code>create</code></td><td>Create a new API key</td></tr>
+        <tr><td><code>revoke</code></td><td>Revoke an existing key</td></tr>
+        <tr><td><code>delete</code></td><td>Permanently delete a key</td></tr>
+      </table>
+
+      <h4>Create Key Request</h4>
+      <pre><code>{
+  "action": "create",
+  "name": "My Integration",
+  "permissions": ["sources:read", "newsletters:write"],
+  "rate_limit": 500
+}</code></pre>
+
+      <h4>Response (Create)</h4>
+      <pre><code>{
+  "key": {
+    "id": "uuid",
+    "name": "My Integration",
+    "key_prefix": "nw_abc1",
+    "full_key": "nw_abc123...",
+    "permissions": ["sources:read", "newsletters:write"]
+  },
+  "message": "Store this key securely. It will not be shown again."
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/validate-api-key</span></h3>
+      <p>Validate an API key and check permissions. Used internally for API authentication.</p>
+      
+      <h4>Headers</h4>
+      <table>
+        <tr><th>Header</th><th>Description</th></tr>
+        <tr><td><code>X-API-Key</code></td><td>The API key to validate</td></tr>
+      </table>
+
+      <h4>Response</h4>
+      <pre><code>{
+  "valid": true,
+  "tenant_id": "uuid",
+  "permissions": ["sources:read", "newsletters:write"],
+  "rate_limit": 1000,
+  "current_usage": 42
+}</code></pre>
+    </div>
+
+    <h3 id="content-generation">Content Generation</h3>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/generate-content</span></h3>
+      <p>Generate newsletter content using AI based on a topic and optional context.</p>
+      
+      <h4>Request Body</h4>
+      <table>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+        <tr><td><code>topic</code> <span class="required">required</span></td><td>string</td><td>The topic or prompt for the newsletter</td></tr>
+        <tr><td><code>context</code></td><td>array</td><td>Optional context from knowledge base</td></tr>
+        <tr><td><code>voice_profile_id</code></td><td>string</td><td>UUID of voice profile to use</td></tr>
+        <tr><td><code>newsletter_id</code></td><td>string</td><td>UUID of newsletter to update</td></tr>
+      </table>
+
+      <h4>Required Permission</h4>
+      <p><code>newsletters:write</code></p>
+
+      <h4>Example Response</h4>
+      <pre><code>{
+  "content": "&lt;h1&gt;AI Trends Shaping 2024&lt;/h1&gt;...",
+  "subject_line": "The Future is Here: AI Trends You Need to Know"
+}</code></pre>
+    </div>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/rag-search</span></h3>
+      <p>Search the knowledge base using RAG (Retrieval-Augmented Generation).</p>
+      
+      <h4>Request Body</h4>
+      <table>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+        <tr><td><code>query</code> <span class="required">required</span></td><td>string</td><td>Search query</td></tr>
+        <tr><td><code>limit</code></td><td>number</td><td>Max results (default: 5)</td></tr>
+      </table>
+
+      <h4>Required Permission</h4>
+      <p><code>sources:read</code></p>
+    </div>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/train-voice</span></h3>
+      <p>Train a custom voice profile from sample content.</p>
+      
+      <h4>Request Body</h4>
+      <table>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+        <tr><td><code>name</code> <span class="required">required</span></td><td>string</td><td>Voice profile name</td></tr>
+        <tr><td><code>samples</code> <span class="required">required</span></td><td>array</td><td>Sample content for training</td></tr>
+        <tr><td><code>description</code></td><td>string</td><td>Profile description</td></tr>
+      </table>
+    </div>
+
+    <h3 id="knowledge-base">Knowledge Base</h3>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/process-source</span></h3>
+      <p>Process a URL or document to add to the knowledge base.</p>
+      
+      <h4>Request Body</h4>
+      <table>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+        <tr><td><code>source_id</code> <span class="required">required</span></td><td>string</td><td>UUID of the source to process</td></tr>
+      </table>
+
+      <h4>Required Permission</h4>
+      <p><code>sources:write</code></p>
+    </div>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/upload-document</span></h3>
+      <p>Upload a document (PDF, DOCX, TXT) to the knowledge base.</p>
+      
+      <h4>Request Body (multipart/form-data)</h4>
+      <table>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+        <tr><td><code>file</code> <span class="required">required</span></td><td>file</td><td>Document file</td></tr>
+        <tr><td><code>title</code></td><td>string</td><td>Document title</td></tr>
+      </table>
+
+      <h4>Required Permission</h4>
+      <p><code>sources:write</code></p>
+    </div>
+
+    <h3 id="newsletters">Newsletter Sending</h3>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/send-newsletter</span></h3>
+      <p>Send a newsletter to subscribers.</p>
+      
+      <h4>Request Body</h4>
+      <table>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+        <tr><td><code>newsletter_id</code> <span class="required">required</span></td><td>string</td><td>UUID of newsletter</td></tr>
+        <tr><td><code>esp</code></td><td>string</td><td>ESP to use: "convertkit", "mailchimp"</td></tr>
+      </table>
+
+      <h4>Required Permission</h4>
+      <p><code>newsletters:write</code></p>
+    </div>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/send-convertkit</span></h3>
+      <p>Send newsletter via ConvertKit ESP.</p>
+    </div>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/send-mailchimp</span></h3>
+      <p>Send newsletter via Mailchimp ESP.</p>
+    </div>
+
+    <h3 id="webhooks">Webhooks</h3>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/manage-webhooks</span></h3>
+      <p>Create, update, list, or delete webhook endpoints.</p>
+      
+      <h4>Actions</h4>
+      <table>
+        <tr><th>Action</th><th>Description</th></tr>
+        <tr><td><code>list</code></td><td>List all webhooks</td></tr>
+        <tr><td><code>create</code></td><td>Create a webhook</td></tr>
+        <tr><td><code>update</code></td><td>Update a webhook</td></tr>
+        <tr><td><code>delete</code></td><td>Delete a webhook</td></tr>
+      </table>
+    </div>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/trigger-webhook</span></h3>
+      <p>Trigger webhooks for a specific event (internal use).</p>
+    </div>
+
+    <h3 id="audit">Audit Logging</h3>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/log-audit</span></h3>
+      <p>Log security-sensitive operations for audit trail.</p>
+      
+      <h4>Request Body</h4>
+      <table>
+        <tr><th>Parameter</th><th>Type</th><th>Description</th></tr>
+        <tr><td><code>tenant_id</code> <span class="required">required</span></td><td>string</td><td>Tenant UUID</td></tr>
+        <tr><td><code>action</code> <span class="required">required</span></td><td>string</td><td>Action performed</td></tr>
+        <tr><td><code>resource_type</code> <span class="required">required</span></td><td>string</td><td>Type of resource</td></tr>
+        <tr><td><code>resource_id</code></td><td>string</td><td>Resource identifier</td></tr>
+        <tr><td><code>details</code></td><td>object</td><td>Additional details</td></tr>
+      </table>
+    </div>
+
+    <h3>Partner Management</h3>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/manage-sub-tenants</span></h3>
+      <p>Manage sub-tenants for white-label partners.</p>
+      
+      <h4>Actions</h4>
+      <table>
+        <tr><th>Action</th><th>Description</th></tr>
+        <tr><td><code>list</code></td><td>List sub-tenants</td></tr>
+        <tr><td><code>create</code></td><td>Create sub-tenant</td></tr>
+        <tr><td><code>update</code></td><td>Update sub-tenant</td></tr>
+      </table>
+    </div>
+
+    <div class="endpoint">
+      <h3><span class="method post">POST</span> <span class="url">/calculate-billing</span></h3>
+      <p>Calculate billing and usage for tenants.</p>
+    </div>
+
+    <h2 id="errors">Error Responses</h2>
+    <table>
+      <tr><th>Status Code</th><th>Description</th></tr>
+      <tr><td><span class="badge error">400</span></td><td>Bad request - invalid parameters</td></tr>
+      <tr><td><span class="badge error">401</span></td><td>Invalid or missing API key</td></tr>
+      <tr><td><span class="badge error">403</span></td><td>Permission denied - key lacks required permission</td></tr>
+      <tr><td><span class="badge warning">429</span></td><td>Rate limit exceeded</td></tr>
+      <tr><td><span class="badge error">500</span></td><td>Internal server error</td></tr>
+    </table>
+
+    <h4>Error Response Format</h4>
+    <pre><code>{
+  "error": "Rate limit exceeded. Try again later.",
+  "rate_limit": 1000,
+  "current_usage": 1000,
+  "retry_after": 3600
+}</code></pre>
+
+    <h2 id="security">Security Headers</h2>
+    <p>All API responses include security headers:</p>
+    <table>
+      <tr><th>Header</th><th>Value</th></tr>
+      <tr><td><code>X-Content-Type-Options</code></td><td>nosniff</td></tr>
+      <tr><td><code>X-Frame-Options</code></td><td>DENY</td></tr>
+      <tr><td><code>X-XSS-Protection</code></td><td>1; mode=block</td></tr>
+      <tr><td><code>Referrer-Policy</code></td><td>strict-origin-when-cross-origin</td></tr>
+    </table>
+
+    <h2>Webhook Events</h2>
+    <p>Configure webhooks to receive real-time notifications. See the <a href="/settings/webhooks">Webhooks settings page</a>.</p>
+    <table>
+      <tr><th>Event</th><th>Description</th></tr>
+      <tr><td><code>newsletter.sent</code></td><td>Newsletter was sent to subscribers</td></tr>
+      <tr><td><code>newsletter.opened</code></td><td>Newsletter was opened by a recipient</td></tr>
+      <tr><td><code>newsletter.clicked</code></td><td>Link in newsletter was clicked</td></tr>
+      <tr><td><code>source.processed</code></td><td>Knowledge base source was processed</td></tr>
+    </table>
+
+    <h4>Webhook Signature Verification</h4>
+    <p>All webhook payloads include an <code>X-Webhook-Signature</code> header. Verify it using HMAC-SHA256 with your webhook secret:</p>
+    <pre><code>const crypto = require('crypto');
+
+function verifySignature(payload, signature, secret) {
+  const expected = crypto
+    .createHmac('sha256', secret)
+    .update(JSON.stringify(payload))
+    .digest('hex');
+  return signature === expected;
+}</code></pre>
+
+    <hr style="margin: 3rem 0; border: none; border-top: 1px solid #e5e7eb;">
+    <p style="text-align: center; color: #9ca3af; font-size: 0.875rem;">
+      Newsletter Wizard API v1.0 | Last updated: January 2026
+    </p>
+  </div>
+</body>
+</html>
