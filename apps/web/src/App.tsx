@@ -22,6 +22,7 @@ const WebhooksPage = lazy(() => import('@/pages/WebhooksPage').then(m => ({ defa
 const PartnerPortalPage = lazy(() => import('@/pages/PartnerPortalPage').then(m => ({ default: m.PartnerPortalPage })));
 const EmbedWizardPage = lazy(() => import('@/pages/EmbedWizardPage').then(m => ({ default: m.EmbedWizardPage })));
 const EmbedKnowledgeBasePage = lazy(() => import('@/pages/EmbedKnowledgeBasePage').then(m => ({ default: m.EmbedKnowledgeBasePage })));
+const SocialMediaPage = lazy(() => import('@/pages/SocialMediaPage').then(m => ({ default: m.SocialMediaPage })));
 
 function LoadingSpinner() {
   return (
@@ -81,6 +82,7 @@ function AppRoutes() {
           <Route path="newsletters" element={<NewslettersPage />} />
           <Route path="newsletters/:id/edit" element={<NewsletterEditorPage />} />
           <Route path="newsletters/:id/ab-test" element={<ABTestPage />} />
+          <Route path="newsletters/:id/social" element={<SocialMediaPage />} />
           <Route path="wizard" element={<WizardPage />} />
           <Route path="analytics" element={<AnalyticsPage />} />
           <Route path="settings" element={<SettingsPage />} />

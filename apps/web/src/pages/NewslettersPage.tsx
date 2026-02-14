@@ -13,7 +13,8 @@ import {
   Clock,
   CheckCircle,
   MoreVertical,
-  ArrowRight
+  ArrowRight,
+  Share2
 } from 'lucide-react';
 import clsx from 'clsx';
 import { format } from 'date-fns';
@@ -217,6 +218,13 @@ export function NewslettersPage() {
                     title="Edit"
                   >
                     <Edit className="w-5 h-5" />
+                  </Link>
+                  <Link
+                    to={`/newsletters/${newsletter.id}/social`}
+                    className="p-2 text-neutral-500 hover:text-primary-600 hover:bg-primary-50 dark:hover:bg-primary-900/20 rounded-lg transition-colors"
+                    title="Social Media Posts"
+                  >
+                    <Share2 className="w-5 h-5" />
                   </Link>
                   <button
                     onClick={() => deleteNewsletter(newsletter.id)}

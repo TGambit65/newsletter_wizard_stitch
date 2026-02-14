@@ -26,7 +26,8 @@ import {
   RefreshCw,
   AlertCircle,
   Users,
-  FlaskConical
+  FlaskConical,
+  Share2
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -590,6 +591,18 @@ export function NewsletterEditorPage() {
               </button>
             </div>
           )}
+
+          {/* Social Media */}
+          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+            <h3 className="font-semibold text-neutral-900 dark:text-white mb-3">Social Media</h3>
+            <button 
+              onClick={() => navigate(`/newsletters/${id}/social`)}
+              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+            >
+              <Share2 className="w-5 h-5" />
+              Generate Social Posts
+            </button>
+          </div>
 
           {/* Test Send */}
           <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">

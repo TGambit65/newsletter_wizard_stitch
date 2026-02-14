@@ -122,6 +122,29 @@ export async function sendConvertKit(request: SendConvertKitRequest): Promise<{ 
   return await callEdgeFunction('send-convertkit', request);
 }
 
+interface GenerateSocialPostsRequest {
+  newsletter_content: string;
+  newsletter_title: string;
+}
+
+interface GenerateSocialPostsResponse {
+  success: boolean;
+  posts: {
+    twitter: { main_post: string; hashtags: string[]; thread?: string[] | null };
+    linkedin: { post: string; hashtags: string[] };
+    facebook: { post: string; cta: string };
+    instagram: { caption: string; hashtags: string[]; image_suggestion: string };
+    tiktok: { hook: string; script: string; video_prompt: string };
+    youtube_shorts: { hook: string; script: string; video_prompt: string };
+    threads: { post: string; hashtags: string[] };
+  };
+  ai_generated: boolean;
+}
+
+export async function generateSocialPosts(request: GenerateSocialPostsRequest): Promise<GenerateSocialPostsResponse> {
+  return await callEdgeFunction('generate-social-posts', request);
+}
+
 export const api = {
   processSource,
   ragSearch,
@@ -131,4 +154,5 @@ export const api = {
   trainVoice,
   sendMailchimp,
   sendConvertKit,
+  generateSocialPosts,
 };
