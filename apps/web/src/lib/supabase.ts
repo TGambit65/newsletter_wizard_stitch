@@ -7,7 +7,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 export { supabaseUrl, supabaseAnonKey };
 
 export type SubscriptionTier = 'free' | 'creator' | 'pro' | 'business';
-export type SourceType = 'url' | 'document' | 'manual';
+export type SourceType = 'url' | 'document' | 'manual' | 'youtube' | 'rss' | 'gdrive';
 export type SourceStatus = 'pending' | 'processing' | 'ready' | 'error';
 
 export const TIER_LIMITS: Record<SubscriptionTier, { sources: number; newsletters: number; aiGenerations: number; price: number }> = {
