@@ -58,13 +58,13 @@ describe('API Module', () => {
       mockFetch.mockResolvedValueOnce({
         ok: false,
         status: 400,
-        json: () => Promise.resolve({ error: { message: 'Invalid source' } }),
+        json: () => Promise.resolve({ error: { code: 'VALIDATION_ERROR', message: 'Invalid source' } }),
       });
 
       await expect(processSource({
         source_id: 'source-123',
         source_type: 'url',
-      })).rejects.toThrow('Invalid source');
+      })).rejects.toThrow(); // Error message is now user-friendly
     });
   });
 

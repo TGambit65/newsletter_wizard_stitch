@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase, KnowledgeSource } from '@/lib/supabase';
@@ -65,14 +65,89 @@ export function WizardPage() {
   // Ideation state
   const [trendingTopics, setTrendingTopics] = useState<string[]>([]);
   const [contentGaps, setContentGaps] = useState<string[]>([]);
+  
+  // Draft auto-save state
+  const [draftRestored, setDraftRestored] = useState(false);
+  const [lastSaved, setLastSaved] = useState<Date | null>(null);
+
+  // Draft storage key
+  const getDraftKey = useCallback(() => {
+    return tenant ? `wizard_draft_${tenant.id}` : null;
+  }, [tenant]);
+
+  // Save draft to localStorage
+  const saveDraft = useCallback(() => {
+    const key = getDraftKey();
+    if (!key) return;
+    
+    const draft = {
+      step,
+      selectedAudience,
+      selectedVoice,
+      selectedTopic,
+      customTopic,
+      generatedContent,
+      subjectLine,
+      savedAt: new Date().toISOString()
+    };
+    
+    try {
+      localStorage.setItem(key, JSON.stringify(draft));
+      setLastSaved(new Date());
+    } catch (e) {
+      console.error('Failed to save draft:', e);
+    }
+  }, [getDraftKey, step, selectedAudience, selectedVoice, selectedTopic, customTopic, generatedContent, subjectLine]);
+
+  // Restore draft from localStorage
+  const restoreDraft = useCallback(() => {
+    const key = getDraftKey();
+    if (!key || draftRestored) return;
+    
+    try {
+      const saved = localStorage.getItem(key);
+      if (saved) {
+        const draft = JSON.parse(saved);
+        if (draft.step) setStep(draft.step);
+        if (draft.selectedAudience) setSelectedAudience(draft.selectedAudience);
+        if (draft.selectedVoice) setSelectedVoice(draft.selectedVoice);
+        if (draft.selectedTopic) setSelectedTopic(draft.selectedTopic);
+        if (draft.customTopic) setCustomTopic(draft.customTopic);
+        if (draft.generatedContent) setGeneratedContent(draft.generatedContent);
+        if (draft.subjectLine) setSubjectLine(draft.subjectLine);
+        if (draft.savedAt) setLastSaved(new Date(draft.savedAt));
+      }
+    } catch (e) {
+      console.error('Failed to restore draft:', e);
+    }
+    setDraftRestored(true);
+  }, [getDraftKey, draftRestored]);
+
+  // Clear draft
+  const clearDraft = useCallback(() => {
+    const key = getDraftKey();
+    if (key) {
+      localStorage.removeItem(key);
+      setLastSaved(null);
+    }
+  }, [getDraftKey]);
+
+  // Auto-save draft when state changes
+  useEffect(() => {
+    if (draftRestored && tenant) {
+      const timeoutId = setTimeout(saveDraft, 1000);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [step, selectedAudience, selectedVoice, selectedTopic, customTopic, generatedContent, subjectLine, saveDraft, draftRestored, tenant]);
 
   useEffect(() => {
     if (tenant) {
       loadSources();
       loadVoiceProfiles();
       generateTrendingTopics();
+      restoreDraft();
     }
-  }, [tenant]);
+  }, [tenant, restoreDraft]);
 
   async function loadSources() {
     const { data } = await supabase
@@ -185,6 +260,10 @@ export function WizardPage() {
         .maybeSingle();
 
       if (error) throw error;
+      
+      // Clear the draft after successful save
+      clearDraft();
+      
       if (navigateToEditor && data?.id) {
         navigate(`/newsletters/${data.id}/edit`);
       }
@@ -207,6 +286,21 @@ export function WizardPage() {
 
   return (
     <div className="max-w-4xl mx-auto">
+      {/* Draft indicator */}
+      {lastSaved && (
+        <div className="mb-4 flex items-center justify-between bg-neutral-50 dark:bg-neutral-900 rounded-lg px-4 py-2">
+          <span className="text-sm text-neutral-500">
+            Draft auto-saved at {lastSaved.toLocaleTimeString()}
+          </span>
+          <button
+            onClick={clearDraft}
+            className="text-sm text-error hover:text-error/80 transition-colors"
+          >
+            Discard Draft
+          </button>
+        </div>
+      )}
+
       {/* Step Navigation */}
       <div className="mb-8">
         <div className="flex items-center justify-center gap-2 overflow-x-auto pb-2">

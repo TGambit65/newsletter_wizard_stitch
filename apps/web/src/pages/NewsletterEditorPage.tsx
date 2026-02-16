@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase, Newsletter } from '@/lib/supabase';
@@ -64,6 +64,11 @@ export function NewsletterEditorPage() {
   const [scheduleDate, setScheduleDate] = useState('');
   const [scheduleTime, setScheduleTime] = useState('');
   const [scheduling, setScheduling] = useState(false);
+  
+  // Autosave state
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const [lastAutoSaved, setLastAutoSaved] = useState<Date | null>(null);
+  const autosaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const editor = useEditor({
     extensions: [
@@ -79,6 +84,63 @@ export function NewsletterEditorPage() {
       },
     },
   });
+
+  // Track changes for autosave
+  const markAsChanged = useCallback(() => {
+    if (!isSent && newsletter) {
+      setHasUnsavedChanges(true);
+    }
+  }, [newsletter]);
+  
+  // Autosave function
+  const performAutosave = useCallback(async () => {
+    if (!id || !tenant || !hasUnsavedChanges || saving) return;
+    
+    try {
+      await supabase
+        .from('newsletters')
+        .update({
+          title,
+          subject_line: subjectLine,
+          preheader,
+          content_html: editor?.getHTML() || '',
+          updated_at: new Date().toISOString()
+        })
+        .eq('id', id);
+      
+      setHasUnsavedChanges(false);
+      setLastAutoSaved(new Date());
+    } catch (error) {
+      console.error('Autosave failed:', error);
+    }
+  }, [id, tenant, hasUnsavedChanges, saving, title, subjectLine, preheader, editor]);
+  
+  // Autosave effect - triggers after 3 seconds of no changes
+  useEffect(() => {
+    if (hasUnsavedChanges && !newsletter?.status?.includes('sent')) {
+      if (autosaveTimeoutRef.current) {
+        clearTimeout(autosaveTimeoutRef.current);
+      }
+      autosaveTimeoutRef.current = setTimeout(performAutosave, 3000);
+    }
+    
+    return () => {
+      if (autosaveTimeoutRef.current) {
+        clearTimeout(autosaveTimeoutRef.current);
+      }
+    };
+  }, [hasUnsavedChanges, performAutosave, newsletter?.status]);
+  
+  // Watch for content changes
+  useEffect(() => {
+    if (editor) {
+      const handler = () => markAsChanged();
+      editor.on('update', handler);
+      return () => {
+        editor.off('update', handler);
+      };
+    }
+  }, [editor, markAsChanged]);
 
   useEffect(() => {
     if (id && tenant) {
@@ -308,7 +370,10 @@ export function NewsletterEditorPage() {
             <input
               type="text"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => {
+                setTitle(e.target.value);
+                markAsChanged();
+              }}
               disabled={isSent}
               className="text-2xl font-bold text-neutral-900 dark:text-white bg-transparent border-none outline-none w-full disabled:cursor-not-allowed"
               placeholder="Newsletter title"
@@ -319,6 +384,12 @@ export function NewsletterEditorPage() {
                newsletter.status === 'scheduled' ? `Scheduled for ${new Date(newsletter.scheduled_at!).toLocaleString()}` :
                newsletter.status} 
               {newsletter.status === 'draft' && ` - Last saved ${new Date(newsletter.updated_at).toLocaleString()}`}
+              {lastAutoSaved && hasUnsavedChanges === false && (
+                <span className="ml-2 text-success">✓ Saved</span>
+              )}
+              {hasUnsavedChanges && (
+                <span className="ml-2 text-warning">● Unsaved changes</span>
+              )}
             </p>
           </div>
         </div>
@@ -370,7 +441,10 @@ export function NewsletterEditorPage() {
             <input
               type="text"
               value={subjectLine}
-              onChange={(e) => setSubjectLine(e.target.value)}
+              onChange={(e) => {
+                setSubjectLine(e.target.value);
+                markAsChanged();
+              }}
               disabled={isSent}
               placeholder="Enter your email subject line"
               className="w-full px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none disabled:cursor-not-allowed disabled:opacity-60"
@@ -385,7 +459,10 @@ export function NewsletterEditorPage() {
             <input
               type="text"
               value={preheader}
-              onChange={(e) => setPreheader(e.target.value)}
+              onChange={(e) => {
+                setPreheader(e.target.value);
+                markAsChanged();
+              }}
               disabled={isSent}
               placeholder="Preview text shown in inbox"
               className="w-full px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none disabled:cursor-not-allowed disabled:opacity-60"
