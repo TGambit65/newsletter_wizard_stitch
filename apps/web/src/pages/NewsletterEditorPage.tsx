@@ -5,6 +5,8 @@ import { supabase, Newsletter } from '@/lib/supabase';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
+import { useToast } from '@/components/ui/Toast';
+import { EditorSkeleton } from '@/components/ui/Skeleton';
 import { 
   ArrowLeft, 
   Save, 
@@ -35,6 +37,7 @@ export function NewsletterEditorPage() {
   const { id } = useParams<{ id: string }>();
   const { tenant } = useAuth();
   const navigate = useNavigate();
+  const toast = useToast();
   const [newsletter, setNewsletter] = useState<Newsletter | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -192,8 +195,12 @@ export function NewsletterEditorPage() {
           updated_at: new Date().toISOString()
         })
         .eq('id', id);
+      
+      setHasUnsavedChanges(false);
+      toast.success('Newsletter saved');
     } catch (error) {
       console.error('Error saving newsletter:', error);
+      toast.error('Failed to save newsletter');
     } finally {
       setSaving(false);
     }
@@ -336,8 +343,27 @@ export function NewsletterEditorPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
+      <div className="max-w-5xl mx-auto">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="w-10 h-10 bg-neutral-200 dark:bg-neutral-700 rounded-lg animate-pulse" />
+          <div className="flex-1">
+            <div className="h-8 w-64 bg-neutral-200 dark:bg-neutral-700 rounded animate-pulse mb-2" />
+            <div className="h-4 w-32 bg-neutral-200 dark:bg-neutral-700 rounded animate-pulse" />
+          </div>
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            <EditorSkeleton />
+          </div>
+          <div className="space-y-4">
+            {[...Array(4)].map((_, i) => (
+              <div key={i} className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+                <div className="h-5 w-20 bg-neutral-200 dark:bg-neutral-700 rounded animate-pulse mb-3" />
+                <div className="h-10 w-full bg-neutral-200 dark:bg-neutral-700 rounded animate-pulse" />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }

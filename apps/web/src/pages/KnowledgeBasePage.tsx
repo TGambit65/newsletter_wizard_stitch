@@ -2,6 +2,8 @@ import { useEffect, useState, useRef, useCallback } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase, KnowledgeSource, SourceType } from '@/lib/supabase';
 import { api } from '@/lib/api';
+import { useToast } from '@/components/ui/Toast';
+import { KnowledgeBaseGridSkeleton } from '@/components/ui/Skeleton';
 import { 
   Plus, 
   Globe, 
@@ -110,6 +112,7 @@ function getFileType(file: File): ExtendedSourceType {
 
 export function KnowledgeBasePage() {
   const { tenant } = useAuth();
+  const toast = useToast();
   const [sources, setSources] = useState<KnowledgeSource[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<SourceFilter>('all');
@@ -317,34 +320,75 @@ export function KnowledgeBasePage() {
   }
 
   async function deleteSource(id: string) {
-    if (!confirm('Are you sure you want to delete this source?')) return;
+    const sourceToDelete = sources.find(s => s.id === id);
+    if (!sourceToDelete) return;
     
-    try {
-      await supabase.from('knowledge_sources').delete().eq('id', id);
-      setSources(sources.filter(s => s.id !== id));
-      setSelectedSources(prev => {
-        const next = new Set(prev);
-        next.delete(id);
-        return next;
-      });
-    } catch (error) {
-      console.error('Error deleting source:', error);
-    }
+    // Optimistic delete
+    setSources(sources.filter(s => s.id !== id));
+    setSelectedSources(prev => {
+      const next = new Set(prev);
+      next.delete(id);
+      return next;
+    });
+    
+    // Show undo toast
+    toast.undoToast(
+      `"${sourceToDelete.title}" deleted`,
+      async () => {
+        // Restore the source
+        setSources(prev => [sourceToDelete, ...prev]);
+        toast.success('Source restored');
+      },
+      10000
+    );
+    
+    // Actually delete after delay (soft delete window)
+    setTimeout(async () => {
+      try {
+        await supabase.from('knowledge_sources').delete().eq('id', id);
+      } catch (error) {
+        console.error('Error deleting source:', error);
+        // Restore on error
+        setSources(prev => [sourceToDelete, ...prev]);
+        toast.error('Failed to delete source');
+      }
+    }, 10000);
   }
 
   async function bulkDelete() {
     if (selectedSources.size === 0) return;
-    if (!confirm(`Delete ${selectedSources.size} selected sources?`)) return;
     
-    try {
-      for (const id of selectedSources) {
-        await supabase.from('knowledge_sources').delete().eq('id', id);
+    const sourcesToDelete = sources.filter(s => selectedSources.has(s.id));
+    const count = sourcesToDelete.length;
+    
+    // Optimistic delete
+    setSources(sources.filter(s => !selectedSources.has(s.id)));
+    const deletedIds = new Set(selectedSources);
+    setSelectedSources(new Set());
+    
+    // Show undo toast
+    toast.undoToast(
+      `${count} source${count > 1 ? 's' : ''} deleted`,
+      async () => {
+        // Restore all sources
+        setSources(prev => [...sourcesToDelete, ...prev]);
+        toast.success(`${count} source${count > 1 ? 's' : ''} restored`);
+      },
+      10000
+    );
+    
+    // Actually delete after delay
+    setTimeout(async () => {
+      try {
+        for (const id of deletedIds) {
+          await supabase.from('knowledge_sources').delete().eq('id', id);
+        }
+      } catch (error) {
+        console.error('Error bulk deleting:', error);
+        setSources(prev => [...sourcesToDelete, ...prev]);
+        toast.error('Failed to delete sources');
       }
-      setSources(sources.filter(s => !selectedSources.has(s.id)));
-      setSelectedSources(new Set());
-    } catch (error) {
-      console.error('Error bulk deleting:', error);
-    }
+    }, 10000);
   }
 
   async function reprocessSource(source: KnowledgeSource) {
@@ -509,9 +553,7 @@ export function KnowledgeBasePage() {
 
       {/* Sources Grid */}
       {loading ? (
-        <div className="flex items-center justify-center h-64">
-          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
-        </div>
+        <KnowledgeBaseGridSkeleton />
       ) : filteredSources.length === 0 ? (
         <div 
           className="bg-white dark:bg-neutral-800 rounded-xl border-2 border-dashed border-neutral-300 dark:border-neutral-600 p-12 text-center"

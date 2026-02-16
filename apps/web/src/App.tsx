@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { WhiteLabelProvider } from '@/contexts/WhiteLabelContext';
+import { ToastProvider } from '@/components/ui/Toast';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 
 // Lazy load pages for better performance
@@ -103,7 +104,9 @@ export default function App() {
     <BrowserRouter>
       <AuthProvider>
         <WhiteLabelProvider>
-          <AppRoutes />
+          <ToastProvider>
+            <AppRoutes />
+          </ToastProvider>
         </WhiteLabelProvider>
       </AuthProvider>
     </BrowserRouter>

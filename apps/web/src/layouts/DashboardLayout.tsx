@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useWhiteLabel } from '@/contexts/WhiteLabelContext';
@@ -19,6 +19,8 @@ import {
   Building2
 } from 'lucide-react';
 import clsx from 'clsx';
+import { Breadcrumbs, MobileBreadcrumb } from '@/components/ui/Breadcrumbs';
+import { MobileNavigation } from '@/components/ui/MobileNavigation';
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -36,11 +38,28 @@ export function DashboardLayout() {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    // Initialize from localStorage or system preference
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('theme');
+      if (stored) return stored === 'dark';
+      return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    }
+    return false;
+  });
+
+  // Persist theme preference
+  useEffect(() => {
+    localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
-    document.documentElement.classList.toggle('dark');
   };
 
   return (
@@ -160,12 +179,25 @@ export function DashboardLayout() {
           >
             <Menu className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
           </button>
+          
+          {/* Breadcrumbs - desktop */}
+          <div className="hidden lg:block ml-2">
+            <Breadcrumbs />
+          </div>
+          
+          {/* Breadcrumbs - mobile */}
+          <div className="lg:hidden ml-2">
+            <MobileBreadcrumb />
+          </div>
         </header>
 
         {/* Page content */}
-        <main className="flex-1 overflow-auto p-4 lg:p-8">
+        <main className="flex-1 overflow-auto p-4 lg:p-8 pb-20 lg:pb-8">
           <Outlet />
         </main>
+        
+        {/* Mobile bottom navigation */}
+        <MobileNavigation />
       </div>
     </div>
   );
