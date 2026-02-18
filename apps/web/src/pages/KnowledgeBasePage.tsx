@@ -4,6 +4,7 @@ import { supabase, KnowledgeSource, SourceType } from '@/lib/supabase';
 import { api } from '@/lib/api';
 import { useToast } from '@/components/ui/Toast';
 import { KnowledgeBaseGridSkeleton } from '@/components/ui/Skeleton';
+import { HealthDashboard, SourceAgeBadge } from '@/components/knowledge-base/HealthDashboard';
 import { 
   Plus, 
   Globe, 
@@ -551,6 +552,17 @@ export function KnowledgeBasePage() {
         </div>
       </div>
 
+      {/* Health Dashboard */}
+      {!loading && sources.length > 0 && (
+        <HealthDashboard
+          sources={sources}
+          onRetry={reprocessSource}
+          onDelete={deleteSource}
+          onRefresh={reprocessSource}
+          staleDaysThreshold={30}
+        />
+      )}
+
       {/* Sources Grid */}
       {loading ? (
         <KnowledgeBaseGridSkeleton />
@@ -686,6 +698,7 @@ export function KnowledgeBasePage() {
                   {source.chunk_count || 0} chunks
                 </span>
                 <span>{(source.token_count || 0).toLocaleString()} tokens</span>
+                <SourceAgeBadge date={source.updated_at || source.created_at} />
               </div>
               
               {/* Error message */}

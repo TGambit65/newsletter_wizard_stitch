@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { WhiteLabelProvider } from '@/contexts/WhiteLabelContext';
+import { ThemeProvider } from '@/hooks/useTheme';
 import { ToastProvider } from '@/components/ui/Toast';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 
@@ -102,13 +103,15 @@ function AppRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <WhiteLabelProvider>
-          <ToastProvider>
-            <AppRoutes />
-          </ToastProvider>
-        </WhiteLabelProvider>
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <WhiteLabelProvider>
+            <ToastProvider>
+              <AppRoutes />
+            </ToastProvider>
+          </WhiteLabelProvider>
+        </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

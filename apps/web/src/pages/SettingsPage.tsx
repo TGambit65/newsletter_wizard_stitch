@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase, TIER_LIMITS, SubscriptionTier } from '@/lib/supabase';
+import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
 import { api } from '@/lib/api';
 import { 
   User, 
@@ -311,6 +312,13 @@ export function SettingsPage() {
                 <button onClick={saveProfile} disabled={saving} className="px-6 py-2.5 bg-primary-500 text-white font-medium rounded-lg hover:bg-primary-600 transition-colors disabled:opacity-50">
                   {saving ? 'Saving...' : 'Save Changes'}
                 </button>
+
+                {/* Appearance Settings */}
+                <div className="pt-6 mt-6 border-t border-neutral-200 dark:border-neutral-700">
+                  <h3 className="text-base font-medium text-neutral-900 dark:text-white mb-1">Appearance</h3>
+                  <p className="text-sm text-neutral-500 mb-4">Choose your preferred theme</p>
+                  <ThemeSwitcher />
+                </div>
               </div>
             </div>
           )}

@@ -7,6 +7,7 @@ import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
 import { useToast } from '@/components/ui/Toast';
 import { EditorSkeleton } from '@/components/ui/Skeleton';
+import { AIFeedback, InlineAIMenu, GenerationHistory } from '@/components/editor';
 import { 
   ArrowLeft, 
   Save, 
@@ -29,9 +30,19 @@ import {
   AlertCircle,
   Users,
   FlaskConical,
-  Share2
+  Share2,
+  History
 } from 'lucide-react';
 import clsx from 'clsx';
+
+// Types for generation history
+interface GenerationHistoryItem {
+  id: string;
+  content: string;
+  tone?: string;
+  timestamp: Date;
+  prompt?: string;
+}
 
 export function NewsletterEditorPage() {
   const { id } = useParams<{ id: string }>();
@@ -72,6 +83,17 @@ export function NewsletterEditorPage() {
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [lastAutoSaved, setLastAutoSaved] = useState<Date | null>(null);
   const autosaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
+  // AI Feedback Loop state
+  const [showAIFeedback, setShowAIFeedback] = useState(false);
+  const [lastGenerationId, setLastGenerationId] = useState<string | null>(null);
+  const [generationHistory, setGenerationHistory] = useState<GenerationHistoryItem[]>([]);
+  const [showHistory, setShowHistory] = useState(false);
+  const [inlineMenuPosition, setInlineMenuPosition] = useState<{ top: number; left: number } | null>(null);
+  const [selectedText, setSelectedText] = useState('');
+  const [isInlineProcessing, setIsInlineProcessing] = useState(false);
+  const [regenerationCount, setRegenerationCount] = useState(0);
+  const regenerationResetRef = useRef<NodeJS.Timeout | null>(null);
 
   const editor = useEditor({
     extensions: [
@@ -304,26 +326,58 @@ export function NewsletterEditorPage() {
     }
   }
 
-  async function generateWithAI() {
+  async function generateWithAI(tone?: string) {
     if (!aiPrompt.trim() || !tenant) return;
+    
+    // Rate limiting: max 10 regenerations per hour
+    if (regenerationCount >= 10) {
+      toast.error('Rate limit reached. Please wait before regenerating.');
+      return;
+    }
+    
     setGenerating(true);
+    setRegenerationCount(prev => prev + 1);
+    
+    // Reset counter after an hour
+    if (regenerationResetRef.current) {
+      clearTimeout(regenerationResetRef.current);
+    }
+    regenerationResetRef.current = setTimeout(() => {
+      setRegenerationCount(0);
+    }, 3600000); // 1 hour
 
     try {
+      // Save current content to history before generating new
+      if (editor && editor.getHTML().length > 20) {
+        const newHistoryItem: GenerationHistoryItem = {
+          id: crypto.randomUUID(),
+          content: editor.getHTML(),
+          tone: tone,
+          timestamp: new Date(),
+          prompt: aiPrompt
+        };
+        setGenerationHistory(prev => [newHistoryItem, ...prev].slice(0, 5));
+      }
+      
       // First do RAG search
       const { data: ragData } = await supabase.functions.invoke('rag-search', {
         body: { tenant_id: tenant.id, query: aiPrompt, limit: 5 },
       });
 
-      // Then generate content
+      // Then generate content with optional tone
       const { data: genData } = await supabase.functions.invoke('generate-content', {
         body: {
           tenant_id: tenant.id,
           topic: aiPrompt,
           context: ragData?.results || [],
+          tone: tone, // Pass tone parameter
         },
       });
 
       if (genData && !genData.error) {
+        const generationId = crypto.randomUUID();
+        setLastGenerationId(generationId);
+        
         if (editor) {
           const currentContent = editor.getHTML();
           editor.commands.setContent(currentContent + (genData.content_html || ''));
@@ -331,14 +385,118 @@ export function NewsletterEditorPage() {
         if (genData.subject_line && !subjectLine) {
           setSubjectLine(genData.subject_line);
         }
+        
+        // Show feedback UI after generation
+        setShowAIFeedback(true);
       }
     } catch (error) {
       console.error('AI generation error:', error);
+      toast.error('Failed to generate content');
     }
 
     setAiPrompt('');
     setShowAIPanel(false);
     setGenerating(false);
+  }
+  
+  // Handle AI feedback submission
+  async function handleAIFeedback(rating: 'up' | 'down', comment?: string) {
+    if (!lastGenerationId || !tenant) return;
+    
+    try {
+      // Store feedback (would go to ai_feedback table in production)
+      console.log('AI Feedback:', { 
+        generation_id: lastGenerationId, 
+        rating, 
+        comment,
+        tenant_id: tenant.id 
+      });
+      
+      toast.success(rating === 'up' ? 'Thanks for the feedback!' : 'Feedback recorded. We\'ll improve.');
+    } catch (error) {
+      console.error('Error saving feedback:', error);
+    }
+  }
+  
+  // Handle regeneration with tone
+  function handleRegenerate(tone?: string) {
+    generateWithAI(tone);
+  }
+  
+  // Handle inline text improvement
+  async function handleInlineImprove(action: string, text: string) {
+    if (!tenant || !editor) return;
+    
+    setIsInlineProcessing(true);
+    
+    try {
+      const actionPrompts: Record<string, string> = {
+        clearer: `Make this text clearer and more readable: "${text}"`,
+        punchier: `Make this text more engaging and impactful: "${text}"`,
+        expand: `Expand on this point with more detail: "${text}"`,
+        example: `Add a practical example to illustrate this point: "${text}"`,
+      };
+      
+      const { data: genData } = await supabase.functions.invoke('generate-content', {
+        body: {
+          tenant_id: tenant.id,
+          topic: actionPrompts[action] || text,
+          context: [],
+          inline_improvement: true,
+        },
+      });
+      
+      if (genData && !genData.error && genData.content_html) {
+        // Replace selected text with improved version
+        const { from, to } = editor.state.selection;
+        editor.chain().focus().deleteRange({ from, to }).insertContent(genData.content_html).run();
+        toast.success('Text improved!');
+      }
+    } catch (error) {
+      console.error('Inline improvement error:', error);
+      toast.error('Failed to improve text');
+    } finally {
+      setIsInlineProcessing(false);
+      setInlineMenuPosition(null);
+      setSelectedText('');
+    }
+  }
+  
+  // Handle text selection for inline menu
+  useEffect(() => {
+    if (!editor) return;
+    
+    const handleSelectionChange = () => {
+      const { from, to } = editor.state.selection;
+      const text = editor.state.doc.textBetween(from, to, ' ');
+      
+      if (text.length > 10) {
+        // Get selection coordinates
+        const coords = editor.view.coordsAtPos(from);
+        setSelectedText(text);
+        setInlineMenuPosition({ 
+          top: coords.top - 10, 
+          left: coords.left 
+        });
+      } else {
+        setSelectedText('');
+        setInlineMenuPosition(null);
+      }
+    };
+    
+    editor.on('selectionUpdate', handleSelectionChange);
+    return () => {
+      editor.off('selectionUpdate', handleSelectionChange);
+    };
+  }, [editor]);
+  
+  // Revert to history item
+  function handleRevertToHistory(item: GenerationHistoryItem) {
+    if (editor) {
+      editor.commands.setContent(item.content);
+      markAsChanged();
+      toast.success('Reverted to previous version');
+    }
   }
 
   if (loading) {
@@ -579,6 +737,16 @@ export function NewsletterEditorPage() {
                   <Redo className="w-4 h-4" />
                 </button>
                 <div className="flex-1" />
+                {generationHistory.length > 0 && (
+                  <button
+                    onClick={() => setShowHistory(true)}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium text-sm text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+                    title="View generation history"
+                  >
+                    <History className="w-4 h-4" />
+                    History ({generationHistory.length})
+                  </button>
+                )}
                 <button
                   onClick={() => setShowAIPanel(!showAIPanel)}
                   className={clsx(
@@ -607,7 +775,7 @@ export function NewsletterEditorPage() {
                     onKeyDown={(e) => e.key === 'Enter' && generateWithAI()}
                   />
                   <button
-                    onClick={generateWithAI}
+                    onClick={() => generateWithAI()}
                     disabled={generating || !aiPrompt.trim()}
                     className="px-4 py-2 bg-primary-500 text-white font-medium rounded-lg hover:bg-primary-600 transition-colors disabled:opacity-50"
                   >
@@ -625,6 +793,17 @@ export function NewsletterEditorPage() {
                     </button>
                   ))}
                 </div>
+                
+                {/* AI Feedback after generation */}
+                {showAIFeedback && (
+                  <AIFeedback
+                    generationId={lastGenerationId || undefined}
+                    onRegenerate={handleRegenerate}
+                    onFeedback={handleAIFeedback}
+                    isRegenerating={generating}
+                    disabled={isSent}
+                  />
+                )}
               </div>
             )}
 
@@ -896,6 +1075,28 @@ export function NewsletterEditorPage() {
           </div>
         </div>
       )}
+
+      {/* Inline AI Menu for text selection */}
+      <InlineAIMenu
+        selectedText={selectedText}
+        position={inlineMenuPosition}
+        onImprove={handleInlineImprove}
+        onClose={() => {
+          setInlineMenuPosition(null);
+          setSelectedText('');
+        }}
+        isProcessing={isInlineProcessing}
+      />
+
+      {/* Generation History Drawer */}
+      <GenerationHistory
+        history={generationHistory}
+        currentContent={editor?.getHTML() || ''}
+        onRevert={handleRevertToHistory}
+        onCompare={() => {}}
+        isOpen={showHistory}
+        onClose={() => setShowHistory(false)}
+      />
     </div>
   );
 }
