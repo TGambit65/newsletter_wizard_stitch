@@ -4,6 +4,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase, Newsletter } from '@/lib/supabase';
 import { api, SendTimeSlot } from '@/lib/api';
 import { useToast } from '@/components/ui/Toast';
+import { useBetaFeatures } from '@/hooks/useBetaFeatures';
 import {
   ChevronLeft,
   ChevronRight,
@@ -13,6 +14,7 @@ import {
   Mail,
   Plus,
   Zap,
+  Lock,
 } from 'lucide-react';
 import clsx from 'clsx';
 import {
@@ -52,6 +54,7 @@ function getNewslettersForDay(newsletters: Newsletter[], day: Date): Newsletter[
 export function SchedulingPage() {
   const { tenant } = useAuth();
   const toast = useToast();
+  const { isBetaEnabled } = useBetaFeatures();
   const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>('month');
@@ -428,13 +431,24 @@ export function SchedulingPage() {
             </div>
           </div>
 
-          {/* AI Send Time Recommendations */}
+          {/* AI Send Time Recommendations — beta-gated */}
           <div className="mt-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
             <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-3 flex items-center gap-1.5">
               <Zap className="w-3.5 h-3.5 text-warning" />
               AI Best Times
             </p>
-            {loadingSendTime ? (
+            {!isBetaEnabled('smart-scheduling') ? (
+              <div className="flex flex-col items-center gap-2 py-2 text-center">
+                <Lock className="w-4 h-4 text-neutral-300 dark:text-neutral-600" />
+                <p className="text-xs text-neutral-400">
+                  Enable{' '}
+                  <Link to="/beta-lab" className="text-primary-500 hover:underline">
+                    Smart Scheduling AI
+                  </Link>{' '}
+                  in Beta Lab to see optimal send times.
+                </p>
+              </div>
+            ) : loadingSendTime ? (
               <div className="space-y-2 animate-pulse">
                 {[...Array(3)].map((_, i) => (
                   <div key={i} className="h-3 bg-neutral-200 dark:bg-neutral-700 rounded" />
