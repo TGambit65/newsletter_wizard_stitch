@@ -669,7 +669,7 @@ export function KnowledgeBasePage() {
                       aria-haspopup="menu"
                       aria-expanded={openMenuId === source.id}
                       aria-label="Source actions"
-                      className="p-1.5 text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                      className="p-1.5 text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors"
                     >
                       <MoreHorizontal className="w-4 h-4" />
                     </button>
