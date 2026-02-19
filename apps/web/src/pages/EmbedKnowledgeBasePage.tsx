@@ -43,10 +43,12 @@ export function EmbedKnowledgeBasePage() {
       parentOrigin: params.get('parentOrigin') || undefined,
     });
 
-    // Listen for postMessage config — only accept from expected origin
+    // Listen for postMessage config — reject all messages unless a trusted
+    // parentOrigin was explicitly provided via URL param. Without a known
+    // trusted origin we cannot safely accept configuration from any caller.
     const parentOriginParam = params.get('parentOrigin') || undefined;
     const handleMessage = (event: MessageEvent) => {
-      if (parentOriginParam && event.origin !== parentOriginParam) return;
+      if (!parentOriginParam || event.origin !== parentOriginParam) return;
       if (event.data?.type === 'EMBED_CONFIG') {
         setConfig(prev => ({ ...prev, ...event.data.config }));
       }

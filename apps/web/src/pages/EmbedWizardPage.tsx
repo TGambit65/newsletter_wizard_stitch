@@ -34,9 +34,11 @@ export function EmbedWizardPage() {
       parentOrigin,
     });
 
-    // Listen for postMessage config — only accept from expected origin
+    // Listen for postMessage config — reject all messages unless a trusted
+    // parentOrigin was explicitly provided via URL param. Without a known
+    // trusted origin we cannot safely accept configuration from any caller.
     const handleMessage = (event: MessageEvent) => {
-      if (parentOrigin && event.origin !== parentOrigin) return;
+      if (!parentOrigin || event.origin !== parentOrigin) return;
       if (event.data?.type === 'EMBED_CONFIG') {
         setConfig(prev => ({ ...prev, ...event.data.config }));
       }
