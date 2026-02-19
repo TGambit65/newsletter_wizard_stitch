@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AI Training Progress</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#460df2",
+                        "primary-light": "#7c4dff",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                        "surface-dark": "#1e1a3a",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    animation: {
+                        'pulse-glow': 'pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                    },
+                    keyframes: {
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: 0.5, transform: 'scale(1)' },
+                            '50%': { opacity: 0.8, transform: 'scale(1.02)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom Glowing Effect for the Circle */
+        .neon-circle-glow {
+            filter: drop-shadow(0 0 15px rgba(70, 13, 242, 0.5)) drop-shadow(0 0 5px rgba(124, 77, 255, 0.3));
+        }
+        
+        .bg-indigo-gradient {
+            background: radial-gradient(circle at 50% 30%, #2e1a5e 0%, #141022 70%);
+        }
+
+        /* Custom Scrollbar for list */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-white min-h-screen flex justify-center items-center p-0 sm:p-4">
+<!-- Mobile Frame -->
+<div class="relative w-full max-w-md h-[100dvh] sm:h-[850px] bg-background-light dark:bg-background-dark sm:rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col sm:border sm:border-slate-200 dark:sm:border-white/10">
+<!-- Background Ambient Glow -->
+<div class="absolute top-0 left-0 w-full h-full bg-indigo-gradient opacity-100 pointer-events-none z-0"></div>
+<!-- Header -->
+<header class="relative z-10 px-6 pt-12 pb-4 flex items-center justify-between">
+<button class="p-2 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-icons text-white/70">arrow_back</span>
+</button>
+<h1 class="text-lg font-medium tracking-wide">AI Training</h1>
+<button class="p-2 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-icons text-white/70">more_vert</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="relative z-10 flex-1 flex flex-col px-6 overflow-y-auto scrollbar-hide pb-8">
+<!-- Central Progress Indicator -->
+<div class="flex-shrink-0 flex flex-col items-center justify-center py-10 relative">
+<!-- Circular Progress -->
+<div class="relative w-64 h-64 flex items-center justify-center">
+<!-- Outer Glow Ring (Static) -->
+<div class="absolute w-full h-full rounded-full border border-primary/20"></div>
+<!-- Inner Pulse Ring -->
+<div class="absolute w-56 h-56 rounded-full border border-primary/40 animate-pulse-glow"></div>
+<!-- SVG Progress Bar -->
+<svg class="w-full h-full transform -rotate-90 neon-circle-glow" viewbox="0 0 100 100">
+<!-- Background Circle -->
+<circle cx="50" cy="50" fill="none" r="42" stroke="#2a2442" stroke-width="4"></circle>
+<!-- Progress Circle -->
+<circle cx="50" cy="50" fill="none" r="42" stroke="url(#gradient)" stroke-dasharray="264" stroke-dashoffset="84" stroke-linecap="round" stroke-width="4"></circle>
+<!-- Gradient Definition -->
+<defs>
+<lineargradient id="gradient" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#460df2;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Text Center -->
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-white/70">68%</span>
+<span class="text-xs font-medium text-primary-light mt-2 uppercase tracking-widest px-4 py-1 rounded-full bg-primary/10 border border-primary/20">Indexing...</span>
+</div>
+</div>
+<p class="text-slate-400 text-sm mt-6 text-center max-w-[80%]">
+                    We are analyzing your documents to build a custom knowledge base.
+                </p>
+</div>
+<!-- Recently Processed List -->
+<div class="flex-1 w-full mt-4">
+<div class="flex items-center justify-between mb-4">
+<h2 class="text-sm font-semibold text-white/90 uppercase tracking-wider">Recently Processed</h2>
+<span class="text-xs text-primary-light bg-primary/10 px-2 py-0.5 rounded">3/12</span>
+</div>
+<div class="space-y-3">
+<!-- Item 1: Complete -->
+<div class="group flex items-center p-3 rounded-xl bg-surface-dark/50 border border-white/5 hover:bg-surface-dark transition-all duration-300">
+<div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 mr-4">
+<span class="material-icons text-xl">picture_as_pdf</span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-sm font-medium text-white truncate">Product_Specs_v2.pdf</h3>
+<p class="text-xs text-slate-500">1.2 MB • PDF Document</p>
+</div>
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400">
+<span class="material-icons text-sm">check</span>
+</div>
+</div>
+<!-- Item 2: Complete -->
+<div class="group flex items-center p-3 rounded-xl bg-surface-dark/50 border border-white/5 hover:bg-surface-dark transition-all duration-300">
+<div class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 mr-4">
+<span class="material-icons text-xl">language</span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-sm font-medium text-white truncate">Company_Blog_URL</h3>
+<p class="text-xs text-slate-500">Scraped 15 articles</p>
+</div>
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-500/10 text-emerald-400">
+<span class="material-icons text-sm">check</span>
+</div>
+</div>
+<!-- Item 3: Loading -->
+<div class="group flex items-center p-3 rounded-xl bg-surface-dark/80 border border-primary/30 relative overflow-hidden">
+<!-- Scanning Highlight -->
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 mr-4">
+<span class="material-icons text-xl">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-sm font-medium text-white truncate">Q3_Marketing_Strategy.docx</h3>
+<p class="text-xs text-primary-light">Analyzing structure...</p>
+</div>
+<div class="flex items-center justify-center w-8 h-8">
+<span class="material-icons text-primary text-xl animate-spin">sync</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Status & Actions -->
+<footer class="relative z-10 px-6 py-6 bg-gradient-to-t from-background-dark to-transparent">
+<!-- Insight Card -->
+<div class="bg-gradient-to-br from-primary/20 to-surface-dark border border-primary/20 rounded-xl p-4 flex items-start gap-3 mb-6 shadow-lg shadow-primary/5">
+<div class="p-2 bg-primary/20 rounded-lg text-primary-light">
+<span class="material-icons text-xl">auto_awesome</span>
+</div>
+<div>
+<h4 class="text-sm font-bold text-white mb-0.5">Learning Brand Voice</h4>
+<p class="text-xs text-slate-300 leading-relaxed">
+                        Your AI is currently detecting tone, style, and key terminology to write newsletters that sound just like you.
+                    </p>
+</div>
+</div>
+<!-- Cancel Button -->
+<button class="w-full py-3 text-slate-500 text-sm font-medium hover:text-white transition-colors duration-200">
+                Cancel Training
+            </button>
+</footer>
+</div>
+</body></html>

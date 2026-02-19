@@ -158,20 +158,20 @@ export function NewslettersPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Newsletters</h1>
+          <h1 className="text-3xl font-bold font-display text-neutral-900 dark:text-white">Newsletters</h1>
           <p className="text-neutral-500 mt-1">Create, edit, and manage your newsletters</p>
         </div>
         <div className="flex gap-3">
           <button
             onClick={createNewsletter}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-600 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-neutral-100 dark:bg-white/5 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-200 dark:hover:bg-white/10 transition-colors border border-neutral-200 dark:border-white/10"
           >
             <Plus className="w-5 h-5" />
             Blank Draft
           </button>
           <Link
             to="/wizard"
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-500 text-white font-medium rounded-lg hover:bg-primary-600 transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2.5 btn-primary-gradient text-sm shadow-glow-sm"
           >
             <Plus className="w-5 h-5" />
             Create with AI
@@ -188,7 +188,7 @@ export function NewslettersPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search newsletters..."
-            className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+            className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/5 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
           />
         </div>
         <div className="flex gap-2 flex-wrap">
@@ -200,7 +200,7 @@ export function NewslettersPage() {
                 'px-4 py-2.5 rounded-lg font-medium text-sm transition-colors',
                 filter === btn.value
                   ? 'bg-primary-500 text-white'
-                  : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                  : 'bg-white dark:bg-surface-dark text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10 hover:bg-neutral-50 dark:hover:bg-white/5'
               )}
             >
               {btn.label}
@@ -213,7 +213,7 @@ export function NewslettersPage() {
               value={sortKey}
               onChange={e => setSortKey(e.target.value as SortKey)}
               aria-label="Sort newsletters"
-              className="appearance-none pl-8 pr-4 py-2.5 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg text-sm text-neutral-700 dark:text-neutral-300 cursor-pointer focus:ring-2 focus:ring-primary-500 outline-none"
+              className="appearance-none pl-8 pr-4 py-2.5 bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/5 rounded-lg text-sm text-neutral-700 dark:text-neutral-300 cursor-pointer focus:ring-2 focus:ring-primary-500 outline-none"
             >
               <option value="created_at">Sort: Date</option>
               <option value="open_rate">Sort: Open Rate</option>
@@ -231,7 +231,7 @@ export function NewslettersPage() {
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
         </div>
       ) : paginatedItems.length === 0 ? (
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-12 text-center">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/5 p-12 text-center">
           <Mail className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
           <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">
             {filteredAndSorted.length === 0 && newsletters.length > 0
@@ -249,12 +249,12 @@ export function NewslettersPage() {
         </div>
       ) : (
         <>
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
-            <div className="divide-y divide-neutral-200 dark:divide-neutral-700">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/5 overflow-hidden">
+            <div className="divide-y divide-neutral-200 dark:divide-white/5">
               {paginatedItems.map((newsletter) => (
                 <div
                   key={newsletter.id}
-                  className="flex items-center justify-between p-4 hover:bg-neutral-50 dark:hover:bg-neutral-700/50 transition-colors"
+                  className="flex items-center justify-between p-4 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
                 >
                   <div className="flex-1 min-w-0 pr-4">
                     <div className="flex items-center gap-3 mb-1">

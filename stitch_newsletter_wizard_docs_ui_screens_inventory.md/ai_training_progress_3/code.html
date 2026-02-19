@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notification Center V2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#6366f1","primary-light": "#818cf8",
+                        "accent": "#06b6d4","accent-pop": "#22d3ee",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#0f172a","surface-dark": "#1e293b","surface-card": "#151e32",},
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px"},
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(99, 102, 241, 0.5), 0 0 20px rgba(99, 102, 241, 0.3)',
+                        'neon-cyan': '0 0 10px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .bg-glass {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-black font-body text-slate-800 dark:text-white min-h-screen flex justify-center items-center p-0 sm:p-4">
+<div class="relative w-full max-w-md h-[100dvh] sm:h-[850px] bg-background-light dark:bg-background-dark sm:rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col sm:border sm:border-slate-200 dark:sm:border-slate-800">
+<div class="absolute top-0 right-0 w-[300px] h-[300px] bg-primary/20 rounded-full blur-[100px] pointer-events-none z-0 translate-x-1/3 -translate-y-1/3"></div>
+<div class="absolute bottom-0 left-0 w-[250px] h-[250px] bg-accent/10 rounded-full blur-[80px] pointer-events-none z-0 -translate-x-1/3 translate-y-1/3"></div>
+<header class="relative z-20 px-6 pt-12 pb-2 flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<h1 class="text-2xl font-display font-bold tracking-tight text-white">Notifications</h1>
+<div class="flex gap-3">
+<button class="w-10 h-10 rounded-full bg-surface-dark border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white text-xl">settings</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-surface-dark border border-white/10 flex items-center justify-center hover:bg-white/10 transition-colors relative">
+<span class="absolute top-2.5 right-2.5 w-2 h-2 bg-red-500 rounded-full border border-surface-dark"></span>
+<span class="material-symbols-outlined text-white text-xl">mark_email_read</span>
+</button>
+</div>
+</div>
+<div class="flex p-1 bg-surface-dark/50 backdrop-blur-md rounded-xl border border-white/5">
+<button class="flex-1 py-2 text-sm font-medium rounded-lg bg-primary text-white shadow-lg shadow-primary/20 transition-all">
+                All
+            </button>
+<button class="flex-1 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors">
+                Activity
+            </button>
+<button class="flex-1 py-2 text-sm font-medium text-slate-400 hover:text-white transition-colors">
+                AI Updates
+            </button>
+</div>
+</header>
+<main class="relative z-10 flex-1 overflow-y-auto scrollbar-hide px-4 pt-2 pb-24">
+<div class="mb-6">
+<h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider px-2 mb-3">Today</h2>
+<div class="space-y-3">
+<div class="bg-surface-card border border-primary/20 rounded-2xl p-4 shadow-lg shadow-black/20 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary shadow-[0_0_10px_rgba(99,102,241,0.6)]"></div>
+<div class="flex gap-4 mb-3">
+<div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 text-primary-light">
+<span class="material-symbols-outlined filled">smart_toy</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-display font-semibold text-white">Brand Voice Learned</h3>
+<span class="text-xs text-slate-500">2m ago</span>
+</div>
+<p class="text-sm text-slate-400 mt-1 leading-relaxed">
+                                The AI has successfully indexed your latest blog posts. It's ready to generate content in your "Professional yet Witty" tone.
+                            </p>
+</div>
+</div>
+<div class="flex gap-2 pl-14">
+<button class="px-4 py-2 bg-primary hover:bg-primary-light text-white text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5 shadow-neon">
+<span class="material-symbols-outlined text-base">tune</span>
+                            Refine Tone
+                        </button>
+<button class="px-4 py-2 bg-white/5 hover:bg-white/10 text-white text-xs font-semibold rounded-lg border border-white/10 transition-colors">
+                            Dismiss
+                        </button>
+</div>
+</div>
+<div class="bg-surface-card border border-white/5 rounded-2xl p-4 shadow-lg shadow-black/20 relative overflow-hidden group hover:border-white/10 transition-colors">
+<div class="flex gap-4 mb-3">
+<div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center flex-shrink-0 text-emerald-400">
+<span class="material-symbols-outlined">send</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-display font-semibold text-white">Weekly Digest Sent</h3>
+<span class="text-xs text-slate-500">2h ago</span>
+</div>
+<p class="text-sm text-slate-400 mt-1 leading-relaxed">
+                                "Future of Tech" was sent to 12,405 subscribers. Open rate is trending 15% higher than usual.
+                            </p>
+</div>
+</div>
+<div class="flex gap-2 pl-14">
+<button class="px-4 py-2 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 text-xs font-semibold rounded-lg transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">bar_chart</span>
+                            View Report
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider px-2 mb-3">Yesterday</h2>
+<div class="space-y-3">
+<div class="bg-surface-card border border-white/5 rounded-2xl p-4 shadow-lg shadow-black/20 flex gap-4 items-center">
+<div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center flex-shrink-0 text-amber-400">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="font-display font-medium text-white text-sm">Low Engagement Alert</h3>
+<span class="text-xs text-slate-500">1d ago</span>
+</div>
+<p class="text-xs text-slate-400 line-clamp-1">
+                            Subscriber segment "Inactive" hasn't opened...
+                        </p>
+</div>
+</div>
+<div class="bg-surface-card border border-accent/20 rounded-2xl p-4 shadow-lg shadow-black/20 relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-accent shadow-[0_0_10px_rgba(6,182,212,0.6)]"></div>
+<div class="flex gap-4 mb-3">
+<div class="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0 text-accent-pop">
+<span class="material-symbols-outlined">edit_document</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-start">
+<h3 class="font-display font-semibold text-white">Draft Auto-Generated</h3>
+<span class="text-xs text-slate-500">1d ago</span>
+</div>
+<p class="text-sm text-slate-400 mt-1 leading-relaxed">
+                                Based on yesterday's industry news, a draft for "Tech Trends" is ready for review.
+                            </p>
+</div>
+</div>
+<div class="flex gap-2 pl-14">
+<button class="w-full py-2 bg-accent/10 hover:bg-accent/20 text-accent-pop border border-accent/30 text-xs font-semibold rounded-lg transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-base">edit</span>
+                            Review Draft
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<nav class="absolute bottom-6 left-6 right-6 z-30">
+<div class="bg-glass rounded-2xl border border-white/10 p-2 flex justify-between items-center shadow-2xl">
+<button class="p-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-colors flex flex-col items-center gap-1">
+<span class="material-symbols-outlined">dashboard</span>
+</button>
+<button class="p-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-colors flex flex-col items-center gap-1">
+<span class="material-symbols-outlined">campaign</span>
+</button>
+<div class="-mt-8">
+<button class="w-14 h-14 rounded-full bg-gradient-to-tr from-primary to-primary-light text-white shadow-lg shadow-primary/40 flex items-center justify-center hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+</div>
+<button class="p-3 rounded-xl text-primary-light bg-primary/10 transition-colors flex flex-col items-center gap-1 relative">
+<span class="w-1.5 h-1.5 bg-primary absolute top-2 right-3 rounded-full"></span>
+<span class="material-symbols-outlined filled">notifications</span>
+</button>
+<button class="p-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-colors flex flex-col items-center gap-1">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</nav>
+</div>
+
+</body></html>

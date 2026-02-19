@@ -118,7 +118,7 @@ export function EmbedWizardPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 p-6">
+    <div className="min-h-screen bg-neutral-50 dark:bg-background-dark p-6">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -162,7 +162,7 @@ export function EmbedWizardPage() {
         )}
 
         {/* Step Content */}
-        <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 shadow-sm">
+        <div className="bg-white dark:bg-surface-dark rounded-xl p-6 shadow-sm">
           {step === 'topic' && (
             <div className="space-y-4">
               <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">What would you like to write about?</h2>
@@ -223,7 +223,7 @@ export function EmbedWizardPage() {
               <div className="flex gap-3">
                 <button
                   onClick={() => setStep('topic')}
-                  className="flex-1 py-3 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                  className="flex-1 py-3 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-white/5"
                 >
                   Start Over
                 </button>

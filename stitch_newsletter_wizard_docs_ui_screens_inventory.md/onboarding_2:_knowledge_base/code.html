@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Onboarding 2: Knowledge Base</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#3713ec",
+              "background-light": "#f6f6f8",
+              "background-dark": "#131022",
+            },
+            fontFamily: {
+              "display": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-10px)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom gradient for the deep indigo vibe */
+        .bg-indigo-radial {
+            background: radial-gradient(circle at top center, rgba(55, 19, 236, 0.15) 0%, rgba(19, 16, 34, 1) 70%);
+        }
+        
+        .glass-icon {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 40px rgba(55, 19, 236, 0.3);
+        }
+        
+        /* Simulating the flight paths */
+        .path-line {
+            stroke-dasharray: 10;
+            opacity: 0.3;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display h-screen w-full overflow-hidden flex flex-col items-center justify-center relative">
+<!-- Background Ambience -->
+<div class="absolute inset-0 bg-indigo-radial pointer-events-none z-0" data-alt="Abstract deep indigo radial gradient background"></div>
+<!-- Main Container (Mobile Form Factor) -->
+<div class="relative z-10 w-full max-w-md h-full flex flex-col px-6 py-8 md:border-x md:border-white/5 md:h-[844px] md:rounded-3xl md:shadow-2xl md:bg-background-dark">
+<!-- Top Navigation -->
+<div class="flex justify-end pt-4 pb-4">
+<button class="text-sm font-medium text-slate-400 hover:text-white transition-colors">
+                Skip
+            </button>
+</div>
+<!-- Central Illustration Area -->
+<div class="flex-1 flex flex-col items-center justify-center relative my-4">
+<!-- Connection Lines (SVG) -->
+<svg class="absolute w-full h-full pointer-events-none z-0" viewbox="0 0 300 300">
+<!-- Line from PDF (Top Left) -->
+<path class="path-line" d="M 60 80 Q 150 100 150 150" fill="none" stroke="url(#grad1)" stroke-width="2"></path>
+<!-- Line from Youtube (Top Right) -->
+<path class="path-line" d="M 240 80 Q 150 100 150 150" fill="none" stroke="url(#grad1)" stroke-width="2"></path>
+<!-- Line from Link (Bottom) -->
+<path class="path-line" d="M 150 250 Q 150 200 150 150" fill="none" stroke="url(#grad1)" stroke-width="2"></path>
+<defs>
+<lineargradient id="grad1" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" style="stop-color:#3713ec;stop-opacity:0"></stop>
+<stop offset="100%" style="stop-color:#3713ec;stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+</svg>
+<!-- Floating Source Icons -->
+<div class="absolute top-[10%] left-[10%] animate-float" style="animation-delay: 0s;">
+<div class="glass-icon w-14 h-14 rounded-xl flex items-center justify-center transform -rotate-6">
+<span class="material-icons-round text-red-400 text-2xl">picture_as_pdf</span>
+</div>
+</div>
+<div class="absolute top-[10%] right-[10%] animate-float" style="animation-delay: 1.5s;">
+<div class="glass-icon w-14 h-14 rounded-xl flex items-center justify-center transform rotate-6">
+<span class="material-icons-round text-red-500 text-2xl">play_circle_filled</span>
+</div>
+</div>
+<div class="absolute bottom-[20%] animate-float" style="animation-delay: 0.8s;">
+<div class="glass-icon w-14 h-14 rounded-xl flex items-center justify-center transform rotate-3">
+<span class="material-icons-round text-blue-400 text-2xl">link</span>
+</div>
+</div>
+<!-- Central Brain/AI Core -->
+<div class="relative z-10 w-32 h-32 rounded-full bg-gradient-to-br from-primary to-indigo-900 flex items-center justify-center glow-effect animate-pulse-slow border border-white/10">
+<div class="absolute inset-0 rounded-full bg-primary/20 blur-xl"></div>
+<!-- Brain Icon -->
+<span class="material-icons-round text-white text-6xl relative z-20">psychology</span>
+<!-- Orbiting particles -->
+<div class="absolute w-full h-full animate-[spin_10s_linear_infinite]">
+<div class="absolute top-0 left-1/2 w-2 h-2 bg-white rounded-full blur-[1px]"></div>
+</div>
+<div class="absolute w-[80%] h-[80%] animate-[spin_7s_linear_infinite_reverse]">
+<div class="absolute bottom-0 left-1/2 w-1.5 h-1.5 bg-blue-300 rounded-full blur-[1px]"></div>
+</div>
+</div>
+</div>
+<!-- Content Area -->
+<div class="pb-8 text-center space-y-6 z-20">
+<div class="space-y-3">
+<h1 class="text-3xl font-display font-extrabold tracking-tight text-white leading-tight">
+                    Train Your Own AI
+                </h1>
+<p class="text-slate-400 font-medium text-base leading-relaxed max-w-[90%] mx-auto">
+                    Connect your sources and let the AI learn your brand voice and expertise.
+                </p>
+</div>
+<!-- Progress & Actions -->
+<div class="space-y-8 mt-4">
+<!-- Progress Dots -->
+<div class="flex justify-center space-x-2">
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+<div class="w-8 h-2 rounded-full bg-primary shadow-[0_0_10px_rgba(55,19,236,0.6)]"></div> <!-- Active State -->
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+<div class="w-2 h-2 rounded-full bg-white/20"></div>
+</div>
+<!-- Primary Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] shadow-lg shadow-primary/25 flex items-center justify-center group">
+                    Next
+                    <span class="material-icons-round ml-2 group-hover:translate-x-1 transition-transform text-lg">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Safe Area Spacer for iPhone -->
+<div class="h-6 w-full"></div>
+</div>
+</body></html>

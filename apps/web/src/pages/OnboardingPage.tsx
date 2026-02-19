@@ -53,9 +53,9 @@ export function OnboardingPage() {
   const firstName = profile?.full_name?.split(' ')[0] || 'there';
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex flex-col">
+    <div className="min-h-screen bg-neutral-50 dark:bg-background-dark flex flex-col">
       {/* Progress header */}
-      <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800">
+      <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 dark:border-white/10 bg-white dark:bg-surface-dark">
         {/* Logo */}
         <div className="flex items-center gap-2">
           <div
@@ -130,7 +130,7 @@ export function OnboardingPage() {
                   { icon: Wand2, label: 'AI generates', desc: 'Newsletter draft' },
                   { icon: Share2, label: 'Publish & share', desc: 'Email + social' },
                 ].map((item) => (
-                  <div key={item.label} className="bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700 text-center">
+                  <div key={item.label} className="bg-white dark:bg-surface-dark rounded-xl p-4 border border-neutral-200 dark:border-white/10 text-center">
                     <div className="w-10 h-10 bg-primary-50 dark:bg-primary-900/20 rounded-lg flex items-center justify-center mx-auto mb-2">
                       <item.icon className="w-5 h-5 text-primary-500" />
                     </div>
@@ -170,7 +170,7 @@ export function OnboardingPage() {
                 {SOURCE_TYPES.map((type) => (
                   <div
                     key={type.label}
-                    className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl p-4 flex flex-col items-center text-center gap-2"
+                    className="bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/10 rounded-xl p-4 flex flex-col items-center text-center gap-2"
                   >
                     <div className={clsx('w-10 h-10 rounded-lg flex items-center justify-center', type.color)}>
                       <type.icon className="w-5 h-5" />
@@ -187,7 +187,7 @@ export function OnboardingPage() {
               <div className="flex gap-3">
                 <button
                   onClick={() => setStep(1)}
-                  className="flex-1 px-6 py-3 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+                  className="flex-1 px-6 py-3 border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 font-medium rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
                 >
                   Back
                 </button>
@@ -220,7 +220,7 @@ export function OnboardingPage() {
 
               {/* Before/after mockup */}
               <div className="flex items-center gap-3 mb-8">
-                <div className="flex-1 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl p-4">
+                <div className="flex-1 bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/10 rounded-xl p-4">
                   <p className="text-xs font-semibold text-neutral-500 uppercase tracking-wide mb-2">Newsletter</p>
                   <div className="space-y-1.5">
                     <div className="h-3 bg-neutral-200 dark:bg-neutral-700 rounded w-full" />
@@ -236,7 +236,7 @@ export function OnboardingPage() {
 
                 <div className="flex-1 space-y-2">
                   {['Twitter', 'LinkedIn', 'Instagram'].map((platform) => (
-                    <div key={platform} className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg px-3 py-2 flex items-center gap-2">
+                    <div key={platform} className="bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/10 rounded-lg px-3 py-2 flex items-center gap-2">
                       <div className="w-5 h-5 rounded bg-primary-100 dark:bg-primary-900/30" />
                       <div className="h-2 bg-neutral-200 dark:bg-neutral-700 rounded flex-1" />
                     </div>
@@ -247,7 +247,7 @@ export function OnboardingPage() {
               <div className="flex gap-3">
                 <button
                   onClick={() => setStep(2)}
-                  className="flex-1 px-6 py-3 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+                  className="flex-1 px-6 py-3 border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 font-medium rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
                 >
                   Back
                 </button>
@@ -288,7 +288,7 @@ export function OnboardingPage() {
                 </button>
                 <button
                   onClick={complete}
-                  className="w-full px-6 py-3 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
+                  className="w-full px-6 py-3 border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 font-medium rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
                 >
                   Explore the dashboard
                 </button>

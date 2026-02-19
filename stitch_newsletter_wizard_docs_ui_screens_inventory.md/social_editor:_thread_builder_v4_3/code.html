@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Help Center: Knowledge Grid V1</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "accent-purple": "#6d52ff",
+                        "background-dark": "#131022",
+                        "card-dark": "#1d1834",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --primary: #330df2;
+            --accent: #6d52ff;
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #131022;
+        }
+        .glow-border {
+            box-shadow: 0 0 15px rgba(51, 13, 242, 0.1), inset 0 0 1px rgba(109, 82, 255, 0.3);
+        }
+        .gradient-btn {
+            background: linear-gradient(135deg, #330df2 0%, #6d52ff 100%);
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .neon-icon {
+            text-shadow: 0 0 8px rgba(109, 82, 255, 0.8);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-slate-100 min-h-screen font-display pb-24">
+<header class="sticky top-0 z-50 bg-background-dark/80 ios-blur border-b border-primary/20 px-4 py-4">
+<div class="flex items-center justify-between max-w-lg mx-auto">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-primary/10 text-primary transition-colors">
+<span class="material-symbols-outlined">arrow_back_ios</span>
+</button>
+<h1 class="text-sm font-bold tracking-tight uppercase text-primary/80">Help Center</h1>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-primary/10 text-primary transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<main class="max-w-lg mx-auto px-6 pt-8 space-y-10">
+<section class="text-center space-y-6">
+<div>
+<h2 class="text-3xl font-bold mb-2">How can we help?</h2>
+<p class="text-slate-400 text-sm">Search our knowledge base for instant answers.</p>
+</div>
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-primary">search</span>
+</div>
+<input class="w-full bg-card-dark border border-primary/20 rounded-2xl py-4 pl-12 pr-4 text-slate-100 placeholder:text-slate-500 focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all glow-border" placeholder="Search for 'Newsletter Editor'..." type="text"/>
+</div>
+</section>
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-xs font-black text-slate-400 uppercase tracking-widest">Popular Categories</h3>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-card-dark p-5 rounded-2xl border border-accent-purple/20 glow-border hover:border-accent-purple/50 transition-all cursor-pointer group">
+<div class="size-12 rounded-xl bg-accent-purple/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-accent-purple neon-icon">rocket_launch</span>
+</div>
+<h4 class="font-bold text-sm">Getting Started</h4>
+<p class="text-[10px] text-slate-500 mt-1">12 Articles</p>
+</div>
+<div class="bg-card-dark p-5 rounded-2xl border border-accent-purple/20 glow-border hover:border-accent-purple/50 transition-all cursor-pointer group">
+<div class="size-12 rounded-xl bg-accent-purple/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-accent-purple neon-icon">psychology</span>
+</div>
+<h4 class="font-bold text-sm">AI Training Tips</h4>
+<p class="text-[10px] text-slate-500 mt-1">8 Articles</p>
+</div>
+<div class="bg-card-dark p-5 rounded-2xl border border-accent-purple/20 glow-border hover:border-accent-purple/50 transition-all cursor-pointer group">
+<div class="size-12 rounded-xl bg-accent-purple/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-accent-purple neon-icon">edit_note</span>
+</div>
+<h4 class="font-bold text-sm">Newsletter Editor</h4>
+<p class="text-[10px] text-slate-500 mt-1">15 Articles</p>
+</div>
+<div class="bg-card-dark p-5 rounded-2xl border border-accent-purple/20 glow-border hover:border-accent-purple/50 transition-all cursor-pointer group">
+<div class="size-12 rounded-xl bg-accent-purple/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-accent-purple neon-icon">payments</span>
+</div>
+<h4 class="font-bold text-sm">Billing</h4>
+<p class="text-[10px] text-slate-500 mt-1">5 Articles</p>
+</div>
+</div>
+</section>
+<section class="pt-4 space-y-4">
+<button class="w-full py-4 rounded-xl gradient-btn text-white font-bold text-sm uppercase tracking-widest shadow-[0_8px_30px_rgb(51,13,242,0.3)] transition-transform active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">headset_mic</span>
+                Contact Support
+            </button>
+<div class="flex justify-center">
+<a class="text-sm font-bold text-accent-purple hover:text-white transition-colors flex items-center gap-1.5 underline decoration-accent-purple/30 underline-offset-4" href="#">
+<span class="material-symbols-outlined text-lg">forum</span>
+                    Community Forum
+                </a>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 inset-x-0 h-20 bg-card-dark/95 ios-blur border-t border-primary/10 flex items-center justify-around px-6 pb-4">
+<button class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold uppercase">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">auto_awesome</span>
+<span class="text-[10px] font-bold uppercase">Wizards</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="text-[10px] font-bold uppercase">Templates</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">help</span>
+<span class="text-[10px] font-bold uppercase">Support</span>
+</button>
+</nav>
+
+</body></html>

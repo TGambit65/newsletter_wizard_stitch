@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Success: Social Sharing Focus</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+            extend: {
+                colors: {
+                "primary": "#330df2",
+                "background-light": "#f6f5f8",
+                "background-dark": "#131022",
+                },
+                fontFamily: {
+                "display": ["Space Grotesk", "sans-serif"]
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                boxShadow: {
+                    "neon": "0 0 20px -5px rgba(51, 13, 242, 0.5)",
+                    "neon-strong": "0 0 30px -5px rgba(51, 13, 242, 0.8)",
+                }
+            },
+            },
+        }
+    </script>
+<style>
+        /* Custom utilities for neon glows not covered by simple shadows */
+        .neon-border {
+            border: 1px solid rgba(51, 13, 242, 0.5);
+            box-shadow: 0 0 15px rgba(51, 13, 242, 0.2);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white h-screen overflow-hidden flex flex-col relative antialiased selection:bg-primary selection:text-white">
+<!-- Decorative Background Elements -->
+<div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none z-0"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-primary/20 rounded-full blur-[100px] pointer-events-none z-0"></div>
+<!-- Main Container -->
+<main class="flex-1 flex flex-col items-center justify-center w-full max-w-md mx-auto px-6 relative z-10 pt-12 pb-24">
+<!-- Success Indicator -->
+<div class="flex flex-col items-center text-center space-y-4 mb-8">
+<div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center neon-border animate-pulse mb-2">
+<span class="material-icons text-primary text-4xl">send</span>
+</div>
+<div class="space-y-1">
+<h1 class="text-3xl font-bold uppercase tracking-tight text-white text-glow">Sent Successfully!</h1>
+<p class="text-gray-400 text-sm font-medium">Your newsletter is on its way to <span class="text-primary font-bold">1,240 subscribers</span>.</p>
+</div>
+</div>
+<!-- Interactive Preview Card -->
+<div class="w-full relative group cursor-pointer transform transition-all duration-300 hover:scale-[1.02]">
+<!-- Card Glow Effect behind -->
+<div class="absolute -inset-0.5 bg-gradient-to-br from-primary via-purple-600 to-primary rounded-xl blur opacity-30 group-hover:opacity-60 transition duration-1000 group-hover:duration-200"></div>
+<!-- Card Content -->
+<div class="relative bg-[#1a162e] rounded-xl overflow-hidden border border-white/5 shadow-2xl">
+<!-- Hero Image -->
+<div class="h-40 w-full relative bg-gray-800">
+<img alt="Abstract neon AI visualization graphic" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Abstract purple and blue neon visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmy3M7aCWULOif9s5_rxzIHzjBzlQOLb5DYkJeoVYSC2IQUypW--DDak14Ax0LQrBcA7dAjkEZbcNx74vLuyvw2oWCbOu0jrgocxR-hX3ba_lHoosQjPgaQOgTopyGRRNu6iuuCfNnMIYPkfN40XUsJIz1AXxdQSc-EMqYFsRR3GozBhdAuzrKwkCIlCntHa6QqNlzvX1m8_UR0FbqcsnNcKknQoa8dbJayzFjCl11z1Tfiwin48dKH-_wNspRvynrHo5dzwfuvG0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#1a162e] to-transparent"></div>
+<!-- Floating Badge -->
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[10px] font-bold tracking-wider text-white border border-white/10 uppercase">
+                        Published
+                    </div>
+</div>
+<!-- Text Content -->
+<div class="p-5">
+<div class="flex items-center space-x-2 mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.8)]"></span>
+<span class="text-xs text-primary font-semibold uppercase tracking-wider">Weekly Digest</span>
+</div>
+<h2 class="text-xl font-bold text-white mb-2 leading-tight group-hover:text-primary transition-colors">The Future of AI Design</h2>
+<p class="text-gray-400 text-sm line-clamp-2 leading-relaxed">
+                        Explore how generative algorithms are reshaping the creative landscape. We dive deep into new tools, ethical considerations, and what this means for your workflow.
+                    </p>
+<!-- Card Footer -->
+<div class="mt-4 flex items-center justify-between pt-4 border-t border-white/5">
+<span class="text-xs text-gray-500">Read online • 3 min read</span>
+<button class="flex items-center space-x-1 text-xs text-white group-hover:text-primary transition-colors">
+<span class="material-icons text-sm">link</span>
+<span>Copy Link</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Social Sharing Section -->
+<div class="mt-10 w-full text-center">
+<p class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-6">Share the news</p>
+<div class="flex items-center justify-center gap-6">
+<!-- X (Twitter) -->
+<button class="group relative flex flex-col items-center space-y-2">
+<div class="w-14 h-14 rounded-full bg-[#1a162e] border border-white/10 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/20 transition-all duration-300 shadow-lg group-hover:shadow-neon">
+<svg aria-hidden="true" class="w-6 h-6 fill-white group-hover:fill-primary transition-colors" viewbox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+</div>
+<span class="text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-5">X</span>
+</button>
+<!-- LinkedIn -->
+<button class="group relative flex flex-col items-center space-y-2">
+<div class="w-14 h-14 rounded-full bg-[#1a162e] border border-white/10 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/20 transition-all duration-300 shadow-lg group-hover:shadow-neon">
+<svg aria-hidden="true" class="w-6 h-6 fill-white group-hover:fill-primary transition-colors" viewbox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
+</div>
+<span class="text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-5">LinkedIn</span>
+</button>
+<!-- Threads / Generic Share -->
+<button class="group relative flex flex-col items-center space-y-2">
+<div class="w-14 h-14 rounded-full bg-[#1a162e] border border-white/10 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/20 transition-all duration-300 shadow-lg group-hover:shadow-neon">
+<svg class="w-6 h-6 fill-white group-hover:fill-primary transition-colors" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.65 11.235a4.706 4.706 0 0 1-5.187 4.755c-2.457-.234-3.692-2.083-3.635-4.522.057-2.44 1.505-4.22 3.82-4.326 2.096-.096 4.09 1.345 3.518 4.735-.458 2.716-2.425 4.706-5.07 4.757-3.792.072-6.572-3.23-5.263-8.384 1.05-4.133 5.483-6.623 9.473-5.32 1.36.444 2.376 1.487 2.656 2.345.188.577.674 1.536 1.71 1.082.906-.398.814-1.763.515-2.617C18.91 1.44 15.603-.548 10.957.172 5.51 1.016-.39 5.378.02 11.29c.35 5.06 4.095 9.098 9.38 8.974 3.447-.08 6.02-1.895 7.152-4.106.33-.646.613-1.42.274-1.876-.432-.58-1.505-.286-1.92-.12.447 1.543.085 2.502-1.397 3.666-1.516 1.19-3.754 1.258-5.316 1.258-3.72-.19-5.965-2.91-6.142-6.223-.198-3.702 2.196-6.425 5.746-6.31 2.31.074 4.096 1.705 3.996 4.07-.075 1.76-1.226 2.622-2.222 2.68-1.047.06-1.776-.856-1.748-2.02.03-1.197.83-1.933 1.83-1.96z"></path></svg>
+</div>
+<span class="text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-5">Threads</span>
+</button>
+<!-- More -->
+<button class="group relative flex flex-col items-center space-y-2">
+<div class="w-14 h-14 rounded-full bg-[#1a162e] border border-white/10 flex items-center justify-center group-hover:border-primary group-hover:bg-primary/20 transition-all duration-300 shadow-lg group-hover:shadow-neon">
+<span class="material-icons text-white group-hover:text-primary transition-colors">ios_share</span>
+</div>
+<span class="text-[10px] text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity absolute -bottom-5">More</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer Action -->
+<footer class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-background-dark to-transparent pt-12 z-20">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 px-6 rounded-lg shadow-neon-strong transform transition-all active:scale-[0.98] flex items-center justify-center group">
+<span>Back to Dashboard</span>
+<span class="material-icons ml-2 text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</footer>
+</body></html>

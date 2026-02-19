@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Search: High-Density List</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "neon-cyan": "#00f0ff",
+                        "neon-magenta": "#ff00ff",
+                        "neon-lime": "#ccff00",
+                        "surface-dark": "#1c1833", // Slightly lighter than bg-dark for contrast
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "neon-blue": "0 0 10px rgba(51, 13, 242, 0.5)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-white h-screen overflow-hidden flex justify-center items-center p-4">
+<!-- Mobile Container -->
+<div class="w-full max-w-[390px] h-[844px] bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden relative border border-slate-200 dark:border-slate-800 rounded-3xl flex flex-col">
+<!-- Status Bar Simulation -->
+<div class="h-12 w-full flex justify-between items-center px-6 pt-2 shrink-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0">
+<span class="text-sm font-semibold">9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-icons-round text-sm">signal_cellular_alt</span>
+<span class="material-icons-round text-sm">wifi</span>
+<span class="material-icons-round text-sm transform rotate-180">battery_full</span>
+</div>
+</div>
+<!-- Sticky Search Header -->
+<header class="sticky top-0 z-40 px-4 py-3 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-xl border-b border-slate-200 dark:border-white/10">
+<div class="flex items-center justify-between mb-3">
+<h1 class="text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 font-bold">Newsletter Wizard KB</h1>
+<button class="text-primary hover:text-primary/80 transition-colors text-sm font-medium">Cancel</button>
+</div>
+<div class="relative flex items-center group">
+<span class="absolute left-3 text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-icons-outlined text-lg">search</span>
+</span>
+<input class="w-full bg-slate-200/50 dark:bg-surface-dark border-transparent focus:border-primary focus:ring-1 focus:ring-primary rounded-lg py-2.5 pl-10 pr-10 text-sm placeholder-slate-500 text-slate-900 dark:text-white transition-all shadow-sm" placeholder="Search Knowledge Base..." type="text" value="Product roadmap"/>
+<button class="absolute right-2 p-1 text-slate-400 hover:text-white rounded-md hover:bg-white/10 transition-colors">
+<span class="material-icons-outlined text-lg">tune</span>
+</button>
+</div>
+<!-- Quick Filters (Horizontal Scroll) -->
+<div class="flex gap-2 mt-3 overflow-x-auto no-scrollbar pb-1">
+<button class="shrink-0 px-3 py-1 rounded-full text-xs font-medium bg-primary text-white shadow-neon-blue border border-primary">All</button>
+<button class="shrink-0 px-3 py-1 rounded-full text-xs font-medium bg-transparent border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-neon-cyan hover:text-neon-cyan transition-colors">Marketing</button>
+<button class="shrink-0 px-3 py-1 rounded-full text-xs font-medium bg-transparent border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-neon-magenta hover:text-neon-magenta transition-colors">Product</button>
+<button class="shrink-0 px-3 py-1 rounded-full text-xs font-medium bg-transparent border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-neon-lime hover:text-neon-lime transition-colors">Research</button>
+<button class="shrink-0 px-3 py-1 rounded-full text-xs font-medium bg-transparent border border-slate-300 dark:border-slate-700 text-slate-600 dark:text-slate-400 hover:border-white transition-colors">Legal</button>
+</div>
+</header>
+<!-- Search Results List -->
+<main class="flex-1 overflow-y-auto no-scrollbar pb-20">
+<div class="divide-y divide-slate-200 dark:divide-white/5">
+<!-- Result Item 1 -->
+<div class="group flex items-center justify-between p-4 hover:bg-primary/5 transition-colors cursor-pointer active:bg-primary/10">
+<div class="flex-1 min-w-0 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20">
+                                PRODUCT SPECS
+                            </span>
+<span class="text-xs text-slate-500 dark:text-slate-500">Updated 2h ago</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Q4 Product Roadmap Overview</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">Comprehensive breakdown of feature releases including AI integration...</p>
+</div>
+<button class="shrink-0 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 active:scale-95 transition-all text-primary">
+<span class="material-icons-round">cloud_done</span>
+</button>
+</div>
+<!-- Result Item 2 -->
+<div class="group flex items-center justify-between p-4 hover:bg-primary/5 transition-colors cursor-pointer active:bg-primary/10">
+<div class="flex-1 min-w-0 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-neon-magenta/10 text-neon-magenta border border-neon-magenta/20">
+                                MARKETING
+                            </span>
+<span class="text-xs text-slate-500 dark:text-slate-500">Updated 1d ago</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Tone of Voice Guidelines v2.0</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">Defines the brand persona for all external communications...</p>
+</div>
+<button class="shrink-0 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 active:scale-95 transition-all text-slate-600 dark:text-slate-500 hover:text-white">
+<span class="material-icons-outlined">cloud_off</span>
+</button>
+</div>
+<!-- Result Item 3 -->
+<div class="group flex items-center justify-between p-4 hover:bg-primary/5 transition-colors cursor-pointer active:bg-primary/10">
+<div class="flex-1 min-w-0 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-neon-lime/10 text-neon-lime border border-neon-lime/20">
+                                RESEARCH
+                            </span>
+<span class="text-xs text-slate-500 dark:text-slate-500">Updated 3d ago</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Competitor Analysis 2023 - EU Market</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">Deep dive into emerging competitors in the SaaS space...</p>
+</div>
+<button class="shrink-0 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 active:scale-95 transition-all text-primary">
+<span class="material-icons-round">cloud_done</span>
+</button>
+</div>
+<!-- Result Item 4 -->
+<div class="group flex items-center justify-between p-4 hover:bg-primary/5 transition-colors cursor-pointer active:bg-primary/10">
+<div class="flex-1 min-w-0 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20">
+                                CAMPAIGNS
+                            </span>
+<span class="text-xs text-slate-500 dark:text-slate-500">Updated 1w ago</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Black Friday Email Sequences</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">5-part email series templates for holiday promotions...</p>
+</div>
+<button class="shrink-0 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 active:scale-95 transition-all text-primary">
+<span class="material-icons-round">cloud_done</span>
+</button>
+</div>
+<!-- Result Item 5 -->
+<div class="group flex items-center justify-between p-4 hover:bg-primary/5 transition-colors cursor-pointer active:bg-primary/10">
+<div class="flex-1 min-w-0 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-neon-magenta/10 text-neon-magenta border border-neon-magenta/20">
+                                MARKETING
+                            </span>
+<span class="text-xs text-slate-500 dark:text-slate-500">Updated 2w ago</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">Social Media Assets Kit Q4</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">Grid layouts, story templates, and video bumpers...</p>
+</div>
+<button class="shrink-0 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 active:scale-95 transition-all text-slate-600 dark:text-slate-500 hover:text-white">
+<span class="material-icons-outlined">cloud_off</span>
+</button>
+</div>
+<!-- Result Item 6 -->
+<div class="group flex items-center justify-between p-4 hover:bg-primary/5 transition-colors cursor-pointer active:bg-primary/10">
+<div class="flex-1 min-w-0 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-white/10 text-slate-300 border border-white/20">
+                                LEGAL
+                            </span>
+<span class="text-xs text-slate-500 dark:text-slate-500">Updated 1mo ago</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">GDPR Compliance Checklist</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">Updated requirements for data handling and storage...</p>
+</div>
+<button class="shrink-0 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 active:scale-95 transition-all text-primary">
+<span class="material-icons-round">cloud_done</span>
+</button>
+</div>
+<!-- Result Item 7 -->
+<div class="group flex items-center justify-between p-4 hover:bg-primary/5 transition-colors cursor-pointer active:bg-primary/10">
+<div class="flex-1 min-w-0 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-neon-lime/10 text-neon-lime border border-neon-lime/20">
+                                RESEARCH
+                            </span>
+<span class="text-xs text-slate-500 dark:text-slate-500">Updated 1mo ago</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white truncate">User Persona Interviews - Batch 2</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">Raw transcripts from customer development calls...</p>
+</div>
+<button class="shrink-0 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/5 active:scale-95 transition-all text-slate-600 dark:text-slate-500 hover:text-white">
+<span class="material-icons-outlined">cloud_off</span>
+</button>
+</div>
+</div>
+<!-- End of list spacer -->
+<div class="h-8 flex items-center justify-center text-xs text-slate-600 dark:text-slate-500 mt-4">
+                End of results
+            </div>
+</main>
+<!-- Floating Keyboard Accessory (Optional, implies keyboard is open) -->
+<div class="bg-surface-dark border-t border-white/10 p-2 flex justify-between items-center fixed bottom-0 left-0 right-0 w-full max-w-[390px] mx-auto z-50 transform translate-y-full opacity-0 transition-all duration-300">
+<!-- Not displaying keyboard to keep clean, but visual hint suggests ready state -->
+</div>
+</div>
+</body></html>

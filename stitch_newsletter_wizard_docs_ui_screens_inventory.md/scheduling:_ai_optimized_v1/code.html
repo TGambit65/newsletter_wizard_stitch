@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Scheduling: AI Optimized V1</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#0a051e",
+                        "accent-purple": "#8b5cf6",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .neon-border {
+            box-shadow: 0 0 15px rgba(51, 13, 242, 0.4), inset 0 0 10px rgba(51, 13, 242, 0.2);
+            border: 1px solid rgba(51, 13, 242, 0.5);
+        }
+        .gradient-button {
+            background: linear-gradient(135deg, #330df2 0%, #8b5cf6 100%);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col items-center justify-start overflow-x-hidden">
+<!-- Main Container (Mobile Viewport) -->
+<div class="relative flex flex-col w-full max-w-[430px] min-h-screen bg-background-light dark:bg-background-dark shadow-2xl">
+<!-- Header -->
+<header class="flex items-center justify-between p-6 pt-12 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0 z-50">
+<button class="text-slate-500 dark:text-slate-400 font-medium text-sm">Cancel</button>
+<h1 class="text-xl font-bold tracking-tight">Schedule</h1>
+<div class="w-10 flex justify-end">
+<span class="material-symbols-outlined text-primary">info</span>
+</div>
+</header>
+<!-- Scrollable Content -->
+<main class="flex-1 px-6 pb-32 space-y-8">
+<!-- AI Recommendation Card -->
+<section class="mt-4">
+<div class="relative group">
+<div class="absolute -top-3 left-4 bg-primary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-white z-10 shadow-lg shadow-primary/20">AI Optimized</div>
+<div class="neon-border bg-primary/5 dark:bg-primary/10 rounded-xl p-6 flex flex-col gap-4 overflow-hidden relative">
+<!-- Abstract Background Pattern -->
+<div class="absolute top-0 right-0 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-9xl">auto_awesome</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">magic_button</span>
+</div>
+<div>
+<p class="text-xs font-semibold text-primary/80 uppercase tracking-wider">Best Time to Send</p>
+<h2 class="text-2xl font-bold">Tuesday, 9:15 AM</h2>
+</div>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Based on subscriber habits and an 85% open rate from your last 3 campaigns.
+                        </p>
+<button class="w-full py-3 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/30 transition-transform active:scale-95">
+                            Apply Recommended Time
+                        </button>
+</div>
+</div>
+</section>
+<!-- Custom Schedule Header -->
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold">Custom Schedule</h3>
+<span class="text-xs text-primary font-medium bg-primary/10 px-2 py-1 rounded-md">October 2023</span>
+</div>
+<!-- Date Picker (Horizontal Strip) -->
+<section class="space-y-4">
+<div class="flex overflow-x-auto gap-3 pb-2 hide-scrollbar">
+<!-- Day Items -->
+<div class="flex flex-col items-center justify-center min-w-[60px] h-20 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+<span class="text-xs font-medium text-slate-500">Mon</span>
+<span class="text-lg font-bold">02</span>
+</div>
+<div class="flex flex-col items-center justify-center min-w-[60px] h-20 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+<span class="text-xs font-medium text-slate-500">Tue</span>
+<span class="text-lg font-bold">03</span>
+</div>
+<div class="flex flex-col items-center justify-center min-w-[60px] h-20 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+<span class="text-xs font-medium text-slate-500">Wed</span>
+<span class="text-lg font-bold">04</span>
+</div>
+<!-- Selected Day -->
+<div class="flex flex-col items-center justify-center min-w-[60px] h-20 rounded-2xl bg-primary text-white shadow-lg shadow-primary/30">
+<span class="text-xs font-medium opacity-80">Thu</span>
+<span class="text-lg font-bold">05</span>
+</div>
+<div class="flex flex-col items-center justify-center min-w-[60px] h-20 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+<span class="text-xs font-medium text-slate-500">Fri</span>
+<span class="text-lg font-bold">06</span>
+</div>
+<div class="flex flex-col items-center justify-center min-w-[60px] h-20 rounded-2xl bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800">
+<span class="text-xs font-medium text-slate-500">Sat</span>
+<span class="text-lg font-bold">07</span>
+</div>
+</div>
+</section>
+<!-- Time Picker -->
+<section class="space-y-4">
+<label class="text-sm font-bold text-slate-500 uppercase tracking-widest">Select Time</label>
+<div class="flex items-center justify-center gap-4 bg-slate-100 dark:bg-slate-800/30 rounded-2xl p-6 border border-slate-200 dark:border-slate-800">
+<div class="flex flex-col items-center">
+<span class="text-slate-400 text-sm">09</span>
+<span class="text-3xl font-bold py-2 text-primary">10</span>
+<span class="text-slate-400 text-sm">11</span>
+</div>
+<span class="text-3xl font-bold text-slate-400 mb-1">:</span>
+<div class="flex flex-col items-center">
+<span class="text-slate-400 text-sm">00</span>
+<span class="text-3xl font-bold py-2 text-primary">15</span>
+<span class="text-slate-400 text-sm">30</span>
+</div>
+<div class="flex flex-col gap-2 ml-4">
+<button class="px-3 py-1 rounded-lg bg-primary text-white text-xs font-bold uppercase tracking-tighter">AM</button>
+<button class="px-3 py-1 rounded-lg bg-slate-200 dark:bg-slate-800 text-slate-500 text-xs font-bold uppercase tracking-tighter">PM</button>
+</div>
+</div>
+</section>
+<!-- Recurrence Toggle -->
+<section class="bg-slate-100 dark:bg-slate-800/30 rounded-2xl p-5 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-accent-purple/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-accent-purple">replay</span>
+</div>
+<div>
+<p class="font-bold">Recurrence</p>
+<p class="text-xs text-slate-500">Repeat this schedule weekly</p>
+</div>
+</div>
+<!-- Toggle Switch -->
+<div class="relative inline-flex h-7 w-12 cursor-pointer items-center rounded-full bg-primary p-1">
+<div class="h-5 w-5 translate-x-5 rounded-full bg-white shadow-sm transition-transform duration-200"></div>
+</div>
+</section>
+<!-- Recurrence Details (Conditional) -->
+<section class="flex gap-2">
+<button class="flex-1 py-2 rounded-full border border-primary bg-primary/10 text-primary text-xs font-bold">Weekly</button>
+<button class="flex-1 py-2 rounded-full border border-slate-200 dark:border-slate-800 text-slate-400 text-xs font-bold">Monthly</button>
+<button class="flex-1 py-2 rounded-full border border-slate-200 dark:border-slate-800 text-slate-400 text-xs font-bold">Bi-weekly</button>
+</section>
+</main>
+<!-- Fixed Footer Action -->
+<footer class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-light dark:from-background-dark via-background-light dark:via-background-dark to-transparent pt-12">
+<div class="text-center mb-4">
+<p class="text-[10px] text-slate-500 font-medium uppercase tracking-widest">Send Timezone: EST (New York)</p>
+</div>
+<button class="gradient-button w-full h-16 rounded-2xl text-white font-bold text-lg shadow-2xl shadow-primary/40 flex items-center justify-center gap-2 group active:scale-95 transition-all">
+<span>Schedule Newsletter</span>
+<span class="material-symbols-outlined text-xl group-hover:translate-x-1 transition-transform">send</span>
+</button>
+</footer>
+</div>
+</body></html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Scheduling: Visual Timeline V3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#0a0a12",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .timeline-line {
+            background: linear-gradient(to bottom, #330df2 0%, #330df2 50%, rgba(51, 13, 242, 0.2) 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 pt-12 pb-4">
+<div class="flex items-center justify-between">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-primary/10 text-primary">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight">Visual Timeline</h1>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-primary/10 text-primary">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<!-- Time Zone Selector -->
+<div class="mt-6">
+<div class="flex items-center justify-between p-4 rounded-xl border border-primary/20 bg-primary/5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30">
+<span class="material-symbols-outlined text-white">schedule</span>
+</div>
+<div>
+<p class="text-xs text-slate-500 dark:text-slate-400 font-medium uppercase tracking-wider">Current Time Zone</p>
+<p class="text-sm font-bold">UTC -5:00 (Eastern Time)</p>
+</div>
+</div>
+<button class="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform">
+                    Change
+                </button>
+</div>
+</div>
+<!-- View Tabs -->
+<div class="flex gap-2 mt-6 overflow-x-auto pb-2 no-scrollbar">
+<button class="px-5 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 text-sm font-bold whitespace-nowrap">Grid</button>
+<button class="px-5 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 text-sm font-bold whitespace-nowrap">List</button>
+<button class="px-5 py-2 rounded-full bg-primary text-white text-sm font-bold whitespace-nowrap shadow-lg shadow-primary/20">Timeline</button>
+<button class="px-5 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 text-sm font-bold whitespace-nowrap">Calendar</button>
+</div>
+</header>
+<!-- Timeline Content -->
+<main class="flex-1 px-6 py-4 relative">
+<!-- Vertical Axis -->
+<div class="absolute left-[47px] top-0 bottom-0 w-0.5 timeline-line opacity-30"></div>
+<!-- Timeline Items -->
+<div class="space-y-12 relative">
+<!-- Morning Slot -->
+<div class="relative">
+<div class="flex items-start gap-6">
+<!-- Time Label -->
+<div class="flex flex-col items-center z-10">
+<div class="w-11 h-11 rounded-full bg-primary flex items-center justify-center ring-4 ring-background-dark">
+<span class="material-symbols-outlined text-white text-xl">mail</span>
+</div>
+<span class="mt-2 text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full uppercase">09:00 AM</span>
+</div>
+<!-- Main Newsletter Card -->
+<div class="flex-1 glass-card p-4 rounded-xl relative">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-black uppercase tracking-widest text-emerald-400 flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Peak Engagement
+                            </span>
+<span class="material-symbols-outlined text-slate-500 cursor-grab active:cursor-grabbing">drag_indicator</span>
+</div>
+<h3 class="font-bold text-lg leading-tight">The Weekly Wizard #42</h3>
+<p class="text-sm text-slate-400 mt-1">Main Newsletter Distribution</p>
+<!-- Repurposed Posts (Connected) -->
+<div class="mt-4 space-y-3">
+<!-- Linked Item 1 -->
+<div class="relative flex items-center gap-3 pl-6">
+<div class="absolute left-0 top-0 bottom-0 w-px bg-primary/40"></div>
+<div class="absolute left-0 top-1/2 w-4 h-px bg-primary/40"></div>
+<div class="w-8 h-8 rounded-full bg-sky-500/20 flex items-center justify-center text-sky-400 border border-sky-500/30">
+<span class="material-symbols-outlined text-lg">description</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-slate-300">Twitter Thread</p>
+<p class="text-[10px] text-slate-500">Scheduled: 09:15 AM</p>
+</div>
+<span class="material-symbols-outlined text-slate-600 text-sm">link</span>
+</div>
+<!-- Linked Item 2 -->
+<div class="relative flex items-center gap-3 pl-6">
+<div class="absolute left-0 top-0 h-1/2 w-px bg-primary/40"></div>
+<div class="absolute left-0 top-1/2 w-4 h-px bg-primary/40"></div>
+<div class="w-8 h-8 rounded-full bg-blue-600/20 flex items-center justify-center text-blue-400 border border-blue-600/30">
+<span class="material-symbols-outlined text-lg">rebase_edit</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-slate-300">LinkedIn Summary</p>
+<p class="text-[10px] text-slate-500">Scheduled: 10:30 AM</p>
+</div>
+<span class="material-symbols-outlined text-slate-600 text-sm">link</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Suggestion Gap -->
+<div class="relative ml-16 flex items-center gap-4 py-2 opacity-60">
+<div class="flex-1 h-px border-t border-dashed border-primary/40"></div>
+<div class="flex items-center gap-2 bg-primary/10 px-3 py-1.5 rounded-full border border-primary/20">
+<span class="material-symbols-outlined text-sm text-primary">auto_awesome</span>
+<span class="text-[10px] font-bold text-primary uppercase tracking-widest">AI Opportunity Window (12:45 PM)</span>
+</div>
+<div class="flex-1 h-px border-t border-dashed border-primary/40"></div>
+</div>
+<!-- Afternoon Slot -->
+<div class="relative">
+<div class="flex items-start gap-6">
+<!-- Time Label -->
+<div class="flex flex-col items-center z-10">
+<div class="w-11 h-11 rounded-full bg-slate-800 flex items-center justify-center ring-4 ring-background-dark border border-primary/40 shadow-[0_0_15px_rgba(51,13,242,0.3)]">
+<span class="material-symbols-outlined text-primary text-xl">auto_awesome</span>
+</div>
+<span class="mt-2 text-[10px] font-bold text-slate-500 bg-slate-800 px-2 py-0.5 rounded-full uppercase">02:30 PM</span>
+</div>
+<!-- AI Optimized Card -->
+<div class="flex-1 glass-card p-4 rounded-xl border-primary/30 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full -mr-12 -mt-12 blur-2xl"></div>
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-black uppercase tracking-widest text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]">verified</span> AI Optimized
+                            </span>
+<span class="material-symbols-outlined text-slate-500 cursor-grab">drag_indicator</span>
+</div>
+<h3 class="font-bold text-lg leading-tight">AI Trends Update</h3>
+<p class="text-sm text-slate-400 mt-1">Deep Dive Edition</p>
+<!-- Repurposed Posts -->
+<div class="mt-4 space-y-3">
+<div class="relative flex items-center gap-3 pl-6">
+<div class="absolute left-0 top-0 bottom-0 h-full w-px bg-primary/40"></div>
+<div class="absolute left-0 top-1/2 w-4 h-px bg-primary/40"></div>
+<div class="w-8 h-8 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 border border-pink-500/30">
+<span class="material-symbols-outlined text-lg">camera_alt</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-bold text-slate-300">Instagram Carousel</p>
+<p class="text-[10px] text-slate-500">Scheduled: 05:00 PM</p>
+</div>
+<span class="material-symbols-outlined text-slate-600 text-sm">link</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Draft Slot -->
+<div class="relative opacity-60 grayscale-[0.5]">
+<div class="flex items-start gap-6">
+<div class="flex flex-col items-center z-10">
+<div class="w-11 h-11 rounded-full bg-slate-800 flex items-center justify-center ring-4 ring-background-dark border border-slate-700">
+<span class="material-symbols-outlined text-slate-400 text-xl">edit_note</span>
+</div>
+<span class="mt-2 text-[10px] font-bold text-slate-500 bg-slate-800 px-2 py-0.5 rounded-full uppercase">05:00 PM</span>
+</div>
+<div class="flex-1 border border-dashed border-slate-700 p-4 rounded-xl">
+<div class="flex justify-between items-start mb-2">
+<span class="text-[10px] font-black uppercase tracking-widest text-slate-500">Draft Status</span>
+</div>
+<h3 class="font-bold text-lg text-slate-400 leading-tight">Post-Release Summary</h3>
+<p class="text-xs text-slate-500 mt-2 italic">Drag to schedule and link social channels</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Navigation Bar -->
+<footer class="sticky bottom-0 bg-background-light dark:bg-[#1d1834] border-t border-primary/20 pb-8 pt-3 px-6 z-50">
+<div class="flex items-center justify-between mb-4">
+<button class="w-full h-14 bg-primary text-white rounded-2xl font-bold flex items-center justify-center gap-2 shadow-xl shadow-primary/40">
+<span class="material-symbols-outlined">auto_fix</span>
+                Auto-Optimize All
+            </button>
+</div>
+<div class="flex items-center justify-between">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">drafts</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Drafts</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">schedule</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Timeline</span>
+</a>
+<div class="relative -top-6">
+<button class="w-16 h-16 bg-white dark:bg-primary rounded-full flex items-center justify-center shadow-2xl shadow-primary/50 ring-8 ring-background-dark">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Analytics</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Settings</span>
+</a>
+</div>
+</footer>
+<!-- Floating Tooltip (Interactive Hint) -->
+<div class="fixed bottom-32 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 flex items-center gap-2 animate-bounce shadow-2xl z-40 pointer-events-none">
+<span class="material-symbols-outlined text-primary text-sm">touch_app</span>
+<span class="text-[10px] text-white font-bold uppercase tracking-widest whitespace-nowrap">Drag to Reschedule</span>
+</div>
+</body></html>

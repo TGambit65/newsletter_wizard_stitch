@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Templates: AI Recommendations V2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "primary-light": "#8A6DFF", 
+                        "primary-dark": "#1a0680",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for horizontal scroll */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-100 min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white">
+<!-- Header Section -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10 dark:border-white/5 pt-14 pb-4 px-6">
+<div class="flex items-center justify-between mb-2">
+<button class="p-2 -ml-2 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-icons text-2xl">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-wide">Select Template</h1>
+<button class="p-2 -mr-2 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-icons text-2xl">more_horiz</span>
+</button>
+</div>
+<!-- Context / Status Indicator -->
+<div class="flex items-center justify-center gap-2">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
+<span class="material-icons text-sm text-primary-light">auto_awesome</span>
+<span class="text-xs font-medium text-primary-light">Based on your 12 recent articles</span>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Hero Section: AI Recommendations -->
+<section class="mt-6 mb-8">
+<div class="px-6 mb-4 flex items-center justify-between">
+<h2 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">
+                    Recommended for You
+                </h2>
+<button class="text-xs font-semibold text-primary-light hover:text-white transition-colors">See Why</button>
+</div>
+<!-- Horizontal Scroll Container -->
+<div class="flex overflow-x-auto hide-scrollbar gap-5 px-6 pb-8 snap-x snap-mandatory">
+<!-- Card 1 (Active/Highlighted) -->
+<div class="snap-center shrink-0 w-[80vw] max-w-[320px] relative group">
+<!-- Glow Effect -->
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-primary-light rounded-lg opacity-75 blur group-hover:opacity-100 transition duration-500 animate-pulse"></div>
+<div class="relative h-full bg-slate-900 rounded-lg p-1 flex flex-col overflow-hidden">
+<div class="relative h-56 rounded-t-[1.3rem] overflow-hidden">
+<img alt="Modern minimalist newsletter layout with bold typography" class="w-full h-full object-cover" data-alt="Modern minimalist newsletter layout with bold typography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcXe5p3c1d-gJhZQm9sCa-Vavj412x7KwMqmMukigxVYB-yOVqBhC7m7v-pf_Pj3_fL4_zzqnHkOAW__em_sTQNwe067pcthWD6ydPsrukuQt_HG-OAVRiaXfTu5nQuRk_K9wxQBQlPhrw-B-Weq_H4J5X0yT0JiFpJGkIyQ98_floM3RTQeKZEUht98QW02dZQs7V-TnTt2gXcjISWy4YAFFn3TmdlLXQx5r4b2VV6lDJZ3y8rk8QPFVSP7c-0SicVH9raiFcx9Y"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-full border border-white/10">
+<span class="text-[10px] font-bold text-white uppercase tracking-wider">98% Match</span>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-1 bg-slate-900 rounded-b-[1.3rem]">
+<h3 class="text-xl font-bold text-white mb-1">Tech Digest Pro</h3>
+<p class="text-sm text-slate-400 mb-4 line-clamp-2">Perfect for your analytical content style. Emphasizes data points.</p>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 py-3 px-4 rounded-full bg-primary hover:bg-primary-light text-white font-semibold text-sm transition-colors shadow-lg shadow-primary/20">
+                                    Use Template
+                                </button>
+<button class="p-3 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors border border-white/5">
+<span class="material-icons text-xl block">visibility</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="snap-center shrink-0 w-[80vw] max-w-[320px] relative">
+<div class="absolute -inset-[1px] bg-white/10 rounded-lg"></div>
+<div class="relative h-full bg-background-dark border border-white/5 rounded-lg p-1 flex flex-col overflow-hidden">
+<div class="relative h-56 rounded-t-[1.3rem] overflow-hidden">
+<img alt="Vibrant abstract gradient background for creative newsletter" class="w-full h-full object-cover opacity-80" data-alt="Vibrant abstract gradient background for creative newsletter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwi7NcP4YzkNWp967W8YMWcPPJNpXOm9B9RA_XpHEsTb0ltRcS7HSW2YaUXHoWomBrw82kRM0boBt7TaIG6YlgATJ4C3NWwBDsD3C_eBgFc-KiYes_ywR_Deqan2kOZLmX3ZDYsHqg4DmuIFdq2fB-c-zeWJCIKu5CBNdzJlo-KTXpC05c9Gkb29Wic5zWPfYGDBhZsz3ubNOT-b0M6xzHeJtKUNZoz2zwe_LFXQIS23qQT0V5uE1DFxYQpUwB5RMguT9vUXG3eEQ"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-full border border-white/10">
+<span class="text-[10px] font-bold text-slate-300 uppercase tracking-wider">85% Match</span>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-1 bg-background-dark rounded-b-[1.3rem]">
+<h3 class="text-xl font-bold text-white mb-1">Creative Weekly</h3>
+<p class="text-sm text-slate-400 mb-4 line-clamp-2">Aligns with your recent playful tone. Great for image-heavy updates.</p>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 py-3 px-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-sm transition-colors border border-white/10">
+                                    Use Template
+                                </button>
+<button class="p-3 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors border border-white/5">
+<span class="material-icons text-xl block">visibility</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="snap-center shrink-0 w-[80vw] max-w-[320px] relative">
+<div class="absolute -inset-[1px] bg-white/10 rounded-lg"></div>
+<div class="relative h-full bg-background-dark border border-white/5 rounded-lg p-1 flex flex-col overflow-hidden">
+<div class="relative h-56 rounded-t-[1.3rem] overflow-hidden">
+<img alt="Clean corporate newsletter layout with structured sections" class="w-full h-full object-cover opacity-80" data-alt="Clean corporate newsletter layout with structured sections" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCOaSkPBUhkRwix7dcPUxFenJeadHD--0qpQvC7q3sdg4262jYBOwxd7jzKb2LfOA0xitb3tUHhR4Etwz4SS3Aw0-qem4RUlRBR7Bxm4PWyGYrE0vhI0ykaibIYbQ3HMsCF8TjCD1aQ-sRUt3mWJ5mQkY7hPXoEqqB8wko1hIj4Rl9PdMEytQrZUpkIpdPH_3mcbQZk9sbE9Er0EsG9YrHHHiJOUT_LGf6YsimS35ULUmR8PzIKnzhSrU58ysLVwd68o42A10YXHyY"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-sm px-2 py-1 rounded-full border border-white/10">
+<span class="text-[10px] font-bold text-slate-300 uppercase tracking-wider">72% Match</span>
+</div>
+</div>
+<div class="p-5 flex flex-col flex-1 bg-background-dark rounded-b-[1.3rem]">
+<h3 class="text-xl font-bold text-white mb-1">Corporate Brief</h3>
+<p class="text-sm text-slate-400 mb-4 line-clamp-2">Good for announcements. Matches your formal article structure.</p>
+<div class="mt-auto flex gap-3">
+<button class="flex-1 py-3 px-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-semibold text-sm transition-colors border border-white/10">
+                                    Use Template
+                                </button>
+<button class="p-3 rounded-full bg-white/5 hover:bg-white/10 text-white transition-colors border border-white/5">
+<span class="material-icons text-xl block">visibility</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Search & Filter Section -->
+<section class="px-6 mb-6">
+<!-- Search Bar -->
+<div class="relative mb-5">
+<span class="absolute inset-y-0 left-4 flex items-center text-slate-400">
+<span class="material-icons text-xl">search</span>
+</span>
+<input class="w-full py-3.5 pl-11 pr-4 bg-white/5 border border-white/10 rounded-full text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" placeholder="Search templates..." type="text"/>
+</div>
+<!-- Tone Filters -->
+<div class="flex gap-2 overflow-x-auto hide-scrollbar pb-2">
+<button class="shrink-0 px-4 py-2 rounded-full bg-primary text-white text-sm font-medium shadow-md shadow-primary/20">
+                    All
+                </button>
+<button class="shrink-0 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium hover:bg-white/10 hover:text-white transition-colors">
+                    Professional
+                </button>
+<button class="shrink-0 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium hover:bg-white/10 hover:text-white transition-colors">
+                    Playful
+                </button>
+<button class="shrink-0 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium hover:bg-white/10 hover:text-white transition-colors">
+                    Urgent
+                </button>
+<button class="shrink-0 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium hover:bg-white/10 hover:text-white transition-colors">
+                    Minimal
+                </button>
+</div>
+</section>
+<!-- All Templates List -->
+<section class="px-6 space-y-4">
+<h3 class="text-sm font-bold text-slate-500 uppercase tracking-wider mb-3">All Templates</h3>
+<!-- List Item 1 -->
+<div class="group bg-white/5 rounded-lg p-3 flex gap-4 items-center hover:bg-white/10 transition-colors border border-white/5">
+<div class="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-800">
+<img alt="Thumbnail of minimalist geometric newsletter design" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Thumbnail of minimalist geometric newsletter design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVelQLNdHW7elQfxNYC3RE-es7wuSNTsZ6UWWuJGVQ4vo7OqGKHkNrvbKdtHlyY1AX76SnIbeS6xmxhlUYf_jkcP1mCPN7gXT0_MWbhMPvgwDJBJGWZpbkFVFV9AYVjpU5rO6WbXeEFMv8tAbQLhTUN62tJY81LzNs0nPZf_98D1-ngj04nUlTSnHacDTRWvc3hdN0SohCCJajb1481adD1OQ50R2WUT3_0I904FhXx3_cd29QC-vuDo2vVHLXRUI2QU2Hm82Go0w"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h4 class="text-base font-bold text-white truncate pr-2">Startup Weekly</h4>
+</div>
+<div class="flex flex-wrap gap-1 mt-1.5 mb-2">
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-[10px] font-medium text-primary-light border border-primary/20">Tech</span>
+<span class="px-2 py-0.5 rounded-full bg-white/5 text-[10px] font-medium text-slate-400 border border-white/10">Growth</span>
+</div>
+</div>
+<button class="shrink-0 p-2.5 rounded-full bg-primary/20 hover:bg-primary text-primary-light hover:text-white transition-colors">
+<span class="material-icons text-xl block">arrow_forward</span>
+</button>
+</div>
+<!-- List Item 2 -->
+<div class="group bg-white/5 rounded-lg p-3 flex gap-4 items-center hover:bg-white/10 transition-colors border border-white/5">
+<div class="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-800">
+<img alt="Thumbnail of bold colorful newsletter layout" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Thumbnail of bold colorful newsletter layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpyKZlc-b9BnEGtKFCGXOReoMitqe8yLhIodC2DlIlblyvAP01XfjifBTWgHSEIJsrf4YbNzxoCQ5dVwkOUrOzwkQY80Uv5rI8ci0po8AjDUKIQCf5uRvNDJFLdVwtbwBJclaexzsvXcJ1qIv_l-mWPs5uNBqyM2v7vu0paUEFnJAQVThyYgWyvCGuTW6NiQ_XXcIcnstWIOG9-M6YkG3mn6ajxswgw5CvPnBmgUToFq1W8knolVok6aLJcJZLy4VqX8AR8vU02xY"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h4 class="text-base font-bold text-white truncate pr-2">Bold Announcements</h4>
+</div>
+<div class="flex flex-wrap gap-1 mt-1.5 mb-2">
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-[10px] font-medium text-primary-light border border-primary/20">Urgent</span>
+<span class="px-2 py-0.5 rounded-full bg-white/5 text-[10px] font-medium text-slate-400 border border-white/10">Bold</span>
+</div>
+</div>
+<button class="shrink-0 p-2.5 rounded-full bg-white/5 hover:bg-primary text-slate-400 hover:text-white transition-colors">
+<span class="material-icons text-xl block">arrow_forward</span>
+</button>
+</div>
+<!-- List Item 3 -->
+<div class="group bg-white/5 rounded-lg p-3 flex gap-4 items-center hover:bg-white/10 transition-colors border border-white/5">
+<div class="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-800">
+<img alt="Thumbnail of professional corporate document style" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Thumbnail of professional corporate document style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7De74uoluZ5UjCOZC3LPhQyqCtDYlrrCUsChy7vGhEahxWsnjG7zhxlO9_kKVdt_Y5Miu6Pym63JF36JdsO4rIb_Z9lN2qo6cbHrRZuX2E8qTqqr4-y4QV5iLu53Q6zqDmMzOsQeUHXld9y44YN1HiQ961pBb5v9JPV4sylqqUUvPwWum1tvqox4fTa2hxgkTNIF_K0bnXqFEXfG0olZ1Q9zZpwUZ2s0xdcOBDHriibr0yFVNS4Gi8FdOnKOFJroQ7B-Om3D1J48"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h4 class="text-base font-bold text-white truncate pr-2">The Monthly Review</h4>
+</div>
+<div class="flex flex-wrap gap-1 mt-1.5 mb-2">
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-[10px] font-medium text-primary-light border border-primary/20">Professional</span>
+<span class="px-2 py-0.5 rounded-full bg-white/5 text-[10px] font-medium text-slate-400 border border-white/10">Long-form</span>
+</div>
+</div>
+<button class="shrink-0 p-2.5 rounded-full bg-white/5 hover:bg-primary text-slate-400 hover:text-white transition-colors">
+<span class="material-icons text-xl block">arrow_forward</span>
+</button>
+</div>
+<!-- List Item 4 -->
+<div class="group bg-white/5 rounded-lg p-3 flex gap-4 items-center hover:bg-white/10 transition-colors border border-white/5">
+<div class="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-800">
+<img alt="Thumbnail of artistic scattered image layout" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Thumbnail of artistic scattered image layout" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7j2e-UqpWX0I5uoV1xookRc9MMCHb757ONIADz5cAd1m2khhaMdeOsn1rZcn_WewBLEikfhKCnxGbJSfBy7OeL1D8G-K2c0rdWC4xb9vcqiPAFE2ULUXaJUkQPaRsm1l6mU8Py8pvWWHsQJrJaxnfZfsHV9bNe5P9wLlaEBDFMbWxAcz24vyIU5j1OJL0KJYnXi8-Uap3vjUqowbULjsvTxDiAL8tWj5Wi_TJUna1G5Rax9enuPgmnNJCkHKKvccTxkjCA1adXcY"/>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h4 class="text-base font-bold text-white truncate pr-2">Mosaic Gallery</h4>
+</div>
+<div class="flex flex-wrap gap-1 mt-1.5 mb-2">
+<span class="px-2 py-0.5 rounded-full bg-primary/10 text-[10px] font-medium text-primary-light border border-primary/20">Visual</span>
+<span class="px-2 py-0.5 rounded-full bg-white/5 text-[10px] font-medium text-slate-400 border border-white/10">Arts</span>
+</div>
+</div>
+<button class="shrink-0 p-2.5 rounded-full bg-white/5 hover:bg-primary text-slate-400 hover:text-white transition-colors">
+<span class="material-icons text-xl block">arrow_forward</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Wizard Style) -->
+<div class="fixed bottom-0 left-0 right-0 z-50 p-6 bg-gradient-to-t from-background-dark via-background-dark to-transparent pointer-events-none">
+<div class="flex justify-end pointer-events-auto">
+<button class="bg-white text-primary-dark font-bold py-4 px-8 rounded-full shadow-lg shadow-white/10 hover:shadow-white/20 transition-all flex items-center gap-2">
+                Skip AI Selection
+                <span class="material-icons">chevron_right</span>
+</button>
+</div>
+</div>
+</body></html>

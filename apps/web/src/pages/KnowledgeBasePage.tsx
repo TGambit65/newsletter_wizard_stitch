@@ -516,7 +516,7 @@ export function KnowledgeBasePage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Knowledge Base</h1>
+          <h1 className="text-3xl font-bold font-display text-neutral-900 dark:text-white">Knowledge Base</h1>
           <p className="text-neutral-500 mt-1">
             Add content sources to power your AI newsletter generation • {sources.length} sources, {sources.reduce((sum, s) => sum + (s.token_count || 0), 0).toLocaleString()} tokens
           </p>
@@ -533,7 +533,7 @@ export function KnowledgeBasePage() {
           )}
           <button
             onClick={() => setShowAddModal(true)}
-            className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary-500 text-white font-medium rounded-lg hover:bg-primary-600 transition-colors shadow-lg shadow-primary-500/25"
+            className="inline-flex items-center gap-2 px-4 py-2.5 btn-primary-gradient text-sm shadow-glow-sm"
           >
             <Plus className="w-5 h-5" />
             Add Source
@@ -550,7 +550,7 @@ export function KnowledgeBasePage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search sources by title or URL..."
-            className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+            className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
           />
         </div>
         <div className="flex gap-2 overflow-x-auto pb-1">
@@ -562,7 +562,7 @@ export function KnowledgeBasePage() {
                 'px-4 py-2.5 rounded-lg font-medium text-sm transition-colors whitespace-nowrap',
                 filter === btn.value
                   ? 'bg-primary-500 text-white'
-                  : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                  : 'bg-white dark:bg-surface-dark text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10 hover:bg-neutral-50 dark:hover:bg-white/5'
               )}
             >
               {btn.label} ({btn.count})
@@ -587,7 +587,7 @@ export function KnowledgeBasePage() {
         <KnowledgeBaseGridSkeleton />
       ) : filteredSources.length === 0 ? (
         <div 
-          className="bg-white dark:bg-neutral-800 rounded-xl border-2 border-dashed border-neutral-300 dark:border-neutral-600 p-12 text-center"
+          className="bg-white dark:bg-surface-dark rounded-xl border-2 border-dashed border-neutral-300 dark:border-neutral-600 p-12 text-center"
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
@@ -618,7 +618,7 @@ export function KnowledgeBasePage() {
             <div
               key={source.id}
               className={clsx(
-                'group bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-5 hover:shadow-lg transition-all duration-200',
+                'group bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-5 hover:shadow-lg transition-all duration-200',
                 selectedSources.has(source.id) && 'ring-2 ring-primary-500'
               )}
             >
@@ -675,16 +675,16 @@ export function KnowledgeBasePage() {
                       aria-haspopup="menu"
                       aria-expanded={openMenuId === source.id}
                       aria-label="Source actions"
-                      className="p-1.5 text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors"
+                      className="p-1.5 text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg transition-colors"
                     >
                       <MoreHorizontal className="w-4 h-4" />
                     </button>
                     {openMenuId === source.id && (
-                      <div role="menu" className="absolute right-0 top-full mt-1 w-40 bg-white dark:bg-neutral-800 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 py-1 z-10">
+                      <div role="menu" className="absolute right-0 top-full mt-1 w-40 bg-white dark:bg-surface-dark rounded-lg shadow-lg border border-neutral-200 dark:border-white/10 py-1 z-10">
                         <button
                           role="menuitem"
                           onClick={() => { setShowDetailModal(source.id); setOpenMenuId(null); }}
-                          className="w-full px-3 py-2 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 flex items-center gap-2"
+                          className="w-full px-3 py-2 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/5 flex items-center gap-2"
                         >
                           <Eye className="w-4 h-4" />
                           View Details
@@ -692,7 +692,7 @@ export function KnowledgeBasePage() {
                         <button
                           role="menuitem"
                           onClick={() => { reprocessSource(source); setOpenMenuId(null); }}
-                          className="w-full px-3 py-2 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 flex items-center gap-2"
+                          className="w-full px-3 py-2 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/5 flex items-center gap-2"
                         >
                           <RefreshCw className="w-4 h-4" />
                           Reprocess
@@ -746,13 +746,13 @@ export function KnowledgeBasePage() {
       {/* Add Source Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-neutral-800 rounded-2xl w-full max-w-2xl shadow-xl max-h-[90vh] overflow-hidden flex flex-col">
+          <div className="bg-white dark:bg-surface-dark rounded-2xl w-full max-w-2xl shadow-xl max-h-[90vh] overflow-hidden flex flex-col">
             {/* Modal Header */}
-            <div className="flex items-center justify-between p-6 border-b border-neutral-200 dark:border-neutral-700">
+            <div className="flex items-center justify-between p-6 border-b border-neutral-200 dark:border-white/10">
               <h2 className="text-xl font-semibold text-neutral-900 dark:text-white">Add Source</h2>
               <button
                 onClick={closeModal}
-                className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+                className="p-2 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
               >
                 <X className="w-5 h-5 text-neutral-500" />
               </button>
@@ -812,7 +812,7 @@ export function KnowledgeBasePage() {
                   {selectedFiles.length > 0 && (
                     <div className="mt-4 space-y-2">
                       {selectedFiles.map((file, idx) => (
-                        <div key={idx} className="flex items-center justify-between p-3 bg-neutral-50 dark:bg-neutral-900 rounded-lg">
+                        <div key={idx} className="flex items-center justify-between p-3 bg-neutral-50 dark:bg-background-dark rounded-lg">
                           <div className="flex items-center gap-3">
                             <File className="w-5 h-5 text-neutral-500" />
                             <div>
@@ -822,7 +822,7 @@ export function KnowledgeBasePage() {
                           </div>
                           <button
                             onClick={() => removeFile(idx)}
-                            className="p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded"
+                            className="p-1 hover:bg-neutral-200 dark:hover:bg-white/5 rounded"
                           >
                             <X className="w-4 h-4 text-neutral-500" />
                           </button>
@@ -846,7 +846,7 @@ export function KnowledgeBasePage() {
                         value={urlInput}
                         onChange={(e) => setUrlInput(e.target.value)}
                         placeholder="https://example.com, youtube.com/watch?v=..., or RSS feed URL"
-                        className="w-full px-4 py-3 pr-32 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                        className="w-full px-4 py-3 pr-32 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
                       />
                       {urlInput && (
                         <span className={clsx(
@@ -895,7 +895,7 @@ export function KnowledgeBasePage() {
                       value={titleInput}
                       onChange={(e) => setTitleInput(e.target.value)}
                       placeholder="My notes"
-                      className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                      className="w-full px-4 py-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
                     />
                   </div>
                   <div>
@@ -907,7 +907,7 @@ export function KnowledgeBasePage() {
                       onChange={(e) => setContentInput(e.target.value)}
                       placeholder="Paste your text or write your notes here..."
                       rows={8}
-                      className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none resize-none"
+                      className="w-full px-4 py-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none resize-none"
                     />
                   </div>
                 </div>
@@ -925,7 +925,7 @@ export function KnowledgeBasePage() {
             </div>
 
             {/* Modal Footer */}
-            <div className="flex gap-3 p-6 border-t border-neutral-200 dark:border-neutral-700">
+            <div className="flex gap-3 p-6 border-t border-neutral-200 dark:border-white/10">
               <button
                 onClick={closeModal}
                 className="flex-1 py-3 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-600 transition-colors"
@@ -947,8 +947,8 @@ export function KnowledgeBasePage() {
       {/* Source Detail Modal */}
       {showDetailModal && selectedSourceDetail && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-neutral-800 rounded-2xl w-full max-w-2xl shadow-xl max-h-[90vh] overflow-hidden flex flex-col">
-            <div className="flex items-center justify-between p-6 border-b border-neutral-200 dark:border-neutral-700">
+          <div className="bg-white dark:bg-surface-dark rounded-2xl w-full max-w-2xl shadow-xl max-h-[90vh] overflow-hidden flex flex-col">
+            <div className="flex items-center justify-between p-6 border-b border-neutral-200 dark:border-white/10">
               <div className="flex items-center gap-3">
                 <div className={clsx('w-10 h-10 rounded-lg flex items-center justify-center', getSourceColor(selectedSourceDetail.source_type))}>
                   {getSourceIcon(selectedSourceDetail.source_type)}
@@ -960,7 +960,7 @@ export function KnowledgeBasePage() {
               </div>
               <button
                 onClick={() => setShowDetailModal(null)}
-                className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+                className="p-2 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
               >
                 <X className="w-5 h-5 text-neutral-500" />
               </button>
@@ -969,22 +969,22 @@ export function KnowledgeBasePage() {
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
               {/* Metadata */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-4">
+                <div className="bg-neutral-50 dark:bg-background-dark rounded-lg p-4">
                   <p className="text-sm text-neutral-500 mb-1">Status</p>
                   <div className="flex items-center gap-2">
                     {getStatusIcon(selectedSourceDetail.status)}
                     <span className="font-medium capitalize">{selectedSourceDetail.status}</span>
                   </div>
                 </div>
-                <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-4">
+                <div className="bg-neutral-50 dark:bg-background-dark rounded-lg p-4">
                   <p className="text-sm text-neutral-500 mb-1">Chunks</p>
                   <p className="font-medium">{selectedSourceDetail.chunk_count || 0} chunks</p>
                 </div>
-                <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-4">
+                <div className="bg-neutral-50 dark:bg-background-dark rounded-lg p-4">
                   <p className="text-sm text-neutral-500 mb-1">Tokens</p>
                   <p className="font-medium">{(selectedSourceDetail.token_count || 0).toLocaleString()}</p>
                 </div>
-                <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-4">
+                <div className="bg-neutral-50 dark:bg-background-dark rounded-lg p-4">
                   <p className="text-sm text-neutral-500 mb-1">Added</p>
                   <p className="font-medium">{new Date(selectedSourceDetail.created_at).toLocaleDateString()}</p>
                 </div>
@@ -1009,7 +1009,7 @@ export function KnowledgeBasePage() {
               {selectedSourceDetail.description && (
                 <div>
                   <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Content Preview</p>
-                  <p className="text-neutral-600 dark:text-neutral-400 bg-neutral-50 dark:bg-neutral-900 p-4 rounded-lg">
+                  <p className="text-neutral-600 dark:text-neutral-400 bg-neutral-50 dark:bg-background-dark p-4 rounded-lg">
                     {selectedSourceDetail.description}
                   </p>
                 </div>
@@ -1026,7 +1026,7 @@ export function KnowledgeBasePage() {
               )}
             </div>
             
-            <div className="flex gap-3 p-6 border-t border-neutral-200 dark:border-neutral-700">
+            <div className="flex gap-3 p-6 border-t border-neutral-200 dark:border-white/10">
               <button
                 onClick={() => {
                   reprocessSource(selectedSourceDetail);

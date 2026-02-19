@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletter Preview: Final Review V1</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "primary-dark": "#260ab5",
+                        "primary-light": "#5c3dff",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "background-card": "#1c1833",
+                        "success": "#00d68f", 
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(51, 13, 242, 0.3);
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(51, 13, 242, 0.5);
+        }
+        
+        /* Device frame simulation helper */
+        .notch-safe-area {
+            padding-top: env(safe-area-inset-top, 44px);
+        }
+        .home-safe-area {
+            padding-bottom: env(safe-area-inset-bottom, 24px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-100 antialiased h-screen overflow-hidden flex justify-center">
+<!-- Mobile Frame Simulation -->
+<div class="relative w-full max-w-md h-full flex flex-col bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden">
+<!-- Top Navigation Bar -->
+<header class="notch-safe-area z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-primary/10 px-4 pb-3">
+<div class="flex items-center justify-between pt-2">
+<button class="p-2 -ml-2 text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-icons-outlined text-2xl">chevron_left</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Final Review</h1>
+<div class="flex items-center gap-3">
+<button class="text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors">
+                        Edit
+                    </button>
+<button class="bg-primary hover:bg-primary-light text-white text-sm font-bold py-2 px-4 rounded-full shadow-lg shadow-primary/30 transition-all transform active:scale-95 flex items-center gap-1">
+<span>Send Now</span>
+<span class="material-icons text-sm">send</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto relative scroll-smooth pb-32">
+<!-- Glow Effect Background -->
+<div class="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none z-0"></div>
+<div class="relative z-10 px-4 pt-6 space-y-6">
+<!-- Meta Information Card -->
+<div class="bg-white dark:bg-background-card border border-primary/10 rounded-xl p-4 shadow-sm">
+<div class="space-y-3">
+<div>
+<label class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold mb-1 block">Subject Line</label>
+<div class="text-sm font-medium text-slate-800 dark:text-white leading-tight">
+                                Unlock the Future of AI: This Week's Top Trends 🚀
+                            </div>
+</div>
+<div class="h-px bg-slate-100 dark:bg-slate-700/50"></div>
+<div>
+<label class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold mb-1 block">Preheader</label>
+<div class="text-sm text-slate-600 dark:text-slate-300 leading-tight">
+                                Plus: How to build your first neural network in 5 minutes...
+                            </div>
+</div>
+</div>
+</div>
+<!-- Preview Viewport Label -->
+<div class="flex items-center justify-between px-1">
+<h2 class="text-sm font-bold text-slate-400 uppercase tracking-widest">Mobile Preview</h2>
+<span class="text-xs text-slate-500 bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">iPhone 14 Pro</span>
+</div>
+<!-- Simulated Mobile Screen Container -->
+<div class="bg-white rounded-2xl overflow-hidden shadow-xl ring-4 ring-slate-200 dark:ring-slate-800 mx-auto transform transition-transform hover:scale-[1.01] duration-500">
+<!-- Simulated Status Bar -->
+<div class="h-6 bg-slate-100 border-b border-slate-200 flex justify-between items-center px-4">
+<span class="text-[10px] font-bold text-slate-900">9:41</span>
+<div class="flex gap-1">
+<span class="material-icons text-[10px] text-slate-900">signal_cellular_alt</span>
+<span class="material-icons text-[10px] text-slate-900">wifi</span>
+<span class="material-icons text-[10px] text-slate-900">battery_full</span>
+</div>
+</div>
+<!-- Email Content (Isolated from App Theme) -->
+<div class="p-0">
+<!-- Email Header Image -->
+<div class="h-48 w-full bg-slate-100 relative overflow-hidden" data-alt="Abstract 3D purple shapes illustrating AI technology" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB5ipgPhxSSWOkRG_-Hzr0HcQAULD6rRjoX7NqJ3-sGSSIv2l4kozd7rIQs4HsRZrvBLh1002okfK6R9zDP2U373qC8vYDiEpQmm1finwfLQ9_p7NSusa6Hu0AqMilxyQVl1a3QRvyDiHz5vFxe_M70jr_wxxuI8zm8_JDpokEhrkr9ilqJfHMX6mIC9An3Juj0MU4gnf_JNkF_exq6Z8ouExuRA1Zuit9xIG9A8q4L7hBO7FopW6wTatXIzYIvZuPGXiFsw4AmBGc'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+<h2 class="text-white font-bold text-2xl drop-shadow-md">The AI Weekly</h2>
+</div>
+</div>
+<!-- Email Body -->
+<div class="p-6 space-y-4">
+<p class="text-slate-800 font-sans text-lg">Hello <span class="text-primary font-semibold">Alex</span>,</p>
+<p class="text-slate-600 font-sans leading-relaxed">
+                                Artificial intelligence is moving faster than ever. This week, we're diving deep into the new generative models that are reshaping the creative landscape.
+                            </p>
+<!-- Article Card inside Email -->
+<div class="bg-slate-50 border border-slate-100 rounded-lg overflow-hidden mt-4">
+<div class="h-32 bg-slate-200" data-alt="Minimalist abstract code pattern" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBEvzMq_ynYeHO7R9khGyIO7jKmJptTr3ZXSfgiOtarvhzeHuFI6KwxtiO_MzNfeFsozwWd165W-PVKXlOxYfhZyteTlPHeQTphkQydA2FhJPuGSPpXstK1iQRdtZxPiUwgrMl3MkToNmsCCMavcMVo5lxvfVU8sZWRsc6uo2eehwX6nLU2fFQOMmj_5Rh0UfAu3LdQwU7ViIS98y3wNnjesmIZ1fJ8LTvKUAMqlLRDnFMaHPeHTt1Bcn44gAPAzeLDZDe2vodpUfk'); background-size: cover;"></div>
+<div class="p-4">
+<h3 class="font-bold text-slate-900 text-lg mb-2">Generative Art: A New Era?</h3>
+<p class="text-slate-500 text-sm mb-3">Explore how artists are leveraging algorithms to create masterpieces.</p>
+<span class="text-primary font-bold text-sm">Read Article →</span>
+</div>
+</div>
+<p class="text-slate-600 font-sans leading-relaxed pt-2">
+                                Ready to start building? Our new tutorial guides you through the basics of prompt engineering.
+                            </p>
+<!-- Email CTA -->
+<div class="pt-4 pb-2 text-center">
+<button class="bg-primary text-white font-bold py-3 px-8 rounded-lg w-full">
+                                    Start the Tutorial
+                                </button>
+</div>
+<div class="pt-6 border-t border-slate-100 text-center">
+<p class="text-xs text-slate-400">
+                                    You received this email because you signed up for our newsletter.<br/>
+<a class="underline" href="#">Unsubscribe</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Validation Footer (Sticky Bottom) -->
+<footer class="absolute bottom-0 left-0 right-0 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-xl border-t border-primary/20 home-safe-area z-30">
+<div class="p-4 space-y-4">
+<!-- Status Indicators -->
+<div class="flex items-center justify-between gap-3">
+<div class="flex-1 bg-white/50 dark:bg-slate-800/50 rounded-lg p-2.5 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700">
+<div class="bg-success/20 rounded-full p-0.5">
+<span class="material-icons text-success text-sm font-bold">check</span>
+</div>
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-200">Spam Check Passed</span>
+</div>
+<div class="flex-1 bg-white/50 dark:bg-slate-800/50 rounded-lg p-2.5 flex items-center justify-center gap-2 border border-slate-200 dark:border-slate-700">
+<div class="bg-success/20 rounded-full p-0.5">
+<span class="material-icons text-success text-sm font-bold">check</span>
+</div>
+<span class="text-xs font-semibold text-slate-700 dark:text-slate-200">All Links Valid</span>
+</div>
+</div>
+<!-- Secondary Action -->
+<button class="w-full group bg-transparent hover:bg-primary/5 border border-primary/40 text-primary dark:text-white dark:border-slate-600 hover:border-primary transition-all rounded-lg py-3.5 flex items-center justify-center gap-2 font-semibold">
+<span class="material-icons-outlined text-primary group-hover:scale-110 transition-transform">forward_to_inbox</span>
+<span>Send Test Email</span>
+</button>
+</div>
+</footer>
+</div>
+</body></html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Beta Lab: Stability Metrics V2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "primary-light": "#6a4cff",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1d1834",
+                        "surface-highlight": "#292249",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        "neon": "0 0 10px rgba(51, 13, 242, 0.6), 0 0 20px rgba(51, 13, 242, 0.3)",
+                        "neon-hover": "0 0 15px rgba(51, 13, 242, 0.8), 0 0 30px rgba(51, 13, 242, 0.5)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        /* Custom Toggle Switch */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #330df2;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #330df2;
+            box-shadow: 0 0 12px #330df2;
+        }
+        .toggle-checkbox:checked + .toggle-label:before {
+            transform: translateX(100%);
+        }
+        
+        /* Progress Bar Animation */
+        @keyframes fillProgress {
+            from { width: 0%; }
+        }
+        .animate-fill {
+            animation: fillProgress 1s ease-out forwards;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-x-hidden antialiased selection:bg-primary selection:text-white">
+<div class="relative flex h-full min-h-screen w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden border-x border-slate-800">
+<!-- Header -->
+<header class="sticky top-0 z-20 flex items-center justify-between bg-surface-dark/90 backdrop-blur-md px-4 py-3 border-b border-surface-highlight">
+<button class="flex items-center justify-center text-slate-400 hover:text-white transition-colors rounded-full p-2 -ml-2">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">science</span>
+                Beta Lab
+            </h1>
+<button class="flex items-center justify-center text-primary hover:text-primary-light transition-colors rounded-full p-2 -mr-2">
+<span class="material-symbols-outlined">info</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Hero Banner -->
+<div class="p-4">
+<div class="relative overflow-hidden rounded-2xl bg-surface-dark border border-surface-highlight shadow-lg group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/30 to-transparent opacity-60"></div>
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary/20 blur-[60px] rounded-full"></div>
+<div class="relative p-6 flex flex-col items-start gap-4 z-10">
+<div class="flex items-center gap-2 mb-1">
+<span class="px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-primary text-white shadow-neon">V2.4 Access</span>
+<span class="px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider bg-surface-highlight text-slate-300 border border-slate-700">Limited</span>
+</div>
+<h2 class="text-2xl font-bold leading-tight text-white">Join the Inner Circle</h2>
+<p class="text-slate-300 text-sm leading-relaxed max-w-[280px]">
+                            Get early access to our most unstable but exciting tools. Help shape the future of newsletters.
+                        </p>
+<button class="mt-2 flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary-light text-white text-sm font-bold rounded-xl transition-all shadow-neon hover:shadow-neon-hover transform active:scale-95">
+<span>Unlock Access</span>
+<span class="material-symbols-outlined text-[18px]">lock_open</span>
+</button>
+</div>
+<!-- Abstract Background Element -->
+<div class="absolute right-0 bottom-0 opacity-20 transform translate-y-1/4 translate-x-1/4">
+<span class="material-symbols-outlined text-[180px] text-white">neurology</span>
+</div>
+</div>
+</div>
+<!-- Live Experiments Section -->
+<div class="px-4 pb-2 pt-2">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-4 pl-1">Live Experiments</h3>
+<div class="flex flex-col gap-4">
+<!-- Feature Card 1: High Stability -->
+<div class="bg-surface-dark rounded-xl p-5 border border-surface-highlight shadow-md relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
+<div class="flex justify-between items-start mb-3">
+<div class="flex-1 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="text-white font-bold text-lg">AI Subject Gen</h4>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">STABLE</span>
+</div>
+<p class="text-slate-400 text-xs">Generates catchy subject lines based on content tone.</p>
+</div>
+<div class="shrink-0 pt-1">
+<label class="flex items-center cursor-pointer relative" for="toggle1">
+<input checked="" class="sr-only peer" id="toggle1" type="checkbox"/>
+<div class="w-14 h-8 bg-surface-highlight peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary peer-checked:shadow-neon"></div>
+</label>
+</div>
+</div>
+<!-- Metric: Stability -->
+<div class="mt-4">
+<div class="flex justify-between items-end mb-1.5">
+<span class="text-xs font-medium text-slate-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bug_report</span>
+                                    Crash Free Rate
+                                </span>
+<span class="text-sm font-bold text-emerald-400">98.2%</span>
+</div>
+<div class="w-full bg-surface-highlight rounded-full h-2">
+<div class="bg-gradient-to-r from-emerald-600 to-emerald-400 h-2 rounded-full animate-fill" style="width: 98.2%"></div>
+</div>
+</div>
+</div>
+<!-- Feature Card 2: Community Vote -->
+<div class="bg-surface-dark rounded-xl p-5 border border-surface-highlight shadow-md relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-amber-500"></div>
+<div class="flex justify-between items-start mb-3">
+<div class="flex-1 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="text-white font-bold text-lg">Dark Mode Preview</h4>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30">BETA</span>
+</div>
+<p class="text-slate-400 text-xs">Real-time rendering of email templates in dark mode.</p>
+</div>
+<div class="shrink-0 pt-1">
+<label class="flex items-center cursor-pointer relative" for="toggle2">
+<input class="sr-only peer" id="toggle2" type="checkbox"/>
+<div class="w-14 h-8 bg-surface-highlight peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary peer-checked:shadow-neon"></div>
+</label>
+</div>
+</div>
+<!-- Metric: Votes -->
+<div class="mt-4">
+<div class="flex justify-between items-end mb-1.5">
+<span class="text-xs font-medium text-slate-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">thumbs_up_down</span>
+                                    Community Votes
+                                </span>
+<span class="text-sm font-bold text-amber-400">850/1000</span>
+</div>
+<div class="w-full bg-surface-highlight rounded-full h-2">
+<div class="bg-gradient-to-r from-amber-600 to-amber-400 h-2 rounded-full animate-fill" style="width: 85%"></div>
+</div>
+</div>
+</div>
+<!-- Feature Card 3: Low Stability/Alpha -->
+<div class="bg-surface-dark rounded-xl p-5 border border-surface-highlight shadow-md relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-rose-500"></div>
+<div class="flex justify-between items-start mb-3">
+<div class="flex-1 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<h4 class="text-white font-bold text-lg">Smart Send Time</h4>
+<span class="px-1.5 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-400 border border-rose-500/30">ALPHA</span>
+</div>
+<p class="text-slate-400 text-xs">Optimizes delivery based on recipient open history.</p>
+</div>
+<div class="shrink-0 pt-1">
+<label class="flex items-center cursor-pointer relative" for="toggle3">
+<input class="sr-only peer" id="toggle3" type="checkbox"/>
+<div class="w-14 h-8 bg-surface-highlight peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary peer-checked:shadow-neon"></div>
+</label>
+</div>
+</div>
+<!-- Metric: Stability -->
+<div class="mt-4">
+<div class="flex justify-between items-end mb-1.5">
+<span class="text-xs font-medium text-slate-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                                    Stability Score
+                                </span>
+<span class="text-sm font-bold text-rose-400">42% (Unstable)</span>
+</div>
+<div class="w-full bg-surface-highlight rounded-full h-2">
+<div class="bg-gradient-to-r from-rose-600 to-rose-400 h-2 rounded-full animate-fill" style="width: 42%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Upcoming Section -->
+<div class="px-4 py-6">
+<div class="flex items-center justify-between mb-4 pl-1">
+<h3 class="text-sm font-bold uppercase tracking-wider text-slate-500">Coming Soon</h3>
+<a class="text-xs text-primary hover:text-primary-light font-medium" href="#">View Roadmap</a>
+</div>
+<div class="bg-surface-dark/50 border border-surface-highlight rounded-xl p-4 flex items-center gap-4 opacity-75 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-not-allowed">
+<div class="w-12 h-12 rounded-lg bg-surface-highlight flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-slate-400">auto_fix_high</span>
+</div>
+<div>
+<h4 class="text-white font-bold text-base">Template Auto-Fixer</h4>
+<p class="text-slate-500 text-xs">Automatically corrects HTML errors in templates.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 w-full max-w-md border-t border-surface-highlight bg-surface-dark pb-safe pt-2">
+<div class="flex justify-around items-end pb-4 px-2">
+<a class="flex flex-col items-center gap-1 group w-16" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-[24px]">home</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary transition-colors">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 group w-16" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-[24px]">draft</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary transition-colors">Drafts</span>
+</a>
+<!-- Active State Item -->
+<a class="flex flex-col items-center gap-1 group w-16 relative" href="#">
+<div class="absolute -top-10 bg-primary rounded-full p-3 shadow-neon border-4 border-background-dark mb-1">
+<span class="material-symbols-outlined text-white text-[24px]">science</span>
+</div>
+<span class="text-[10px] font-bold text-white mt-5">Beta Lab</span>
+</a>
+<a class="flex flex-col items-center gap-1 group w-16" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-[24px]">group</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary transition-colors">Audience</span>
+</a>
+<a class="flex flex-col items-center gap-1 group w-16" href="#">
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors text-[24px] fill-current">settings</span>
+<span class="text-[10px] font-medium text-slate-400 group-hover:text-primary transition-colors">Settings</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

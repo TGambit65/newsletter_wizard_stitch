@@ -141,7 +141,7 @@ export function ReferralPage() {
           { label: 'Converted', value: stats.converted },
           { label: 'Rewards earned', value: stats.earned },
         ].map(s => (
-          <div key={s.label} className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4 text-center">
+          <div key={s.label} className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-4 text-center">
             <p className="text-2xl font-bold text-neutral-900 dark:text-white">{s.value}</p>
             <p className="text-sm text-neutral-500">{s.label}</p>
           </div>
@@ -149,14 +149,14 @@ export function ReferralPage() {
       </div>
 
       {/* Referral link */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+      <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
         <div className="flex items-center gap-2 mb-4">
           <Link2 className="w-5 h-5 text-primary-500" />
           <h2 className="font-semibold text-neutral-900 dark:text-white">Your referral link</h2>
         </div>
 
         <div className="flex gap-2">
-          <div className="flex-1 flex items-center gap-2 px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg min-w-0">
+          <div className="flex-1 flex items-center gap-2 px-4 py-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg min-w-0">
             <span className="text-sm text-neutral-600 dark:text-neutral-400 truncate font-mono">{referralLink}</span>
           </div>
           <button
@@ -179,7 +179,7 @@ export function ReferralPage() {
       </div>
 
       {/* Reward tiers */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+      <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
         <h2 className="font-semibold text-neutral-900 dark:text-white mb-4">Reward tiers</h2>
         <div className="space-y-4">
           {REWARD_TIERS.map(tier => {
@@ -190,7 +190,7 @@ export function ReferralPage() {
                 'flex items-center gap-4 p-4 rounded-lg border transition-all',
                 achieved
                   ? 'border-success/30 bg-success/5'
-                  : 'border-neutral-200 dark:border-neutral-700'
+                  : 'border-neutral-200 dark:border-white/10'
               )}>
                 <div className={clsx('w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0', tier.bg)}>
                   <Icon className={clsx('w-5 h-5', tier.color)} />
@@ -216,7 +216,7 @@ export function ReferralPage() {
 
       <div className="grid md:grid-cols-2 gap-6">
         {/* Direct invite */}
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
           <div className="flex items-center gap-2 mb-4">
             <Mail className="w-5 h-5 text-primary-500" />
             <h2 className="font-semibold text-neutral-900 dark:text-white">Invite directly</h2>
@@ -227,7 +227,7 @@ export function ReferralPage() {
               value={inviteEmail}
               onChange={e => setInviteEmail(e.target.value)}
               placeholder="colleague@example.com"
-              className="w-full px-3 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-900 text-sm focus:ring-2 focus:ring-primary-500 outline-none"
+              className="w-full px-3 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg bg-white dark:bg-background-dark text-sm focus:ring-2 focus:ring-primary-500 outline-none"
               disabled={inviting || inviteSent}
             />
             <button
@@ -241,7 +241,7 @@ export function ReferralPage() {
         </div>
 
         {/* Leaderboard */}
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
           <div className="flex items-center gap-2 mb-4">
             <Users className="w-5 h-5 text-primary-500" />
             <h2 className="font-semibold text-neutral-900 dark:text-white">Top referrers</h2>

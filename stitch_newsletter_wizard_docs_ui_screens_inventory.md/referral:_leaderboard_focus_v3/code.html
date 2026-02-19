@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Referral: Leaderboard Focus V3</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-display min-h-screen flex justify-center overflow-x-hidden selection:bg-primary/30">
+<!-- Mobile Container -->
+<div class="w-full max-w-md bg-background-light dark:bg-background-dark min-h-screen flex flex-col relative shadow-2xl mx-auto">
+<!-- Header -->
+<header class="flex items-center justify-between p-6 z-10">
+<button class="p-2 -ml-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons text-slate-900 dark:text-white">chevron_left</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Referrals</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content Scrollable Area -->
+<main class="flex-1 flex flex-col px-6 pb-24 overflow-y-auto no-scrollbar">
+<!-- Hero Section -->
+<div class="text-center mb-8 mt-2 relative">
+<!-- Decorative Glow Behind -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-primary/20 rounded-full blur-[80px] pointer-events-none"></div>
+<h2 class="text-4xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-100 to-slate-400">
+                    Earn Free Credits
+                </h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm max-w-[280px] mx-auto leading-relaxed">
+                    Invite friends to Newsletter Wizard. Get 50 AI credits for every friend who joins.
+                </p>
+</div>
+<!-- Invite Code Card -->
+<div class="relative group mb-10">
+<!-- Card Glow -->
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary via-purple-600 to-blue-600 rounded-xl opacity-75 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+<!-- Card Content -->
+<div class="relative flex flex-col items-center bg-slate-100 dark:bg-[#1a162e] rounded-xl p-6 border border-slate-200 dark:border-white/10">
+<span class="text-xs font-medium uppercase tracking-widest text-slate-400 mb-2">Your Invite Code</span>
+<div class="flex items-center justify-center gap-3 w-full mb-6">
+<span class="text-3xl font-bold tracking-widest font-mono text-primary dark:text-indigo-400 drop-shadow-[0_0_10px_rgba(51,13,242,0.5)]">
+                            WIZ-8829
+                        </span>
+</div>
+<div class="grid grid-cols-5 gap-3 w-full">
+<button class="col-span-1 flex items-center justify-center py-3 px-4 bg-slate-200 dark:bg-white/5 hover:bg-slate-300 dark:hover:bg-white/10 text-slate-700 dark:text-white rounded-lg transition-all active:scale-95 group/copy relative overflow-hidden">
+<span class="material-icons text-xl relative z-10">content_copy</span>
+<!-- Ripple effect placeholder -->
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover/copy:opacity-100 transition-opacity"></div>
+</button>
+<button class="col-span-4 flex items-center justify-center gap-2 py-3 px-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-lg shadow-lg shadow-primary/30 transition-all active:scale-95">
+<span>Share Link</span>
+<span class="material-icons text-sm">ios_share</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Leaderboard Section -->
+<div class="flex flex-col gap-4">
+<div class="flex items-end justify-between px-1">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Top Wizards</h3>
+<span class="text-xs text-primary font-medium cursor-pointer hover:underline">View All</span>
+</div>
+<!-- Leaderboard List -->
+<div class="flex flex-col gap-3">
+<!-- Rank 1 -->
+<div class="flex items-center p-3 rounded-lg bg-gradient-to-r from-yellow-500/10 to-transparent border border-yellow-500/20 relative overflow-hidden">
+<div class="w-1 bg-yellow-400 absolute left-0 top-0 bottom-0"></div>
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-yellow-400/20 text-yellow-400 font-bold mr-4 text-sm shadow-[0_0_10px_rgba(250,204,21,0.3)]">
+                            1
+                        </div>
+<div class="w-10 h-10 rounded-full overflow-hidden mr-3 ring-2 ring-yellow-400/30">
+<img class="w-full h-full object-cover" data-alt="Portrait of a woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9BY6IpMMM2U6KPsi5wIOxcCPnloSTJCBgVVdTsZXz5hBjFBJI88YMYynoyule0txlKqS6n-aihYXqjtS1H9Gtze2roGn0jD8zBUTUKgR-DNjKM0DZOzCRAwZpgNxT7NyeWUlS19nfepzcR9eNu9f99PRoJMqalhXB0Bu76ZTtdYgDGyESdMzhT5Hp1yvtYnVsBX_4mmOA21Xb9aKQgYCmvns2euY-UK_2yK-6emmTAhPHm5Setq9AAtKeEgyzH0V8iTL-ZiHhGEM"/>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-sm">@alex_j</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Grand Wizard</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-primary dark:text-indigo-400">150</p>
+<p class="text-[10px] uppercase text-slate-500 tracking-wider">Refs</p>
+</div>
+</div>
+<!-- Rank 2 -->
+<div class="flex items-center p-3 rounded-lg bg-slate-100 dark:bg-white/5 border border-transparent dark:border-white/5">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-white/10 text-slate-500 dark:text-slate-300 font-bold mr-4 text-sm">
+                            2
+                        </div>
+<div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+<img class="w-full h-full object-cover grayscale opacity-80" data-alt="Portrait of a man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKshmlA3QB495UodfUEeRhoVybKaoCFiXtmv_MhYqQjqAIoxGknLhMCqRn6bWn70tCpJtFBJ0wx7EDqTtRxB3808xiuKKZigbIuO1i-AnDY4hy19APayhXJr3coEfz1JJzP7muufxavtHLSedUv0Nnns-w84m45e0eUmzIw3NLP3BySUT_szZ7DZgzQa6WKi0qwOl_8dAj6gbl0CpBIHdVFv9aZVb8EzDWNDVVxtMw8en6VEUw3MQ4tPHEDQNRHIUlCeNjR9Q4Uno"/>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-sm text-slate-700 dark:text-slate-200">@sarah_m</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-slate-700 dark:text-white">120</p>
+<p class="text-[10px] uppercase text-slate-500 tracking-wider">Refs</p>
+</div>
+</div>
+<!-- Rank 3 -->
+<div class="flex items-center p-3 rounded-lg bg-slate-100 dark:bg-white/5 border border-transparent dark:border-white/5">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-slate-200 dark:bg-white/10 text-slate-500 dark:text-slate-300 font-bold mr-4 text-sm">
+                            3
+                        </div>
+<div class="w-10 h-10 rounded-full overflow-hidden mr-3">
+<img class="w-full h-full object-cover grayscale opacity-80" data-alt="Portrait of a woman looking away" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDn1lQRRzNqFk0WgtrSv1av2m1bXQ8Gdgyu4psQSjxfOimzswsMG_teoPVu83VQArTMa96B1JP9KWW6b6MKzmKXA9b-5nW1sbraV4RVfT40ogIupcF03DSbf94-4rQhGMgQlc8QtDIg5tAN2NjqlnCelWWVyfq_MNenkTzuAQuWnUXOLPzgDMBltIMpVZ3VrX0FBj0it9jrRgfVpoUeFHY_uL_eUzSZY-ZaTGsU4qeQi5YW2Y6zB_uarNIReZDi5l84nAmaZ_8Dr5M"/>
+</div>
+<div class="flex-1">
+<p class="font-semibold text-sm text-slate-700 dark:text-slate-200">@dev_k</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-slate-700 dark:text-white">95</p>
+<p class="text-[10px] uppercase text-slate-500 tracking-wider">Refs</p>
+</div>
+</div>
+<!-- Rank 4 -->
+<div class="flex items-center p-3 rounded-lg bg-slate-100 dark:bg-white/5 border border-transparent dark:border-white/5 opacity-60">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-transparent text-slate-500 dark:text-slate-400 font-bold mr-4 text-sm">
+                            4
+                        </div>
+<div class="w-10 h-10 rounded-full bg-slate-300 dark:bg-white/10 flex items-center justify-center mr-3 text-xs text-slate-500">
+                           JP
+                        </div>
+<div class="flex-1">
+<p class="font-semibold text-sm text-slate-700 dark:text-slate-200">@j_park</p>
+</div>
+<div class="text-right">
+<p class="font-bold text-slate-700 dark:text-white">82</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer for sticky footer -->
+<div class="h-8"></div>
+</main>
+<!-- Sticky User Rank Footer -->
+<div class="absolute bottom-6 left-4 right-4 z-20">
+<div class="bg-primary/90 backdrop-blur-md rounded-xl p-3 shadow-[0_10px_40px_-10px_rgba(51,13,242,0.6)] border border-white/10 flex items-center">
+<div class="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 text-white font-bold mr-3 text-sm">
+                    24
+                 </div>
+<div class="w-10 h-10 rounded-full overflow-hidden mr-3 ring-2 ring-white/20">
+<img class="w-full h-full object-cover" data-alt="User avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEenrvInh2AGbuhuytzcLT_ACwD418ADyY1DxEk3tEROMPj6WCs9iO8UCgpuIJjUEsMddYpFr7ZmcKCKOADTafKtD1_QqNq6fLhrR-J3bDmtkLmPxisu16hWQGIVJZO3WZeqJKFeaPpOHDEiJ9Vp7_MpwLTbi6XpHJ7R6rRzMAc8I5j6rpmEgDbkIrHDeyeqiTDBt-6cajL0P1GRmwTt_PYE755kc5dsUSlkhXHEjlg52lQIhA7QEZjpOqP4WnCFS0ZXzX0WNu_X0"/>
+</div>
+<div class="flex-1">
+<p class="font-bold text-sm text-white">You</p>
+<p class="text-xs text-white/70">Keep going!</p>
+</div>
+<div class="text-right pr-2">
+<p class="font-bold text-white text-lg">12</p>
+<p class="text-[9px] uppercase text-white/70 tracking-wider">Refs</p>
+</div>
+</div>
+</div>
+</div>
+</body></html>

@@ -238,10 +238,10 @@ export function BetaLabPage() {
             <div
               key={feature.key}
               className={clsx(
-                'bg-white dark:bg-neutral-800 rounded-xl border p-5 transition-all',
+                'bg-white dark:bg-surface-dark rounded-xl border p-5 transition-all',
                 !masterEnabled || !accessible || feature.comingSoon
                   ? 'opacity-60'
-                  : 'border-neutral-200 dark:border-neutral-700'
+                  : 'border-neutral-200 dark:border-white/10'
               )}
             >
               <div className="flex items-start gap-4">
@@ -253,7 +253,7 @@ export function BetaLabPage() {
                       'p-1.5 rounded-lg transition-colors',
                       feature.userVote === 1
                         ? 'text-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                        : 'text-neutral-400 hover:text-primary-500 hover:bg-neutral-100 dark:hover:bg-neutral-700'
+                        : 'text-neutral-400 hover:text-primary-500 hover:bg-neutral-100 dark:hover:bg-white/5'
                     )}
                   >
                     <ThumbsUp className="w-4 h-4" />
@@ -270,7 +270,7 @@ export function BetaLabPage() {
                       'p-1.5 rounded-lg transition-colors',
                       feature.userVote === -1
                         ? 'text-error bg-error/10'
-                        : 'text-neutral-400 hover:text-error hover:bg-neutral-100 dark:hover:bg-neutral-700'
+                        : 'text-neutral-400 hover:text-error hover:bg-neutral-100 dark:hover:bg-white/5'
                     )}
                   >
                     <ThumbsDown className="w-4 h-4" />
@@ -320,7 +320,7 @@ export function BetaLabPage() {
         })}
       </div>
 
-      <div className="mt-6 p-5 bg-neutral-50 dark:bg-neutral-800/50 rounded-xl text-center">
+      <div className="mt-6 p-5 bg-neutral-50 dark:bg-surface-dark/50 rounded-xl text-center">
         <p className="text-sm text-neutral-500">
           Have a feature idea?{' '}
           <a href="/feedback" className="text-primary-600 dark:text-primary-400 hover:underline font-medium">

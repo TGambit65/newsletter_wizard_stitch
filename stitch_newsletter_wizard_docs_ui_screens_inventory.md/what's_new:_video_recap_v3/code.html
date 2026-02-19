@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>What's New: Video Recap V3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#050212",
+                        "card-dark": "#120f26",
+                        "accent-purple": "#a855f7",
+                        "accent-blue": "#3b82f6",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glow-border {
+            box-shadow: 0 0 10px rgba(51, 13, 242, 0.2), inset 0 0 1px rgba(51, 13, 242, 0.5);
+            border: 1px solid rgba(51, 13, 242, 0.3);
+        }
+        .neon-text-gradient {
+            background: linear-gradient(to right, #a855f7, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white antialiased">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-24">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between bg-background-dark/80 px-4 py-4 backdrop-blur-md">
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white">
+<span class="material-symbols-outlined">close</span>
+</button>
+<div class="text-center">
+<h1 class="text-sm font-bold uppercase tracking-widest text-primary">Newsletter Wizard</h1>
+<p class="text-lg font-bold">What's New</p>
+</div>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white">
+<span class="material-symbols-outlined">share</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex flex-col gap-6 px-4 pt-2">
+<!-- Video Section -->
+<section class="flex flex-col gap-3">
+<div class="group relative aspect-video overflow-hidden rounded-xl bg-card-dark glow-border">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Modern app interface showing AI features walkthrough video thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDQPFVCZrOV5Fua_oTG1wQWCLrjuVw2jMnq7phteNanK5sTqK3323wW2nIF1mENixajOD0sriB8QMDNu2NM2rTIIEFQ3AGHPjSj0LDVeeDHL_Eo217OAcRFVx08fIWVu96RjRivi1EuEFAJ6cYFOystea0x0AC4tiN02p_YPsE9-8i85I82E4LzDiGnbGlWXHNvWuQzLpfSGqx3qqhCOlb-zo5gBhL7QUCUIAEsjYOV5IFJpwy6CKu1J_HQfLTHBArMZHsp8AiCH5U');">
+</div>
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<button class="flex h-16 w-16 items-center justify-center rounded-full bg-primary/90 text-white shadow-2xl ring-4 ring-primary/20 transition-transform active:scale-90">
+<span class="material-symbols-outlined !text-4xl">play_arrow</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-4">
+<div class="mb-2 flex items-center justify-between text-[10px] font-bold uppercase tracking-tighter text-white/70">
+<span>New Feature Walkthrough</span>
+<span>02:45</span>
+</div>
+<div class="h-1 w-full overflow-hidden rounded-full bg-white/20">
+<div class="h-full w-1/3 bg-primary"></div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h2 class="text-xl font-bold">Video Recap V3</h2>
+<p class="text-sm text-white/60">Watch the major changes in under 3 minutes.</p>
+</div>
+</section>
+<!-- Major Updates -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-purple">auto_awesome</span>
+<h3 class="neon-text-gradient text-lg font-bold uppercase tracking-tight">Major Updates</h3>
+</div>
+<!-- Update Card 1 -->
+<div class="flex flex-col overflow-hidden rounded-xl bg-card-dark glow-border">
+<div class="h-40 w-full bg-cover bg-center" data-alt="Abstract vibrant purple and blue flowing particles" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbWdaKr1DuODcAEofDMbdkC3qZ1g4HdprtsqsPy0mVwig0k5TIWzOIkAlirsrp5ELxx3DHkifwFJ9gsg3Cb3GnVsYBxaDugNAbCtJYVMHOZd4s9mbt6eNkFnra1kA3eSbsyVVgWk3ZWX1GiTd4QAj7qLHh3AG13sW0rddHteXk0ZHcPf8iGMfU7n23DiRMVKVBh-yIPnSSoN_cZ2SbpAncjHYhpMaUMe74e1Qvt_3qyhUNMZ2I1ykhQ-LY2UhBH8CAx4LXHiUUsWA');">
+</div>
+<div class="flex flex-col gap-2 p-4">
+<div class="flex items-center justify-between">
+<h4 class="text-lg font-bold">AI Image Generation</h4>
+<span class="rounded-full bg-primary/20 px-2 py-0.5 text-[10px] font-bold uppercase text-primary">New</span>
+</div>
+<p class="text-sm text-white/70">Create high-quality, relevant cover images for your newsletter with our integrated DALL-E 3 engine.</p>
+<button class="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-primary py-3 text-sm font-bold transition-opacity active:opacity-80">
+                            Try It Now
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Update Card 2 -->
+<div class="flex flex-col overflow-hidden rounded-xl bg-card-dark glow-border">
+<div class="flex flex-col gap-2 p-4">
+<div class="flex items-center justify-between">
+<h4 class="text-lg font-bold">Smart Scheduling</h4>
+<span class="rounded-full bg-accent-blue/20 px-2 py-0.5 text-[10px] font-bold uppercase text-accent-blue">Enhanced</span>
+</div>
+<p class="text-sm text-white/70">Our AI now predicts the optimal send time based on your specific audience's engagement history.</p>
+</div>
+</div>
+</section>
+<!-- Minor Fixes -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-accent-blue">build</span>
+<h3 class="text-lg font-bold uppercase tracking-tight text-white/80">Minor Fixes</h3>
+</div>
+<div class="flex flex-col gap-2 rounded-xl bg-card-dark p-4 glow-border">
+<div class="flex items-start gap-3 border-b border-white/5 pb-3">
+<span class="material-symbols-outlined text-green-400">check_circle</span>
+<div>
+<p class="text-sm font-bold">Performance Boost</p>
+<p class="text-xs text-white/50">App launch speed improved by 40% on iOS 17.</p>
+</div>
+</div>
+<div class="flex items-start gap-3 pt-1">
+<span class="material-symbols-outlined text-green-400">check_circle</span>
+<div>
+<p class="text-sm font-bold">Bug Fix: Dark Mode Text</p>
+<p class="text-xs text-white/50">Fixed an issue where some links were invisible in Dark Mode.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Upcoming -->
+<section class="flex flex-col gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+<h3 class="text-lg font-bold uppercase tracking-tight text-white/80">Upcoming</h3>
+</div>
+<div class="relative overflow-hidden rounded-xl bg-primary/10 p-4 glow-border">
+<div class="absolute -right-4 -top-4 text-primary/20">
+<span class="material-symbols-outlined !text-8xl">star</span>
+</div>
+<div class="relative z-10 flex flex-col gap-1">
+<h4 class="font-bold text-primary">Collaborative Editing</h4>
+<p class="text-sm text-white/70">Invite your team to edit newsletters in real-time. Coming early Q4.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Fixed Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 border-t border-white/10 bg-background-dark/95 px-6 pb-8 pt-2 backdrop-blur-xl">
+<div class="mx-auto flex max-w-md justify-between">
+<a class="flex flex-col items-center gap-1 text-white/40 transition-colors hover:text-white" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-white/40 transition-colors hover:text-white" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-[10px] font-medium">Drafts</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined !fill-1">colors_spark</span>
+<span class="text-[10px] font-bold">What's New</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-white/40 transition-colors hover:text-white" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

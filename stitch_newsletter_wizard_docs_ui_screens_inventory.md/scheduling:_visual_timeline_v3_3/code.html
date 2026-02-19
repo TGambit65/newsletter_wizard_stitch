@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletter Archive: Performance Highlights V4</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#0a0a12",
+                        "card-dark": "#161625",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .featured-gradient {
+            background: linear-gradient(135deg, #330df2 0%, #6366f1 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 pt-12 pb-4">
+<div class="flex items-center justify-between">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-primary/10 text-primary">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight">Archive</h1>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-primary/10 text-primary">
+<span class="material-symbols-outlined">search</span>
+</button>
+</div>
+<div class="flex gap-2 mt-6 overflow-x-auto pb-2 no-scrollbar">
+<button class="px-5 py-2 rounded-full bg-primary text-white text-sm font-bold whitespace-nowrap shadow-lg shadow-primary/20">Top Performing</button>
+<button class="px-5 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 text-sm font-bold whitespace-nowrap">Recent</button>
+<button class="px-5 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 text-sm font-bold whitespace-nowrap">Drafts</button>
+<button class="px-5 py-2 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 text-sm font-bold whitespace-nowrap">Favorites</button>
+</div>
+</header>
+<main class="flex-1 pb-24">
+<section class="mt-4">
+<div class="px-6 mb-4 flex items-center justify-between">
+<h2 class="text-xs font-black uppercase tracking-[0.2em] text-primary">Hall of Fame</h2>
+<div class="flex gap-1">
+<div class="w-4 h-1 rounded-full bg-primary"></div>
+<div class="w-1.5 h-1 rounded-full bg-slate-700"></div>
+<div class="w-1.5 h-1 rounded-full bg-slate-700"></div>
+</div>
+</div>
+<div class="flex gap-4 overflow-x-auto px-6 no-scrollbar snap-x">
+<div class="min-w-[85vw] snap-center featured-gradient rounded-3xl p-6 relative overflow-hidden shadow-2xl shadow-primary/30">
+<div class="absolute top-0 right-0 p-4">
+<div class="bg-white/20 backdrop-blur-md rounded-full px-3 py-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-white">trending_up</span>
+<span class="text-[10px] font-bold text-white uppercase tracking-wider">Top 1%</span>
+</div>
+</div>
+<div class="mt-8">
+<h3 class="text-2xl font-bold text-white leading-tight">Mastering the Creator Economy: 2024 Blueprint</h3>
+<p class="text-white/70 text-sm mt-2">Sent Jan 12 • 48.2% Open Rate</p>
+</div>
+<div class="mt-6 flex items-center gap-4">
+<div class="flex flex-col">
+<span class="text-white/60 text-[10px] uppercase font-bold tracking-widest">Clicks</span>
+<span class="text-white text-lg font-bold">12.4k</span>
+</div>
+<div class="w-px h-8 bg-white/20"></div>
+<div class="flex flex-col">
+<span class="text-white/60 text-[10px] uppercase font-bold tracking-widest">Shares</span>
+<span class="text-white text-lg font-bold">2.1k</span>
+</div>
+<button class="ml-auto bg-white text-primary px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">auto_fix</span>
+                        Repurpose
+                    </button>
+</div>
+</div>
+<div class="min-w-[85vw] snap-center bg-slate-800 rounded-3xl p-6 relative overflow-hidden opacity-50">
+<div class="mt-8">
+<h3 class="text-2xl font-bold text-white leading-tight">10 AI Tools Every Writer Needs Now</h3>
+<p class="text-white/70 text-sm mt-2">Sent Dec 28 • 42.1% Open Rate</p>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-10 px-6">
+<h2 class="text-xs font-black uppercase tracking-[0.2em] text-slate-500 mb-6">Archive History</h2>
+<div class="space-y-4">
+<div class="glass-card rounded-2xl p-4 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">article</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-sm truncate">The Psychology of Consistency</h4>
+<p class="text-[10px] text-slate-500 font-medium">Jan 5, 2024 • 32.8% CTR</p>
+</div>
+<button class="px-3 py-1.5 rounded-lg border border-primary/30 text-primary text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 active:bg-primary active:text-white transition-colors">
+<span class="material-symbols-outlined text-[14px]">auto_fix</span>
+                    Repurpose
+                </button>
+</div>
+<div class="glass-card rounded-2xl p-4 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+<span class="material-symbols-outlined text-2xl">bar_chart</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-sm truncate">Annual Performance Audit</h4>
+<p class="text-[10px] text-slate-500 font-medium">Dec 22, 2023 • 28.1% CTR</p>
+</div>
+<button class="px-3 py-1.5 rounded-lg border border-primary/30 text-primary text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_fix</span>
+                    Repurpose
+                </button>
+</div>
+<div class="glass-card rounded-2xl p-4 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-500">
+<span class="material-symbols-outlined text-2xl">campaign</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-sm truncate">New Community Features Launch</h4>
+<p class="text-[10px] text-slate-500 font-medium">Dec 15, 2023 • 35.0% CTR</p>
+</div>
+<button class="px-3 py-1.5 rounded-lg border border-primary/30 text-primary text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_fix</span>
+                    Repurpose
+                </button>
+</div>
+<div class="glass-card rounded-2xl p-4 flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center text-pink-500">
+<span class="material-symbols-outlined text-2xl">history_edu</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-bold text-sm truncate">How to Scale Your Content Team</h4>
+<p class="text-[10px] text-slate-500 font-medium">Dec 08, 2023 • 22.4% CTR</p>
+</div>
+<button class="px-3 py-1.5 rounded-lg border border-primary/30 text-primary text-[10px] font-bold uppercase tracking-wider flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">auto_fix</span>
+                    Repurpose
+                </button>
+</div>
+</div>
+<button class="w-full mt-6 py-4 rounded-xl border border-dashed border-slate-700 text-slate-500 text-xs font-bold uppercase tracking-[0.2em]">
+            Load More Archive
+        </button>
+</section>
+</main>
+<footer class="fixed bottom-0 left-0 right-0 bg-background-light dark:bg-[#0d0d18] border-t border-white/5 pb-8 pt-3 px-6 z-50">
+<div class="flex items-center justify-between">
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">drafts</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Drafts</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">schedule</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Timeline</span>
+</a>
+<div class="relative -top-6">
+<button class="w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-2xl shadow-primary/50 ring-8 ring-background-dark">
+<span class="material-symbols-outlined text-3xl text-white">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">history</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Archive</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Analytics</span>
+</a>
+</div>
+</footer>
+
+</body></html>

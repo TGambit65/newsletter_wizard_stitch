@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brand Voice: Style Guide V3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4725f4",
+                        "primary-dark": "#341bb5",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1c192e",
+                        "surface-dark-lighter": "#2a2640",
+                        "neon-green": "#0bda6c",
+                        "neon-red": "#fa6938",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white h-screen flex flex-col overflow-hidden">
+<!-- Top Navigation & Progress -->
+<header class="flex-none bg-background-light dark:bg-background-dark pt-4 pb-2 px-4">
+<div class="flex items-center justify-between mb-4">
+<button class="flex items-center justify-center h-10 w-10 rounded-full hover:bg-surface-dark-lighter transition-colors text-slate-800 dark:text-white">
+<span class="material-symbols-outlined text-[24px]">arrow_back_ios_new</span>
+</button>
+<h1 class="text-lg font-bold leading-tight tracking-tight text-center flex-1 pr-10">Style Guide V3</h1>
+</div>
+<!-- Progress Indicator (3 of 4) -->
+<div class="flex w-full flex-row items-center justify-center gap-3">
+<div class="h-1.5 w-1.5 rounded-full bg-slate-300 dark:bg-[#3a3168]"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-slate-300 dark:bg-[#3a3168]"></div>
+<div class="h-1.5 w-8 rounded-full bg-primary"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-slate-300 dark:bg-[#3a3168]"></div>
+</div>
+</header>
+<!-- Scrollable Content Area -->
+<main class="flex-1 overflow-y-auto no-scrollbar pb-24 px-4">
+<!-- Section Header -->
+<div class="pt-6 pb-4">
+<h2 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white mb-1">Vocabulary &amp; Formatting</h2>
+<p class="text-sm text-slate-500 dark:text-slate-400">Define how your newsletter sounds and looks.</p>
+</div>
+<!-- Comparison Cards -->
+<div class="grid grid-cols-2 gap-4 mb-8">
+<!-- Words We Use -->
+<div class="flex flex-col gap-3 rounded-xl bg-white dark:bg-surface-dark p-5 shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-neon-green text-[20px]">check_circle</span>
+<p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Use</p>
+</div>
+<div class="flex flex-col gap-2">
+<p class="text-lg font-bold leading-snug text-slate-900 dark:text-white">Empower</p>
+<p class="text-lg font-bold leading-snug text-slate-900 dark:text-white">Brief</p>
+<p class="text-lg font-bold leading-snug text-slate-900 dark:text-white">Spark</p>
+</div>
+<div class="mt-auto pt-2 border-t border-slate-100 dark:border-slate-700/50">
+<p class="text-neon-green text-xs font-medium">+ energetic</p>
+</div>
+</div>
+<!-- Words We Avoid -->
+<div class="flex flex-col gap-3 rounded-xl bg-white dark:bg-surface-dark p-5 shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-neon-red text-[20px]">cancel</span>
+<p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Avoid</p>
+</div>
+<div class="flex flex-col gap-2">
+<p class="text-lg font-bold leading-snug text-slate-400 dark:text-slate-500 line-through decoration-neon-red/50">Enable</p>
+<p class="text-lg font-bold leading-snug text-slate-400 dark:text-slate-500 line-through decoration-neon-red/50">Comprehensive</p>
+<p class="text-lg font-bold leading-snug text-slate-400 dark:text-slate-500 line-through decoration-neon-red/50">Synergize</p>
+</div>
+<div class="mt-auto pt-2 border-t border-slate-100 dark:border-slate-700/50">
+<p class="text-neon-red text-xs font-medium">- corporate</p>
+</div>
+</div>
+</div>
+<!-- Structure Preview Section -->
+<h3 class="text-lg font-bold tracking-tight text-slate-900 dark:text-white mb-4">Structure Preview</h3>
+<div class="relative w-full rounded-2xl bg-white dark:bg-surface-dark border border-slate-200 dark:border-slate-800 overflow-hidden shadow-lg mb-6">
+<!-- Simulated Browser/Email Header -->
+<div class="h-8 bg-slate-100 dark:bg-[#131023] border-b border-slate-200 dark:border-slate-800 flex items-center px-4 gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-red-400/80"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-amber-400/80"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-green-400/80"></div>
+</div>
+<!-- Preview Content -->
+<div class="p-6 relative">
+<!-- Annotation Tag 1 -->
+<div class="absolute top-8 right-4 bg-primary/20 backdrop-blur-sm border border-primary/30 rounded-full px-2 py-0.5 flex items-center gap-1 z-10">
+<span class="material-symbols-outlined text-primary text-[12px]">bolt</span>
+<span class="text-[10px] font-semibold text-primary uppercase tracking-wide">Punchy Header</span>
+</div>
+<div class="mb-4 pr-16">
+<div class="h-6 bg-slate-200 dark:bg-surface-dark-lighter rounded w-3/4 mb-2"></div>
+</div>
+<!-- Annotation Tag 2 -->
+<div class="absolute top-24 -left-2 bg-neon-green/10 backdrop-blur-sm border border-neon-green/30 rounded-r-full px-3 py-1 flex items-center gap-1.5 z-10">
+<span class="material-symbols-outlined text-neon-green text-[14px]">short_text</span>
+<span class="text-[10px] font-semibold text-neon-green uppercase tracking-wide">Short Sentences</span>
+</div>
+<div class="space-y-2 mb-6 pl-2">
+<div class="h-3 bg-slate-200 dark:bg-surface-dark-lighter rounded w-full"></div>
+<div class="h-3 bg-slate-200 dark:bg-surface-dark-lighter rounded w-5/6"></div>
+<div class="h-3 bg-slate-200 dark:bg-surface-dark-lighter rounded w-4/6"></div>
+</div>
+<div class="pl-4 space-y-3 border-l-2 border-primary/30">
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
+<div class="h-3 bg-slate-200 dark:bg-surface-dark-lighter rounded w-10/12"></div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
+<div class="h-3 bg-slate-200 dark:bg-surface-dark-lighter rounded w-8/12"></div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0"></div>
+<div class="h-3 bg-slate-200 dark:bg-surface-dark-lighter rounded w-11/12"></div>
+</div>
+</div>
+</div>
+<!-- Fade for content below -->
+<div class="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-white dark:from-surface-dark to-transparent"></div>
+</div>
+<div class="flex justify-between items-center px-2 mb-6">
+<div>
+<p class="text-sm font-medium text-slate-900 dark:text-white">Readability Score</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Flesch-Kincaid Grade Level</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-2xl font-bold text-neon-green">8.2</span>
+<span class="material-symbols-outlined text-neon-green">trending_up</span>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="flex-none p-4 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800">
+<button class="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold py-4 rounded-xl transition-all shadow-lg shadow-primary/25 active:scale-[0.98]">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+            Copy Style Guide
+        </button>
+</div>
+</body></html>

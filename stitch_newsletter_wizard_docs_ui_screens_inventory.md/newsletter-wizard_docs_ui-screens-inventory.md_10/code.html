@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletters List - Variant 4</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --bg-dark: #0f1115;
+            --card-dark: #181b21;
+            --primary: #6366f1;
+            --primary-glow: #4f46e5;
+            --text-main: #ffffff;
+            --text-secondary: #9ca3af;
+            --border-color: #2a2f3a;
+            --status-draft: #fbbf24;
+            --status-scheduled: #3b82f6;
+            --status-sent: #10b981;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-50 bg-[#0f1115]/90 backdrop-blur-md border-b border-[var(--border-color)] px-4 py-3 pb-4">
+<div class="flex justify-between items-center mb-4">
+<h1 class="text-2xl font-bold tracking-tight text-white">Newsletters</h1>
+<div class="flex gap-3">
+<button class="text-white p-2 rounded-full hover:bg-[var(--card-dark)] transition-colors">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</button>
+<button class="relative">
+<span class="material-symbols-outlined text-[24px] text-white">notifications</span>
+<span class="absolute top-0 right-0 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-[var(--bg-dark)]"></span>
+</button>
+</div>
+</div>
+<a class="flex items-center justify-center w-full bg-[var(--primary)] hover:bg-[var(--primary-glow)] text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-indigo-500/20 transition-all active:scale-[0.98]" href="/wizard">
+<span class="material-symbols-outlined mr-2">add</span>
+            New Newsletter
+        </a>
+<div class="flex gap-2 mt-4 overflow-x-auto hide-scrollbar pb-1">
+<button class="px-4 py-1.5 rounded-full bg-white text-[var(--bg-dark)] font-medium text-sm whitespace-nowrap">All</button>
+<button class="px-4 py-1.5 rounded-full bg-[var(--card-dark)] border border-[var(--border-color)] text-[var(--text-secondary)] font-medium text-sm whitespace-nowrap hover:text-white transition-colors">Drafts</button>
+<button class="px-4 py-1.5 rounded-full bg-[var(--card-dark)] border border-[var(--border-color)] text-[var(--text-secondary)] font-medium text-sm whitespace-nowrap hover:text-white transition-colors">Scheduled</button>
+<button class="px-4 py-1.5 rounded-full bg-[var(--card-dark)] border border-[var(--border-color)] text-[var(--text-secondary)] font-medium text-sm whitespace-nowrap hover:text-white transition-colors">Sent</button>
+</div>
+</header>
+<main class="flex-1 px-4 py-2 pb-24">
+<div class="mb-6">
+<h2 class="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-3 mt-4 ml-1">October 2023</h2>
+<div class="space-y-3">
+<div class="group bg-[var(--card-dark)] rounded-2xl p-4 border border-[var(--border-color)] relative overflow-hidden active:bg-[#20242c] transition-colors">
+<div class="absolute top-0 left-0 w-1 h-full bg-[var(--status-draft)]"></div>
+<div class="flex justify-between items-start">
+<div class="flex-1 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2 h-2 rounded-full bg-[var(--status-draft)] shadow-[0_0_8px_var(--status-draft)]"></span>
+<span class="text-[11px] font-bold text-[var(--status-draft)] uppercase tracking-wide">Draft</span>
+</div>
+<h3 class="text-lg font-semibold text-white leading-tight mb-1">Weekly Digest: AI Trends</h3>
+<p class="text-sm text-[var(--text-secondary)] line-clamp-1">Covering the latest in generative models and large language...</p>
+</div>
+<button class="text-[var(--text-secondary)] hover:text-white p-1 -mr-2">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex justify-between items-center mt-4 pt-3 border-t border-[var(--border-color)]">
+<span class="text-xs text-[var(--text-secondary)] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">edit_calendar</span>
+                            Last edited 2h ago
+                        </span>
+<a class="text-sm font-medium text-white hover:text-[var(--primary)] flex items-center gap-1" href="/newsletters/1/edit">
+                            Edit <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="group bg-[var(--card-dark)] rounded-2xl p-4 border border-[var(--border-color)] relative overflow-hidden active:bg-[#20242c] transition-colors">
+<div class="absolute top-0 left-0 w-1 h-full bg-[var(--status-scheduled)]"></div>
+<div class="flex justify-between items-start">
+<div class="flex-1 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2 h-2 rounded-full bg-[var(--status-scheduled)] shadow-[0_0_8px_var(--status-scheduled)]"></span>
+<span class="text-[11px] font-bold text-[var(--status-scheduled)] uppercase tracking-wide">Scheduled</span>
+</div>
+<h3 class="text-lg font-semibold text-white leading-tight mb-1">Product Update v2.4</h3>
+<p class="text-sm text-[var(--text-secondary)] line-clamp-1">New features including dark mode and enhanced analytics.</p>
+</div>
+<button class="text-[var(--text-secondary)] hover:text-white p-1 -mr-2">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="flex justify-between items-center mt-4 pt-3 border-t border-[var(--border-color)]">
+<span class="text-xs text-[var(--text-secondary)] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span>
+                            Oct 28, 9:00 AM
+                        </span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-indigo-500 border-2 border-[var(--card-dark)] flex items-center justify-center text-[10px] font-bold">L</div>
+<div class="w-6 h-6 rounded-full bg-purple-500 border-2 border-[var(--card-dark)] flex items-center justify-center text-[10px] font-bold">X</div>
+<div class="w-6 h-6 rounded-full bg-blue-500 border-2 border-[var(--card-dark)] flex items-center justify-center text-[10px] font-bold">Fb</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-6">
+<h2 class="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-3 mt-4 ml-1">September 2023</h2>
+<div class="space-y-3">
+<div class="group bg-[var(--card-dark)] rounded-2xl p-4 border border-[var(--border-color)] relative overflow-hidden active:bg-[#20242c] transition-colors">
+<div class="absolute top-0 left-0 w-1 h-full bg-[var(--status-sent)]"></div>
+<div class="flex justify-between items-start">
+<div class="flex-1 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2 h-2 rounded-full bg-[var(--status-sent)] shadow-[0_0_8px_var(--status-sent)]"></span>
+<span class="text-[11px] font-bold text-[var(--status-sent)] uppercase tracking-wide">Sent</span>
+</div>
+<h3 class="text-lg font-semibold text-white leading-tight mb-1">Monthly Recap: Sept</h3>
+<p class="text-sm text-[var(--text-secondary)] line-clamp-1">A look back at our biggest achievements this month.</p>
+</div>
+<button class="text-[var(--text-secondary)] hover:text-white p-1 -mr-2">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-[var(--border-color)]">
+<div class="flex flex-col">
+<span class="text-[10px] text-[var(--text-secondary)] uppercase">Open Rate</span>
+<span class="text-sm font-bold text-white">42%</span>
+</div>
+<div class="flex flex-col border-l border-[var(--border-color)] pl-3">
+<span class="text-[10px] text-[var(--text-secondary)] uppercase">Clicks</span>
+<span class="text-sm font-bold text-white">1,240</span>
+</div>
+<div class="flex flex-col border-l border-[var(--border-color)] pl-3">
+<span class="text-[10px] text-[var(--text-secondary)] uppercase">Repurposed</span>
+<span class="text-sm font-bold text-[var(--status-sent)] flex items-center gap-1">
+                                3/5 <span class="material-symbols-outlined text-[12px]">check_circle</span>
+</span>
+</div>
+</div>
+<div class="flex justify-end mt-3">
+<a class="text-xs font-medium text-[var(--primary)] hover:text-white flex items-center gap-1 border border-[var(--primary)] px-3 py-1 rounded-full bg-[var(--primary)]/10" href="/newsletters/1/repurpose">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+                            Repurpose Content
+                        </a>
+</div>
+</div>
+<div class="group bg-[var(--card-dark)] rounded-2xl p-4 border border-[var(--border-color)] relative overflow-hidden active:bg-[#20242c] transition-colors">
+<div class="absolute top-0 left-0 w-1 h-full bg-[var(--status-sent)]"></div>
+<div class="flex justify-between items-start">
+<div class="flex-1 pr-4">
+<div class="flex items-center gap-2 mb-1">
+<span class="w-2 h-2 rounded-full bg-[var(--status-sent)] shadow-[0_0_8px_var(--status-sent)]"></span>
+<span class="text-[11px] font-bold text-[var(--status-sent)] uppercase tracking-wide">Sent</span>
+</div>
+<h3 class="text-lg font-semibold text-white leading-tight mb-1">Community Highlights</h3>
+<p class="text-sm text-[var(--text-secondary)] line-clamp-1">Spotlighting our top contributors and community events.</p>
+</div>
+<button class="text-[var(--text-secondary)] hover:text-white p-1 -mr-2">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-[var(--border-color)]">
+<div class="flex flex-col">
+<span class="text-[10px] text-[var(--text-secondary)] uppercase">Open Rate</span>
+<span class="text-sm font-bold text-white">38%</span>
+</div>
+<div class="flex flex-col border-l border-[var(--border-color)] pl-3">
+<span class="text-[10px] text-[var(--text-secondary)] uppercase">Clicks</span>
+<span class="text-sm font-bold text-white">892</span>
+</div>
+<div class="flex flex-col border-l border-[var(--border-color)] pl-3">
+<span class="text-[10px] text-[var(--text-secondary)] uppercase">Repurposed</span>
+<span class="text-sm font-bold text-[var(--text-secondary)]">
+                                0/5
+                            </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 w-full bg-[#0f1115]/90 backdrop-blur-lg border-t border-[var(--border-color)] pb-safe pt-2 px-6 z-50 pb-5">
+<div class="flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 text-[var(--text-secondary)] hover:text-white w-12" href="/">
+<span class="material-symbols-outlined text-[24px]">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[var(--primary)] w-12" href="/newsletters">
+<span class="material-symbols-outlined text-[24px] fill-1">mail</span>
+<span class="text-[10px] font-medium">Lists</span>
+</a>
+<div class="w-12"></div> 
+<a class="flex flex-col items-center gap-1 text-[var(--text-secondary)] hover:text-white w-12" href="/analytics">
+<span class="material-symbols-outlined text-[24px]">bar_chart</span>
+<span class="text-[10px] font-medium">Stats</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-[var(--text-secondary)] hover:text-white w-12" href="/settings">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</a>
+</div>
+</nav>
+
+</body></html>

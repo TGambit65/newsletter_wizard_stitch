@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Maintenance Screen - Newsletter Wizard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Config -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4725f4",
+                        "primary-glow": "#6c4df6",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1c1833",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "linear-gradient(to right, rgba(71, 37, 244, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(71, 37, 244, 0.05) 1px, transparent 1px)",
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom subtle pulse for the progress bar */
+        @keyframes subtle-pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px rgba(71, 37, 244, 0.5); }
+            50% { opacity: 0.8; box-shadow: 0 0 20px rgba(71, 37, 244, 0.8); }
+        }
+        .animate-glow {
+            animation: subtle-pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Shimmer effect for the progress bar fill */
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .shimmer-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg);
+            animation: shimmer 2s infinite;
+        }
+
+        /* Grid background size */
+        .bg-grid {
+            background-size: 40px 40px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-hidden antialiased">
+<!-- Background Grid & Radial Glow -->
+<div class="fixed inset-0 pointer-events-none z-0">
+<!-- Grid Pattern -->
+<div class="absolute inset-0 bg-grid-pattern bg-grid opacity-30"></div>
+<!-- Central Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary rounded-full blur-[120px] opacity-20"></div>
+</div>
+<!-- Main Content Container -->
+<div class="relative z-10 flex flex-col h-screen max-w-md mx-auto px-6 py-8">
+<!-- Top Spacer for Safe Area -->
+<div class="flex-none h-12"></div>
+<!-- Status Icon / Header -->
+<div class="flex flex-col items-center justify-center flex-1 w-full space-y-12">
+<!-- Technical Icon -->
+<div class="relative flex items-center justify-center w-24 h-24 rounded-full bg-surface-dark border border-primary/20 shadow-[0_0_30px_rgba(71,37,244,0.15)]">
+<span class="material-symbols-outlined text-primary text-5xl animate-pulse">
+                    memory
+                </span>
+<!-- Decorative orbital dots -->
+<div class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full animate-ping opacity-75"></div>
+</div>
+<!-- Progress Module -->
+<div class="w-full space-y-4">
+<div class="flex justify-between items-end px-1">
+<p class="text-primary/80 text-xs font-bold tracking-widest uppercase">
+                        Status: Recalibrating AI_V2
+                    </p>
+<p class="text-white font-mono text-sm font-medium">75%</p>
+</div>
+<!-- Progress Bar Container -->
+<div class="relative h-4 w-full bg-surface-dark rounded-full overflow-hidden border border-white/5 shadow-inner">
+<!-- Filled Bar -->
+<div class="absolute left-0 top-0 h-full w-[75%] bg-primary rounded-full animate-glow overflow-hidden">
+<!-- Shimmer Effect -->
+<div class="shimmer-overlay"></div>
+</div>
+</div>
+<p class="text-primary/60 text-xs font-mono tracking-wide text-right animate-pulse">Processing data chunks...</p>
+</div>
+<!-- Main Messaging -->
+<div class="text-center space-y-4">
+<h1 class="text-4xl font-bold tracking-tight text-white drop-shadow-lg">
+                    Be Right Back
+                </h1>
+<p class="text-gray-400 text-base leading-relaxed max-w-[300px] mx-auto">
+                    Scheduled system upgrades are currently underway to improve your newsletter generation.
+                </p>
+</div>
+<!-- Time Estimate Card -->
+<div class="flex flex-col items-center justify-center py-4 px-6 bg-surface-dark/50 backdrop-blur-sm border border-white/5 rounded-2xl w-full">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-sm">schedule</span>
+<span class="text-gray-400 text-xs uppercase tracking-wider font-bold">Estimated Completion</span>
+</div>
+<p class="text-white text-lg font-medium tracking-tight">2:00 PM EST</p>
+</div>
+</div>
+<!-- Bottom Action -->
+<div class="flex-none pt-8 pb-8 flex justify-center w-full">
+<button class="group relative flex items-center justify-center w-full max-w-sm h-14 bg-surface-dark hover:bg-primary/10 border border-primary/30 hover:border-primary/60 text-white rounded-xl transition-all duration-300 overflow-hidden shadow-lg shadow-primary/5 hover:shadow-primary/20">
+<!-- Hover Glow Background -->
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></div>
+<div class="flex items-center gap-3 z-10">
+<!-- X Logo SVG -->
+<svg class="text-white group-hover:scale-110 transition-transform duration-300" fill="currentColor" height="18px" viewbox="0 0 256 256" width="18px" xmlns="http://www.w3.org/2000/svg">
+<path d="M247.39,68.94A8,8,0,0,0,240,64H209.57A48.66,48.66,0,0,0,168.1,40a46.91,46.91,0,0,0-33.75,13.7A47.9,47.9,0,0,0,120,88v6.09C79.74,83.47,46.81,50.72,46.46,50.37a8,8,0,0,0-13.65,4.92c-4.31,47.79,9.57,79.77,22,98.18a110.93,110.93,0,0,0,21.88,24.2c-15.23,17.53-39.21,26.74-39.47,26.84a8,8,0,0,0-3.85,11.93c.75,1.12,3.75,5.05,11.08,8.72C53.51,229.7,65.48,232,80,232c70.67,0,129.72-54.42,135.75-124.44l29.91-29.9A8,8,0,0,0,247.39,68.94Zm-45,29.41a8,8,0,0,0-2.32,5.14C196,166.58,143.28,216,80,216c-10.56,0-18-1.4-23.22-3.08,11.51-6.25,27.56-17,37.88-32.48A8,8,0,0,0,92,169.08c-.47-.27-43.91-26.34-44-96,16,13,45.25,33.17,78.67,38.79A8,8,0,0,0,136,104V88a32,32,0,0,1,9.6-22.92A30.94,30.94,0,0,1,167.9,56c12.66.16,24.49,7.88,29.44,19.21A8,8,0,0,0,204.67,80h16Z"></path>
+</svg>
+<span class="font-bold text-sm tracking-wide">Follow updates on X</span>
+</div>
+</button>
+</div>
+</div>
+</body></html>

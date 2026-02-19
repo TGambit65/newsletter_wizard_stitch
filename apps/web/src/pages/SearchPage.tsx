@@ -141,7 +141,7 @@ export function SearchPage() {
             onChange={e => setQuery(e.target.value)}
             placeholder="Search everything..."
             autoFocus
-            className="w-full pl-12 pr-24 py-4 text-lg bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none shadow-sm"
+            className="w-full pl-12 pr-24 py-4 text-lg bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none shadow-sm"
           />
           <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-2">
             {query && (
@@ -196,7 +196,7 @@ export function SearchPage() {
                   'px-3 py-1.5 rounded-full text-sm font-medium transition-colors',
                   typeFilter === f.value
                     ? 'bg-primary-500 text-white'
-                    : 'bg-white dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                    : 'bg-white dark:bg-surface-dark text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-white/10 hover:bg-neutral-50 dark:hover:bg-white/5'
                 )}
               >
                 {f.label}
@@ -249,7 +249,7 @@ export function SearchPage() {
                 <button
                   key={result.id}
                   onClick={() => navigate(result.href)}
-                  className="w-full flex items-center gap-4 p-4 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-sm transition-all text-left group"
+                  className="w-full flex items-center gap-4 p-4 bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/10 rounded-xl hover:border-primary-300 dark:hover:border-primary-700 hover:shadow-sm transition-all text-left group"
                 >
                   <div className={clsx('w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0', config.bg)}>
                     <Icon className={clsx('w-5 h-5', config.color)} />

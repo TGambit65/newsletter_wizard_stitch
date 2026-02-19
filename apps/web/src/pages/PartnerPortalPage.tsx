@@ -272,7 +272,7 @@ export function PartnerPortalPage() {
   if (!isPartner && !loading) {
     return (
       <div className="p-6 max-w-4xl mx-auto">
-        <div className="text-center py-12 bg-neutral-50 dark:bg-neutral-800 rounded-xl">
+        <div className="text-center py-12 bg-neutral-50 dark:bg-surface-dark rounded-xl">
           <Building2 className="w-12 h-12 text-neutral-400 mx-auto mb-3" />
           <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-2">Partner Access Required</h2>
           <p className="text-neutral-600 dark:text-neutral-400">
@@ -291,7 +291,7 @@ export function PartnerPortalPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 border-b border-neutral-200 dark:border-neutral-700 mb-6">
+      <div className="flex gap-1 border-b border-neutral-200 dark:border-white/10 mb-6">
         {tabs.map(tab => (
           <button
             key={tab.id}
@@ -321,7 +321,7 @@ export function PartnerPortalPage() {
               {/* Stats (if loaded) */}
               {stats && (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700">
+                  <div className="bg-white dark:bg-surface-dark rounded-xl p-6 border border-neutral-200 dark:border-white/10">
                     <div className="flex items-center gap-3">
                       <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-lg">
                         <Users className="w-6 h-6 text-primary-600" />
@@ -332,7 +332,7 @@ export function PartnerPortalPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700">
+                  <div className="bg-white dark:bg-surface-dark rounded-xl p-6 border border-neutral-200 dark:border-white/10">
                     <div className="flex items-center gap-3">
                       <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
                         <FileText className="w-6 h-6 text-green-600" />
@@ -343,7 +343,7 @@ export function PartnerPortalPage() {
                       </div>
                     </div>
                   </div>
-                  <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700">
+                  <div className="bg-white dark:bg-surface-dark rounded-xl p-6 border border-neutral-200 dark:border-white/10">
                     <div className="flex items-center gap-3">
                       <div className="p-3 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
                         <ArrowUpRight className="w-6 h-6 text-amber-600" />
@@ -358,7 +358,7 @@ export function PartnerPortalPage() {
               )}
 
               {/* Getting Started Guide */}
-              <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+              <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
                 <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
                   <Building2 className="w-5 h-5 text-primary-500" />
                   Get started with the Partner Portal
@@ -446,7 +446,7 @@ export function PartnerPortalPage() {
               </div>
 
               {showCreateTenant && (
-                <div className="bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700 mb-4">
+                <div className="bg-white dark:bg-surface-dark rounded-xl p-4 border border-neutral-200 dark:border-white/10 mb-4">
                   <h3 className="font-medium text-neutral-900 dark:text-white mb-4">Create Sub-Tenant</h3>
                   <div className="grid grid-cols-2 gap-4">
                     <input
@@ -467,7 +467,7 @@ export function PartnerPortalPage() {
                   <div className="flex gap-3 mt-4">
                     <button
                       onClick={() => setShowCreateTenant(false)}
-                      className="px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+                      className="px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
                     >
                       Cancel
                     </button>
@@ -482,14 +482,14 @@ export function PartnerPortalPage() {
               )}
 
               {subTenants.length === 0 ? (
-                <div className="text-center py-12 bg-neutral-50 dark:bg-neutral-800 rounded-xl">
+                <div className="text-center py-12 bg-neutral-50 dark:bg-surface-dark rounded-xl">
                   <Users className="w-12 h-12 text-neutral-400 mx-auto mb-3" />
                   <p className="text-neutral-600 dark:text-neutral-400">No sub-tenants yet</p>
                 </div>
               ) : (
                 <div className="space-y-3">
                   {subTenants.map(t => (
-                    <div key={t.id} className="bg-white dark:bg-neutral-800 rounded-xl p-4 border border-neutral-200 dark:border-neutral-700">
+                    <div key={t.id} className="bg-white dark:bg-surface-dark rounded-xl p-4 border border-neutral-200 dark:border-white/10">
                       <div className="flex items-center justify-between">
                         <div>
                           <h3 className="font-medium text-neutral-900 dark:text-white">{t.name}</h3>
@@ -512,7 +512,7 @@ export function PartnerPortalPage() {
 
           {/* API Keys Tab - redirect to dedicated page */}
           {activeTab === 'api-keys' && (
-            <div className="text-center py-12 bg-neutral-50 dark:bg-neutral-800 rounded-xl">
+            <div className="text-center py-12 bg-neutral-50 dark:bg-surface-dark rounded-xl">
               <Key className="w-12 h-12 text-neutral-400 mx-auto mb-3" />
               <p className="text-neutral-600 dark:text-neutral-400 mb-4">Manage API keys in the dedicated settings page</p>
               <a 
@@ -526,7 +526,7 @@ export function PartnerPortalPage() {
 
           {/* Webhooks Tab - redirect to dedicated page */}
           {activeTab === 'webhooks' && (
-            <div className="text-center py-12 bg-neutral-50 dark:bg-neutral-800 rounded-xl">
+            <div className="text-center py-12 bg-neutral-50 dark:bg-surface-dark rounded-xl">
               <Webhook className="w-12 h-12 text-neutral-400 mx-auto mb-3" />
               <p className="text-neutral-600 dark:text-neutral-400 mb-4">Manage webhooks in the dedicated settings page</p>
               <a 
@@ -540,7 +540,7 @@ export function PartnerPortalPage() {
 
           {/* White Label Tab */}
           {activeTab === 'white-label' && (
-            <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700">
+            <div className="bg-white dark:bg-surface-dark rounded-xl p-6 border border-neutral-200 dark:border-white/10">
               <h3 className="font-medium text-neutral-900 dark:text-white mb-4">White Label Configuration</h3>
               
               <div className="space-y-4">
@@ -663,12 +663,12 @@ export function PartnerPortalPage() {
             <div>
               <h3 className="font-medium text-neutral-900 dark:text-white mb-4">Billing History</h3>
               {billingRecords.length === 0 ? (
-                <div className="text-center py-12 bg-neutral-50 dark:bg-neutral-800 rounded-xl">
+                <div className="text-center py-12 bg-neutral-50 dark:bg-surface-dark rounded-xl">
                   <DollarSign className="w-12 h-12 text-neutral-400 mx-auto mb-3" />
                   <p className="text-neutral-600 dark:text-neutral-400">No billing records yet</p>
                 </div>
               ) : (
-                <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+                <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 overflow-hidden">
                   <table className="w-full">
                     <thead className="bg-neutral-50 dark:bg-neutral-700">
                       <tr>
@@ -680,9 +680,9 @@ export function PartnerPortalPage() {
                         <th className="text-left px-4 py-3 text-xs font-medium text-neutral-500 uppercase">Status</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-neutral-200 dark:divide-neutral-700">
+                    <tbody className="divide-y divide-neutral-200 dark:divide-white/5">
                       {billingRecords.map(record => (
-                        <tr key={record.id} className="hover:bg-neutral-50 dark:hover:bg-neutral-700/50">
+                        <tr key={record.id} className="hover:bg-neutral-50 dark:hover:bg-white/5">
                           <td className="px-4 py-3 text-sm text-neutral-900 dark:text-white">
                             {new Date(record.period_start).toLocaleDateString()} - {new Date(record.period_end).toLocaleDateString()}
                           </td>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Performance Report: AI Tips V4</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "primary-light": "#5c3bf5",
+                        "primary-dark": "#2508b5",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#0f0f12",
+                        "surface-dark": "#18181b",
+                        "accent-neon": "#0bda6c",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0f12; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2508b5; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #330df2; 
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased overflow-x-hidden">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto border-x border-white/5 shadow-2xl">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-background-dark/80 backdrop-blur-md border-b border-white/5 p-4 pb-2">
+<div class="flex items-center justify-between mb-4">
+<button class="text-white hover:text-primary transition-colors flex size-10 items-center justify-center rounded-full bg-white/5">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-white text-base font-bold tracking-tight uppercase opacity-90">Performance Report</h2>
+<button class="text-white hover:text-primary transition-colors flex size-10 items-center justify-center rounded-full bg-white/5">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+<div class="text-center">
+<h1 class="text-white text-3xl font-bold tracking-tight mb-1">Weekly Digest</h1>
+<p class="text-indigo-200/60 text-sm font-medium">Aug 14 - Aug 21</p>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 p-4 flex flex-col gap-6">
+<!-- Comparison Grid: Open Rate -->
+<section>
+<div class="flex items-center gap-2 mb-3 px-1">
+<span class="material-symbols-outlined text-primary text-xl">mark_email_read</span>
+<h3 class="text-white text-lg font-bold">Open Rate</h3>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- This Week -->
+<div class="bg-surface-dark border border-white/10 rounded-xl p-4 flex flex-col relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2 opacity-50">
+<span class="text-xs text-indigo-300 font-medium bg-primary/20 px-2 py-0.5 rounded-full">Current</span>
+</div>
+<span class="text-indigo-200/60 text-xs uppercase font-semibold mb-1">This Week</span>
+<div class="flex items-end gap-2">
+<span class="text-white text-3xl font-bold tracking-tight">42%</span>
+</div>
+<div class="mt-3 flex items-center text-accent-neon text-xs font-bold bg-accent-neon/10 w-fit px-2 py-1 rounded">
+<span class="material-symbols-outlined text-base mr-0.5">trending_up</span>
+                            +10.5%
+                        </div>
+</div>
+<!-- Last Week -->
+<div class="bg-surface-dark border border-white/5 rounded-xl p-4 flex flex-col relative">
+<div class="absolute top-0 right-0 p-2 opacity-30">
+<span class="text-xs text-gray-400 font-medium bg-white/5 px-2 py-0.5 rounded-full">Prev</span>
+</div>
+<span class="text-gray-500 text-xs uppercase font-semibold mb-1">Last Week</span>
+<div class="flex items-end gap-2">
+<span class="text-gray-300 text-3xl font-bold tracking-tight opacity-60">38%</span>
+</div>
+<div class="mt-3 text-gray-600 text-xs font-medium px-1 py-1">
+                            Benchmark
+                        </div>
+</div>
+</div>
+</section>
+<!-- Comparison Grid: Click Rate -->
+<section>
+<div class="flex items-center gap-2 mb-3 px-1">
+<span class="material-symbols-outlined text-primary text-xl">touch_app</span>
+<h3 class="text-white text-lg font-bold">Click Rate</h3>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- This Week -->
+<div class="bg-surface-dark border border-white/10 rounded-xl p-4 flex flex-col relative overflow-hidden">
+<span class="text-indigo-200/60 text-xs uppercase font-semibold mb-1">This Week</span>
+<div class="flex items-end gap-2">
+<span class="text-white text-3xl font-bold tracking-tight">5.1%</span>
+</div>
+<div class="mt-3 flex items-center text-accent-neon text-xs font-bold bg-accent-neon/10 w-fit px-2 py-1 rounded">
+<span class="material-symbols-outlined text-base mr-0.5">trending_up</span>
+                            +21.4%
+                        </div>
+</div>
+<!-- Last Week -->
+<div class="bg-surface-dark border border-white/5 rounded-xl p-4 flex flex-col relative">
+<span class="text-gray-500 text-xs uppercase font-semibold mb-1">Last Week</span>
+<div class="flex items-end gap-2">
+<span class="text-gray-300 text-3xl font-bold tracking-tight opacity-60">4.2%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Comparison Grid: Unsubscribes (Compact) -->
+<section class="bg-surface-dark border border-white/5 rounded-xl p-4 flex items-center justify-between">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-gray-400 text-lg">person_remove</span>
+<h3 class="text-gray-300 text-sm font-semibold">Unsubscribes</h3>
+</div>
+<p class="text-xs text-gray-500">Keep it under 0.5% for health</p>
+</div>
+<div class="flex items-center gap-4 text-right">
+<div>
+<p class="text-xs text-gray-500 uppercase">Last</p>
+<p class="text-gray-400 font-bold">12</p>
+</div>
+<div class="h-8 w-px bg-white/10"></div>
+<div>
+<p class="text-xs text-indigo-300 uppercase">This</p>
+<p class="text-white font-bold text-xl">8</p>
+</div>
+</div>
+</section>
+<!-- Heatmap Section -->
+<section class="bg-surface-dark border border-white/10 rounded-xl overflow-hidden">
+<div class="p-4 border-b border-white/5 flex justify-between items-center">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">grid_on</span>
+<h3 class="text-white text-lg font-bold">Engagement Hotspots</h3>
+</div>
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">Last 30 Days</span>
+</div>
+<div class="p-4 relative">
+<!-- Abstract Heatmap Visualization -->
+<div class="grid grid-cols-7 gap-1 h-32 w-full opacity-90">
+<!-- Row 1 -->
+<div class="bg-primary/5 rounded-sm"></div>
+<div class="bg-primary/20 rounded-sm"></div>
+<div class="bg-primary/40 rounded-sm"></div>
+<div class="bg-primary/10 rounded-sm"></div>
+<div class="bg-primary/5 rounded-sm"></div>
+<div class="bg-primary/5 rounded-sm"></div>
+<div class="bg-primary/5 rounded-sm"></div>
+<!-- Row 2 -->
+<div class="bg-primary/10 rounded-sm"></div>
+<div class="bg-primary/60 rounded-sm"></div>
+<div class="bg-primary rounded-sm shadow-[0_0_10px_rgba(51,13,242,0.6)]"></div> <!-- Hotspot -->
+<div class="bg-primary/30 rounded-sm"></div>
+<div class="bg-primary/10 rounded-sm"></div>
+<div class="bg-primary/5 rounded-sm"></div>
+<div class="bg-primary/5 rounded-sm"></div>
+<!-- Row 3 -->
+<div class="bg-primary/5 rounded-sm"></div>
+<div class="bg-primary/40 rounded-sm"></div>
+<div class="bg-primary/80 rounded-sm"></div>
+<div class="bg-primary/20 rounded-sm"></div>
+<div class="bg-primary/5 rounded-sm"></div>
+<div class="bg-primary/5 rounded-sm"></div>
+<div class="bg-primary/5 rounded-sm"></div>
+<!-- Row 4 -->
+<div class="bg-primary/5 rounded-sm"></div>
+<div class="bg-primary/20 rounded-sm"></div>
+<div class="bg-primary/40 rounded-sm"></div>
+<div class="bg-primary/10 rounded-sm"></div>
+<div class="bg-primary/5 rounded-sm"></div>
+<div class="bg-primary/5 rounded-sm"></div>
+<div class="bg-primary/5 rounded-sm"></div>
+</div>
+<div class="flex justify-between mt-2 text-[10px] text-gray-500 uppercase tracking-widest px-1">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+<span>Sun</span>
+</div>
+</div>
+</section>
+<!-- Magic Tip Card -->
+<section class="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary to-primary-dark p-6 shadow-lg border border-primary-light/30">
+<!-- Background decorative elements -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-light/30 rounded-full blur-2xl"></div>
+<div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/20 to-transparent"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-3">
+<div class="bg-white/20 p-1.5 rounded-lg backdrop-blur-sm">
+<span class="material-symbols-outlined text-white text-lg">auto_awesome</span>
+</div>
+<h3 class="text-white text-lg font-bold tracking-tight">Magic Tip</h3>
+</div>
+<p class="text-indigo-100 text-base leading-relaxed font-medium mb-4">
+                        Your audience is most active on <span class="text-white font-bold border-b border-white/30">Tuesday mornings</span>. Try scheduling your next send for <span class="text-white font-bold">9:00 AM EST</span> for maximal reach.
+                    </p>
+<button class="w-full bg-white text-primary font-bold py-3 rounded-lg shadow-md hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 text-sm">
+<span class="material-symbols-outlined text-lg">schedule_send</span>
+                        Schedule for Tuesday
+                    </button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="mt-4 pb-8 flex flex-col items-center gap-4 text-center">
+<div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+<div class="flex gap-4 text-xs text-gray-500 font-medium">
+<a class="hover:text-gray-300 transition-colors" href="#">Manage Preferences</a>
+<span>•</span>
+<a class="hover:text-gray-300 transition-colors" href="#">Unsubscribe</a>
+</div>
+<p class="text-[10px] text-gray-600">
+                    Newsletter Wizard © 2024. All metrics are estimated based on tracking pixels.
+                </p>
+</footer>
+</main>
+<!-- Bottom Tab Bar (Simulated for App Context) -->
+<div class="sticky bottom-0 bg-background-dark/90 backdrop-blur-xl border-t border-white/5 px-6 py-4 flex justify-between items-center z-50">
+<button class="flex flex-col items-center gap-1 text-gray-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">dashboard</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary hover:text-primary-light transition-colors relative">
+<div class="absolute -top-1 -right-1 w-2 h-2 bg-accent-neon rounded-full animate-pulse"></div>
+<span class="material-symbols-outlined text-2xl fill-1">analytics</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">edit_note</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-500 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">settings</span>
+</button>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletters List: Dark Mode V2 (Indigo Tint)</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#818cf8", // Lighter indigo for better contrast on dark
+                        "primary-dark": "#6366f1",
+                        "background-light": "#f3f4f6",
+                        "background-dark": "#0c0e16", // Deep indigo-black base
+                        "background-tint": "#111322", // Slightly lighter tint
+                        "card-dark": "#161828", // Deep indigo card
+                        "card-border": "#282a42",
+                        "success": "#34d399", // Neon Emerald
+                        "warning": "#fcd34d", // Neon Amber
+                        "info": "#60a5fa", // Neon Blue
+                    },
+                    fontFamily: {
+                        display: ["Plus Jakarta Sans", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(99, 102, 241, 0.15)',
+                        'card': '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.15)',
+                        'purple-glow': '0 0 0 1px rgba(129, 140, 248, 0.2), 0 0 12px rgba(99, 102, 241, 0.3)',
+                        'fab': '0 10px 25px -5px rgba(99, 102, 241, 0.5), 0 8px 10px -6px rgba(99, 102, 241, 0.1)',
+                    },
+                    backgroundImage: {
+                        'gradient-btn': 'linear-gradient(135deg, #7c3aed 0%, #2563eb 100%)', // Purple to Blue
+                        'gradient-bg': 'radial-gradient(circle at top right, #1e1b4b 0%, #0c0e16 40%)',
+                    }
+                },
+            },
+        };
+    </script>
+<style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glass-border {
+            position: relative;
+        }
+        .glass-border::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(to bottom right, rgba(129, 140, 248, 0.3), rgba(129, 140, 248, 0.05));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        .hide-scroll::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scroll {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark bg-gradient-bg bg-fixed text-gray-100 min-h-screen relative overflow-hidden font-display">
+<div class="fixed top-0 w-full h-12 z-50 bg-background-dark/80 backdrop-blur-md flex items-center justify-between px-6 pt-2 border-b border-white/5">
+<span class="text-sm font-semibold text-white">9:41</span>
+<div class="flex items-center space-x-1 text-white">
+<span class="material-icons-round text-base">signal_cellular_alt</span>
+<span class="material-icons-round text-base">wifi</span>
+<span class="material-icons-round text-base">battery_full</span>
+</div>
+</div>
+<main class="pt-20 pb-32 px-4 max-w-md mx-auto h-full overflow-y-auto hide-scroll">
+<header class="flex items-center justify-between mb-6">
+<h1 class="text-3xl font-bold tracking-tight text-white">Newsletters</h1>
+<div class="flex items-center space-x-3">
+<button class="p-2 rounded-full hover:bg-white/10 transition-colors text-gray-300">
+<span class="material-icons-round">search</span>
+</button>
+<div class="relative">
+<button class="p-2 rounded-full hover:bg-white/10 transition-colors text-gray-300">
+<span class="material-icons-round">notifications</span>
+</button>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-background-dark shadow-[0_0_8px_rgba(239,68,68,0.6)]"></span>
+</div>
+</div>
+</header>
+<button class="w-full bg-gradient-btn text-white font-semibold py-4 px-6 rounded-2xl shadow-lg shadow-indigo-900/40 flex items-center justify-center space-x-2 mb-8 transition-all active:scale-95 border border-white/10">
+<span class="material-icons-round">add</span>
+<span>New Newsletter</span>
+</button>
+<div class="flex space-x-3 overflow-x-auto pb-4 hide-scroll mb-2">
+<button class="px-5 py-2 bg-white text-gray-900 font-bold rounded-full text-sm shadow-lg shadow-white/10 whitespace-nowrap">All</button>
+<button class="px-5 py-2 bg-card-dark text-gray-400 font-medium rounded-full text-sm border border-white/10 whitespace-nowrap hover:border-primary/50 transition-colors">Drafts</button>
+<button class="px-5 py-2 bg-card-dark text-gray-400 font-medium rounded-full text-sm border border-white/10 whitespace-nowrap hover:border-primary/50 transition-colors">Scheduled</button>
+<button class="px-5 py-2 bg-card-dark text-gray-400 font-medium rounded-full text-sm border border-white/10 whitespace-nowrap hover:border-primary/50 transition-colors">Sent</button>
+</div>
+<div class="mb-8">
+<h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 ml-1">October 2023</h2>
+<div class="group relative bg-card-dark rounded-3xl p-5 mb-5 shadow-card shadow-purple-glow border border-white/5 transition-transform active:scale-[0.99]">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center space-x-2">
+<div class="h-8 w-1 bg-warning rounded-full absolute left-0 top-6 rounded-r-lg shadow-[0_0_10px_rgba(251,191,36,0.6)]"></div>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-warning/10 text-warning uppercase tracking-wide border border-warning/20">
+<span class="w-1.5 h-1.5 rounded-full bg-warning mr-1.5 shadow-[0_0_5px_rgba(251,191,36,0.8)]"></span>
+                            Draft
+                        </span>
+</div>
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-icons-round text-xl">more_vert</span>
+</button>
+</div>
+<h3 class="text-lg font-bold text-white mb-1">Weekly Digest: AI Trends</h3>
+<p class="text-sm text-gray-400 mb-4 line-clamp-2 leading-relaxed">Covering the latest in generative models, text-to-video advances, and ethical considerations.</p>
+<div class="flex items-center justify-between mt-4 pt-4 border-t border-white/5">
+<div class="flex items-center text-xs text-gray-400 space-x-1">
+<span class="material-icons-round text-sm">calendar_today</span>
+<span>Last edited 2h ago</span>
+</div>
+<div class="flex space-x-2">
+<button class="w-9 h-9 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-gray-400 hover:bg-white/10 hover:text-white transition-colors" title="History">
+<span class="material-icons-round text-lg">history</span>
+</button>
+<button class="w-9 h-9 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-primary hover:bg-primary/20 transition-colors" title="AI Insights">
+<span class="material-icons-round text-lg">auto_awesome</span>
+</button>
+<button class="px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/5 text-white text-xs font-semibold rounded-xl transition-colors">
+                            Edit
+                        </button>
+</div>
+</div>
+</div>
+<div class="group relative bg-card-dark rounded-3xl p-5 mb-5 shadow-card shadow-purple-glow border border-white/5 transition-transform active:scale-[0.99]">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center space-x-2">
+<div class="h-8 w-1 bg-info rounded-full absolute left-0 top-6 rounded-r-lg shadow-[0_0_10px_rgba(59,130,246,0.6)]"></div>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-info/10 text-info uppercase tracking-wide border border-info/20">
+<span class="w-1.5 h-1.5 rounded-full bg-info mr-1.5 shadow-[0_0_5px_rgba(59,130,246,0.8)]"></span>
+                            Scheduled
+                        </span>
+</div>
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-icons-round text-xl">more_vert</span>
+</button>
+</div>
+<h3 class="text-lg font-bold text-white mb-1">Product Update v2.4</h3>
+<p class="text-sm text-gray-400 mb-4 line-clamp-2 leading-relaxed">New features including dark mode and improved accessibility controls for all users.</p>
+<div class="flex items-center justify-between mt-4 pt-2">
+<div class="flex items-center text-xs text-info font-medium space-x-1 bg-info/10 border border-info/20 px-2 py-1 rounded-lg">
+<span class="material-icons-round text-sm">schedule</span>
+<span>Oct 28, 9:00 AM</span>
+</div>
+<div class="flex -space-x-2">
+<div class="w-7 h-7 rounded-full bg-purple-500 border-2 border-card-dark flex items-center justify-center text-[10px] text-white font-bold">L</div>
+<div class="w-7 h-7 rounded-full bg-pink-500 border-2 border-card-dark flex items-center justify-center text-[10px] text-white font-bold">X</div>
+<div class="w-7 h-7 rounded-full bg-blue-600 border-2 border-card-dark flex items-center justify-center text-[10px] text-white font-bold">Fb</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mb-24">
+<h2 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 ml-1">September 2023</h2>
+<div class="group relative bg-card-dark rounded-3xl p-5 mb-5 shadow-card shadow-purple-glow border border-white/5 transition-transform active:scale-[0.99]">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center space-x-2">
+<div class="h-8 w-1 bg-success rounded-full absolute left-0 top-6 rounded-r-lg shadow-[0_0_10px_rgba(16,185,129,0.6)]"></div>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-success/10 text-success uppercase tracking-wide border border-success/20">
+<span class="w-1.5 h-1.5 rounded-full bg-success mr-1.5 shadow-[0_0_5px_rgba(16,185,129,0.8)]"></span>
+                            Sent
+                        </span>
+</div>
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-icons-round text-xl">more_vert</span>
+</button>
+</div>
+<h3 class="text-lg font-bold text-white mb-1">Monthly Recap: Sept</h3>
+<p class="text-sm text-gray-400 mb-5 line-clamp-2 leading-relaxed">A look back at our biggest achievements including reaching 10k subscribers.</p>
+<div class="grid grid-cols-3 gap-3 mb-4">
+<div class="bg-white/5 border border-white/5 rounded-2xl p-3 flex flex-col justify-center">
+<span class="text-[10px] text-gray-400 uppercase font-bold tracking-wide">Open Rate</span>
+<span class="text-base font-bold text-white mt-1">42%</span>
+</div>
+<div class="bg-white/5 border border-white/5 rounded-2xl p-3 flex flex-col justify-center">
+<span class="text-[10px] text-gray-400 uppercase font-bold tracking-wide">Clicks</span>
+<span class="text-base font-bold text-white mt-1">1,240</span>
+</div>
+<div class="bg-white/5 border border-white/5 rounded-2xl p-3 flex flex-col justify-center">
+<span class="text-[10px] text-gray-400 uppercase font-bold tracking-wide">Repurposed</span>
+<div class="flex items-center space-x-1 mt-1">
+<span class="text-base font-bold text-success">3/5</span>
+<span class="material-icons-round text-xs text-success">check_circle</span>
+</div>
+</div>
+</div>
+<button class="w-full py-3 rounded-xl border border-primary/30 text-primary bg-primary/5 hover:bg-primary/10 text-sm font-semibold flex items-center justify-center space-x-2 transition-colors">
+<span class="material-icons-round text-sm">auto_awesome</span>
+<span>Repurpose Content</span>
+</button>
+</div>
+<div class="group relative bg-card-dark rounded-3xl p-5 mb-5 shadow-card shadow-purple-glow border border-white/5 transition-transform active:scale-[0.99]">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center space-x-2">
+<div class="h-8 w-1 bg-success rounded-full absolute left-0 top-6 rounded-r-lg shadow-[0_0_10px_rgba(16,185,129,0.6)]"></div>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-success/10 text-success uppercase tracking-wide border border-success/20">
+<span class="w-1.5 h-1.5 rounded-full bg-success mr-1.5 shadow-[0_0_5px_rgba(16,185,129,0.8)]"></span>
+                           Sent
+                       </span>
+</div>
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-icons-round text-xl">more_vert</span>
+</button>
+</div>
+<h3 class="text-lg font-bold text-white mb-1">Community Highlights</h3>
+<p class="text-sm text-gray-400 mb-5 line-clamp-2 leading-relaxed">Spotlighting our top contributors and community projects.</p>
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-white/5 border border-white/5 rounded-2xl p-3 flex flex-col justify-center">
+<span class="text-[10px] text-gray-400 uppercase font-bold tracking-wide">Open Rate</span>
+<span class="text-base font-bold text-white mt-1">38%</span>
+</div>
+<div class="bg-white/5 border border-white/5 rounded-2xl p-3 flex flex-col justify-center">
+<span class="text-[10px] text-gray-400 uppercase font-bold tracking-wide">Clicks</span>
+<span class="text-base font-bold text-white mt-1">892</span>
+</div>
+<div class="bg-white/5 border border-white/5 rounded-2xl p-3 flex flex-col justify-center opacity-50">
+<span class="text-[10px] text-gray-400 uppercase font-bold tracking-wide">Repurposed</span>
+<div class="flex items-center space-x-1 mt-1">
+<span class="text-base font-bold text-gray-400">0/5</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 w-full bg-[#111322] border-t border-white/5 pb-6 pt-3 px-6 z-50 rounded-t-3xl shadow-2xl">
+<div class="flex items-center justify-between mb-4 px-2">
+<span class="text-xs font-medium text-gray-400 tracking-wide uppercase">Filters</span>
+<div class="flex space-x-2">
+<button class="px-3 py-1 bg-white/5 text-xs text-gray-300 rounded-full flex items-center border border-white/10 hover:bg-white/10 transition-colors">
+                    Status <span class="material-icons-round text-sm ml-1">arrow_drop_down</span>
+</button>
+<button class="px-3 py-1 bg-white/5 text-xs text-gray-300 rounded-full flex items-center border border-white/10 hover:bg-white/10 transition-colors">
+                    Date Range <span class="material-icons-round text-sm ml-1">arrow_drop_down</span>
+</button>
+<button class="p-1 text-gray-400 hover:text-white transition-colors">
+<span class="material-icons-round text-sm">filter_list</span>
+</button>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div class="flex flex-col items-center space-y-1">
+<div class="w-12 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="material-icons-round text-primary text-xl">dashboard</span>
+</div>
+<span class="text-[10px] font-medium text-primary">Home</span>
+</div>
+<div class="flex flex-col items-center space-y-1 text-gray-500 hover:text-primary transition-colors cursor-pointer">
+<span class="material-icons-round text-xl">mail</span>
+<span class="text-[10px] font-medium">Lists</span>
+</div>
+<div class="flex flex-col items-center space-y-1 text-gray-500 hover:text-primary transition-colors cursor-pointer">
+<span class="material-icons-round text-xl">bar_chart</span>
+<span class="text-[10px] font-medium">Stats</span>
+</div>
+<div class="flex flex-col items-center space-y-1 text-gray-500 hover:text-primary transition-colors cursor-pointer">
+<span class="material-icons-round text-xl">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</div>
+</div>
+</nav>
+<div class="fixed bottom-28 right-4 z-50">
+<button class="bg-gradient-btn text-white rounded-2xl shadow-fab px-5 py-4 flex items-center space-x-2 hover:scale-105 active:scale-95 transition-all border border-white/20">
+<span class="material-icons-round text-xl">auto_awesome</span>
+<span class="font-bold text-sm">Create New</span>
+</button>
+</div>
+
+</body></html>

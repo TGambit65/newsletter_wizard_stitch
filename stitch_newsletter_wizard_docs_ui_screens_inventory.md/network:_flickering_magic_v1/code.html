@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Network: Flickering Magic V1</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4725f4",
+                        "primary-light": "#7b5eff",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1c1833",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(71, 37, 244, 0.5)',
+                        'glow-hover': '0 0 30px rgba(71, 37, 244, 0.7)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Utilities for gradients not covered by simple classes */
+        .bg-magic-gradient {
+            background: linear-gradient(135deg, #4725f4 0%, #7b5eff 100%);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(71, 37, 244, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white antialiased selection:bg-primary selection:text-white overflow-hidden">
+<!-- Mobile Container -->
+<div class="relative mx-auto flex h-screen max-h-screen w-full max-w-md flex-col overflow-hidden bg-background-light dark:bg-background-dark shadow-2xl">
+<!-- Status Bar Placeholder (simulated for mobile context) -->
+<div class="flex h-12 w-full items-center justify-between px-6 pt-2">
+<span class="text-sm font-medium text-gray-500 dark:text-gray-400">9:41</span>
+<div class="flex gap-1.5">
+<span class="material-symbols-outlined text-sm text-gray-500 dark:text-gray-400" style="font-size: 18px;">signal_cellular_alt</span>
+<span class="material-symbols-outlined text-sm text-gray-500 dark:text-gray-400" style="font-size: 18px;">wifi_off</span>
+<span class="material-symbols-outlined text-sm text-gray-500 dark:text-gray-400" style="font-size: 18px;">battery_full</span>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="flex flex-1 flex-col items-center justify-center px-6 pb-12 pt-4">
+<!-- Hero Illustration Container -->
+<div class="relative mb-10 flex h-64 w-64 items-center justify-center">
+<!-- Decorative background elements -->
+<div class="absolute inset-0 animate-pulse rounded-full bg-primary/10 blur-3xl"></div>
+<div class="absolute inset-4 rounded-full bg-gradient-to-tr from-primary/20 to-transparent blur-2xl"></div>
+<!-- Main Image -->
+<div class="relative z-10 h-full w-full bg-contain bg-center bg-no-repeat drop-shadow-2xl transition-transform duration-700 hover:scale-105" data-alt="3D illustration of a magic wand with a sputtering, flickering blue energy trail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDp75-TZBtkJtgSf7aI7h3FypB3jCAm1tJWLrstiLH45LvHvYz_kcLB743_yU1LSh1-CyDOXxDkoawu0NGx8yOQIQuaCrA9q6PgQ-uif4OafV-lKOjnKwSJAHrMTx-E2P09NLZ-A8nXh2IdR18IB9Jdj13uw4rlkHo3_Wn1n59_HH3WaZw6Y6kzMo-1uOdn46grmepoFQjRlKmHkY8sJjRf-d58gz2xOA6zGERQL7BJiJGTRsNYaGOEsPSkCIATKqO7kpM872qLlHo');">
+</div>
+</div>
+<!-- Text Content -->
+<div class="mb-8 flex flex-col items-center text-center">
+<div class="mb-4 flex items-center justify-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary-light">
+<span class="material-symbols-outlined mr-1 text-sm">bolt</span>
+                    Offline Mode
+                </div>
+<h1 class="mb-3 text-3xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white sm:text-4xl text-glow">
+                    Connection Lost
+                </h1>
+<p class="max-w-[280px] text-base font-normal leading-relaxed text-gray-600 dark:text-gray-300">
+                    It seems the magic signal is weak. Please check your internet connection.
+                </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex w-full flex-col gap-4">
+<button class="group relative flex w-full items-center justify-center overflow-hidden rounded-lg bg-magic-gradient px-6 py-4 shadow-glow transition-all active:scale-[0.98]">
+<!-- Button Glow Effect -->
+<div class="absolute inset-0 bg-white/20 opacity-0 transition-opacity group-hover:opacity-100"></div>
+<span class="material-symbols-outlined mr-2 text-white transition-transform group-hover:rotate-180">refresh</span>
+<span class="text-base font-bold tracking-wide text-white">Try Again</span>
+</button>
+<button class="flex w-full items-center justify-center rounded-lg border border-transparent px-6 py-3 text-sm font-medium text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                    Work Offline
+                </button>
+</div>
+</div>
+<!-- Bottom Safe Area Spacer -->
+<div class="h-6 w-full"></div>
+</div>
+</body></html>

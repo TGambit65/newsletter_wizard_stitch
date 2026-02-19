@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Search: Quick Add Empty State</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "primary-dark": "#2409b3",
+                        "primary-light": "#5c3dff",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1e1a33",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        'glow': '0 0 30px -5px rgba(51, 13, 242, 0.6)',
+                        'glow-lg': '0 0 50px -10px rgba(51, 13, 242, 0.7)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles for elements not covered by Tailwind config */
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .glow-pulse {
+            animation: pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 30px -5px rgba(51, 13, 242, 0.4);
+            }
+            50% {
+                opacity: .9;
+                box-shadow: 0 0 50px 5px rgba(51, 13, 242, 0.7);
+            }
+        }
+        
+        /* Hide scrollbar for clean mobile look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white h-screen overflow-hidden flex flex-col items-center justify-center font-display antialiased selection:bg-primary selection:text-white">
+<!-- Mobile Container -->
+<div class="w-full h-full max-w-md mx-auto relative flex flex-col bg-background-light dark:bg-background-dark">
+<!-- Status Bar Area (Mock) -->
+<div class="h-12 w-full flex items-center justify-between px-6 shrink-0 z-20">
+<span class="text-sm font-medium">9:41</span>
+<div class="flex items-center space-x-2">
+<span class="material-icons text-sm">signal_cellular_alt</span>
+<span class="material-icons text-sm">wifi</span>
+<span class="material-icons text-sm">battery_full</span>
+</div>
+</div>
+<!-- Top Navigation & Search Bar -->
+<div class="px-5 py-2 shrink-0 z-20">
+<div class="flex items-center gap-3 mb-4">
+<button class="p-2 rounded-full hover:bg-slate-200 dark:hover:bg-primary/20 text-slate-500 dark:text-slate-400 transition-colors">
+<span class="material-icons text-xl">arrow_back_ios_new</span>
+</button>
+<div class="relative flex-1 group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons text-primary/70 dark:text-primary-light">search</span>
+</div>
+<input autofocus="" class="block w-full pl-10 pr-3 py-3 border-2 border-primary/30 rounded-xl leading-5 bg-white dark:bg-surface-dark placeholder-slate-400 focus:outline-none focus:border-primary focus:ring-0 focus:bg-white dark:focus:bg-[#252040] sm:text-sm transition-all duration-300 shadow-sm" placeholder="Search knowledge base..." type="text" value="Artificial Intelligence"/>
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+<span class="material-icons text-slate-400 text-sm hover:text-slate-600 dark:hover:text-white transition-colors">close</span>
+</div>
+</div>
+</div>
+<!-- Context Tabs (Optional visual context) -->
+<div class="flex gap-4 px-1 overflow-x-auto">
+<button class="px-4 py-1.5 rounded-full text-sm font-medium bg-primary text-white shadow-lg shadow-primary/30">All</button>
+<button class="px-4 py-1.5 rounded-full text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors">Sources</button>
+<button class="px-4 py-1.5 rounded-full text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary-light transition-colors">Newsletters</button>
+</div>
+</div>
+<!-- Main Empty State Content -->
+<div class="flex-1 flex flex-col items-center justify-center px-8 relative z-10 pb-20">
+<!-- Decorative background blur -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Central Hero Element -->
+<div class="relative mb-8 group cursor-pointer">
+<!-- Glowing effect rings -->
+<div class="absolute inset-0 bg-primary rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity duration-500 glow-pulse"></div>
+<div class="absolute -inset-2 border border-primary/20 rounded-full scale-110 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+<!-- Main Button -->
+<button class="relative w-24 h-24 rounded-full bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center shadow-glow hover:shadow-glow-lg hover:-translate-y-1 transition-all duration-300">
+<span class="material-icons text-white text-5xl">add</span>
+</button>
+</div>
+<!-- Text Content -->
+<div class="text-center space-y-3 max-w-xs">
+<h2 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight">Empty Handed?</h2>
+<p class="text-slate-500 dark:text-slate-400 leading-relaxed text-sm">
+                    We couldn't find "<span class="text-primary dark:text-primary-light font-medium">Artificial Intelligence</span>" in your Knowledge Base.
+                </p>
+</div>
+<!-- Action Prompt -->
+<div class="mt-8">
+<button class="group flex items-center gap-3 px-6 py-3 bg-surface-dark dark:bg-white/5 border border-primary/20 hover:border-primary/50 rounded-xl transition-all active:scale-95 w-full">
+<div class="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
+<span class="material-icons text-primary text-sm font-bold">add</span>
+</div>
+<div class="flex flex-col items-start text-left">
+<span class="text-sm font-semibold text-primary dark:text-primary-light group-hover:text-primary-light transition-colors">Add as new source</span>
+<span class="text-xs text-slate-500 dark:text-slate-400">Create entry for 'Artificial Intelligence'</span>
+</div>
+<span class="material-icons text-slate-400 text-sm ml-auto group-hover:translate-x-1 transition-transform">chevron_right</span>
+</button>
+</div>
+<p class="mt-6 text-xs text-slate-400 dark:text-slate-500 text-center max-w-[200px]">
+                Tap the button above to add it instantly.
+            </p>
+</div>
+<!-- Bottom Tab Bar (Mock for context) -->
+<div class="h-20 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-t border-slate-200 dark:border-white/5 flex items-start justify-around pt-4 shrink-0 z-20">
+<button class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+<span class="material-icons">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-icons">library_books</span>
+<span class="text-[10px] font-medium">Library</span>
+</button>
+<div class="w-12"></div> <!-- Spacer for FAB if needed, or just visual balance -->
+<button class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+<span class="material-icons">mail</span>
+<span class="text-[10px] font-medium">Newsletters</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors">
+<span class="material-icons">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</div>
+<!-- Floating Indicator/Home bar -->
+<div class="absolute bottom-1 left-1/2 -translate-x-1/2 w-32 h-1 bg-slate-300 dark:bg-white/20 rounded-full z-30"></div>
+</div>
+</body></html>

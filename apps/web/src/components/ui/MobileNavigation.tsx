@@ -14,7 +14,7 @@ export function MobileNavigation() {
   const location = useLocation();
 
   return (
-    <nav aria-label="Main navigation" className="fixed bottom-0 left-0 right-0 bg-white dark:bg-neutral-800 border-t border-neutral-200 dark:border-neutral-700 lg:hidden z-40 safe-area-bottom">
+    <nav aria-label="Main navigation" className="fixed bottom-0 left-0 right-0 bg-white dark:bg-surface-dark border-t border-neutral-200 dark:border-white/10 lg:hidden z-40 safe-area-bottom">
       <div className="flex items-center justify-around h-16 px-2">
         {mobileNavItems.map((item) => {
           const isActive = location.pathname === item.href || 

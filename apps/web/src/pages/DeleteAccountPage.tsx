@@ -113,7 +113,7 @@ export function DeleteAccountPage() {
 
       {/* Step 1: Export */}
       {step === 1 && (
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-8">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-8">
           <div className="text-center mb-6">
             <div className="w-16 h-16 bg-neutral-100 dark:bg-neutral-700 rounded-full flex items-center justify-center mx-auto mb-4">
               <Download className="w-8 h-8 text-neutral-500" />
@@ -158,7 +158,7 @@ export function DeleteAccountPage() {
 
       {/* Step 2: Exit survey */}
       {step === 2 && (
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-8">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-8">
           <div className="text-center mb-6">
             <div className="w-16 h-16 bg-neutral-100 dark:bg-neutral-700 rounded-full flex items-center justify-center mx-auto mb-4">
               <ClipboardList className="w-8 h-8 text-neutral-500" />
@@ -176,7 +176,7 @@ export function DeleteAccountPage() {
                   'w-full text-left px-4 py-3 rounded-lg border text-sm transition-colors',
                   reason === r
                     ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300'
-                    : 'border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                    : 'border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-white/5'
                 )}
               >
                 {r}
@@ -189,7 +189,7 @@ export function DeleteAccountPage() {
             onChange={e => setComment(e.target.value)}
             rows={3}
             placeholder="Any additional comments? (optional)"
-            className="w-full px-3 py-2.5 mb-5 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-900 text-sm resize-none focus:ring-2 focus:ring-primary-500 outline-none"
+            className="w-full px-3 py-2.5 mb-5 border border-neutral-200 dark:border-white/10 rounded-lg bg-white dark:bg-background-dark text-sm resize-none focus:ring-2 focus:ring-primary-500 outline-none"
           />
 
           <button
@@ -203,7 +203,7 @@ export function DeleteAccountPage() {
 
       {/* Step 3: Confirm deletion */}
       {step === 3 && (
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-error/30 p-8">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-error/30 p-8">
           <div className="text-center mb-6">
             <div className="w-16 h-16 bg-error/10 rounded-full flex items-center justify-center mx-auto mb-4">
               <AlertTriangle className="w-8 h-8 text-error" />
@@ -234,7 +234,7 @@ export function DeleteAccountPage() {
               value={confirmation}
               onChange={e => setConfirmation(e.target.value)}
               placeholder="DELETE"
-              className="w-full px-4 py-3 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white focus:ring-2 focus:ring-error focus:border-error outline-none font-mono"
+              className="w-full px-4 py-3 border border-neutral-200 dark:border-white/10 rounded-lg bg-white dark:bg-background-dark text-neutral-900 dark:text-white focus:ring-2 focus:ring-error focus:border-error outline-none font-mono"
             />
           </div>
 
@@ -250,7 +250,7 @@ export function DeleteAccountPage() {
 
       {/* Step 4: Goodbye */}
       {step === 4 && (
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-8 text-center">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-8 text-center">
           <CheckCircle2 className="w-16 h-16 text-success mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-neutral-900 dark:text-white mb-2">Account deleted</h1>
           <p className="text-neutral-500 mb-2">

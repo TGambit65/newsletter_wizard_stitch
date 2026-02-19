@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reactivate Account - Plan Selection</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d125f4",
+                        "primary-dark": "#a01dbd",
+                        "primary-light": "#e47aff",
+                        "background-light": "#f8f5f8",
+                        "background-dark": "#1f1022",
+                        "surface-dark": "#2d1b32",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Utilities for Glassmorphism and Glows */
+        .glass-panel {
+            background: rgba(45, 27, 50, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(209, 37, 244, 0.1);
+        }
+        
+        .pro-glow {
+            box-shadow: 0 0 40px -10px rgba(209, 37, 244, 0.25);
+            border: 1px solid rgba(209, 37, 244, 0.4);
+        }
+
+        .neon-text-shadow {
+            text-shadow: 0 0 10px rgba(209, 37, 244, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<div class="sticky top-0 z-50 flex items-center justify-between p-4 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-primary/10">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-primary/10 transition-colors text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-lg font-bold leading-tight tracking-[-0.015em] text-center">Reactivate Account</h2>
+<button class="flex items-center justify-center h-10 px-2 rounded-lg hover:bg-primary/10 transition-colors">
+<span class="text-primary text-sm font-bold tracking-wide">Help</span>
+</button>
+</div>
+<!-- Main Scrollable Content -->
+<main class="flex-1 overflow-y-auto w-full max-w-md mx-auto px-4 pb-8 flex flex-col items-center">
+<!-- Hero Section -->
+<div class="relative w-full flex flex-col items-center pt-6 pb-4">
+<!-- Decorative Glow Behind Image -->
+<div class="absolute top-10 left-1/2 -translate-x-1/2 w-48 h-48 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="relative w-40 h-40 mb-4 flex items-center justify-center animate-float">
+<img alt="Magic Wand Illustration" class="w-full h-full object-contain drop-shadow-[0_10px_20px_rgba(209,37,244,0.3)]" data-alt="3D illustration of a floating magic wand with sparkles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTVrKSz2xrfN8ckdGaJU_Kayk7QNMthvQDsNzjvIWLlg5fJrwKo56iMc7WI0SLsqKhJuSAhvIW7M6upzdBv5WfNZ4QP3D36dYjyLi4guM9iac2y-SZs1LpctPPOX9VXtZllfzU5Fq_x0RQDqHbdHyaSlST_u3x_UujuH-7GjJMEs0v6S8a3LsRZOBFgWCzax7mFDF9MOoQ-Sydy6wawDvoBO8atM_glcncX-l8VguTAz1Bji0_A7AgVDYkz9FCwxUcisKZ4t0fnnM"/>
+</div>
+<h1 class="text-3xl font-bold text-center leading-tight mb-2">Welcome Back,<br/><span class="text-primary neon-text-shadow">Wizard!</span></h1>
+<p class="text-slate-500 dark:text-slate-300 text-center text-sm leading-relaxed max-w-[280px]">
+                Your audience missed you. Pick up right where you left off with a special offer.
+            </p>
+</div>
+<!-- Pro Plan Card (Primary) -->
+<div class="w-full mt-6 relative group">
+<!-- "Best Value" Badge floating on top border -->
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-purple-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg z-10 whitespace-nowrap border border-white/20">
+                Limited Time Offer: 50% Off
+            </div>
+<div class="bg-surface-dark/80 dark:bg-[#2f1834] rounded-2xl p-6 pro-glow relative overflow-hidden">
+<!-- Background decorative gradient -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+<div class="relative z-0">
+<div class="flex justify-between items-start mb-4 pt-2">
+<div>
+<h3 class="text-xl font-bold text-white mb-1">Pro Plan</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-bold text-white">$9.99</span>
+<span class="text-slate-400 text-sm font-medium line-through decoration-primary/50">$19.99</span>
+<span class="text-slate-400 text-sm">/mo</span>
+</div>
+</div>
+<div class="bg-primary/20 p-2 rounded-lg">
+<span class="material-symbols-outlined text-primary">auto_fix_high</span>
+</div>
+</div>
+<div class="h-px w-full bg-gradient-to-r from-transparent via-primary/30 to-transparent my-4"></div>
+<ul class="space-y-3 mb-6">
+<li class="flex items-center gap-3 text-sm text-slate-200">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>Unlimited newsletter sends</span>
+</li>
+<li class="flex items-center gap-3 text-sm text-slate-200">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>Advanced Analytics &amp; Tracking</span>
+</li>
+<li class="flex items-center gap-3 text-sm text-slate-200">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>AI Writing Assistant (GPT-4)</span>
+</li>
+<li class="flex items-center gap-3 text-sm text-slate-200">
+<span class="material-symbols-outlined text-primary text-[20px]">check_circle</span>
+<span>Custom Domain Support</span>
+</li>
+</ul>
+<button class="w-full bg-primary hover:bg-primary-dark active:scale-[0.98] transition-all text-white font-bold py-3.5 px-4 rounded-xl shadow-[0_4px_14px_0_rgba(209,37,244,0.39)] flex items-center justify-center gap-2 group-hover:shadow-[0_6px_20px_rgba(209,37,244,0.23)]">
+<span>Reactivate with Pro</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<p class="text-center text-xs text-primary/70 mt-3 font-medium">Auto-renews monthly. Cancel anytime.</p>
+</div>
+</div>
+</div>
+<!-- Free Plan Card (Secondary) -->
+<div class="w-full mt-4">
+<div class="glass-panel rounded-xl p-5 border border-slate-700/50 hover:border-slate-600 transition-colors">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h3 class="text-lg font-bold text-white">Starter Plan</h3>
+<p class="text-slate-400 text-xs">Basic features to get going again.</p>
+</div>
+<div class="text-right">
+<span class="text-xl font-bold text-white">Free</span>
+</div>
+</div>
+<ul class="space-y-2 mb-4">
+<li class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-slate-500 text-[16px]">check</span>
+<span>1,000 sends per month</span>
+</li>
+<li class="flex items-center gap-2 text-xs text-slate-400">
+<span class="material-symbols-outlined text-slate-500 text-[16px]">check</span>
+<span>Basic templates</span>
+</li>
+</ul>
+<button class="w-full bg-transparent border border-slate-600 hover:bg-slate-800 text-slate-300 font-medium py-2.5 px-4 rounded-lg transition-colors text-sm">
+                    Continue with Free
+                </button>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="mt-8 flex flex-col items-center gap-4 w-full">
+<div class="flex items-center justify-center gap-6 w-full text-xs text-slate-500 font-medium">
+<a class="hover:text-primary transition-colors" href="#">Restore Purchases</a>
+<span class="w-1 h-1 rounded-full bg-slate-700"></span>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<span class="w-1 h-1 rounded-full bg-slate-700"></span>
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+</div>
+</div>
+</main>
+</body></html>

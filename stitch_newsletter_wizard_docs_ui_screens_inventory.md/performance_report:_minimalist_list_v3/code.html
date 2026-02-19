@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletter Performance Report</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "primary-light": "#6447ff",
+                        "primary-dark": "#2006a8",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "accent-cyan": "#00f0ff",
+                        "accent-pink": "#ff0099",
+                        "accent-green": "#00ff94",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .neon-text-cyan {
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+        }
+        .neon-box-cyan {
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+        }
+        
+        .neon-text-green {
+            text-shadow: 0 0 10px rgba(0, 255, 148, 0.5);
+        }
+        .neon-box-green {
+            box-shadow: 0 0 15px rgba(0, 255, 148, 0.2);
+        }
+
+        .neon-text-pink {
+            text-shadow: 0 0 10px rgba(255, 0, 153, 0.5);
+        }
+        .neon-box-pink {
+            box-shadow: 0 0 15px rgba(255, 0, 153, 0.2);
+        }
+
+        .glowing-border {
+            position: relative;
+        }
+        .glowing-border::before {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            background: linear-gradient(45deg, #330df2, #00f0ff, #330df2);
+            z-index: -1;
+            opacity: 0.7;
+            filter: blur(8px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased selection:bg-primary selection:text-white">
+<div class="relative mx-auto flex h-full min-h-screen w-full max-w-md flex-col overflow-hidden bg-background-light dark:bg-background-dark shadow-2xl">
+<!-- Header Section -->
+<header class="flex flex-col items-center px-6 pt-8 pb-6">
+<div class="mb-6 flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[20px] text-primary dark:text-primary-light">auto_awesome</span>
+<span class="text-xs font-bold uppercase tracking-widest text-primary dark:text-primary-light">Newsletter Wizard</span>
+</div>
+<p class="mb-2 text-sm font-medium text-slate-500 dark:text-slate-400">Oct 12 - Oct 19</p>
+<h1 class="text-center text-4xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white">
+                Your Week<br/>in Numbers
+            </h1>
+</header>
+<!-- Stats List -->
+<main class="flex-1 px-4 py-4">
+<div class="space-y-4">
+<!-- Stat Item 1: Opens -->
+<div class="group relative flex items-center justify-between rounded-xl bg-white/5 p-5 transition-all hover:bg-white/10 dark:bg-slate-800/30 dark:hover:bg-slate-800/50">
+<div class="flex items-center gap-5">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-accent-cyan/10 neon-box-cyan">
+<span class="material-symbols-outlined text-[28px] text-accent-cyan neon-text-cyan">visibility</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Total Opens</span>
+<span class="text-2xl font-bold text-slate-900 dark:text-white">1,240</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-1 text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="text-xs font-bold">+12%</span>
+</div>
+<span class="mt-1 text-[10px] text-slate-400 dark:text-slate-600">vs last week</span>
+</div>
+</div>
+<!-- Stat Item 2: Clicks -->
+<div class="group relative flex items-center justify-between rounded-xl bg-white/5 p-5 transition-all hover:bg-white/10 dark:bg-slate-800/30 dark:hover:bg-slate-800/50">
+<div class="flex items-center gap-5">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-accent-pink/10 neon-box-pink">
+<span class="material-symbols-outlined text-[28px] text-accent-pink neon-text-pink">ads_click</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Link Clicks</span>
+<span class="text-2xl font-bold text-slate-900 dark:text-white">342</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-1 text-emerald-600 dark:text-emerald-400">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="text-xs font-bold">+5.2%</span>
+</div>
+<span class="mt-1 text-[10px] text-slate-400 dark:text-slate-600">vs last week</span>
+</div>
+</div>
+<!-- Stat Item 3: Subscribers -->
+<div class="group relative flex items-center justify-between rounded-xl bg-white/5 p-5 transition-all hover:bg-white/10 dark:bg-slate-800/30 dark:hover:bg-slate-800/50">
+<div class="flex items-center gap-5">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-accent-green/10 neon-box-green">
+<span class="material-symbols-outlined text-[28px] text-accent-green neon-text-green">group_add</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">New Subs</span>
+<span class="text-2xl font-bold text-slate-900 dark:text-white">45</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1 rounded-full bg-rose-500/10 px-2.5 py-1 text-rose-600 dark:text-rose-400">
+<span class="material-symbols-outlined text-[16px]">trending_down</span>
+<span class="text-xs font-bold">-1.2%</span>
+</div>
+<span class="mt-1 text-[10px] text-slate-400 dark:text-slate-600">vs last week</span>
+</div>
+</div>
+<!-- Stat Item 4: Unsubscribes (Subtle) -->
+<div class="group relative flex items-center justify-between rounded-xl bg-transparent px-5 py-3 opacity-60 hover:opacity-100 transition-opacity">
+<div class="flex items-center gap-5">
+<div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-800">
+<span class="material-symbols-outlined text-[20px] text-slate-400">person_remove</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium text-slate-500 dark:text-slate-400">Unsubscribes</span>
+<span class="text-lg font-bold text-slate-900 dark:text-white">2</span>
+</div>
+</div>
+<div class="flex flex-col items-end">
+<div class="flex items-center gap-1">
+<span class="text-xs font-medium text-slate-500">0%</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Section -->
+<footer class="mt-auto px-6 pb-10 pt-4">
+<div class="relative w-full">
+<!-- Glowing effect container -->
+<div class="glowing-border mb-6 rounded-xl">
+<button class="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-4 font-bold text-white transition-transform active:scale-[0.98] hover:bg-primary-light">
+<span class="material-symbols-outlined">share</span>
+                        Refer a Friend
+                    </button>
+</div>
+</div>
+<a class="group flex items-center justify-center gap-1 text-sm font-medium text-slate-500 transition-colors hover:text-primary dark:text-slate-400 dark:hover:text-primary-light" href="#">
+<span>View Full Report</span>
+<span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+<div class="mt-8 flex justify-center gap-4 border-t border-slate-200 pt-6 dark:border-slate-800">
+<a class="text-slate-400 hover:text-primary dark:hover:text-white" href="#">
+<span class="sr-only">Settings</span>
+<span class="material-symbols-outlined">settings</span>
+</a>
+<a class="text-slate-400 hover:text-primary dark:hover:text-white" href="#">
+<span class="sr-only">Help</span>
+<span class="material-symbols-outlined">help</span>
+</a>
+</div>
+<p class="mt-4 text-center text-[10px] text-slate-500 dark:text-slate-600">
+                © 2023 Newsletter Wizard. All rights reserved.
+            </p>
+</footer>
+</div>
+</body></html>

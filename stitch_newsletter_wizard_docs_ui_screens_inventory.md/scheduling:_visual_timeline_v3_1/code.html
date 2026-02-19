@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletter Archive: Campaign Groups V3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "accent-neon": "#39ff14",
+                        "background-dark": "#0a0a12",
+                        "indigo-card": "#16162a",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .glass-header {
+            background: rgba(10, 10, 18, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(51, 13, 242, 0.1);
+        }
+        .campaign-card {
+            background: linear-gradient(145deg, #16162a 0%, #0f0f1e 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark text-white min-h-screen flex flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 glass-header px-6 pt-12 pb-6">
+<div class="flex items-center justify-between mb-6">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10">
+<span class="material-symbols-outlined text-xl">arrow_back_ios_new</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight">Campaign Archive</h1>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-white/5 border border-white/10 text-primary">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<div class="flex p-1 bg-white/5 rounded-2xl border border-white/10">
+<button class="flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded-xl transition-all">Recent</button>
+<button class="flex-1 py-2 text-xs font-bold uppercase tracking-wider bg-primary rounded-xl shadow-lg shadow-primary/30">Campaigns</button>
+<button class="flex-1 py-2 text-xs font-bold uppercase tracking-wider rounded-xl transition-all">Drafts</button>
+</div>
+</header>
+<main class="flex-1 px-6 py-6 space-y-4">
+<div class="campaign-card rounded-3xl overflow-hidden border-l-4 border-l-primary">
+<div class="p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+</div>
+<div>
+<h3 class="font-bold text-lg">The Weekly Wizard</h3>
+<p class="text-xs text-slate-400 font-medium">12 Newsletters • Series</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-500">expand_less</span>
+</div>
+<div class="px-5 pb-5 space-y-3">
+<div class="h-px bg-white/5 mb-4"></div>
+<div class="flex items-center justify-between p-3 rounded-2xl bg-white/5 border border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-accent-neon shadow-[0_0_8px_rgba(57,255,20,0.6)]"></div>
+<div>
+<p class="text-sm font-bold">#042: The AI Frontier</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Oct 24, 2023</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-black text-accent-neon">48.2%</p>
+<p class="text-[9px] text-slate-500 uppercase font-bold">Open Rate</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-2xl bg-white/5 border border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-accent-neon shadow-[0_0_8px_rgba(57,255,20,0.6)]"></div>
+<div>
+<p class="text-sm font-bold">#041: Prompt Engineering</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Oct 17, 2023</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-black text-accent-neon">42.8%</p>
+<p class="text-[9px] text-slate-500 uppercase font-bold">Open Rate</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-3 rounded-2xl bg-white/5 border border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-accent-neon shadow-[0_0_8px_rgba(57,255,20,0.6)]"></div>
+<div>
+<p class="text-sm font-bold">#040: Future of SaaS</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Oct 10, 2023</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-black text-accent-neon">51.4%</p>
+<p class="text-[9px] text-slate-500 uppercase font-bold">Open Rate</p>
+</div>
+</div>
+<button class="w-full py-2 text-[10px] font-bold uppercase tracking-widest text-primary text-center">
+                View All 12 Editions
+            </button>
+</div>
+</div>
+<div class="campaign-card rounded-3xl p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-sky-500/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sky-400">rocket_launch</span>
+</div>
+<div>
+<h3 class="font-bold text-lg">Product Launch Alpha</h3>
+<p class="text-xs text-slate-400 font-medium">4 Newsletters • Sequence</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-500">expand_more</span>
+</div>
+<div class="campaign-card rounded-3xl p-5 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-purple-500/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-purple-400">school</span>
+</div>
+<div>
+<h3 class="font-bold text-lg">Design Mastery 101</h3>
+<p class="text-xs text-slate-400 font-medium">8 Newsletters • Course</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-500">expand_more</span>
+</div>
+<div class="campaign-card rounded-3xl p-5 flex items-center justify-between opacity-60">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-slate-700/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">archive</span>
+</div>
+<div>
+<h3 class="font-bold text-lg">Legacy Updates</h3>
+<p class="text-xs text-slate-400 font-medium">24 Newsletters • 2022 Archive</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-500">expand_more</span>
+</div>
+</main>
+<footer class="sticky bottom-0 bg-background-dark/95 backdrop-blur-xl border-t border-white/5 pb-10 pt-4 px-8 z-50">
+<div class="flex items-center justify-between">
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">edit_square</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Editor</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">inventory_2</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Archive</span>
+</a>
+<div class="relative -top-8">
+<button class="w-16 h-16 bg-primary rounded-full flex items-center justify-center shadow-2xl shadow-primary/50 ring-8 ring-background-dark">
+<span class="material-symbols-outlined text-3xl text-white">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Stats</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Profile</span>
+</a>
+</div>
+</footer>
+<div class="fixed bottom-32 left-1/2 -translate-x-1/2 bg-indigo-card/90 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 flex items-center gap-3 shadow-2xl pointer-events-none z-40">
+<span class="w-2 h-2 rounded-full bg-accent-neon animate-pulse"></span>
+<span class="text-[11px] text-white font-bold uppercase tracking-widest whitespace-nowrap">Tap a campaign to expand</span>
+</div>
+
+</body></html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reactivate Account</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "primary-light": "#6b4eff",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1d1933",
+                        "text-secondary": "#9a90cb",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    boxShadow: {
+                        'glow': '0 0 20px -5px rgba(51, 13, 242, 0.5)',
+                        'glow-lg': '0 0 40px -10px rgba(51, 13, 242, 0.4)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #a78bfa, #60a5fa);
+        }
+        .gradient-btn {
+            background-image: linear-gradient(135deg, #330df2 0%, #6366f1 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col items-center justify-center font-display antialiased text-slate-900 dark:text-white overflow-hidden selection:bg-primary/30">
+<!-- Main Container (Mobile Form Factor) -->
+<div class="w-full max-w-md h-screen flex flex-col relative bg-background-light dark:bg-background-dark shadow-2xl overflow-y-auto">
+<!-- Header -->
+<header class="flex items-center justify-between p-6 pb-2 z-10">
+<!-- Logo / Brand -->
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-xl">auto_fix_high</span>
+</div>
+<span class="font-bold text-lg tracking-tight hidden sm:block">Newsletter Wizard</span>
+</div>
+<!-- Simple Help Action -->
+<button class="text-text-secondary hover:text-white transition-colors text-sm font-semibold flex items-center gap-1">
+                Help
+                <span class="material-symbols-outlined text-lg">help</span>
+</button>
+</header>
+<!-- Content Body -->
+<main class="flex-1 flex flex-col px-6 pt-4 pb-8">
+<!-- Hero Section -->
+<div class="flex-1 flex flex-col items-center justify-center text-center mt-4 mb-8">
+<!-- Decorative Icon -->
+<div class="relative mb-6">
+<div class="absolute inset-0 bg-primary/20 blur-2xl rounded-full"></div>
+<div class="relative w-20 h-20 bg-surface-dark border border-primary/30 rounded-2xl flex items-center justify-center shadow-glow">
+<span class="material-symbols-outlined text-4xl text-primary-light">waving_hand</span>
+</div>
+</div>
+<h1 class="text-3xl md:text-4xl font-bold leading-tight mb-3">
+                    Welcome Back!
+                </h1>
+<p class="text-text-secondary text-base md:text-lg max-w-[280px] mx-auto leading-relaxed">
+                    Your Knowledge Base and Drafts are safe and sound. We saved a seat for you.
+                </p>
+</div>
+<!-- Central Data Card -->
+<div class="relative group w-full mb-8">
+<!-- Glowing Border Effect -->
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary via-indigo-500 to-blue-500 rounded-xl opacity-75 blur group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+<!-- Card Content -->
+<div class="relative bg-surface-dark rounded-xl p-6 border border-white/5">
+<div class="flex items-start justify-between mb-4">
+<div>
+<h3 class="text-lg font-bold text-white mb-1">Data Preserved</h3>
+<p class="text-xs text-text-secondary uppercase tracking-wider font-semibold">Ready to restore</p>
+</div>
+<span class="material-symbols-outlined text-green-400">cloud_done</span>
+</div>
+<div class="space-y-3">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-light text-lg">library_books</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-white">Knowledge Base</p>
+<p class="text-xs text-text-secondary">Full history intact</p>
+</div>
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+</div>
+<div class="h-px bg-white/5 w-full"></div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-light text-lg">draft</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-white">12 Saved Drafts</p>
+<p class="text-xs text-text-secondary">Ready for editing</p>
+</div>
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+</div>
+<div class="h-px bg-white/5 w-full"></div>
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary-light text-lg">group</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-white">Subscriber List</p>
+<p class="text-xs text-text-secondary">4,250 contacts preserved</p>
+</div>
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="space-y-4">
+<button class="w-full h-14 rounded-lg gradient-btn text-white font-bold text-lg shadow-glow-lg hover:shadow-glow hover:scale-[1.02] transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span>Reactivate Account</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="w-full py-3 text-text-secondary text-sm font-medium hover:text-white transition-colors">
+                    Log out and cancel
+                </button>
+</div>
+</main>
+<!-- Footer / Support Link -->
+<footer class="p-6 text-center border-t border-white/5 bg-background-dark/50 backdrop-blur-sm">
+<p class="text-sm text-text-secondary">
+                Having trouble? <a class="text-primary-light hover:text-white font-bold underline decoration-primary-light/30 underline-offset-4 transition-colors" href="#">Talk to Support</a>
+</p>
+</footer>
+</div>
+</body></html>

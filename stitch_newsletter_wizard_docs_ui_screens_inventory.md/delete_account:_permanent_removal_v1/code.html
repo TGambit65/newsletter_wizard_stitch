@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Delete Account Confirmation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased selection:bg-primary/30 selection:text-white">
+<div class="relative flex min-h-screen w-full flex-col overflow-hidden max-w-md mx-auto shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Background Gradient/Glow Effects -->
+<div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-primary/20 to-transparent pointer-events-none opacity-40"></div>
+<div class="absolute top-[20%] left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/30 blur-[100px] rounded-full pointer-events-none"></div>
+<!-- Header -->
+<div class="relative z-10 flex items-center justify-between p-4">
+<button class="flex h-10 w-10 items-center justify-center rounded-full text-neutral-900 dark:text-white hover:bg-neutral-200 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<h2 class="text-neutral-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] opacity-80">Cancel</h2>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col items-center justify-center px-6 relative z-10 -mt-10">
+<!-- Hero Illustration -->
+<div class="relative mb-8 w-full max-w-[280px] aspect-square flex items-center justify-center">
+<!-- Inner glow behind image -->
+<div class="absolute inset-0 bg-primary/20 blur-2xl rounded-full"></div>
+<div class="w-full h-full bg-center bg-contain bg-no-repeat relative z-10 drop-shadow-[0_0_25px_rgba(51,13,242,0.4)]" data-alt="3D abstract magical particles dissolving into purple light" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBhX_ndxnLWitiERR2d5YdxrT_RXGNpiosjnDuR_VkkMoYMvt74k062ssMtvgIv9JSOpx47q0qK0kBojzaFlTwMEGwO4C8jNPdj_Y5qvoAKnYWXr9zLGFuRtslJQxyrNiclOjeiLZSpNn9_2q9voPcjWtsoTcgGWCHnRWk6niGQNOsETMGqK_z2wKTf381kKRJHYW90NtNXimTSPhZ5oXFZ4-v4WVw_GGNVP9UK5WSjQQFZQ27E-NJUxoShm3LaX-gxAaog09MQisQ");'></div>
+</div>
+<!-- Text Content -->
+<div class="text-center space-y-4">
+<h1 class="text-neutral-900 dark:text-white text-[32px] font-bold leading-[1.1] tracking-tight">
+                    Are you sure you want to leave?
+                </h1>
+<p class="text-neutral-600 dark:text-neutral-300 text-base font-normal leading-relaxed max-w-[320px] mx-auto">
+                    Deleting your account will permanently remove your <span class="text-primary dark:text-[#8b72ff] font-medium">Knowledge Base</span>, <span class="text-primary dark:text-[#8b72ff] font-medium">12 drafts</span>, and all analytics data. This cannot be undone.
+                </p>
+</div>
+</div>
+<!-- Action Buttons Area -->
+<div class="relative z-10 p-6 pb-8 flex flex-col gap-4 bg-gradient-to-t from-background-light dark:from-background-dark via-background-light/80 dark:via-background-dark/80 to-transparent pt-12">
+<!-- Primary Action: Retention -->
+<button class="group relative flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-xl h-14 px-6 bg-primary text-white shadow-[0_0_20px_rgba(51,13,242,0.4)] transition-all hover:scale-[1.02] active:scale-[0.98]">
+<!-- Button gradient overlay -->
+<div class="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="text-lg font-bold tracking-wide relative z-10">Keep My Account</span>
+</button>
+<!-- Destructive Action: Deletion -->
+<button class="group flex w-full cursor-pointer items-center justify-center rounded-xl h-12 px-6 bg-transparent border border-red-500/30 text-red-500 hover:bg-red-500/10 hover:border-red-500/50 transition-all active:scale-[0.98]">
+<span class="text-sm font-semibold tracking-wide flex items-center gap-2 group-hover:drop-shadow-[0_0_8px_rgba(239,68,68,0.5)] transition-all">
+<span class="material-symbols-outlined text-[20px]">delete_forever</span>
+                    Delete Permanently
+                </span>
+</button>
+<!-- Bottom safe area spacer for iOS -->
+<div class="h-2 w-full"></div>
+</div>
+</div>
+</body></html>

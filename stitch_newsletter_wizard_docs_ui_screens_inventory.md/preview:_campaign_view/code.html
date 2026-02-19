@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Preview: Campaign View</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1a1a2e", // Slightly lighter indigo-tinted grey for cards
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "md": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        'safe-bottom': 'env(safe-area-inset-bottom)',
+                        'safe-top': 'env(safe-area-inset-top)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        
+        .glass-panel {
+            background: rgba(19, 16, 34, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 antialiased h-screen overflow-hidden flex flex-col selection:bg-primary selection:text-white">
+<!-- Status Bar Spacer (iOS) -->
+<div class="h-safe-top w-full bg-background-light dark:bg-background-dark shrink-0 z-50"></div>
+<!-- Header Navigation -->
+<header class="px-5 py-4 flex items-center justify-between shrink-0 z-40 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-sm sticky top-0">
+<button class="p-2 -ml-2 rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors">
+<span class="material-icons text-2xl text-gray-600 dark:text-gray-300">chevron_left</span>
+</button>
+<div class="text-center">
+<h1 class="text-lg font-bold tracking-tight">Campaign Preview</h1>
+<div class="flex items-center justify-center gap-2 mt-1">
+<span class="h-1 w-8 rounded-full bg-primary"></span>
+<span class="text-xs font-medium text-primary tracking-wide">Step 4/4</span>
+</div>
+</div>
+<button class="p-2 -mr-2 rounded-full hover:bg-gray-200 dark:hover:bg-white/10 transition-colors opacity-0 pointer-events-none">
+<span class="material-icons text-2xl">more_vert</span>
+</button>
+</header>
+<!-- Main Content Area: Scrollable -->
+<main class="flex-1 overflow-y-auto overflow-x-hidden relative pb-32 no-scrollbar">
+<!-- Section 1: Email Asset Preview -->
+<section class="px-5 pt-2 pb-6">
+<div class="flex items-center justify-between mb-3">
+<h2 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Primary Asset</h2>
+<span class="bg-primary/20 text-primary px-2 py-0.5 rounded text-xs font-bold">EMAIL</span>
+</div>
+<!-- Email Container (Phone within a phone look) -->
+<div class="relative bg-white dark:bg-surface-dark rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-white/5 mx-auto max-w-sm">
+<!-- Email Header Simulation -->
+<div class="bg-gray-100 dark:bg-[#131022] p-4 border-b border-gray-200 dark:border-white/5">
+<div class="flex justify-between items-start mb-2">
+<div>
+<p class="text-[10px] text-gray-500 font-medium mb-1">SUBJECT</p>
+<h3 class="text-sm font-bold text-gray-900 dark:text-white leading-tight">Unlock AI Potential: The Weekly Wizard 🧙‍♂️</h3>
+</div>
+<button class="p-1.5 bg-gray-200 dark:bg-white/10 rounded-full hover:bg-primary hover:text-white transition-colors group">
+<span class="material-icons text-sm text-gray-500 dark:text-gray-300 group-hover:text-white">edit</span>
+</button>
+</div>
+<p class="text-[10px] text-gray-500 truncate"><span class="font-medium">To:</span> Subscribers List A • <span class="font-medium">Preheader:</span> 5 tips to scale your workflow instantly...</p>
+</div>
+<!-- Email Body Preview -->
+<div class="p-0 bg-white dark:bg-[#1E1E2C] min-h-[320px] relative">
+<!-- Hero Image in Email -->
+<div class="h-32 w-full bg-gradient-to-br from-indigo-500 to-purple-600 relative overflow-hidden" data-alt="Abstract gradient header image for newsletter">
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-30"></div>
+<div class="absolute bottom-3 left-4 text-white font-bold text-lg">Weekly Wizard</div>
+</div>
+<!-- Email Content Text -->
+<div class="p-5 space-y-3">
+<h4 class="text-lg font-bold text-gray-900 dark:text-white">Is your workflow stuck in 2023?</h4>
+<p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
+                            Hey there! 👋 <br/><br/>
+                            This week we are diving deep into how generative models are reshaping the creative landscape. We've curated the top tools you need to try...
+                        </p>
+<div class="mt-4 p-3 bg-gray-50 dark:bg-black/20 rounded border border-dashed border-gray-300 dark:border-white/10 flex items-center gap-3">
+<div class="h-10 w-10 bg-indigo-100 dark:bg-primary/20 rounded flex items-center justify-center text-primary font-bold">1</div>
+<div class="flex-1">
+<div class="h-2 w-3/4 bg-gray-200 dark:bg-white/10 rounded mb-1.5"></div>
+<div class="h-2 w-1/2 bg-gray-200 dark:bg-white/10 rounded"></div>
+</div>
+</div>
+<div class="mt-2 text-center">
+<button class="mt-2 px-6 py-2 bg-primary text-white text-xs font-bold rounded-full">Read Full Article</button>
+</div>
+</div>
+<!-- Fade out overlay for scroll hint -->
+<div class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-white dark:from-[#1E1E2C] to-transparent pointer-events-none"></div>
+</div>
+</div>
+</section>
+<!-- Section 2: Social Repurposing Carousel -->
+<section class="pl-5 pb-8 overflow-visible">
+<div class="flex items-center justify-between mb-3 pr-5">
+<h2 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Generated Socials</h2>
+<div class="flex gap-1">
+<span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+<span class="h-1.5 w-1.5 rounded-full bg-gray-600"></span>
+<span class="h-1.5 w-1.5 rounded-full bg-gray-600"></span>
+</div>
+</div>
+<!-- Carousel Container -->
+<div class="flex overflow-x-auto gap-4 pb-4 pr-5 no-scrollbar snap-x snap-mandatory">
+<!-- Card 1: LinkedIn -->
+<div class="snap-center shrink-0 w-[85vw] max-w-[320px] bg-white dark:bg-surface-dark rounded-xl p-4 shadow-md border border-gray-200 dark:border-white/5 relative group">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-[#0077b5] flex items-center justify-center text-white">
+<!-- Simple LinkedIn style icon simulation -->
+<span class="font-bold text-sm">in</span>
+</div>
+<div>
+<p class="text-xs font-bold text-gray-900 dark:text-white">Newsletter Wizard Page</p>
+<p class="text-[10px] text-gray-500">Just now • 🌐</p>
+</div>
+</div>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<span class="material-icons text-sm">edit</span>
+</button>
+</div>
+<p class="text-xs text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+                        🚀 Workflow efficiency isn't just a buzzword. It's the difference between shipping today or delaying until next week. <br/><br/>
+                        In our latest newsletter, we break down the AI tools actually worth your time. No fluff, just actionable insights. 👇
+                        <span class="text-primary block mt-1">#Productivity #AI #TechTrends</span>
+</p>
+<div class="w-full h-32 rounded bg-gray-100 dark:bg-black/40 overflow-hidden relative" data-alt="Preview of social media link card graphic">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent"></div>
+<div class="absolute bottom-2 left-3">
+<p class="text-[10px] font-bold text-gray-500 uppercase">newsletterwizard.com</p>
+<p class="text-xs font-bold text-gray-800 dark:text-white truncate w-48">5 Tips to Scale Your Workflow</p>
+</div>
+</div>
+</div>
+<!-- Card 2: Twitter/X -->
+<div class="snap-center shrink-0 w-[85vw] max-w-[320px] bg-white dark:bg-surface-dark rounded-xl p-4 shadow-md border border-gray-200 dark:border-white/5 relative">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-full bg-black dark:bg-white flex items-center justify-center text-white dark:text-black">
+<span class="font-bold text-xs">𝕏</span>
+</div>
+<div>
+<p class="text-xs font-bold text-gray-900 dark:text-white">Newsletter Wizard</p>
+<p class="text-[10px] text-gray-500">@news_wizard</p>
+</div>
+</div>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<span class="material-icons text-sm">edit</span>
+</button>
+</div>
+<p class="text-xs text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
+                        🧵 1/5 <br/>
+                        AI isn't coming for your job, but someone using AI might be.<br/><br/>
+                        Here are 5 ways to leverage generative models to 10x your output this week:
+                    </p>
+<div class="flex gap-2 mt-4 text-gray-500">
+<span class="material-icons text-base">chat_bubble_outline</span>
+<span class="material-icons text-base">cached</span>
+<span class="material-icons text-base">favorite_border</span>
+<span class="material-icons text-base">bar_chart</span>
+</div>
+</div>
+<!-- Card 3: Instagram -->
+<div class="snap-center shrink-0 w-[85vw] max-w-[320px] bg-white dark:bg-surface-dark rounded-xl p-4 shadow-md border border-gray-200 dark:border-white/5 relative">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 flex items-center justify-center text-white">
+<span class="material-icons text-sm">camera_alt</span>
+</div>
+<div>
+<p class="text-xs font-bold text-gray-900 dark:text-white">newsletter.wiz</p>
+<p class="text-[10px] text-gray-500">Sponsored</p>
+</div>
+</div>
+<button class="text-gray-400 hover:text-primary transition-colors">
+<span class="material-icons text-sm">edit</span>
+</button>
+</div>
+<div class="w-full aspect-square rounded-lg bg-gray-800 mb-3 relative overflow-hidden" data-alt="Instagram post preview image showing colorful abstract shapes">
+<div class="absolute inset-0 bg-gradient-to-br from-indigo-500 via-primary to-purple-800 opacity-80"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<h3 class="text-white font-bold text-xl text-center px-4">New Issue Drop 🧙‍♂️</h3>
+</div>
+</div>
+<p class="text-xs text-gray-700 dark:text-gray-300 leading-relaxed">
+<span class="font-bold">newsletter.wiz</span> Link in bio for the full breakdown on AI tools! 🔗 #Tech #Design
+                    </p>
+</div>
+</div>
+</section>
+<!-- Summary Stats / Info (Optional filler to allow scroll) -->
+<section class="px-5 pb-8 opacity-60">
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-dark border border-white/5 rounded-lg p-3 text-center">
+<p class="text-[10px] uppercase text-gray-400 font-bold mb-1">Recipients</p>
+<p class="text-lg font-bold text-white">2,450</p>
+</div>
+<div class="bg-surface-dark border border-white/5 rounded-lg p-3 text-center">
+<p class="text-[10px] uppercase text-gray-400 font-bold mb-1">Sched. Time</p>
+<p class="text-lg font-bold text-white">Now</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Action Bar -->
+<div class="glass-panel absolute bottom-0 w-full px-5 pt-4 pb-safe-bottom z-50">
+<div class="flex flex-col gap-3 pb-4">
+<!-- Main CTA -->
+<button class="w-full relative group overflow-hidden rounded-xl shadow-[0_0_20px_rgba(51,13,242,0.4)] hover:shadow-[0_0_30px_rgba(51,13,242,0.6)] transition-all duration-300 transform active:scale-[0.98]">
+<div class="absolute inset-0 bg-gradient-to-r from-primary to-[#4facfe] transition-transform duration-500 group-hover:scale-105"></div>
+<div class="relative py-4 px-6 flex items-center justify-center gap-2">
+<span class="text-white font-bold text-lg tracking-wide">Go Live &amp; Publish</span>
+<span class="material-icons text-white animate-pulse">rocket_launch</span>
+</div>
+</button>
+<!-- Secondary Info -->
+<p class="text-center text-[11px] text-gray-400 font-medium">
+<span class="material-icons text-[12px] align-middle mr-1">schedule</span>
+                Scheduled for immediate release across 4 channels
+            </p>
+</div>
+</div>
+</body></html>

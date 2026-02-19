@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login: Magic Link V3</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#330df2",
+              "background-light": "#f6f5f8",
+              "background-dark": "#131022",
+              // Defining extended neutral palette derived from primary hue (approx 250deg)
+              "neutral-800": "#1e1b2e", 
+              "neutral-700": "#2a2640",
+              "neutral-600": "#454060",
+              "neutral-400": "#9fa3c7",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+            boxShadow: {
+                "glow": "0 0 20px rgba(51, 13, 242, 0.35)",
+                "glow-sm": "0 0 10px rgba(51, 13, 242, 0.25)",
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom styles to refine the look */
+        .glass-panel {
+            background: rgba(30, 27, 46, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Subtle background animation effect simulation */
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.4;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col items-center justify-center relative overflow-hidden text-slate-800 dark:text-white antialiased selection:bg-primary selection:text-white">
+<!-- Background Ambience -->
+<div class="fixed inset-0 pointer-events-none overflow-hidden">
+<!-- Top Left Orb -->
+<div class="bg-orb bg-primary w-96 h-96 -top-20 -left-20 animate-pulse" style="animation-duration: 4s;"></div>
+<!-- Bottom Right Orb -->
+<div class="bg-orb bg-primary w-80 h-80 -bottom-10 -right-10 opacity-20" style="animation-delay: 2s;"></div>
+</div>
+<!-- Main Container -->
+<div class="relative w-full max-w-md px-6 py-8 md:px-8 z-10 flex flex-col h-full justify-between sm:justify-center sm:h-auto min-h-[600px]">
+<!-- Header Section -->
+<div class="flex flex-col items-center text-center space-y-6 mb-8 mt-10 sm:mt-0">
+<!-- Logo Icon Container -->
+<div class="relative group">
+<div class="absolute inset-0 bg-primary rounded-full blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
+<div class="relative w-20 h-20 bg-neutral-800 rounded-full flex items-center justify-center border border-neutral-700 shadow-glow-sm">
+<span class="material-icons text-4xl text-primary">auto_fix_high</span>
+</div>
+</div>
+<div class="space-y-2">
+<h1 class="text-4xl font-bold tracking-tight text-slate-900 dark:text-white">Welcome Back</h1>
+<p class="text-neutral-500 dark:text-neutral-400 text-lg">Enter your email to sign in.</p>
+</div>
+</div>
+<!-- Form Section -->
+<div class="w-full space-y-6">
+<!-- Email Input -->
+<div class="space-y-2 group">
+<label class="sr-only" for="email">Email address</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-icons text-neutral-500 dark:text-neutral-400">mail_outline</span>
+</div>
+<input class="block w-full pl-12 pr-4 py-4 bg-white dark:bg-neutral-800/50 border border-neutral-200 dark:border-neutral-700 rounded-full text-slate-900 dark:text-white placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary focus:shadow-glow transition-all duration-300" id="email" name="email" placeholder="wizard@example.com" type="email"/>
+</div>
+</div>
+<!-- Magic Link Button -->
+<button class="w-full group relative overflow-hidden rounded-full bg-primary py-4 px-4 text-white shadow-lg transition-all hover:shadow-glow active:scale-[0.98]" type="button">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
+<span class="relative flex items-center justify-center font-semibold text-lg tracking-wide">
+                    Send Magic Link
+                    <span class="material-icons ml-2 text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</span>
+</button>
+<!-- Explainer Text -->
+<div class="glass-panel p-5 rounded-2xl text-center space-y-2 mt-4">
+<div class="flex justify-center mb-2">
+<span class="material-icons text-primary text-2xl">stars</span>
+</div>
+<p class="text-sm font-medium text-neutral-500 dark:text-neutral-400 leading-relaxed">
+                    No password? No problem.<br/> We’ll send a magic link to your inbox.
+                </p>
+</div>
+</div>
+<!-- Footer / Secondary Action -->
+<div class="mt-12 text-center pb-8 sm:pb-0">
+<button class="text-sm font-medium text-neutral-500 dark:text-neutral-400 hover:text-primary dark:hover:text-primary transition-colors flex items-center justify-center mx-auto space-x-1 group">
+<span class="material-icons text-base group-hover:scale-110 transition-transform">lock_open</span>
+<span>Login with Password</span>
+</button>
+</div>
+</div>
+<!-- Decorative Illustration (Optional, hidden on small screens if too cluttered, but good for larger phones) -->
+<div class="fixed bottom-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+</body></html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Analytics: Preview Empty State</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "card-dark": "#1e1b2e", // Slightly lighter than background-dark for cards
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Utilities for Glow Effects */
+        .glow-border {
+            position: relative;
+        }
+        .glow-border::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(to bottom right, #330df2, transparent, #330df2);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        .glow-shadow {
+            box-shadow: 0 0 20px -5px rgba(51, 13, 242, 0.3);
+        }
+        /* Hiding scrollbar for clean mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display min-h-screen flex justify-center items-center p-4 sm:p-0">
+<!-- Mobile Container -->
+<div class="w-full max-w-md h-[844px] bg-background-light dark:bg-background-dark overflow-hidden flex flex-col relative rounded-xl sm:rounded-[3rem] shadow-2xl border border-slate-200 dark:border-slate-800">
+<!-- Status Bar Area (Visual Only) -->
+<div class="h-12 w-full flex justify-between items-end px-6 pb-2 z-20">
+<span class="text-sm font-medium">9:41</span>
+<div class="flex items-center gap-1">
+<span class="material-icons text-xs">signal_cellular_alt</span>
+<span class="material-icons text-xs">wifi</span>
+<span class="material-icons text-xs">battery_full</span>
+</div>
+</div>
+<!-- Header -->
+<header class="px-6 py-4 flex items-center justify-between z-10">
+<h1 class="text-2xl font-bold">Analytics</h1>
+<button class="flex items-center gap-2 px-3 py-1.5 bg-slate-200 dark:bg-white/5 rounded-full text-xs font-medium text-slate-500 dark:text-slate-400 opacity-50 cursor-not-allowed">
+<span>All Time</span>
+<span class="material-icons text-sm">expand_more</span>
+</button>
+</header>
+<!-- Main Scrollable Content -->
+<main class="flex-1 overflow-y-auto no-scrollbar px-6 pb-24 space-y-6">
+<!-- Hero Card: AI Education -->
+<div class="relative w-full p-6 rounded-lg bg-card-dark glow-border glow-shadow overflow-hidden group">
+<!-- Background Decoration -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/20 blur-[50px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex items-start justify-between">
+<div class="p-3 bg-primary/20 rounded-full w-fit">
+<span class="material-icons text-primary text-2xl">auto_awesome</span>
+</div>
+<!-- Abstract illustration placeholder -->
+<div class="w-16 h-12 relative opacity-80">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/40 to-transparent rounded-lg transform rotate-6"></div>
+<div class="absolute inset-0 bg-primary/10 border border-primary/30 rounded-lg flex items-center justify-center">
+<span class="material-icons text-primary/50 text-sm">insights</span>
+</div>
+</div>
+</div>
+<div>
+<h2 class="text-lg font-bold mb-2">Smarter Drafts Start Here</h2>
+<p class="text-sm text-slate-400 leading-relaxed">
+                            Once you send, our AI analyzes engagement patterns to optimize your next subject line and content tone automatically.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Section Title -->
+<div class="flex items-center justify-between pt-2">
+<h3 class="text-lg font-semibold text-slate-300">Unlock these Metrics</h3>
+<span class="text-xs text-primary bg-primary/10 px-2 py-1 rounded-md">Preview Mode</span>
+</div>
+<!-- Metric Cards Grid -->
+<div class="grid grid-cols-1 gap-4">
+<!-- Card 1: Open Rate -->
+<div class="bg-card-dark rounded-lg p-5 border border-slate-800 relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-2">
+<span class="material-icons text-slate-500 text-lg">drafts</span>
+<span class="text-sm font-medium text-slate-300">Open Rate</span>
+</div>
+<span class="px-2 py-1 bg-slate-800 text-slate-400 text-[10px] font-bold uppercase tracking-wider rounded-full border border-slate-700">Awaiting Data</span>
+</div>
+<div class="relative">
+<!-- Blurred Dummy Data -->
+<div class="flex items-baseline gap-2 filter blur-sm opacity-30 select-none">
+<span class="text-4xl font-bold">45.2%</span>
+<span class="text-sm text-emerald-500 flex items-center">
+<span class="material-icons text-sm">arrow_upward</span> 12%
+                            </span>
+</div>
+<!-- Overlay Lock Icon -->
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-icons text-slate-600">lock_outline</span>
+</div>
+</div>
+<!-- Fake Graph Line -->
+<div class="mt-4 h-8 w-full relative opacity-20 filter blur-[2px]">
+<svg class="w-full h-full stroke-primary fill-none" preserveaspectratio="none" viewbox="0 0 100 20">
+<path d="M0 15 Q 20 5, 40 10 T 80 5 T 100 12" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Card 2: Click Rate -->
+<div class="bg-card-dark rounded-lg p-5 border border-slate-800 relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-2">
+<span class="material-icons text-slate-500 text-lg">ads_click</span>
+<span class="text-sm font-medium text-slate-300">Click Rate</span>
+</div>
+<span class="px-2 py-1 bg-slate-800 text-slate-400 text-[10px] font-bold uppercase tracking-wider rounded-full border border-slate-700">Awaiting Data</span>
+</div>
+<div class="relative">
+<div class="flex items-baseline gap-2 filter blur-sm opacity-30 select-none">
+<span class="text-4xl font-bold">12.8%</span>
+<span class="text-sm text-emerald-500 flex items-center">
+<span class="material-icons text-sm">arrow_upward</span> 4%
+                            </span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-icons text-slate-600">lock_outline</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Revenue -->
+<div class="bg-card-dark rounded-lg p-5 border border-slate-800 relative overflow-hidden">
+<div class="flex justify-between items-start mb-4">
+<div class="flex items-center gap-2">
+<span class="material-icons text-slate-500 text-lg">monetization_on</span>
+<span class="text-sm font-medium text-slate-300">Revenue</span>
+</div>
+<span class="px-2 py-1 bg-slate-800 text-slate-400 text-[10px] font-bold uppercase tracking-wider rounded-full border border-slate-700">Awaiting Data</span>
+</div>
+<div class="relative">
+<div class="flex items-baseline gap-2 filter blur-sm opacity-30 select-none">
+<span class="text-4xl font-bold">$1,240</span>
+<span class="text-sm text-slate-500">
+                                USD
+                            </span>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-icons text-slate-600">lock_outline</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Spacer for Floating CTA -->
+<div class="h-12"></div>
+</main>
+<!-- Floating Action Button Area -->
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background-dark via-background-dark/90 to-transparent z-30">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-full shadow-lg shadow-primary/30 flex items-center justify-center gap-2 transition-transform transform active:scale-95">
+<span class="material-icons">edit_note</span>
+                Start Writing Now
+            </button>
+</div>
+<!-- Navigation Bar -->
+<nav class="border-t border-white/5 bg-background-dark/80 backdrop-blur-md px-6 py-4 flex justify-between items-center z-40">
+<button class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors">
+<span class="material-icons text-2xl">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors">
+<span class="material-icons text-2xl">article</span>
+<span class="text-[10px] font-medium">Drafts</span>
+</button>
+<div class="w-12"></div> <!-- Spacer for center alignment visually -->
+<button class="flex flex-col items-center gap-1 text-primary transition-colors">
+<span class="material-icons text-2xl">analytics</span>
+<span class="text-[10px] font-medium">Analytics</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors">
+<span class="material-icons text-2xl">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</button>
+</nav>
+</div>
+</body></html>

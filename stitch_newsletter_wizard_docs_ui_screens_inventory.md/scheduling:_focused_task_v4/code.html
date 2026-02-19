@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Scheduling: Focused Task V4</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#0a0a0c",
+                        "card-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glow-subtle {
+            box-shadow: 0 0 20px 0px rgba(51, 13, 242, 0.15);
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-display">
+<!-- Header Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-background-light/80 dark:bg-background-dark/80 ios-blur">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-card-dark text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight">Scheduling</h1>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-card-dark text-slate-700 dark:text-slate-300">
+<span class="material-symbols-outlined text-[20px]">more_horiz</span>
+</button>
+</header>
+<main class="flex-1 px-6 pt-4 pb-32 space-y-6 overflow-y-auto">
+<!-- Progress Indicator -->
+<div class="flex justify-center space-x-2 mb-8">
+<div class="h-1 w-8 rounded-full bg-primary/20"></div>
+<div class="h-1 w-8 rounded-full bg-primary/20"></div>
+<div class="h-1 w-8 rounded-full bg-primary"></div>
+</div>
+<!-- Task List Style Cards -->
+<div class="space-y-4">
+<!-- Date & Time Card -->
+<button class="w-full text-left group">
+<div class="flex items-center gap-4 p-5 rounded-xl bg-white dark:bg-card-dark border border-slate-200 dark:border-primary/10 glow-subtle transition-all active:scale-95">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-medium text-slate-500 dark:text-primary/60 uppercase tracking-widest mb-0.5">Date &amp; Time</p>
+<p class="text-lg font-bold">Tuesday, Oct 24th <span class="text-primary">•</span> 9:00 AM</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</button>
+<!-- Time Zone Card -->
+<button class="w-full text-left group">
+<div class="flex items-center gap-4 p-5 rounded-xl bg-white dark:bg-card-dark border border-slate-200 dark:border-primary/10 glow-subtle transition-all active:scale-95">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">public</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-medium text-slate-500 dark:text-primary/60 uppercase tracking-widest mb-0.5">Time Zone</p>
+<p class="text-lg font-bold">Pacific Standard Time (PST)</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</button>
+<!-- Frequency Card -->
+<button class="w-full text-left group">
+<div class="flex items-center gap-4 p-5 rounded-xl bg-white dark:bg-card-dark border border-slate-200 dark:border-primary/10 glow-subtle transition-all active:scale-95">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">event_repeat</span>
+</div>
+<div class="flex-1">
+<p class="text-xs font-medium text-slate-500 dark:text-primary/60 uppercase tracking-widest mb-0.5">Frequency</p>
+<p class="text-lg font-bold">Once</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</button>
+</div>
+<!-- Preview Image Card -->
+<div class="relative overflow-hidden rounded-xl h-40 mt-8 group">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent z-10"></div>
+<img alt="Abstract purple design" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Abstract deep purple and blue gradient pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIXISbVs2xp5fH1eKmhJEROubSxpbJidSsIPhbqn1mnPRuA6NRYxtF52EuLjBf8VTZMhnbD7xkIK0jxIB5S4mjx78l00Ihdxhjjop4LFpRgGNPABKKM1tRhwcwArIDKKYS-ao66dNX3-tPEbonhssfSPJBcZ_TQKOsBq_rl7GBEFHPLOLMtA7qbSzN4UPnIeOl1vIINgBNXh9ZTFqdQipqeHbSLRna4ErlVjF--_aCEejaF-XCoaGjeKf5XH4EZA9-Lwjuij9E6jw"/>
+<div class="absolute bottom-4 left-4 z-20">
+<p class="text-xs font-bold text-primary/80 uppercase">Newsletter Preview</p>
+<p class="text-sm text-white font-medium">Wizard Weekly: The AI Era</p>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<footer class="fixed bottom-0 left-0 right-0 p-6 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-white/5 ios-blur">
+<div class="max-w-md mx-auto space-y-4">
+<!-- Summary Confirmation -->
+<div class="flex items-start gap-3 px-2">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">info</span>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    Sending on <span class="text-slate-900 dark:text-white font-semibold">Tuesday, Oct 24th</span> at <span class="text-slate-900 dark:text-white font-semibold">9:00 AM (PST)</span>
+</p>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-full shadow-lg shadow-primary/25 transition-all active:scale-[0.98]">
+                    Schedule Newsletter
+                </button>
+<button class="w-full py-2 text-slate-500 dark:text-slate-400 font-medium text-sm hover:text-primary transition-colors">
+                    Send Now instead
+                </button>
+</div>
+</div>
+</footer>
+<!-- Bottom Navigation Bar (App Level) - Minimized for task focus -->
+<nav class="fixed bottom-0 w-full hidden">
+<!-- Hidden as per task focus, but kept in structure if needed for context -->
+</nav>
+</body></html>

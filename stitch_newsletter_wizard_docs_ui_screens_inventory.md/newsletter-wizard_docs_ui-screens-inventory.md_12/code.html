@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings V4: Workspace Config</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --bg-dark: #0b0c15;--card-dark: #151725;--card-hover: #1e2136;
+            --primary: #818cf8;--primary-glow: #6366f1;
+            --accent-purple: #a855f7;
+            --accent-blue: #3b82f6;
+            --text-main: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --border-color: #23263a;--status-active: #22d3ee;--status-inactive: #475569;
+            --voice-bg: #1e1b4b;
+            --voice-border: #312e81;
+            --toggle-bg: #2e3248;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }input[type=range] {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            margin-top: -5px;
+            box-shadow: 0 0 10px rgba(129, 140, 248, 0.5);
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 6px;
+            cursor: pointer;
+            background: var(--border-color);
+            border-radius: 4px;
+        }.toggle-checkbox:checked {
+            right: 0;
+            border-color: var(--primary);
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: var(--primary);
+        }
+        .toggle-switch {
+            position: relative;
+            width: 44px;
+            height: 24px;
+            background-color: var(--toggle-bg);
+            border-radius: 9999px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 18px;
+            height: 18px;
+            background-color: #94a3b8;
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), background-color 0.3s;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .toggle-checkbox:checked + .toggle-switch {
+            background-color: var(--primary);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+        }
+        .toggle-checkbox:checked + .toggle-switch::after {
+            transform: translateX(20px);
+            background-color: white;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-50 bg-[#0b0c15]/90 backdrop-blur-md border-b border-[var(--border-color)] px-4 py-3 pb-4">
+<div class="flex items-center gap-4 mb-3">
+<a class="p-2 -ml-2 rounded-full hover:bg-[var(--card-hover)] text-[var(--text-secondary)] transition-colors" href="#">
+<span class="material-symbols-outlined">arrow_back</span>
+</a>
+<h1 class="text-xl font-bold tracking-tight text-white">Workspace Config</h1>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto hide-scrollbar">
+<button class="px-5 py-2 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 font-semibold text-sm whitespace-nowrap shadow-[0_0_15px_rgba(99,102,241,0.15)]">AI Settings</button>
+<button class="px-5 py-2 rounded-full bg-[var(--card-dark)] border border-[var(--border-color)] text-[var(--text-secondary)] font-medium text-sm whitespace-nowrap hover:text-white hover:bg-[var(--card-hover)] transition-colors">Members</button>
+<button class="px-5 py-2 rounded-full bg-[var(--card-dark)] border border-[var(--border-color)] text-[var(--text-secondary)] font-medium text-sm whitespace-nowrap hover:text-white hover:bg-[var(--card-hover)] transition-colors">Billing</button>
+</div>
+</header>
+<main class="flex-1 px-4 py-6 pb-24 space-y-8">
+<section>
+<div class="flex justify-between items-end mb-3">
+<h2 class="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider ml-1">Brand Voice</h2>
+<button class="text-[var(--primary)] text-xs font-medium hover:text-[var(--primary-glow)] transition-colors">Retrain AI</button>
+</div>
+<div class="bg-[var(--card-dark)] rounded-2xl border border-[var(--border-color)] overflow-hidden shadow-lg shadow-black/20">
+<div class="p-5 border-b border-[var(--border-color)] bg-gradient-to-b from-[var(--card-dark)] to-[#1a1d2e]">
+<div class="flex items-start justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-[0_0_15px_rgba(99,102,241,0.3)]">
+<span class="material-symbols-outlined text-white text-[24px]">graphic_eq</span>
+</div>
+<div>
+<h3 class="font-semibold text-white text-base">Tech Minimalist</h3>
+<p class="text-xs text-[var(--text-secondary)] mt-0.5">Active Profile</p>
+</div>
+</div>
+<span class="px-2.5 py-1 rounded-md bg-[var(--status-active)]/10 text-[var(--status-active)] text-[10px] font-bold uppercase tracking-wide border border-[var(--status-active)]/20 shadow-[0_0_10px_rgba(34,211,238,0.1)]">Synced</span>
+</div>
+<div class="bg-[#1a1d33] rounded-xl border border-[#2d314e] p-4 relative group hover:border-indigo-500/30 transition-colors">
+<div class="absolute top-3 right-3">
+<span class="material-symbols-outlined text-indigo-400 text-[18px]">auto_awesome</span>
+</div>
+<p class="text-sm text-indigo-100/90 leading-relaxed italic pr-6 font-light">
+                            "Streamline your workflow with intuitive design. We focus on clarity over clutter, delivering power through simplicity..."
+                        </p>
+<div class="mt-4 flex gap-2 flex-wrap">
+<span class="px-2.5 py-1 rounded-md bg-[#252846] text-indigo-200 text-[11px] font-medium border border-[#363a5d]">Professional</span>
+<span class="px-2.5 py-1 rounded-md bg-[#252846] text-indigo-200 text-[11px] font-medium border border-[#363a5d]">Concise</span>
+<span class="px-2.5 py-1 rounded-md bg-[#252846] text-indigo-200 text-[11px] font-medium border border-[#363a5d]">Direct</span>
+</div>
+</div>
+</div>
+<div class="bg-[#11121d] px-5 py-4 flex justify-between items-center border-t border-[var(--border-color)]">
+<span class="text-xs font-medium text-[var(--text-secondary)]">Tone Strictness</span>
+<div class="flex items-center gap-3 w-3/5">
+<span class="text-[10px] text-[var(--text-secondary)] uppercase tracking-wide">Flexible</span>
+<input class="w-full h-1.5 rounded-lg appearance-none cursor-pointer" max="100" min="0" type="range" value="75"/>
+<span class="text-[10px] text-[var(--text-secondary)] uppercase tracking-wide">Strict</span>
+</div>
+</div>
+</div>
+</section>
+<section>
+<h2 class="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider mb-3 ml-1">Automation &amp; Knowledge</h2>
+<div class="space-y-3">
+<div class="bg-[var(--card-dark)] rounded-2xl p-5 border border-[var(--border-color)] flex items-center justify-between shadow-lg shadow-black/20 hover:border-indigo-500/20 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-[#2a1c15] border border-orange-500/20 flex items-center justify-center text-orange-400 shadow-[0_0_10px_rgba(251,146,60,0.1)]">
+<span class="material-symbols-outlined">autorenew</span>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-white">Auto-Repurpose</h3>
+<p class="text-[11px] text-[var(--text-secondary)] mt-0.5">Create tweets from newsletter</p>
+</div>
+</div>
+<label class="flex items-center cursor-pointer">
+<input checked="" class="sr-only toggle-checkbox" type="checkbox"/>
+<div class="toggle-switch"></div>
+</label>
+</div>
+<div class="bg-[var(--card-dark)] rounded-2xl p-5 border border-[var(--border-color)] shadow-lg shadow-black/20 hover:border-indigo-500/20 transition-colors">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-xl bg-[#151e2a] border border-blue-500/20 flex items-center justify-center text-blue-400 shadow-[0_0_10px_rgba(59,130,246,0.1)]">
+<span class="material-symbols-outlined">sync</span>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-white">KB Sync Frequency</h3>
+<p class="text-[11px] text-[var(--text-secondary)] mt-0.5">Update knowledge base</p>
+</div>
+</div>
+<span class="text-[11px] font-semibold text-indigo-100 bg-indigo-500/20 border border-indigo-500/30 px-2.5 py-1 rounded-md">Daily</span>
+</div>
+<div class="w-full bg-[#0b0c15] rounded-full h-2 mt-2 overflow-hidden border border-[#23263a]">
+<div class="bg-gradient-to-r from-blue-600 to-indigo-500 h-2 rounded-full shadow-[0_0_8px_rgba(79,70,229,0.5)]" style="width: 70%"></div>
+</div>
+<div class="flex justify-between mt-3 items-center">
+<span class="text-[10px] text-[var(--text-secondary)] font-medium">Last sync: <span class="text-indigo-200">2h ago</span></span>
+<button class="text-[11px] font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">refresh</span> Sync Now
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="flex justify-between items-end mb-3">
+<h2 class="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider ml-1">Integration Store</h2>
+<a class="text-[var(--primary)] text-xs font-medium hover:text-[var(--primary-glow)] flex items-center gap-1 transition-colors" href="#">
+                    View All <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<button class="bg-[var(--card-dark)] hover:bg-[#1e2130] p-4 rounded-2xl border border-[var(--border-color)] hover:border-indigo-500/40 text-left transition-all active:scale-[0.98] group relative shadow-lg shadow-black/10">
+<div class="absolute top-3 right-3 w-2 h-2 rounded-full bg-[var(--status-active)] shadow-[0_0_6px_var(--status-active)]"></div>
+<div class="w-11 h-11 rounded-xl bg-[#202336] flex items-center justify-center mb-3 shadow-inner border border-[#2d314e] group-hover:bg-[#252942] transition-colors">
+<svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M4.223 3.75c-.328 0-.616.205-.724.516L2.008 8.49a.75.75 0 00.712.995h1.53v9.765a.75.75 0 00.75.75h14.25a.75.75 0 00.75-.75V9.485h1.242a.75.75 0 00.712-.995l-1.492-4.224a.768.768 0 00-.723-.516H4.223zM5.75 9.485h3.75v9.015H5.75V9.485zm5.25 0h3.75v9.015H11v-9.015zm5.25 0h2v9.015h-2V9.485z"></path></svg>
+</div>
+<h3 class="text-sm font-semibold text-white mb-0.5 group-hover:text-indigo-200 transition-colors">Notion</h3>
+<p class="text-[10px] text-[var(--text-secondary)]">Source Content</p>
+<div class="mt-4 flex items-center text-[10px] text-[var(--status-active)] gap-1.5 font-medium bg-[var(--status-active)]/10 py-1 px-2 rounded w-fit border border-[var(--status-active)]/20">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Connected
+                    </div>
+</button>
+<button class="bg-[var(--card-dark)] hover:bg-[#1e2130] p-4 rounded-2xl border border-[var(--border-color)] hover:border-indigo-500/40 text-left transition-all active:scale-[0.98] group shadow-lg shadow-black/10">
+<div class="w-11 h-11 rounded-xl bg-[#202336] flex items-center justify-center mb-3 shadow-inner border border-[#2d314e] group-hover:bg-[#252942] transition-colors">
+<svg class="w-6 h-6 text-[#E01E5A]" fill="currentColor" viewBox="0 0 24 24"><path d="M6 15a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h2v2zm1 0a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-5zm2-4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2v2a2 2 0 0 1-2 2H9zm0-1a2 2 0 0 1 2 2v2a2 2 0 0 1 2 2H8a2 2 0 0 1-2-2V10h5zm6 1a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v-2zm-1 0a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v5zm-2 4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v-2a2 2 0 0 1 2-2h2zm0 1a2 2 0 0 1-2-2V9a2 2 0 0 1-2-2h5a2 2 0 0 1 2 2v5h-5z"></path></svg>
+</div>
+<h3 class="text-sm font-semibold text-white mb-0.5 group-hover:text-indigo-200 transition-colors">Slack</h3>
+<p class="text-[10px] text-[var(--text-secondary)]">Notifications</p>
+<div class="mt-4 flex items-center text-[10px] text-[var(--text-secondary)] group-hover:text-white transition-colors gap-1.5 font-medium bg-[#252846] py-1 px-2 rounded w-fit border border-[#363a5d] group-hover:border-indigo-500/50">
+<span class="material-symbols-outlined text-[12px]">add</span> Connect
+                    </div>
+</button>
+<button class="bg-[var(--card-dark)] hover:bg-[#1e2130] p-4 rounded-2xl border border-[var(--border-color)] hover:border-indigo-500/40 text-left transition-all active:scale-[0.98] group shadow-lg shadow-black/10">
+<div class="w-11 h-11 rounded-xl bg-[#202336] flex items-center justify-center mb-3 shadow-inner border border-[#2d314e] group-hover:bg-[#252942] transition-colors">
+<svg aria-hidden="true" class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+</svg>
+</div>
+<h3 class="text-sm font-semibold text-white mb-0.5 group-hover:text-indigo-200 transition-colors">Twitter / X</h3>
+<p class="text-[10px] text-[var(--text-secondary)]">Publishing</p>
+<div class="mt-4 flex items-center text-[10px] text-[var(--text-secondary)] group-hover:text-white transition-colors gap-1.5 font-medium bg-[#252846] py-1 px-2 rounded w-fit border border-[#363a5d] group-hover:border-indigo-500/50">
+<span class="material-symbols-outlined text-[12px]">add</span> Connect
+                    </div>
+</button>
+<button class="bg-[var(--card-dark)] p-4 rounded-2xl border border-[var(--border-color)] text-left group opacity-50 cursor-not-allowed">
+<div class="w-11 h-11 rounded-xl bg-[#202336] flex items-center justify-center mb-3 shadow-inner border border-[#2d314e]">
+<svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"></path></svg>
+</div>
+<h3 class="text-sm font-semibold text-white mb-0.5">Medium</h3>
+<p class="text-[10px] text-[var(--text-secondary)]">Coming Soon</p>
+<div class="mt-4 flex items-center text-[10px] text-[var(--text-secondary)] gap-1.5 font-medium border border-dashed border-[var(--border-color)] py-1 px-2 rounded w-fit">
+                        Waitlist
+                    </div>
+</button>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 w-full bg-[#0b0c15]/90 backdrop-blur-xl border-t border-[var(--border-color)] pb-safe pt-2 px-6 z-50 pb-5 shadow-[0_-5px_20px_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center relative">
+<div class="absolute right-0 bottom-[-10px] w-12 h-12 bg-indigo-500/20 blur-xl rounded-full pointer-events-none"></div>
+<a class="flex flex-col items-center gap-1.5 text-[var(--text-secondary)] hover:text-indigo-200 w-12 transition-colors group" href="/">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 text-[var(--text-secondary)] hover:text-indigo-200 w-12 transition-colors group" href="/newsletters">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">mail</span>
+<span class="text-[10px] font-medium">Lists</span>
+</a>
+<div class="w-12 h-12 -mt-8 rounded-full bg-gradient-to-tr from-indigo-600 to-purple-600 shadow-[0_0_15px_rgba(99,102,241,0.5)] flex items-center justify-center border-2 border-[#0b0c15] text-white cursor-pointer hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-[24px]">add</span>
+</div>
+<a class="flex flex-col items-center gap-1.5 text-[var(--text-secondary)] hover:text-indigo-200 w-12 transition-colors group" href="/analytics">
+<span class="material-symbols-outlined text-[24px] group-hover:scale-110 transition-transform">bar_chart</span>
+<span class="text-[10px] font-medium">Stats</span>
+</a>
+<a class="flex flex-col items-center gap-1.5 text-[var(--primary)] w-12 group relative" href="/settings">
+<span class="material-symbols-outlined text-[24px] fill-1 group-hover:scale-110 transition-transform drop-shadow-[0_0_8px_rgba(99,102,241,0.5)]">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+<span class="absolute -bottom-2 w-1 h-1 bg-indigo-400 rounded-full"></span>
+</a>
+</div>
+</nav>
+
+</body></html>

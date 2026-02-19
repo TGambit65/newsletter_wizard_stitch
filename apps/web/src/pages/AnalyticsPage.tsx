@@ -371,19 +371,19 @@ export function AnalyticsPage() {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Analytics</h1>
+          <h1 className="text-3xl font-bold font-display text-neutral-900 dark:text-white">Analytics</h1>
           <p className="text-neutral-500 mt-1">Track your newsletter performance</p>
         </div>
         <div className="flex items-center gap-3">
           <button
             onClick={handleExportReport}
             disabled={exportingReport || analytics.totalSent === 0}
-            className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-600 transition-colors text-sm font-medium disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-white/5 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-200 dark:hover:bg-white/10 transition-colors text-sm font-medium border border-neutral-200 dark:border-white/10 disabled:opacity-50"
           >
             <Download className="w-4 h-4" />
             {exportingReport ? 'Exporting...' : 'Export Report'}
           </button>
-          <div className="flex items-center gap-2 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-1">
+          <div className="flex items-center gap-2 bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/10 rounded-lg p-1">
             {(['7d', '30d', '90d'] as const).map((range) => (
               <button
                 key={range}
@@ -392,7 +392,7 @@ export function AnalyticsPage() {
                   'px-4 py-2 rounded-md text-sm font-medium transition-colors',
                   dateRange === range
                     ? 'bg-primary-500 text-white'
-                    : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700'
+                    : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-white/5'
                 )}
               >
                 {range === '7d' ? '7 Days' : range === '30d' ? '30 Days' : '90 Days'}
@@ -407,7 +407,7 @@ export function AnalyticsPage() {
         {statCards.map((stat) => (
           <div
             key={stat.name}
-            className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700 shadow-sm"
+            className="bg-white dark:bg-surface-dark rounded-xl p-6 border border-neutral-200 dark:border-white/10 shadow-sm"
           >
             <div className="flex items-center justify-between mb-4">
               <div className={clsx('w-10 h-10 rounded-lg flex items-center justify-center', stat.bgColor)}>
@@ -436,7 +436,7 @@ export function AnalyticsPage() {
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Engagement Chart */}
-        <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700">
+        <div className="bg-white dark:bg-surface-dark rounded-xl p-6 border border-neutral-200 dark:border-white/10">
           <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
             Engagement Over Time
           </h2>
@@ -444,7 +444,7 @@ export function AnalyticsPage() {
         </div>
 
         {/* Subscriber Growth Chart */}
-        <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700">
+        <div className="bg-white dark:bg-surface-dark rounded-xl p-6 border border-neutral-200 dark:border-white/10">
           <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">
             Subscriber Growth
           </h2>
@@ -453,8 +453,8 @@ export function AnalyticsPage() {
       </div>
 
       {/* AI Performance Tips */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
-        <div className="p-6 border-b border-neutral-200 dark:border-neutral-700 flex items-center gap-2">
+      <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10">
+        <div className="p-6 border-b border-neutral-200 dark:border-white/10 flex items-center gap-2">
           <Lightbulb className="w-5 h-5 text-warning" />
           <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">AI Performance Tips</h2>
         </div>
@@ -478,15 +478,15 @@ export function AnalyticsPage() {
 
       {/* Newsletter Comparison Table */}
       {newsletters.length > 0 && (
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
-          <div className="p-6 border-b border-neutral-200 dark:border-neutral-700">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10">
+          <div className="p-6 border-b border-neutral-200 dark:border-white/10">
             <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Newsletter Performance</h2>
             <p className="text-sm text-neutral-500 mt-1">All sent newsletters in the selected period</p>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-700">
+                <tr className="bg-neutral-50 dark:bg-background-dark border-b border-neutral-200 dark:border-white/10">
                   <th className="text-left px-6 py-3 text-neutral-600 dark:text-neutral-400 font-medium">Newsletter</th>
                   <th className="text-right px-4 py-3 text-neutral-600 dark:text-neutral-400 font-medium">Sent</th>
                   <th className="text-right px-4 py-3 text-neutral-600 dark:text-neutral-400 font-medium">Open Rate</th>
@@ -494,9 +494,9 @@ export function AnalyticsPage() {
                   <th className="text-right px-6 py-3 text-neutral-600 dark:text-neutral-400 font-medium">Unsubs</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-100 dark:divide-neutral-700">
+              <tbody className="divide-y divide-neutral-100 dark:divide-white/5">
                 {newsletters.map(n => (
-                  <tr key={n.id} className="hover:bg-neutral-50 dark:hover:bg-neutral-700/50">
+                  <tr key={n.id} className="hover:bg-neutral-50 dark:hover:bg-white/5">
                     <td className="px-6 py-3">
                       <p className="font-medium text-neutral-900 dark:text-white truncate max-w-xs">{n.title}</p>
                       {n.sent_at && (

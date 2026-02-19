@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Performance Report: Growth Focus V2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1c1833",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-effect {
+            background: rgba(51, 13, 242, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(51, 13, 242, 0.5);
+        }
+        .glow-container {
+            box-shadow: 0 0 40px -10px rgba(51, 13, 242, 0.3);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex justify-center w-full">
+<!-- Mobile Container -->
+<div class="w-full max-w-md bg-background-light dark:bg-background-dark min-h-screen flex flex-col relative overflow-hidden">
+<!-- Ambient Background Glows -->
+<div class="absolute top-[-10%] left-[-20%] w-[80%] h-[40%] bg-primary/20 blur-[100px] rounded-full pointer-events-none"></div>
+<div class="absolute bottom-[-10%] right-[-20%] w-[60%] h-[30%] bg-primary/10 blur-[80px] rounded-full pointer-events-none"></div>
+<!-- Header -->
+<header class="relative z-10 px-6 pt-8 pb-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">auto_fix_high</span>
+</div>
+<span class="text-white font-bold text-sm tracking-wide">NEWSLETTER WIZARD</span>
+</div>
+<button class="size-10 flex items-center justify-center rounded-full bg-white/5 text-white hover:bg-white/10 transition">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</header>
+<!-- Main Content Scrollable Area -->
+<main class="flex-1 px-4 pb-8 flex flex-col gap-6 relative z-10 overflow-y-auto">
+<!-- Report Title & Date -->
+<div class="flex flex-col items-center pt-2">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-4">
+<span class="material-symbols-outlined text-primary text-[16px]">calendar_today</span>
+<span class="text-gray-400 text-xs font-medium">Oct 12 - Oct 19</span>
+</div>
+<h1 class="text-white text-3xl font-bold tracking-tight text-center">Audience Growth</h1>
+<p class="text-gray-400 text-sm mt-1">Weekly Performance Report</p>
+</div>
+<!-- Hero Chart Section -->
+<div class="bg-surface-dark rounded-2xl p-6 border border-white/5 glow-container relative overflow-hidden">
+<!-- Header Stats -->
+<div class="flex flex-col gap-1 mb-6">
+<span class="text-gray-400 text-sm font-medium">Total Subscribers</span>
+<div class="flex items-baseline gap-3">
+<span class="text-white text-4xl font-bold glow-text">1,240</span>
+<div class="flex items-center gap-1 text-[#0bda6c] bg-[#0bda6c]/10 px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="text-sm font-bold">+12.5%</span>
+</div>
+</div>
+</div>
+<!-- Chart Viz -->
+<div class="relative h-[180px] w-full">
+<!-- Grid Lines -->
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
+<div class="border-t border-dashed border-gray-500 w-full"></div>
+<div class="border-t border-dashed border-gray-500 w-full"></div>
+<div class="border-t border-dashed border-gray-500 w-full"></div>
+<div class="border-t border-dashed border-gray-500 w-full"></div>
+</div>
+<!-- SVG Chart -->
+<svg class="absolute inset-0 w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 50">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#330df2" stop-opacity="0.5"></stop>
+<stop offset="100%" stop-color="#330df2" stop-opacity="0"></stop>
+</lineargradient>
+<filter height="140%" id="glow" width="140%" x="-20%" y="-20%">
+<fegaussianblur result="coloredBlur" stddeviation="2"></fegaussianblur>
+<femerge>
+<femergenode in="coloredBlur"></femergenode>
+<femergenode in="SourceGraphic"></femergenode>
+</femerge>
+</filter>
+</defs>
+<!-- Area Fill -->
+<path d="M0,50 L0,35 C10,35 10,25 20,25 C30,25 30,30 40,30 C50,30 50,15 60,15 C70,15 70,20 80,20 C90,20 90,5 100,5 L100,50 Z" fill="url(#chartGradient)"></path>
+<!-- Stroke Line -->
+<path d="M0,35 C10,35 10,25 20,25 C30,25 30,30 40,30 C50,30 50,15 60,15 C70,15 70,20 80,20 C90,20 90,5 100,5" fill="none" filter="url(#glow)" stroke="#330df2" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+<!-- Data Point Indicator (End) -->
+<circle cx="100" cy="5" fill="#ffffff" r="3" stroke="#330df2" stroke-width="1.5"></circle>
+</svg>
+</div>
+<!-- X Axis Labels -->
+<div class="flex justify-between mt-4 px-1">
+<span class="text-xs text-gray-500 font-medium">Mon</span>
+<span class="text-xs text-gray-500 font-medium">Tue</span>
+<span class="text-xs text-gray-500 font-medium">Wed</span>
+<span class="text-xs text-gray-500 font-medium">Thu</span>
+<span class="text-xs text-gray-500 font-medium">Fri</span>
+<span class="text-xs text-gray-500 font-medium">Sat</span>
+<span class="text-xs text-gray-500 font-medium">Sun</span>
+</div>
+</div>
+<!-- Secondary Metrics Grid -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Open Rate -->
+<div class="bg-surface-dark p-5 rounded-xl border border-white/5 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-gray-400 text-sm font-medium">Open Rate</span>
+<span class="material-symbols-outlined text-gray-600 text-[20px]">drafts</span>
+</div>
+<div class="flex flex-col gap-1 mt-1">
+<span class="text-white text-2xl font-bold">42%</span>
+<span class="text-[#0bda6c] text-xs font-bold">+2.1%</span>
+</div>
+</div>
+<!-- CTR -->
+<div class="bg-surface-dark p-5 rounded-xl border border-white/5 flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="text-gray-400 text-sm font-medium">CTR</span>
+<span class="material-symbols-outlined text-gray-600 text-[20px]">ads_click</span>
+</div>
+<div class="flex flex-col gap-1 mt-1">
+<span class="text-white text-2xl font-bold">5.8%</span>
+<span class="text-[#0bda6c] text-xs font-bold">+0.5%</span>
+</div>
+</div>
+<!-- Unsubscribes (Full Width) -->
+<div class="bg-surface-dark p-5 rounded-xl border border-white/5 flex items-center justify-between col-span-2">
+<div class="flex flex-col gap-1">
+<span class="text-gray-400 text-sm font-medium">Unsubscribes</span>
+<span class="text-white text-2xl font-bold">2</span>
+</div>
+<div class="flex flex-col items-end gap-1">
+<span class="material-symbols-outlined text-gray-600 text-[24px]">person_remove</span>
+<span class="text-gray-400 text-xs font-medium">Flat vs last week</span>
+</div>
+</div>
+</div>
+<!-- AI Insight Card -->
+<div class="relative mt-2 group">
+<!-- Animated Border Gradient using pseudo-element style div -->
+<div class="absolute -inset-[1px] bg-gradient-to-r from-primary via-purple-500 to-primary rounded-xl opacity-75 blur-sm group-hover:opacity-100 transition duration-500"></div>
+<div class="relative bg-surface-dark rounded-xl p-5 border border-white/10 flex gap-4 items-start">
+<div class="size-10 shrink-0 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div class="flex flex-col gap-1">
+<h3 class="text-white text-base font-bold">AI Insight</h3>
+<p class="text-gray-300 text-sm leading-relaxed">
+                            Your tone was <span class="text-white font-semibold">15% more engaging</span> this week! Readers responded well to your personal anecdotes in the intro.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full mt-2 bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/25 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span>View Full Analysis</span>
+<span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</main>
+</div>
+</body></html>

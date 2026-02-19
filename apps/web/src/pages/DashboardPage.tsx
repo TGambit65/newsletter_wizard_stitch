@@ -160,21 +160,26 @@ export function DashboardPage() {
 
   return (
     <div className="max-w-7xl mx-auto space-y-8">
-      {/* Welcome Header */}
-      <div className="bg-gradient-to-r from-primary-500 to-primary-600 rounded-2xl p-8 text-white">
-        <h1 className="text-3xl font-bold mb-2">
-          {getGreeting()}, {profile?.full_name?.split(' ')[0] || 'there'}
-        </h1>
-        <p className="text-primary-100 mb-6">
-          Ready to create your next newsletter? Your knowledge base has {stats.totalSources} sources ready.
-        </p>
-        <Link
-          to="/wizard"
-          className="inline-flex items-center gap-2 px-6 py-3 bg-white text-primary-600 font-semibold rounded-lg hover:bg-primary-50 transition-colors"
-        >
-          <Wand2 className="w-5 h-5" />
-          Create Newsletter
-        </Link>
+      {/* Welcome Header — Stitch glass hero */}
+      <div className="relative overflow-hidden rounded-2xl border border-white/10 p-8"
+           style={{ background: 'linear-gradient(135deg, rgba(51,13,242,0.25) 0%, rgba(30,27,46,0.9) 60%)' }}>
+        {/* Ambient glow */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary-500/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="relative z-10">
+          <h1 className="text-3xl font-bold font-display text-white mb-2">
+            {getGreeting()}, {profile?.full_name?.split(' ')[0] || 'there'}
+          </h1>
+          <p className="text-neutral-300 mb-6">
+            Ready to create your next newsletter? Your knowledge base has {stats.totalSources} sources ready.
+          </p>
+          <Link
+            to="/wizard"
+            className="inline-flex items-center gap-2 px-6 py-3 btn-primary-gradient text-sm shadow-glow-sm"
+          >
+            <Wand2 className="w-5 h-5" />
+            Create Newsletter
+          </Link>
+        </div>
       </div>
 
       {/* Quick Stats */}
@@ -182,7 +187,7 @@ export function DashboardPage() {
         {statCards.map((stat) => (
           <div
             key={stat.name}
-            className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700 shadow-sm"
+            className="bg-white dark:bg-surface-dark rounded-xl p-6 border border-neutral-200 dark:border-white/5 shadow-sm"
           >
             <div className="flex items-center justify-between mb-4">
               <div className="w-10 h-10 bg-primary-50 dark:bg-primary-900/20 rounded-lg flex items-center justify-center">
@@ -202,24 +207,24 @@ export function DashboardPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Recent Newsletters */}
-        <div className="lg:col-span-2 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-sm">
-          <div className="flex items-center justify-between p-6 border-b border-neutral-200 dark:border-neutral-700">
+        <div className="lg:col-span-2 bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/5 shadow-sm">
+          <div className="flex items-center justify-between p-6 border-b border-neutral-200 dark:border-white/10">
             <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Recent Newsletters</h2>
             <Link
               to="/newsletters"
-              className="text-sm text-primary-600 hover:text-primary-700 font-medium flex items-center gap-1"
+              className="text-sm text-primary-500 hover:text-primary-light font-medium flex items-center gap-1"
             >
               View all <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="divide-y divide-neutral-200 dark:divide-neutral-700">
+          <div className="divide-y divide-neutral-200 dark:divide-white/5">
             {recentNewsletters.length === 0 ? (
               <div className="p-8 text-center">
                 <Mail className="w-12 h-12 text-neutral-300 mx-auto mb-4" />
                 <p className="text-neutral-500 mb-4">No newsletters yet</p>
                 <Link
                   to="/wizard"
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 btn-primary-gradient text-sm"
                 >
                   <Plus className="w-4 h-4" />
                   Create your first
@@ -230,7 +235,7 @@ export function DashboardPage() {
                 <Link
                   key={newsletter.id}
                   to={`/newsletters/${newsletter.id}/edit`}
-                  className="flex items-center justify-between p-4 hover:bg-neutral-50 dark:hover:bg-neutral-700/50 transition-colors"
+                  className="flex items-center justify-between p-4 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
                 >
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-neutral-900 dark:text-white truncate">
@@ -261,14 +266,14 @@ export function DashboardPage() {
         {/* Quick Actions & Usage */}
         <div className="space-y-6">
           {/* Quick Actions */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-sm p-6">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/5 shadow-sm p-6">
             <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">Quick Actions</h2>
             <div className="space-y-3">
               {quickActions.map((action) => (
                 <Link
                   key={action.name}
                   to={action.href}
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700/50 transition-colors group"
+                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors group"
                 >
                   <div className={clsx('w-10 h-10 rounded-lg flex items-center justify-center', action.color)}>
                     <action.icon className="w-5 h-5 text-white" />
@@ -283,7 +288,7 @@ export function DashboardPage() {
           </div>
 
           {/* Usage Summary */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 shadow-sm p-6">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/5 shadow-sm p-6">
             <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">Usage This Month</h2>
             <div className="space-y-4">
               <div>
@@ -293,7 +298,7 @@ export function DashboardPage() {
                     {stats.newslettersThisMonth} / {limits.aiGenerations}
                   </span>
                 </div>
-                <div className="h-2 bg-neutral-100 dark:bg-neutral-700 rounded-full overflow-hidden">
+                <div className="h-2 bg-neutral-100 dark:bg-white/10 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-primary-500 rounded-full transition-all duration-500"
                     style={{ width: `${Math.min((stats.newslettersThisMonth / limits.aiGenerations) * 100, 100)}%` }}
@@ -307,7 +312,7 @@ export function DashboardPage() {
                     {stats.sentNewsletters} / {limits.newsletters}
                   </span>
                 </div>
-                <div className="h-2 bg-neutral-100 dark:bg-neutral-700 rounded-full overflow-hidden">
+                <div className="h-2 bg-neutral-100 dark:bg-white/10 rounded-full overflow-hidden">
                   <div
                     className="h-full bg-success rounded-full transition-all duration-500"
                     style={{ width: `${(stats.sentNewsletters / limits.newsletters) * 100}%` }}
@@ -317,7 +322,7 @@ export function DashboardPage() {
             </div>
             <Link
               to="/settings"
-              className="mt-4 block text-center text-sm text-primary-600 hover:text-primary-700 font-medium"
+              className="mt-4 block text-center text-sm text-primary-500 hover:text-primary-light font-medium"
             >
               View billing details
             </Link>

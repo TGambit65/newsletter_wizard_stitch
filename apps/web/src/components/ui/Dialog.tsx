@@ -22,7 +22,7 @@ export function DialogContent({ children, className, hideClose = false }: Dialog
       <RadixDialog.Content
         className={clsx(
           'fixed left-1/2 top-1/2 z-50 w-full max-w-lg -translate-x-1/2 -translate-y-1/2',
-          'bg-white dark:bg-neutral-800 rounded-xl shadow-xl',
+          'bg-white dark:bg-surface-dark rounded-xl shadow-xl',
           'data-[state=open]:animate-in data-[state=closed]:animate-out',
           'data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
           'data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95',
@@ -33,7 +33,7 @@ export function DialogContent({ children, className, hideClose = false }: Dialog
       >
         {children}
         {!hideClose && (
-          <RadixDialog.Close className="absolute right-4 top-4 p-1 text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded transition-colors">
+          <RadixDialog.Close className="absolute right-4 top-4 p-1 text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/5 rounded transition-colors">
             <X className="w-4 h-4" />
             <span className="sr-only">Close</span>
           </RadixDialog.Close>
@@ -119,7 +119,7 @@ export function ConfirmDialog({
           <button
             onClick={() => onOpenChange(false)}
             disabled={loading}
-            className="px-4 py-2 text-sm font-medium text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors disabled:opacity-50"
+            className="px-4 py-2 text-sm font-medium text-neutral-700 dark:text-neutral-300 border border-neutral-300 dark:border-neutral-600 rounded-lg hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors disabled:opacity-50"
           >
             {cancelLabel}
           </button>

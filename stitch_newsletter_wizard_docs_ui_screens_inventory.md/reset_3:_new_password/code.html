@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reset 3: New Password - Newsletter Wizard</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white antialiased flex justify-center min-h-screen">
+<!-- Mobile Container -->
+<div class="w-full max-w-md h-screen relative flex flex-col justify-between overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Background Decor: Subtle Indigo Gradients -->
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+<div class="absolute -top-[10%] -left-[20%] w-[150%] h-[50%] bg-primary/10 blur-[100px] rounded-full"></div>
+<div class="absolute top-[40%] right-0 w-[80%] h-[40%] bg-primary/5 blur-[80px] rounded-full"></div>
+</div>
+<!-- Header / Nav -->
+<header class="relative z-10 px-6 pt-12 pb-4 flex items-center justify-between">
+<button class="p-2 -ml-2 rounded-full hover:bg-white/5 transition-colors group">
+<span class="material-icons text-gray-500 dark:text-gray-400 group-hover:text-primary transition-colors">chevron_left</span>
+</button>
+<div class="flex flex-col items-center">
+<span class="text-xs font-bold tracking-widest uppercase text-primary">Step 3 of 3</span>
+</div>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content -->
+<main class="relative z-10 flex-1 px-6 flex flex-col">
+<!-- Title Section -->
+<div class="mt-4 mb-8">
+<h1 class="text-3xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400">
+                    Create New Password
+                </h1>
+<p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                    Your new password must be different from previous used passwords to keep your account secure.
+                </p>
+</div>
+<!-- Form Fields -->
+<div class="space-y-6">
+<!-- Password Field -->
+<div class="group">
+<label class="block text-xs font-medium text-gray-400 mb-2 ml-1">New Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-icons text-primary text-xl">lock</span>
+</div>
+<input class="block w-full pl-12 pr-12 py-4 bg-white dark:bg-[#1c1930] border-2 border-transparent focus:border-primary/50 text-gray-900 dark:text-white placeholder-gray-400 rounded-full focus:outline-none focus:ring-4 focus:ring-primary/20 transition-all duration-300 shadow-lg shadow-primary/5" placeholder="Enter new password" type="password" value="NewsletterWizard2024!"/>
+<button class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-white transition-colors">
+<span class="material-icons text-xl">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Confirm Password Field -->
+<div class="group">
+<label class="block text-xs font-medium text-gray-400 mb-2 ml-1">Confirm Password</label>
+<div class="relative">
+<div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+<span class="material-icons text-gray-500 text-xl">lock_outline</span>
+</div>
+<input class="block w-full pl-12 pr-12 py-4 bg-white dark:bg-[#1c1930] border-2 border-transparent focus:border-primary/50 text-gray-900 dark:text-white placeholder-gray-400 rounded-full focus:outline-none focus:ring-4 focus:ring-primary/20 transition-all duration-300" placeholder="Re-enter password" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-white transition-colors">
+<span class="material-icons text-xl">visibility_off</span>
+</button>
+</div>
+</div>
+<!-- Password Strength Meter -->
+<div class="bg-[#1c1930] p-5 rounded-2xl border border-white/5 mt-4">
+<div class="flex justify-between items-end mb-2">
+<span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Password Strength</span>
+<span class="text-sm font-bold text-[#39ff14] drop-shadow-[0_0_8px_rgba(57,255,20,0.5)]">Strong</span>
+</div>
+<!-- Progress Bar -->
+<div class="h-1.5 w-full bg-gray-700 rounded-full overflow-hidden flex gap-1">
+<div class="h-full w-1/4 bg-[#39ff14] shadow-[0_0_10px_rgba(57,255,20,0.8)] rounded-full"></div>
+<div class="h-full w-1/4 bg-[#39ff14] shadow-[0_0_10px_rgba(57,255,20,0.8)] rounded-full"></div>
+<div class="h-full w-1/4 bg-[#39ff14] shadow-[0_0_10px_rgba(57,255,20,0.8)] rounded-full"></div>
+<div class="h-full w-1/4 bg-gray-600 rounded-full opacity-30"></div>
+</div>
+<!-- Checklist -->
+<div class="mt-4 space-y-2">
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded-full bg-[#39ff14]/20 flex items-center justify-center">
+<span class="material-icons text-[#39ff14] text-[12px] font-bold">check</span>
+</div>
+<span class="text-sm text-white font-medium">Must be at least 8 characters</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded-full bg-[#39ff14]/20 flex items-center justify-center">
+<span class="material-icons text-[#39ff14] text-[12px] font-bold">check</span>
+</div>
+<span class="text-sm text-white font-medium">Must contain 1 special character</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-5 h-5 rounded-full bg-gray-700 flex items-center justify-center">
+<span class="material-icons text-gray-400 text-[12px]">close</span>
+</div>
+<span class="text-sm text-gray-400">Must contain 1 number</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action -->
+<footer class="relative z-10 px-6 pb-8 pt-4 bg-background-light dark:bg-background-dark/95 backdrop-blur-sm">
+<button class="w-full py-4 px-6 rounded-full bg-gradient-to-r from-primary to-blue-600 text-white font-bold text-lg shadow-[0_10px_30px_-10px_rgba(51,13,242,0.6)] hover:shadow-[0_15px_35px_-10px_rgba(51,13,242,0.8)] transition-all transform active:scale-95 flex items-center justify-center gap-2 group">
+                Update Password
+                <span class="material-icons group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</footer>
+</div>
+</body></html>

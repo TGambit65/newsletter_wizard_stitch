@@ -25,7 +25,7 @@ interface WhiteLabelContextType {
 const defaultConfig: WhiteLabelConfig = {
   brand_name: 'Newsletter Wizard',
   logo_url: null,
-  primary_color: '#0066FF',
+  primary_color: '#330df2',
   secondary_color: '#8b5cf6',
   custom_domain: null,
   feature_flags: {

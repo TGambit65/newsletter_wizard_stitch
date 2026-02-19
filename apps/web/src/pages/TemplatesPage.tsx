@@ -307,7 +307,7 @@ export function TemplatesPage() {
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
           placeholder="Search templates..."
-          className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+          className="w-full pl-10 pr-4 py-2.5 bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
         />
       </div>
 
@@ -323,7 +323,7 @@ export function TemplatesPage() {
                 'inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
                 category === cat.value
                   ? 'bg-primary-500 text-white'
-                  : 'bg-white dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                  : 'bg-white dark:bg-surface-dark text-neutral-700 dark:text-neutral-300 border border-neutral-200 dark:border-white/10 hover:bg-neutral-50 dark:hover:bg-white/5'
               )}
             >
               <Icon className="w-4 h-4" />
@@ -344,7 +344,7 @@ export function TemplatesPage() {
               'px-3 py-1 rounded-full text-sm font-medium border transition-colors',
               activeGoals.includes(goal.value)
                 ? 'bg-primary-100 text-primary-700 border-primary-300 dark:bg-primary-900/30 dark:text-primary-400 dark:border-primary-700'
-                : 'bg-white dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                : 'bg-white dark:bg-surface-dark text-neutral-600 dark:text-neutral-400 border-neutral-200 dark:border-white/10 hover:bg-neutral-50 dark:hover:bg-white/5'
             )}
           >
             {goal.label}
@@ -359,7 +359,7 @@ export function TemplatesPage() {
 
       {/* Template grid */}
       {sorted.length === 0 ? (
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-12 text-center">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-12 text-center">
           <BookOpen className="w-12 h-12 text-neutral-300 mx-auto mb-4" />
           <h3 className="font-semibold text-neutral-900 dark:text-white mb-2">No templates match your filters</h3>
           <p className="text-neutral-500 text-sm">Try adjusting your category or goal filters</p>
@@ -369,10 +369,10 @@ export function TemplatesPage() {
           {sorted.map(template => (
             <div
               key={template.id}
-              className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden flex flex-col hover:shadow-md transition-shadow"
+              className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 overflow-hidden flex flex-col hover:shadow-md transition-shadow"
             >
               {/* Visual preview placeholder */}
-              <div className="h-28 bg-neutral-50 dark:bg-neutral-900 p-4 flex flex-col gap-2">
+              <div className="h-28 bg-neutral-50 dark:bg-background-dark p-4 flex flex-col gap-2">
                 <div className="flex items-center gap-2">
                   <FileText className="w-4 h-4 text-primary-400 flex-shrink-0" />
                   <span className="text-xs font-semibold text-neutral-700 dark:text-neutral-300 truncate">
@@ -419,7 +419,7 @@ export function TemplatesPage() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => setPreviewTemplate(template)}
-                    className="flex-1 px-3 py-2 text-sm font-medium border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+                    className="flex-1 px-3 py-2 text-sm font-medium border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
                   >
                     Preview
                   </button>
@@ -444,8 +444,8 @@ export function TemplatesPage() {
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
           onClick={e => { if (e.target === e.currentTarget) setPreviewTemplate(null); }}
         >
-          <div className="bg-white dark:bg-neutral-800 rounded-2xl w-full max-w-lg max-h-[90vh] flex flex-col">
-            <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-neutral-700 flex-shrink-0">
+          <div className="bg-white dark:bg-surface-dark rounded-2xl w-full max-w-lg max-h-[90vh] flex flex-col">
+            <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-white/10 flex-shrink-0">
               <div>
                 <h2 className="font-semibold text-neutral-900 dark:text-white">{previewTemplate.name}</h2>
                 <span className={clsx('inline-block mt-1 px-2 py-0.5 text-xs font-medium rounded-full capitalize', CATEGORY_COLORS[previewTemplate.category])}>
@@ -455,7 +455,7 @@ export function TemplatesPage() {
               <button
                 onClick={() => setPreviewTemplate(null)}
                 aria-label="Close preview"
-                className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg ml-4 flex-shrink-0"
+                className="p-2 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg ml-4 flex-shrink-0"
               >
                 <X className="w-5 h-5 text-neutral-500" />
               </button>
@@ -465,21 +465,21 @@ export function TemplatesPage() {
               <p className="text-neutral-600 dark:text-neutral-400">{previewTemplate.description}</p>
 
               <div className="grid grid-cols-3 gap-3">
-                <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-3 text-center">
+                <div className="bg-neutral-50 dark:bg-background-dark rounded-lg p-3 text-center">
                   <div className="flex items-center justify-center gap-1 text-neutral-700 dark:text-neutral-300 font-semibold">
                     <TrendingUp className="w-3.5 h-3.5 text-success" />
                     {previewTemplate.avg_open_rate.toFixed(1)}%
                   </div>
                   <p className="text-xs text-neutral-500 mt-0.5">Avg open rate</p>
                 </div>
-                <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-3 text-center">
+                <div className="bg-neutral-50 dark:bg-background-dark rounded-lg p-3 text-center">
                   <div className="flex items-center justify-center gap-1 text-neutral-700 dark:text-neutral-300 font-semibold">
                     <MousePointerClick className="w-3.5 h-3.5 text-info" />
                     {previewTemplate.avg_click_rate.toFixed(1)}%
                   </div>
                   <p className="text-xs text-neutral-500 mt-0.5">Avg click rate</p>
                 </div>
-                <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-3 text-center">
+                <div className="bg-neutral-50 dark:bg-background-dark rounded-lg p-3 text-center">
                   <p className="text-neutral-700 dark:text-neutral-300 font-semibold">{previewTemplate.usage_count.toLocaleString()}</p>
                   <p className="text-xs text-neutral-500 mt-0.5">Times used</p>
                 </div>
@@ -498,7 +498,7 @@ export function TemplatesPage() {
 
               <div>
                 <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-2">Structure</p>
-                <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-3 space-y-1.5">
+                <div className="bg-neutral-50 dark:bg-background-dark rounded-lg p-3 space-y-1.5">
                   {previewTemplate.preview_lines.map((line, i) => (
                     <p key={i} className={clsx('text-sm', i === 0 ? 'font-medium text-neutral-900 dark:text-white' : 'text-neutral-500')}>
                       {line}
@@ -508,10 +508,10 @@ export function TemplatesPage() {
               </div>
             </div>
 
-            <div className="p-4 border-t border-neutral-200 dark:border-neutral-700 flex justify-end gap-3 flex-shrink-0">
+            <div className="p-4 border-t border-neutral-200 dark:border-white/10 flex justify-end gap-3 flex-shrink-0">
               <button
                 onClick={() => setPreviewTemplate(null)}
-                className="px-4 py-2.5 text-sm font-medium border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700"
+                className="px-4 py-2.5 text-sm font-medium border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-50 dark:hover:bg-white/5"
               >
                 Close
               </button>

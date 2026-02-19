@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Delete Account: Export First V2</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "danger": "#ff3b3b",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom checkbox style adjustment for the indigo theme */
+        .custom-checkbox:checked {
+            background-color: #330df2;
+            border-color: #330df2;
+        }
+        
+        /* Subtle red glow for the delete button */
+        .delete-btn-glow {
+            box-shadow: 0 0 15px rgba(255, 59, 59, 0.15);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-10 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-gray-200 dark:border-white/10">
+<div class="flex items-center px-4 h-14 justify-between">
+<button class="flex items-center justify-center w-10 h-10 -ml-2 text-gray-900 dark:text-white rounded-full active:bg-gray-200 dark:active:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-8">Delete Account</h2>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col px-6 pt-6 pb-safe">
+<!-- Header Section -->
+<div class="mb-8">
+<h1 class="text-gray-900 dark:text-white text-[32px] font-bold leading-[1.1] mb-3 tracking-tight">Before you go...</h1>
+<p class="text-gray-600 dark:text-gray-300 text-base font-normal leading-relaxed">
+                We don't want you to lose the AI models you've trained.
+            </p>
+</div>
+<!-- Export Card (Hero) -->
+<div class="bg-white dark:bg-[#1C1833] rounded-xl overflow-hidden shadow-sm border border-gray-200 dark:border-white/5 mb-8 flex flex-col">
+<!-- Decorative Visual Header -->
+<div class="relative h-32 w-full bg-gradient-to-r from-indigo-900 to-primary/40 flex items-center justify-center overflow-hidden" data-alt="Abstract digital cloud network connecting nodes" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBK4G9POSQ-ENLgnqaTm3gK3hg0gc9WdGu_EXCm-UDpeVeuwVPF6tnM1iU7YFNBGTVTLq_6_bWZ0HIe30u_xwJSWxUtC4SuYUqM8WTu49Frl1ggYkn2Mld8Fjq-rCWlNcDWqFdWaA4teRci9vFsZssM0eCNnXTqrDrKrUSZU5DRJgII4yueZW55tTx4R0IgCuiKkxGXKsH3U9EmZO0zcxzuqKjE0426CvlWar8Y5XLiQ1yeyIrj3wHXMhdZ4Ns-ejlmwJfbl4JrB_s'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-primary/80 mix-blend-multiply"></div>
+<div class="relative z-10 bg-white/10 backdrop-blur-md p-3 rounded-full border border-white/20 shadow-lg">
+<span class="material-symbols-outlined text-white text-3xl">cloud_download</span>
+</div>
+</div>
+<!-- Card Content -->
+<div class="p-5 flex flex-col gap-4">
+<div>
+<h3 class="text-gray-900 dark:text-white text-xl font-bold mb-1">Export Your Knowledge Base</h3>
+<p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
+                        Includes your past newsletters, audience data, and custom AI training sets formatted for easy import elsewhere.
+                    </p>
+</div>
+<button class="w-full flex items-center justify-center gap-2 h-11 bg-primary hover:bg-primary/90 active:bg-primary/80 text-white text-sm font-bold rounded-lg shadow-lg shadow-primary/20 transition-all">
+<span class="material-symbols-outlined text-[20px]">archive</span>
+<span>Download Data Archive</span>
+</button>
+</div>
+</div>
+<!-- Spacer -->
+<div class="flex-1"></div>
+<!-- Bottom Actions Section -->
+<div class="flex flex-col gap-4 mt-auto pb-8">
+<!-- Risk Checkbox -->
+<label class="group flex gap-3 items-start cursor-pointer select-none p-2 -ml-2 rounded-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors">
+<div class="relative flex items-center pt-0.5">
+<input class="peer h-5 w-5 cursor-pointer appearance-none rounded border-2 border-gray-400 dark:border-gray-500 bg-transparent transition-all checked:border-primary checked:bg-primary custom-checkbox focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="material-symbols-outlined absolute pointer-events-none opacity-0 peer-checked:opacity-100 text-white text-sm left-[2px] top-[4px]">check</span>
+</div>
+<div class="flex-1">
+<p class="text-gray-700 dark:text-gray-200 text-sm font-medium leading-tight group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+                        I understand that this action is irreversible and my data will be deleted forever.
+                    </p>
+</div>
+</label>
+<!-- Delete Button -->
+<button class="group w-full h-12 rounded-lg border border-danger/50 text-danger font-bold text-base flex items-center justify-center gap-2 hover:bg-danger/10 active:bg-danger/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent transition-all delete-btn-glow" disabled="">
+<span class="material-symbols-outlined group-disabled:hidden">warning</span>
+                Delete Account
+            </button>
+<!-- Cancel Link -->
+<button class="w-full h-10 rounded-lg text-gray-500 dark:text-gray-400 text-sm font-medium hover:text-gray-900 dark:hover:text-white transition-colors">
+                Keep my account
+            </button>
+</div>
+</main>
+<!-- Safe area spacing for iOS home indicator -->
+<div class="h-6 w-full"></div>
+</body></html>

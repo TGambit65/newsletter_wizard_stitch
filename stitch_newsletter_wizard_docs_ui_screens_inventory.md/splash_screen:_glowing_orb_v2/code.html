@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletter Wizard - Splash Screen V2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 3s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        glow: {
+                            '0%': { boxShadow: '0 0 20px #330df2, 0 0 40px #330df2' },
+                            '100%': { boxShadow: '0 0 40px #330df2, 0 0 80px #6d28d9' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles for the polished floor reflection */
+        .reflection-gradient {
+            background: linear-gradient(to bottom, rgba(19, 16, 34, 0) 0%, rgba(19, 16, 34, 0.8) 40%, rgba(19, 16, 34, 1) 100%);
+        }
+        
+        .orb-glass {
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, rgba(51, 13, 242, 0.4) 40%, rgba(19, 16, 34, 0.9) 100%);
+            box-shadow: inset 0 0 30px rgba(51, 13, 242, 0.5), inset 2px 2px 5px rgba(255,255,255,0.4);
+            backdrop-filter: blur(8px);
+        }
+
+        .orb-core {
+            background: radial-gradient(circle, #6d28d9 0%, #330df2 70%, transparent 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark h-screen w-full flex flex-col items-center justify-between overflow-hidden font-display relative selection:bg-primary selection:text-white">
+<!-- Ambient Background Lighting -->
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+<div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-primary/20 rounded-full blur-[120px] mix-blend-screen opacity-40"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-purple-900/20 rounded-full blur-[100px] mix-blend-screen opacity-30"></div>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 w-full flex flex-col items-center justify-center relative z-10 px-6">
+<!-- The Glowing Orb Container -->
+<div class="relative group animate-float">
+<!-- Outer Glow Halo -->
+<div class="absolute inset-0 rounded-full bg-primary blur-3xl opacity-30 animate-pulse-slow scale-150"></div>
+<!-- The Orb Itself -->
+<div class="w-64 h-64 relative rounded-full orb-glass border border-white/10 flex items-center justify-center shadow-[0_0_60px_rgba(51,13,242,0.4)] transition-all duration-1000">
+<!-- Inner Core/Light Source -->
+<div class="absolute w-40 h-40 rounded-full orb-core blur-xl opacity-80 animate-pulse"></div>
+<!-- Magic Wand Icon -->
+<div class="relative z-20 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">
+<span class="material-icons text-7xl opacity-90 rotate-12 bg-clip-text bg-gradient-to-tr from-white to-blue-200">auto_fix_high</span>
+</div>
+<!-- Highlight Reflection on Orb Surface -->
+<div class="absolute top-4 left-6 w-16 h-8 rounded-[100%] bg-white/10 rotate-[135deg] blur-sm"></div>
+<div class="absolute bottom-6 right-8 w-4 h-4 rounded-full bg-primary/40 blur-md"></div>
+</div>
+<!-- Floor Reflection (Flipped & Masked) -->
+<div class="absolute -bottom-24 left-0 w-64 h-64 opacity-30 transform scale-y-[-0.6] blur-sm pointer-events-none">
+<div class="w-full h-full rounded-full orb-glass border border-white/5 flex items-center justify-center">
+<div class="absolute w-40 h-40 rounded-full orb-core blur-xl opacity-60"></div>
+<span class="material-icons text-7xl text-white/50 rotate-12">auto_fix_high</span>
+</div>
+<!-- Gradient Mask to fade reflection into floor -->
+<div class="absolute inset-0 reflection-gradient z-10"></div>
+</div>
+</div>
+<!-- Floor Plane Visual Cue -->
+<div class="absolute bottom-1/4 w-[120%] h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent blur-[1px]"></div>
+</div>
+<!-- Footer Area -->
+<div class="relative z-20 w-full flex flex-col items-center pb-12 pt-8 bg-gradient-to-t from-background-dark to-transparent">
+<!-- Animated Loading Bar (Subtle) -->
+<div class="w-12 h-1 bg-white/10 rounded-full overflow-hidden mb-8">
+<div class="h-full w-1/2 bg-primary animate-[shimmer_2s_infinite] rounded-full relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
+</div>
+</div>
+<h1 class="text-3xl font-display font-medium text-white tracking-widest uppercase opacity-90 drop-shadow-lg">
+            Newsletter Wizard
+        </h1>
+<p class="text-white/30 text-xs mt-2 font-display tracking-widest uppercase">v2.0 Beta</p>
+</div>
+</body></html>

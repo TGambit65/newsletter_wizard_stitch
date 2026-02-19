@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Invite New Member V2: Bulk Invite</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#460df2",
+                        "primary-hover": "#3a0bc9",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                        "surface-dark": "#1E1A2E",
+                        "surface-light": "#FFFFFF",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for dark mode text area */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: #1E1A2E; 
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background: #332d4a; 
+            border-radius: 4px;
+        }
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: #460df2; 
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white antialiased h-screen flex flex-col overflow-hidden">
+<!-- Header Navigation -->
+<header class="flex-none px-4 pt-12 pb-4 flex justify-between items-center bg-background-light dark:bg-background-dark z-20 sticky top-0">
+<button class="p-2 -ml-2 rounded-full hover:bg-gray-200 dark:hover:bg-surface-dark transition-colors text-gray-600 dark:text-gray-300">
+<span class="material-icons-outlined text-2xl">chevron_left</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Bulk Invite</h1>
+<button class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors">
+            Cancel
+        </button>
+</header>
+<!-- Main Content Scroll Area -->
+<main class="flex-1 overflow-y-auto px-4 pb-24">
+<!-- Intro Text -->
+<div class="mb-6 mt-2">
+<p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                Add multiple team members at once to collaborate on your newsletters.
+            </p>
+</div>
+<!-- Bulk Input Area -->
+<section class="mb-6 relative group">
+<label class="block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 ml-1" for="emails">
+                Email Addresses
+            </label>
+<div class="relative">
+<textarea class="w-full h-48 bg-white dark:bg-surface-dark border-0 ring-1 ring-gray-200 dark:ring-gray-700/50 rounded-xl p-4 text-base focus:ring-2 focus:ring-primary dark:focus:ring-primary placeholder-gray-400 dark:placeholder-gray-600 resize-none transition-all shadow-sm" id="emails" placeholder="jane@example.com, mark@example.com, alex@design.co..."></textarea>
+<!-- Helper badge inside textarea -->
+<div class="absolute bottom-4 right-4 bg-primary/10 dark:bg-primary/20 text-primary px-2 py-1 rounded text-xs font-medium backdrop-blur-sm pointer-events-none">
+                    Separate by comma
+                </div>
+</div>
+</section>
+<!-- Role Selector -->
+<section class="mb-8">
+<label class="block text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 ml-1">
+                Assign Default Role
+            </label>
+<button class="w-full flex items-center justify-between bg-white dark:bg-surface-dark p-4 rounded-xl border border-gray-100 dark:border-gray-700/30 hover:border-primary/50 dark:hover:border-primary/50 transition-colors group shadow-sm">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-icons-outlined">edit_note</span>
+</div>
+<div class="text-left">
+<div class="font-semibold text-gray-900 dark:text-white group-hover:text-primary transition-colors">Editor</div>
+<div class="text-xs text-gray-500 dark:text-gray-400">Can write and edit drafts</div>
+</div>
+</div>
+<span class="material-icons-outlined text-gray-400 group-hover:text-primary transition-colors">expand_more</span>
+</button>
+</section>
+<!-- Recently Invited Section -->
+<section>
+<div class="flex items-center justify-between mb-3 ml-1">
+<h3 class="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400">Recently Invited</h3>
+<button class="text-xs text-primary hover:text-primary-hover font-medium">View All</button>
+</div>
+<div class="bg-white dark:bg-surface-dark rounded-xl border border-gray-100 dark:border-gray-700/30 overflow-hidden shadow-sm">
+<!-- Item 1 -->
+<div class="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-700/30 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Profile portrait of a woman with dark hair" class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a young woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8MPyOedd_LTf5rM-LuH5e169GDCjlANzYgGmMpnxG-iL5s-XJn3N_uUEtIAodG67SWpp0bLHpfQ6DuGVwn8Jq4mgs_NKZRLS7glZSg0GY4Q_cVPfydzaI2OyU-rUqcPduoHc8hFCo2LL1rbYgQTjZCo2L2NlCs_M61qCaKEmSKFndepRZBK75_OGd9U2_E3rWT2n3X5Q7EQOG9OJh22cQJ0Nj9NnppnCNv8HubZlQQjM6W8Uf5DBFw3R-EiusVYD6sfKtSyonlFI"/>
+<div class="absolute -bottom-1 -right-1 bg-yellow-500 w-4 h-4 rounded-full border-2 border-white dark:border-surface-dark flex items-center justify-center">
+<span class="material-icons-outlined text-[10px] text-white">access_time</span>
+</div>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-900 dark:text-white">alex@design.co</div>
+<div class="text-xs text-yellow-600 dark:text-yellow-400 font-medium">Pending Invite</div>
+</div>
+</div>
+<button class="p-2 text-gray-400 hover:text-primary transition-colors">
+<span class="material-icons-outlined text-lg">refresh</span>
+</button>
+</div>
+<!-- Item 2 -->
+<div class="flex items-center justify-between p-4 hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Profile portrait of a man smiling" class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a smiling man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzBIWUR7dnexUwHlw5_7G4vwk2izcBRgsI_aoofBXwXfC5gbHbx45nhPqSXyxnSpsGP9-KsrMeXmVraioez9o88VJDUJ3ilNUi5m-qRBw9XaZ4xFpI278PEJ5BW2SdV3y2kfe94qiquRpZ0XxjtSf5c4bKWxdVO0IfDYSvfvBGgG8Onjdtw7RSRqjKOD8h9Pe-WrRRFmo02cQRkt0-a1KTP85OZyUwXaM5VoTDJam1iX-CsLcUhaOHlSyOzwGywlkXkw7vOyfe7yI"/>
+<div class="absolute -bottom-1 -right-1 bg-green-500 w-4 h-4 rounded-full border-2 border-white dark:border-surface-dark flex items-center justify-center">
+<span class="material-icons-outlined text-[10px] text-white">check</span>
+</div>
+</div>
+<div>
+<div class="text-sm font-medium text-gray-900 dark:text-white">sam@marketing.net</div>
+<div class="text-xs text-green-600 dark:text-green-400 font-medium">Joined Today</div>
+</div>
+</div>
+<button class="p-2 text-gray-400 hover:text-primary transition-colors">
+<span class="material-icons-outlined text-lg">more_horiz</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Sticky Bottom Action -->
+<div class="fixed bottom-0 left-0 w-full p-4 bg-gradient-to-t from-background-light via-background-light to-transparent dark:from-background-dark dark:via-background-dark dark:to-transparent pt-8 pb-8 z-30 pointer-events-none flex justify-center">
+<div class="w-full max-w-md pointer-events-auto">
+<button class="w-full bg-primary hover:bg-primary-hover text-white font-bold py-4 rounded-xl shadow-lg shadow-primary/30 active:scale-[0.98] transition-all flex items-center justify-center gap-2 group">
+<span>Invite Team</span>
+<span class="material-icons-outlined text-xl group-hover:translate-x-1 transition-transform">send</span>
+</button>
+</div>
+</div>
+</body></html>

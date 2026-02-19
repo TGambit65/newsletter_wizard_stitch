@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add Source V2: Detailed List</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {--bg-dark: #0f1025;--card-dark: #191b3a;--primary: #818cf8;--primary-glow: #6366f1;--accent-purple: #a78bfa;
+            --accent-blue: #60a5fa;
+            --text-main: #ffffff;
+            --text-secondary: #94a3b8;--border-color: #2e325a;--border-glow: #4f46e5;--badge-popular-bg: #4338ca;
+            --badge-popular-text: #e0e7ff;
+            --badge-beta-bg: #2d3055;
+            --badge-beta-border: #404478;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+            background-image: radial-gradient(circle at 50% 0%, #1e1b4b 0%, var(--bg-dark) 70%);
+            background-attachment: fixed;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .indigo-glow-border {
+            box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.1), 0 4px 15px -3px rgba(79, 70, 229, 0.15);
+        }
+        .indigo-glow-border:hover {
+            box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.3), 0 10px 25px -5px rgba(79, 70, 229, 0.25);
+            border-color: rgba(129, 140, 248, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-50 bg-[#0f1025]/80 backdrop-blur-xl border-b border-[var(--border-color)] px-4 py-3">
+<div class="flex items-center gap-3">
+<button class="text-[var(--text-secondary)] hover:text-white p-2 -ml-2 rounded-full hover:bg-[var(--card-dark)] transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-white">Add Source</h1>
+</div>
+</header>
+<main class="flex-1 px-4 py-6">
+<div class="mb-6">
+<h2 class="text-2xl font-bold text-white mb-2">Connect Knowledge</h2>
+<p class="text-[var(--text-secondary)] text-sm">Select a source to train your AI assistant. It will learn from your content to write better newsletters.</p>
+</div>
+<div class="space-y-4">
+<button class="w-full text-left group bg-[var(--card-dark)] rounded-2xl p-5 border border-[var(--border-color)] relative transition-all duration-300 indigo-glow-border active:scale-[0.98]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0 border border-blue-500/20 group-hover:bg-blue-500/20 transition-colors">
+<span class="material-symbols-outlined text-blue-400 text-[28px] group-hover:scale-110 transition-transform">language</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-lg font-semibold text-white group-hover:text-blue-300 transition-colors">Website URL</h3>
+<span class="bg-[var(--badge-popular-bg)] text-[var(--badge-popular-text)] text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide shadow-sm shadow-indigo-900/50">Popular</span>
+</div>
+<p class="text-sm text-[var(--text-secondary)] leading-snug group-hover:text-slate-300">Extract content from any public webpage, blog post, or article.</p>
+</div>
+</div>
+</button>
+<button class="w-full text-left group bg-[var(--card-dark)] rounded-2xl p-5 border border-[var(--border-color)] relative transition-all duration-300 indigo-glow-border active:scale-[0.98]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center shrink-0 border border-indigo-500/20 group-hover:bg-indigo-500/20 transition-colors">
+<span class="material-symbols-outlined text-indigo-400 text-[28px] group-hover:scale-110 transition-transform">picture_as_pdf</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-lg font-semibold text-white group-hover:text-indigo-300 transition-colors">PDF Document</h3>
+<span class="bg-[var(--badge-popular-bg)] text-[var(--badge-popular-text)] text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide shadow-sm shadow-indigo-900/50">Popular</span>
+</div>
+<p class="text-sm text-[var(--text-secondary)] leading-snug group-hover:text-slate-300">Upload reports, whitepapers, or any PDF file for analysis.</p>
+</div>
+</div>
+</button>
+<button class="w-full text-left group bg-[var(--card-dark)] rounded-2xl p-5 border border-[var(--border-color)] relative transition-all duration-300 indigo-glow-border active:scale-[0.98]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0 border border-purple-500/20 group-hover:bg-purple-500/20 transition-colors">
+<span class="material-symbols-outlined text-purple-400 text-[28px] group-hover:scale-110 transition-transform">text_snippet</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-lg font-semibold text-white group-hover:text-purple-300 transition-colors">Plain Text</h3>
+</div>
+<p class="text-sm text-[var(--text-secondary)] leading-snug group-hover:text-slate-300">Paste text directly from your clipboard or notes app.</p>
+</div>
+</div>
+</button>
+<button class="w-full text-left group bg-[var(--card-dark)] rounded-2xl p-5 border border-[var(--border-color)] relative transition-all duration-300 indigo-glow-border active:scale-[0.98]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-[var(--badge-beta-bg)] flex items-center justify-center shrink-0 border border-[var(--badge-beta-border)] group-hover:bg-[#363a66] transition-colors">
+<span class="material-symbols-outlined text-[#a5b4fc] text-[28px] group-hover:scale-110 transition-transform">table_view</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-lg font-semibold text-white group-hover:text-indigo-200 transition-colors">Notion Database</h3>
+<span class="bg-[var(--badge-beta-bg)] text-indigo-200 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wide border border-[var(--badge-beta-border)]">Beta</span>
+</div>
+<p class="text-sm text-[var(--text-secondary)] leading-snug group-hover:text-slate-300">Connect a database page to sync content automatically.</p>
+</div>
+</div>
+</button>
+<button class="w-full text-left group bg-[var(--card-dark)] rounded-2xl p-5 border border-[var(--border-color)] relative transition-all duration-300 indigo-glow-border active:scale-[0.98]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-sky-500/10 flex items-center justify-center shrink-0 border border-sky-500/20 group-hover:bg-sky-500/20 transition-colors">
+<span class="material-symbols-outlined text-sky-400 text-[28px] group-hover:scale-110 transition-transform">rss_feed</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-lg font-semibold text-white group-hover:text-sky-300 transition-colors">RSS Feed</h3>
+</div>
+<p class="text-sm text-[var(--text-secondary)] leading-snug group-hover:text-slate-300">Monitor a feed for new articles to summarize.</p>
+</div>
+</div>
+</button>
+<button class="w-full text-left group bg-[var(--card-dark)] rounded-2xl p-5 border border-[var(--border-color)] relative transition-all duration-300 indigo-glow-border active:scale-[0.98]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center shrink-0 border border-violet-500/20 group-hover:bg-violet-500/20 transition-colors">
+<span class="material-symbols-outlined text-violet-400 text-[28px] group-hover:scale-110 transition-transform">smart_toy</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-lg font-semibold text-white group-hover:text-violet-300 transition-colors">Twitter Thread</h3>
+</div>
+<p class="text-sm text-[var(--text-secondary)] leading-snug group-hover:text-slate-300">Import a thread to repurpose into long-form content.</p>
+</div>
+</div>
+</button>
+</div>
+</main>
+</body></html>

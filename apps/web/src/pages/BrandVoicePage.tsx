@@ -345,7 +345,7 @@ export function BrandVoicePage() {
     <div className="max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Brand Voice</h1>
+          <h1 className="text-3xl font-bold font-display text-neutral-900 dark:text-white">Brand Voice</h1>
           <p className="text-neutral-500 mt-1">Define how your AI writes — archetype, tone, and style</p>
         </div>
       </div>
@@ -353,18 +353,18 @@ export function BrandVoicePage() {
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         {/* Sidebar: profile list */}
         <div className="lg:col-span-1">
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
-            <div className="px-4 py-3 border-b border-neutral-200 dark:border-neutral-700 flex items-center justify-between">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 overflow-hidden">
+            <div className="px-4 py-3 border-b border-neutral-200 dark:border-white/10 flex items-center justify-between">
               <h2 className="font-semibold text-sm text-neutral-700 dark:text-neutral-300">Voice Profiles</h2>
               <button
                 onClick={handleNewProfile}
                 aria-label="New voice profile"
-                className="p-1 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded transition-colors"
+                className="p-1 hover:bg-neutral-100 dark:hover:bg-white/5 rounded transition-colors"
               >
                 <Plus className="w-4 h-4 text-neutral-500" />
               </button>
             </div>
-            <div className="divide-y divide-neutral-100 dark:divide-neutral-700">
+            <div className="divide-y divide-neutral-100 dark:divide-white/5">
               {profiles.map(p => (
                 <button
                   key={p.id}
@@ -373,7 +373,7 @@ export function BrandVoicePage() {
                     'w-full flex items-center gap-3 px-4 py-3 text-left transition-colors',
                     selectedId === p.id
                       ? 'bg-primary-50 dark:bg-primary-900/20'
-                      : 'hover:bg-neutral-50 dark:hover:bg-neutral-700/50'
+                      : 'hover:bg-neutral-50 dark:hover:bg-white/5'
                   )}
                 >
                   <div className={clsx(
@@ -407,7 +407,7 @@ export function BrandVoicePage() {
         {/* Main editor */}
         <div className="lg:col-span-3 space-y-6">
           {/* Basic info */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
             <h2 className="font-semibold text-neutral-900 dark:text-white mb-4">Profile Info</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
@@ -418,7 +418,7 @@ export function BrandVoicePage() {
                   type="text"
                   value={name}
                   onChange={e => setName(e.target.value)}
-                  className="w-full px-3 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                  className="w-full px-3 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg bg-white dark:bg-background-dark text-neutral-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
                   placeholder="e.g. Main Brand Voice"
                 />
               </div>
@@ -430,7 +430,7 @@ export function BrandVoicePage() {
                   type="text"
                   value={description}
                   onChange={e => setDescription(e.target.value)}
-                  className="w-full px-3 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                  className="w-full px-3 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg bg-white dark:bg-background-dark text-neutral-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
                   placeholder="Brief description (optional)"
                 />
               </div>
@@ -438,7 +438,7 @@ export function BrandVoicePage() {
           </div>
 
           {/* Archetype picker */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
             <h2 className="font-semibold text-neutral-900 dark:text-white mb-1">Archetype</h2>
             <p className="text-sm text-neutral-500 mb-4">Select an archetype to pre-fill slider positions, then customize.</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3">
@@ -453,7 +453,7 @@ export function BrandVoicePage() {
                       'flex flex-col items-center gap-2 p-4 rounded-xl border-2 text-center transition-all',
                       isSelected
                         ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                        : 'border-neutral-200 dark:border-neutral-700 hover:border-primary-300 dark:hover:border-primary-700 hover:bg-neutral-50 dark:hover:bg-neutral-700/50'
+                        : 'border-neutral-200 dark:border-white/10 hover:border-primary-300 dark:hover:border-primary-700 hover:bg-neutral-50 dark:hover:bg-white/5'
                     )}
                   >
                     <div className={clsx(
@@ -475,7 +475,7 @@ export function BrandVoicePage() {
           </div>
 
           {/* Sliders */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
             <h2 className="font-semibold text-neutral-900 dark:text-white mb-1">Tone Sliders</h2>
             <p className="text-sm text-neutral-500 mb-5">Fine-tune each dimension of your brand voice (0–100).</p>
             <div className="space-y-6">
@@ -508,7 +508,7 @@ export function BrandVoicePage() {
           </div>
 
           {/* Interactive Playground */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
             <div className="flex items-center gap-2 mb-1">
               <Wand2 className="w-4 h-4 text-primary-500" />
               <h2 className="font-semibold text-neutral-900 dark:text-white">Voice Playground</h2>
@@ -528,7 +528,7 @@ export function BrandVoicePage() {
                   disabled={!archetype}
                   rows={6}
                   placeholder="Paste a paragraph to preview..."
-                  className="w-full p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg text-sm resize-none outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full p-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg text-sm resize-none outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
               <div>
@@ -538,7 +538,7 @@ export function BrandVoicePage() {
                     <div className="h-3 w-3 animate-spin rounded-full border-2 border-primary-500 border-t-transparent" />
                   )}
                 </div>
-                <div className="h-[144px] p-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg text-sm overflow-y-auto">
+                <div className="h-[144px] p-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg text-sm overflow-y-auto">
                   {playgroundResult ? (
                     <p className="text-neutral-700 dark:text-neutral-300 whitespace-pre-wrap">{playgroundResult}</p>
                   ) : (
@@ -557,7 +557,7 @@ export function BrandVoicePage() {
               <button
                 onClick={handleSave}
                 disabled={saving || !name.trim()}
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white font-medium rounded-lg hover:bg-primary-600 transition-colors disabled:opacity-50"
+                className="inline-flex items-center gap-2 px-5 py-2.5 btn-primary-gradient text-sm disabled:opacity-50"
               >
                 <Save className="w-4 h-4" />
                 {saving ? 'Saving...' : selectedId ? 'Save Changes' : 'Create Profile'}
@@ -566,7 +566,7 @@ export function BrandVoicePage() {
               {selectedId && (
                 <button
                   onClick={handleTrain}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-600 transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-100 dark:bg-white/5 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg border border-neutral-200 dark:border-white/10 hover:bg-neutral-200 dark:hover:bg-white/10 transition-colors"
                 >
                   <RefreshCw className="w-4 h-4" />
                   Train Voice Model
@@ -577,7 +577,7 @@ export function BrandVoicePage() {
                 <button
                   onClick={handleGenerateStyleGuide}
                   disabled={generatingGuide}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-600 transition-colors disabled:opacity-50"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-100 dark:bg-white/5 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg border border-neutral-200 dark:border-white/10 hover:bg-neutral-200 dark:hover:bg-white/10 transition-colors disabled:opacity-50"
                 >
                   <FileText className="w-4 h-4" />
                   {generatingGuide ? 'Generating...' : 'Style Guide'}

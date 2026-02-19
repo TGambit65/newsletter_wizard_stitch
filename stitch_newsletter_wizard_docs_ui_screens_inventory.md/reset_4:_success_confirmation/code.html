@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reset 4: Success Confirmation</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+            extend: {
+                colors: {
+                    "primary": "#330df2",
+                    "background-light": "#f6f5f8",
+                    "background-dark": "#131022",
+                },
+                fontFamily: {
+                    "display": ["Space Grotesk"]
+                },
+                borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+            },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .text-glow {
+                text-shadow: 0 0 20px rgba(51, 13, 242, 0.5);
+            }
+            .icon-glow {
+                box-shadow: 0 0 40px rgba(51, 13, 242, 0.4);
+            }
+            /* Custom animation for the checkmark */
+            @keyframes check-scale {
+                0% { transform: scale(0); opacity: 0; }
+                60% { transform: scale(1.2); opacity: 1; }
+                100% { transform: scale(1); opacity: 1; }
+            }
+            .animate-check {
+                animation: check-scale 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            }
+            
+            @keyframes fade-up {
+                0% { transform: translateY(20px); opacity: 0; }
+                100% { transform: translateY(0); opacity: 1; }
+            }
+            .animate-fade-up {
+                animation: fade-up 0.6s ease-out 0.3s forwards;
+                opacity: 0;
+            }
+
+            @keyframes confetti-fall {
+                0% { transform: translateY(-10px) rotate(0deg); opacity: 0; }
+                20% { opacity: 1; }
+                100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+            }
+            .confetti {
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                background-color: #330df2;
+                animation: confetti-fall 3s ease-in-out infinite;
+                opacity: 0; 
+            }
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex flex-col relative overflow-hidden text-slate-900 dark:text-white">
+<!-- Decorative Background Elements -->
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+<!-- Abstract glowing orb top left -->
+<div class="absolute -top-20 -left-20 w-80 h-80 bg-primary/20 rounded-full blur-[100px]"></div>
+<!-- Abstract glowing orb bottom right -->
+<div class="absolute -bottom-20 -right-20 w-80 h-80 bg-primary/10 rounded-full blur-[100px]"></div>
+<!-- Subtle Grid Pattern -->
+<div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 mix-blend-overlay"></div>
+</div>
+<!-- Main Content Container -->
+<main class="relative z-10 flex-1 flex flex-col justify-center items-center px-6 py-8 max-w-md mx-auto w-full h-full">
+<!-- Confetti Elements (Visual decoration only) -->
+<div class="absolute top-10 left-10 w-2 h-4 bg-primary/40 rotate-45 rounded-sm animate-[fade-up_2s_infinite]"></div>
+<div class="absolute top-20 right-10 w-3 h-3 bg-purple-500/40 rounded-full animate-[fade-up_2.5s_infinite]"></div>
+<div class="absolute bottom-40 left-8 w-2 h-2 bg-blue-400/40 rotate-12 animate-[fade-up_3s_infinite]"></div>
+<!-- Hero Section: Animated Checkmark -->
+<div class="mb-10 relative">
+<!-- Glow background -->
+<div class="absolute inset-0 bg-primary/30 blur-[40px] rounded-full scale-150"></div>
+<!-- Circle Container -->
+<div class="w-32 h-32 rounded-full bg-gradient-to-tr from-primary to-[#5b3af9] flex items-center justify-center relative shadow-[0_10px_40px_rgba(51,13,242,0.4)] animate-check ring-4 ring-white/10">
+<!-- Inner Checkmark Icon -->
+<span class="material-icons-round text-white text-6xl font-bold">check</span>
+</div>
+<!-- Floating confetti particles near icon -->
+<div class="absolute -top-4 -right-2 w-3 h-3 bg-white/80 rounded-full blur-[1px] animate-pulse"></div>
+<div class="absolute bottom-2 -left-4 w-2 h-2 bg-purple-300/80 rounded-full blur-[1px] animate-pulse delay-75"></div>
+</div>
+<!-- Text Content -->
+<div class="text-center space-y-3 animate-fade-up">
+<h1 class="text-4xl font-bold tracking-tight text-white drop-shadow-sm">
+                All Set!
+            </h1>
+<p class="text-slate-400 text-lg font-normal leading-relaxed max-w-[280px] mx-auto">
+                Your password has been successfully updated.
+            </p>
+</div>
+<!-- Spacer -->
+<div class="flex-grow"></div>
+<!-- Bottom Actions -->
+<div class="w-full mt-12 animate-fade-up" style="animation-delay: 0.5s">
+<button class="w-full group relative flex items-center justify-center gap-3 py-4 px-6 bg-gradient-to-r from-primary to-[#6333f8] hover:to-[#5b3af9] text-white font-semibold text-lg rounded-full shadow-[0_8px_20px_rgba(51,13,242,0.3)] hover:shadow-[0_12px_28px_rgba(51,13,242,0.5)] transition-all duration-300 transform hover:-translate-y-1">
+<span>Sign In</span>
+<span class="material-icons-round text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<!-- Secondary/Help Link -->
+<p class="mt-6 text-center text-sm text-slate-500">
+                Having trouble? <a class="text-primary hover:text-white transition-colors underline decoration-primary/30 underline-offset-4" href="#">Contact Support</a>
+</p>
+</div>
+</main>
+<!-- Bottom decorative accent -->
+<div class="fixed bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+</body></html>

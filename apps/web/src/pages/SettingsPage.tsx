@@ -160,17 +160,17 @@ export function SettingsPage() {
                 'w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors',
                 activeTab === tab.id
                   ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700'
+                  : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-white/5'
               )}
             >
               <tab.icon className="w-5 h-5" />
               <span className="font-medium">{tab.name}</span>
             </button>
           ))}
-          <div className="pt-2 mt-2 border-t border-neutral-200 dark:border-neutral-700">
+          <div className="pt-2 mt-2 border-t border-neutral-200 dark:border-white/10">
             <Link
               to="/partner"
-              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-white/5"
             >
               <Building2 className="w-5 h-5" />
               <span className="font-medium">Partner Portal</span>

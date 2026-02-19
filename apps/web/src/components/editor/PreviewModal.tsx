@@ -128,11 +128,11 @@ export function PreviewModal({ isOpen, onClose, html, subjectLine, preheader }: 
   return (
     <div className="fixed inset-0 bg-black/60 flex flex-col z-50">
       {/* Modal toolbar */}
-      <div className="flex items-center justify-between gap-4 px-4 py-3 bg-white dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 flex-shrink-0">
+      <div className="flex items-center justify-between gap-4 px-4 py-3 bg-white dark:bg-surface-dark border-b border-neutral-200 dark:border-white/10 flex-shrink-0">
         <h2 className="font-semibold text-neutral-900 dark:text-white text-sm">Email Preview</h2>
 
         {/* Device selector */}
-        <div className="flex items-center gap-1 bg-neutral-100 dark:bg-neutral-900 rounded-lg p-1">
+        <div className="flex items-center gap-1 bg-neutral-100 dark:bg-background-dark rounded-lg p-1">
           {([
             { id: 'desktop' as PreviewDevice, icon: Monitor, label: 'Desktop (650px)' },
             { id: 'tablet' as PreviewDevice, icon: Tablet, label: 'Tablet (480px)' },
@@ -179,7 +179,7 @@ export function PreviewModal({ isOpen, onClose, html, subjectLine, preheader }: 
         <button
           onClick={handleClose}
           aria-label="Close preview"
-          className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+          className="p-2 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
         >
           <X className="w-5 h-5 text-neutral-500" />
         </button>
@@ -187,7 +187,7 @@ export function PreviewModal({ isOpen, onClose, html, subjectLine, preheader }: 
 
       {/* Quality check panel */}
       {showQualityPanel && quality && (
-        <div className="flex-shrink-0 bg-white dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 px-4 py-3">
+        <div className="flex-shrink-0 bg-white dark:bg-surface-dark border-b border-neutral-200 dark:border-white/10 px-4 py-3">
           <div className="max-w-4xl mx-auto flex flex-wrap items-center gap-4">
             <div
               className={clsx(
@@ -277,10 +277,10 @@ export function PreviewModal({ isOpen, onClose, html, subjectLine, preheader }: 
       )}
 
       {/* Preview content — scrollable */}
-      <div className="flex-1 overflow-auto bg-neutral-100 dark:bg-neutral-900 py-6">
+      <div className="flex-1 overflow-auto bg-neutral-100 dark:bg-background-dark py-6">
         <div className={clsx('mx-auto transition-all duration-300', DEVICE_WIDTHS[previewDevice])}>
           {/* Email chrome / inbox header */}
-          <div className="bg-white dark:bg-neutral-800 rounded-t-xl border border-neutral-200 dark:border-neutral-700 border-b-0 p-4">
+          <div className="bg-white dark:bg-surface-dark rounded-t-xl border border-neutral-200 dark:border-white/10 border-b-0 p-4">
             <div className="flex items-start gap-3">
               <div className="w-9 h-9 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0 text-primary-600 dark:text-primary-400 font-semibold text-sm">
                 N
@@ -301,7 +301,7 @@ export function PreviewModal({ isOpen, onClose, html, subjectLine, preheader }: 
           </div>
 
           {/* Email body */}
-          <div className="bg-white dark:bg-neutral-800 rounded-b-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+          <div className="bg-white dark:bg-surface-dark rounded-b-xl border border-neutral-200 dark:border-white/10 overflow-hidden">
             <div className="p-6">
               {/* HTML is sanitized via DOMPurify before rendering */}
               <div
@@ -310,7 +310,7 @@ export function PreviewModal({ isOpen, onClose, html, subjectLine, preheader }: 
                 dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}
               />
             </div>
-            <div className="px-6 py-4 border-t border-neutral-100 dark:border-neutral-700 text-center">
+            <div className="px-6 py-4 border-t border-neutral-100 dark:border-white/10 text-center">
               <p className="text-xs text-neutral-400">
                 You received this email because you subscribed.{' '}
                 <span className="underline cursor-default">Unsubscribe</span>

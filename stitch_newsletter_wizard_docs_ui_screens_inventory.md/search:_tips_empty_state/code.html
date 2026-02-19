@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Search: Tips Empty State</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #330df2;
+            border-radius: 4px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white h-screen flex justify-center overflow-hidden">
+<!-- Mobile Container -->
+<div class="w-full max-w-md h-full flex flex-col bg-background-light dark:bg-background-dark shadow-2xl relative">
+<!-- Status Bar Area (Mock) -->
+<div class="h-12 w-full flex items-center justify-between px-6 pt-2 z-10">
+<span class="text-sm font-semibold">9:41</span>
+<div class="flex items-center gap-1.5">
+<div class="w-4 h-4 rounded-full bg-current opacity-20"></div>
+<div class="w-4 h-4 rounded-full bg-current opacity-20"></div>
+<div class="w-6 h-3 rounded-full border border-current opacity-40"></div>
+</div>
+</div>
+<!-- Header & Search -->
+<header class="px-6 pt-2 pb-6 flex flex-col gap-4">
+<div class="flex items-center justify-between">
+<h1 class="text-xl font-bold tracking-tight">Knowledge Base</h1>
+<button class="p-2 rounded-full hover:bg-white/5 transition-colors">
+<span class="material-icons text-gray-500 dark:text-gray-400">notifications</span>
+</button>
+</div>
+<!-- Active Search Input -->
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+<span class="material-icons text-primary text-xl">search</span>
+</div>
+<input class="block w-full pl-10 pr-10 py-3.5 bg-white dark:bg-[#1c1833] border-none rounded-xl text-sm font-medium placeholder-gray-400 focus:ring-2 focus:ring-primary focus:bg-white dark:focus:bg-[#252042] transition-all shadow-sm" placeholder="Search articles, guides..." type="text" value="Monetization strategies 2024"/>
+<button class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+<span class="material-icons text-gray-400 hover:text-white transition-colors text-lg">cancel</span>
+</button>
+</div>
+<!-- Filter Tags (Disabled state visual) -->
+<div class="flex gap-2 overflow-x-auto pb-1 opacity-50 pointer-events-none select-none scrollbar-hide">
+<span class="px-3 py-1.5 rounded-lg bg-primary/20 text-primary text-xs font-semibold whitespace-nowrap border border-primary/30">All Sources</span>
+<span class="px-3 py-1.5 rounded-lg bg-white dark:bg-[#1c1833] text-gray-500 text-xs font-medium whitespace-nowrap border border-gray-200 dark:border-white/5">Guides</span>
+<span class="px-3 py-1.5 rounded-lg bg-white dark:bg-[#1c1833] text-gray-500 text-xs font-medium whitespace-nowrap border border-gray-200 dark:border-white/5">Video Tutorials</span>
+</div>
+</header>
+<!-- Main Content: Empty State -->
+<main class="flex-1 flex flex-col items-center px-6 overflow-y-auto pb-24">
+<!-- Illustration -->
+<div class="mt-8 mb-6 relative w-32 h-32 flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/20 rounded-full blur-2xl animate-pulse"></div>
+<div class="relative bg-gradient-to-br from-primary/10 to-transparent p-6 rounded-full border border-white/5">
+<img alt="Abstract magnifying glass searching in dark space" class="w-16 h-16 object-cover opacity-80 mix-blend-screen rounded-full" data-alt="Abstract magnifying glass searching in dark space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoqwnKERA8BgzoXgnw11o28A8UteOTOMocONqKkOCFDgzvgZbE2QxCaTiSz564m8EjMTEULSXt-WEp9jjvAwYFUc1a-Fgfv0U8PxgsFDKWMK2No-lZKmqHRtLVIr2nIzHqjw05sqIW2TNm7QnQetJ-XLP455txrlWXjtO3Y56UK1G8kf3jvqv51V3awe_sODHVir790jH36zMOALtdGkKsISW_wVoh1OSSKzvfn1WOZXmrUA93VemFj8A0jpEPkBIxGHugJDS_vKw"/>
+</div>
+<span class="material-icons absolute top-0 right-0 text-3xl text-primary animate-bounce" style="animation-duration: 3s;">question_mark</span>
+</div>
+<!-- Message -->
+<div class="text-center mb-8">
+<h2 class="text-2xl font-bold mb-2 text-gray-900 dark:text-white">No results found</h2>
+<p class="text-gray-500 dark:text-gray-400 text-sm leading-relaxed max-w-[260px] mx-auto">
+                    We couldn't find anything matching <span class="text-primary font-medium">"Monetization strategies 2024"</span>.
+                </p>
+</div>
+<!-- Search Tips Card -->
+<div class="w-full bg-white dark:bg-[#1c1833] rounded-xl p-5 shadow-lg border border-gray-100 dark:border-white/5">
+<h3 class="text-sm font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+<span class="material-icons text-primary text-sm">lightbulb</span>
+                    Try these search tips:
+                </h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<div class="w-5 h-5 mt-0.5 rounded bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-icons text-primary text-[10px]">spellcheck</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-gray-800 dark:text-gray-200">Check for typos</p>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Simple spelling errors can hide results.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<div class="w-5 h-5 mt-0.5 rounded bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-icons text-primary text-[10px]">travel_explore</span>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium text-gray-800 dark:text-gray-200">Try broader keywords</p>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Use "Growth" instead of "Viral Growth".</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<div class="w-5 h-5 mt-0.5 rounded bg-primary/10 flex items-center justify-center shrink-0">
+<span class="material-icons text-primary text-[10px]">filter_alt_off</span>
+</div>
+<div class="flex-1 cursor-pointer group">
+<div class="flex items-center justify-between">
+<p class="text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-primary transition-colors">Clear active filters</p>
+<span class="material-icons text-gray-400 text-xs opacity-0 group-hover:opacity-100 transition-opacity">chevron_right</span>
+</div>
+<p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Search across all categories.</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Support CTA -->
+<div class="mt-8 w-full">
+<button class="w-full py-4 px-6 bg-primary hover:bg-primary/90 text-white rounded-xl shadow-lg shadow-primary/25 flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
+<span class="material-icons text-xl">chat_bubble_outline</span>
+<span class="font-bold">Chat with Support</span>
+</button>
+<p class="text-center text-xs text-gray-500 mt-3">Usually replies in under 5 minutes</p>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="h-20 bg-white/80 dark:bg-[#131022]/90 backdrop-blur-md border-t border-gray-200 dark:border-white/5 flex justify-around items-center px-2 pb-2 absolute bottom-0 w-full z-20">
+<a class="flex flex-col items-center justify-center w-16 gap-1 group" href="#">
+<span class="material-icons text-gray-400 group-hover:text-primary transition-colors text-2xl">dashboard</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center w-16 gap-1 group" href="#">
+<span class="material-icons text-primary text-2xl">library_books</span>
+<span class="text-[10px] font-medium text-primary">Wiki</span>
+</a>
+<div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center -mt-6 shadow-lg shadow-primary/40 cursor-pointer hover:bg-primary/90 transition-colors border-4 border-background-light dark:border-background-dark">
+<span class="material-icons text-white text-2xl">add</span>
+</div>
+<a class="flex flex-col items-center justify-center w-16 gap-1 group" href="#">
+<span class="material-icons text-gray-400 group-hover:text-primary transition-colors text-2xl">forum</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary">Community</span>
+</a>
+<a class="flex flex-col items-center justify-center w-16 gap-1 group" href="#">
+<span class="material-icons text-gray-400 group-hover:text-primary transition-colors text-2xl">person</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary">Profile</span>
+</a>
+</nav>
+</div>
+</body></html>

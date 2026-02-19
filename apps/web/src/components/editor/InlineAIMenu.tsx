@@ -88,7 +88,7 @@ export function InlineAIMenu({
       {/* Menu */}
       <div
         ref={menuRef}
-        className="fixed z-50 bg-white dark:bg-neutral-800 rounded-xl shadow-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+        className="fixed z-50 bg-white dark:bg-surface-dark rounded-xl shadow-xl border border-neutral-200 dark:border-white/10 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
         style={{
           top: adjustedPosition?.top ?? position.top,
           left: adjustedPosition?.left ?? position.left,
@@ -96,21 +96,21 @@ export function InlineAIMenu({
         }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-3 py-2 border-b border-neutral-100 dark:border-neutral-700 bg-primary-50/50 dark:bg-primary-900/10">
+        <div className="flex items-center justify-between px-3 py-2 border-b border-neutral-100 dark:border-white/10 bg-primary-50/50 dark:bg-primary-900/10">
           <span className="text-xs font-medium text-primary-600 flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5" />
             Improve with AI
           </span>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded"
+            className="p-1 hover:bg-neutral-200 dark:hover:bg-white/5 rounded"
           >
             <X className="w-3.5 h-3.5 text-neutral-500" />
           </button>
         </div>
 
         {/* Selected text preview */}
-        <div className="px-3 py-2 border-b border-neutral-100 dark:border-neutral-700">
+        <div className="px-3 py-2 border-b border-neutral-100 dark:border-white/10">
           <p className="text-xs text-neutral-500 line-clamp-2">
             "{selectedText.slice(0, 100)}{selectedText.length > 100 ? '...' : ''}"
           </p>
@@ -126,7 +126,7 @@ export function InlineAIMenu({
                 onClick={() => onImprove(option.value, selectedText)}
                 disabled={isProcessing}
                 className={clsx(
-                  'w-full px-3 py-2 text-left hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors flex items-start gap-3',
+                  'w-full px-3 py-2 text-left hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors flex items-start gap-3',
                   isProcessing && 'opacity-50 cursor-not-allowed'
                 )}
               >

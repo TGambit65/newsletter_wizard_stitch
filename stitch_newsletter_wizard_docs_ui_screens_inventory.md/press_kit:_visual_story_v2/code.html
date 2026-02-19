@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Press Kit: Visual Story V2</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4725f4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1e1b2e",
+                        "neon-blue": "#00f0ff",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        "glow-primary": "0 0 20px -5px rgba(71, 37, 244, 0.5)",
+                        "glow-subtle": "0 0 10px -2px rgba(71, 37, 244, 0.3)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased overflow-x-hidden">
+<div class="relative flex h-full min-h-screen w-full flex-col max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+<!-- Top Navigation -->
+<div class="sticky top-0 z-50 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 pb-2 justify-between border-b border-white/5">
+<button class="text-slate-900 dark:text-white flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_back_ios_new</span>
+</button>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Visual Story</h2>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto pb-24">
+<!-- Hero Section with Glowing Card -->
+<div class="px-4 py-6">
+<div class="group relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-glow-primary border border-primary/30">
+<!-- Glow Effect Behind -->
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/40 via-transparent to-transparent opacity-60"></div>
+<!-- Hero Image -->
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover transform transition-transform duration-700 group-hover:scale-105" data-alt="3D shiny abstract wizard mascot illustration glowing in dark environment" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA_bYJvGH-O2OlcOsIXxdkm6LZKWVs3i1elaXopS7Rfb8u6cHG7gOdNWoB7hMCQ3uj3x8pI_p2BSPXwbzrmNcldq5azQZFWAFlJCeUV0ppMPxcjBgEhrI6iV_8TqJlOLsmSaIYjACSG87YhfTGMpIyQMaTuZLe7TpQWiA8Rj0l9fjK2NnAshUhagKWuLiWkysUhCPgvcdsKTuh0SMxPMacP3ZS2_r5mlxBslYXg11nd9NhsEkMf1VScTWpuh0Ddg2MBgvWaDL8UHgI");'>
+</div>
+<!-- Content Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent flex flex-col justify-end p-6">
+<span class="inline-flex items-center gap-1 w-fit rounded-full bg-primary/20 backdrop-blur-sm px-2.5 py-0.5 text-xs font-semibold text-primary border border-primary/30 mb-2">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+                            Official Mascot
+                        </span>
+<h1 class="text-2xl font-bold text-white tracking-tight">The Wizard 3D</h1>
+<p class="text-slate-300 text-sm mt-1">Primary brand mark for marketing materials.</p>
+</div>
+</div>
+</div>
+<!-- Assets Section -->
+<div class="px-4">
+<div class="flex flex-col gap-4 mb-6">
+<div class="flex items-end justify-between">
+<div>
+<h2 class="text-xl font-bold text-slate-900 dark:text-white">App Screenshots</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm">High-fidelity screens</p>
+</div>
+<!-- Light/Dark Toggle -->
+<div class="flex h-9 items-center rounded-lg bg-slate-200 dark:bg-surface-dark p-1 border border-slate-300 dark:border-white/10">
+<label class="cursor-pointer flex items-center justify-center rounded px-3 py-1 text-xs font-medium transition-all has-[:checked]:bg-white dark:has-[:checked]:bg-primary has-[:checked]:text-primary dark:has-[:checked]:text-white has-[:checked]:shadow-sm text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[16px] mr-1">light_mode</span>
+<span class="hidden sm:inline">Light</span>
+<input class="hidden" name="mode-toggle" type="radio" value="light"/>
+</label>
+<label class="cursor-pointer flex items-center justify-center rounded px-3 py-1 text-xs font-medium transition-all has-[:checked]:bg-white dark:has-[:checked]:bg-primary has-[:checked]:text-primary dark:has-[:checked]:text-white has-[:checked]:shadow-sm text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[16px] mr-1">dark_mode</span>
+<span class="hidden sm:inline">Dark</span>
+<input checked="" class="hidden" name="mode-toggle" type="radio" value="dark"/>
+</label>
+</div>
+</div>
+</div>
+<!-- Masonry Grid -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Item 1 -->
+<div class="group relative aspect-[9/16] rounded-xl overflow-hidden border border-primary/40 bg-surface-dark shadow-glow-subtle transition-all hover:border-primary hover:shadow-glow-primary">
+<div class="absolute inset-0 bg-cover bg-top" data-alt="Mobile app dashboard interface screenshot dark mode" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAb_MijzOFQuj02J5m4NwnJ-o7NsmHKGSYo9jHp71CejlpXmyufdHF3z2CPYo7lklS3HKUxcojF6salFcs_ck_D27uSnPbLI2mY-mgqxdJV9fVVNlUpylXB84aHaoW8wrU0Etoe_QNQRfggJ7Zrzx4ruCaWOyh2M4a0JgubuYLVNimWCg2LyMtossABpSrQbin_YyAjzHupj1Nw5PbDUV8ZaOsB20BfLo9VxUVmdKin0Po6dPrLkL65B40EVDmEYi73k-wr2PB80gU");'></div>
+<div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex justify-between items-center">
+<span class="text-white text-xs font-medium">Dashboard</span>
+<button class="size-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span>
+</button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group relative aspect-[9/16] rounded-xl overflow-hidden border border-primary/40 bg-surface-dark shadow-glow-subtle transition-all hover:border-primary hover:shadow-glow-primary">
+<div class="absolute inset-0 bg-cover bg-top" data-alt="Mobile app analytics charts interface screenshot dark mode" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCGaLg7_sNMco3eEAVpQH07MzPU13rcvtEFH1YSW8G8am6BkAx50ydFij6TGKiLzZpVT8pMCrtUFb_ky0pPX547EBKRwew3FQv5M0xUnYkMy1UXCENGFnNNNfLlB32SFEEAv24YfnQ0w4wmHS2YfIjEMQy337nGHNu3ZmpM6v0Q3b7SfOfzgXwwQr_XUWSJJEqdS7pS8215vdJx3t2-0Aa3HyPQBKLud_sWoJlYCbc4GOs5VbGUawXLPKAH6OiMQbetm73knl8LOmQ");'></div>
+<div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex justify-between items-center">
+<span class="text-white text-xs font-medium">Analytics</span>
+<button class="size-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span>
+</button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group relative aspect-[9/16] rounded-xl overflow-hidden border border-primary/40 bg-surface-dark shadow-glow-subtle transition-all hover:border-primary hover:shadow-glow-primary">
+<div class="absolute inset-0 bg-cover bg-top" data-alt="Mobile app editor interface with text fields screenshot dark mode" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBMEzu5Uu3pu9hglzHGwJB9pjfSLjTYB-EUQqbRjfS1dy5RuryVIz2iAhF7TUyaHOBqf1YwtCNqKmDQM-KZrB0JsjmvPvefR1zqvsrlcjaWluLXixJRLkULposvHUaS8rkuzhiPHzSD29T3n0QZfSRXegRvwZrkm_w0wGGm1UaCygOiNNOwv3HEKqXDeHfETrSFvTGqJ2eOzuYBf-vYqv5IQXUS2l0trxi8Plc7Mj4Ih1F4l5NKTtvOpZhEij6ktLW113Bwc1ki-sQ");'></div>
+<div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex justify-between items-center">
+<span class="text-white text-xs font-medium">Editor</span>
+<button class="size-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span>
+</button>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="group relative aspect-[9/16] rounded-xl overflow-hidden border border-primary/40 bg-surface-dark shadow-glow-subtle transition-all hover:border-primary hover:shadow-glow-primary">
+<div class="absolute inset-0 bg-cover bg-top" data-alt="Mobile app user profile settings screenshot dark mode" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAPYQSs6u0Ldjd2SIimx9GyWmO5CO7wyleVhdZFEkjd2VqeVoCyRC6KYHeSBGv7GwhRjDhuqoHiGM-ILGOuNI0GITBTPD87h1HBHhN0XAnACdIy09uorpMXkI2gmttOOSHolsBBH3TgPg6VRjSC44AtTgctXjThHxhC2qt7rgd2qmQoheQiqfPlvc1UvyNBJs7BvvUn4dcNdFPc6xgWhxu1W08NsB9BBtLFG-aWbvDqCvHVqkH3nVvnal5MKZztmM4bCMoBXhnJQw0");'></div>
+<div class="absolute inset-x-0 bottom-0 p-3 bg-gradient-to-t from-black/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex justify-between items-center">
+<span class="text-white text-xs font-medium">Profile</span>
+<button class="size-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">download</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-8 mb-4">
+<div class="flex items-center justify-between py-3 border-t border-white/5">
+<div class="flex items-center gap-3">
+<div class="bg-primary/20 p-2 rounded-lg text-primary">
+<span class="material-symbols-outlined">folder_zip</span>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-white">Download All Assets</h3>
+<p class="text-xs text-slate-400">Includes .png and .svg formats</p>
+</div>
+</div>
+<button class="text-slate-300 hover:text-white transition-colors">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Footer CTA -->
+<div class="fixed bottom-0 left-0 right-0 z-40 p-4 bg-gradient-to-t from-background-dark via-background-dark/95 to-transparent pointer-events-none max-w-md mx-auto">
+<button class="w-full pointer-events-auto h-12 flex items-center justify-center gap-2 rounded-xl border border-neon-blue bg-neon-blue/10 text-neon-blue font-bold tracking-wide uppercase text-sm hover:bg-neon-blue/20 hover:shadow-[0_0_15px_rgba(0,240,255,0.3)] transition-all">
+<span class="material-symbols-outlined">mic</span>
+                Request Interview
+            </button>
+</div>
+</div>
+</body></html>

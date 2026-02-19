@@ -292,7 +292,7 @@ export function WizardPage() {
     <div className="max-w-4xl mx-auto">
       {/* Draft indicator */}
       {lastSaved && (
-        <div className="mb-4 flex items-center justify-between bg-neutral-50 dark:bg-neutral-900 rounded-lg px-4 py-2">
+        <div className="mb-4 flex items-center justify-between bg-neutral-50 dark:bg-background-dark rounded-lg px-4 py-2">
           <span className="text-sm text-neutral-500">
             Draft auto-saved at {lastSaved.toLocaleTimeString()}
           </span>
@@ -339,7 +339,7 @@ export function WizardPage() {
 
       {/* Step 1: Audience Analysis */}
       {step === 'audience' && (
-        <div className="bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700 p-8">
+        <div className="bg-white dark:bg-surface-dark rounded-2xl border border-neutral-200 dark:border-white/10 p-8">
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-primary-50 dark:bg-primary-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Users className="w-8 h-8 text-primary-500" />
@@ -361,7 +361,7 @@ export function WizardPage() {
                   'p-4 rounded-xl border-2 text-left transition-all',
                   selectedAudience === persona.id
                     ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                    : 'border-neutral-200 dark:border-neutral-700 hover:border-primary-300'
+                    : 'border-neutral-200 dark:border-white/10 hover:border-primary-300'
                 )}
               >
                 <div className="flex items-start justify-between">
@@ -400,7 +400,7 @@ export function WizardPage() {
 
       {/* Step 2: Content Ideation */}
       {step === 'ideation' && (
-        <div className="bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700 p-8">
+        <div className="bg-white dark:bg-surface-dark rounded-2xl border border-neutral-200 dark:border-white/10 p-8">
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-primary-50 dark:bg-primary-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Lightbulb className="w-8 h-8 text-primary-500" />
@@ -415,7 +415,7 @@ export function WizardPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {/* Trending Topics */}
-            <div className="bg-neutral-50 dark:bg-neutral-900 rounded-xl p-4">
+            <div className="bg-neutral-50 dark:bg-background-dark rounded-xl p-4">
               <div className="flex items-center gap-2 mb-3">
                 <TrendingUp className="w-5 h-5 text-primary-500" />
                 <h3 className="font-medium text-neutral-900 dark:text-white">Trending Topics</h3>
@@ -438,7 +438,7 @@ export function WizardPage() {
             </div>
 
             {/* Content Gaps */}
-            <div className="bg-neutral-50 dark:bg-neutral-900 rounded-xl p-4">
+            <div className="bg-neutral-50 dark:bg-background-dark rounded-xl p-4">
               <div className="flex items-center gap-2 mb-3">
                 <Target className="w-5 h-5 text-warning" />
                 <h3 className="font-medium text-neutral-900 dark:text-white">Content Gaps</h3>
@@ -452,7 +452,7 @@ export function WizardPage() {
                       setCustomTopic(gap);
                       setSelectedTopic(null);
                     }}
-                    className="px-3 py-1.5 text-sm bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full hover:border-primary-500 transition-colors"
+                    className="px-3 py-1.5 text-sm bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/10 rounded-full hover:border-primary-500 transition-colors"
                   >
                     {gap}
                   </button>
@@ -469,7 +469,7 @@ export function WizardPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               {['Key Takeaways', 'Expert Quote', 'Data Highlight', 'Call to Action'].map((block) => (
-                <div key={block} className="px-3 py-2 bg-white dark:bg-neutral-800 rounded-lg text-sm text-center text-neutral-700 dark:text-neutral-300">
+                <div key={block} className="px-3 py-2 bg-white dark:bg-surface-dark rounded-lg text-sm text-center text-neutral-700 dark:text-neutral-300">
                   {block}
                 </div>
               ))}
@@ -479,7 +479,7 @@ export function WizardPage() {
           <div className="flex justify-between">
             <button
               onClick={() => setStep('audience')}
-              className="inline-flex items-center gap-2 px-4 py-2.5 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2.5 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-white/5 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               Back
@@ -497,7 +497,7 @@ export function WizardPage() {
 
       {/* Step 3: Topic Selection */}
       {step === 'topic' && (
-        <div className="bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700 p-8">
+        <div className="bg-white dark:bg-surface-dark rounded-2xl border border-neutral-200 dark:border-white/10 p-8">
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-primary-50 dark:bg-primary-900/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Wand2 className="w-8 h-8 text-primary-500" />
@@ -511,7 +511,7 @@ export function WizardPage() {
           </div>
 
           {sources.length === 0 ? (
-            <div className="text-center py-8 bg-neutral-50 dark:bg-neutral-900 rounded-xl mb-6">
+            <div className="text-center py-8 bg-neutral-50 dark:bg-background-dark rounded-xl mb-6">
               <Database className="w-12 h-12 text-neutral-300 mx-auto mb-4" />
               <p className="text-neutral-500 mb-4">Add sources to your knowledge base first</p>
               <button
@@ -532,7 +532,7 @@ export function WizardPage() {
                   <select
                     value={selectedVoice || ''}
                     onChange={(e) => setSelectedVoice(e.target.value || null)}
-                    className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
+                    className="w-full px-4 py-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
                   >
                     <option value="">Default Voice</option>
                     {voiceProfiles.map((v) => (
@@ -555,7 +555,7 @@ export function WizardPage() {
                       'w-full p-4 rounded-xl border-2 text-left transition-all',
                       selectedTopic?.id === topic.id
                         ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                        : 'border-neutral-200 dark:border-neutral-700 hover:border-primary-300'
+                        : 'border-neutral-200 dark:border-white/10 hover:border-primary-300'
                     )}
                   >
                     <div className="flex items-start gap-3">
@@ -574,10 +574,10 @@ export function WizardPage() {
 
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-neutral-200 dark:border-neutral-700" />
+                  <div className="w-full border-t border-neutral-200 dark:border-white/10" />
                 </div>
                 <div className="relative flex justify-center">
-                  <span className="bg-white dark:bg-neutral-800 px-4 text-sm text-neutral-500">or</span>
+                  <span className="bg-white dark:bg-surface-dark px-4 text-sm text-neutral-500">or</span>
                 </div>
               </div>
 
@@ -590,7 +590,7 @@ export function WizardPage() {
                     setSelectedTopic(null);
                   }}
                   placeholder="Enter your own topic..."
-                  className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                  className="w-full px-4 py-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
                 />
               </div>
             </>
@@ -599,7 +599,7 @@ export function WizardPage() {
           <div className="flex justify-between mt-8">
             <button
               onClick={() => setStep('ideation')}
-              className="inline-flex items-center gap-2 px-4 py-2.5 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2.5 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-white/5 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               Back
@@ -627,8 +627,8 @@ export function WizardPage() {
 
       {/* Step 4: Editor */}
       {step === 'editor' && (
-        <div className="bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
-          <div className="p-6 border-b border-neutral-200 dark:border-neutral-700">
+        <div className="bg-white dark:bg-surface-dark rounded-2xl border border-neutral-200 dark:border-white/10 overflow-hidden">
+          <div className="p-6 border-b border-neutral-200 dark:border-white/10">
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
               Subject Line
             </label>
@@ -636,7 +636,7 @@ export function WizardPage() {
               type="text"
               value={subjectLine}
               onChange={(e) => setSubjectLine(e.target.value)}
-              className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-lg"
+              className="w-full px-4 py-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none text-lg"
             />
           </div>
 
@@ -648,14 +648,14 @@ export function WizardPage() {
               value={generatedContent}
               onChange={(e) => setGeneratedContent(e.target.value)}
               rows={20}
-              className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none font-mono text-sm resize-none"
+              className="w-full px-4 py-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none font-mono text-sm resize-none"
             />
           </div>
 
-          <div className="flex justify-between p-6 border-t border-neutral-200 dark:border-neutral-700">
+          <div className="flex justify-between p-6 border-t border-neutral-200 dark:border-white/10">
             <button
               onClick={() => setStep('topic')}
-              className="inline-flex items-center gap-2 px-4 py-2.5 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2.5 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-white/5 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               Back
@@ -673,7 +673,7 @@ export function WizardPage() {
 
       {/* Step 5: Send */}
       {step === 'send' && (
-        <div className="bg-white dark:bg-neutral-800 rounded-2xl border border-neutral-200 dark:border-neutral-700 p-8">
+        <div className="bg-white dark:bg-surface-dark rounded-2xl border border-neutral-200 dark:border-white/10 p-8">
           <div className="text-center mb-8">
             <div className="w-16 h-16 bg-success/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Send className="w-8 h-8 text-success" />
@@ -687,7 +687,7 @@ export function WizardPage() {
           </div>
 
           {/* Audience summary */}
-          <div className="bg-neutral-50 dark:bg-neutral-900 rounded-xl p-4 mb-4">
+          <div className="bg-neutral-50 dark:bg-background-dark rounded-xl p-4 mb-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Users className="w-5 h-5 text-neutral-500" />
@@ -700,7 +700,7 @@ export function WizardPage() {
           </div>
 
           {/* Preview */}
-          <div className="bg-neutral-50 dark:bg-neutral-900 rounded-xl p-6 mb-6">
+          <div className="bg-neutral-50 dark:bg-background-dark rounded-xl p-6 mb-6">
             <div className="mb-4">
               <span className="text-xs text-neutral-500">Subject:</span>
               <p className="font-medium text-neutral-900 dark:text-white">{subjectLine}</p>
@@ -713,7 +713,7 @@ export function WizardPage() {
           <div className="flex justify-between">
             <button
               onClick={() => setStep('editor')}
-              className="inline-flex items-center gap-2 px-4 py-2.5 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2.5 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-white/5 transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
               Back

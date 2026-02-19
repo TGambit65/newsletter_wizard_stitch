@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Analytics: Rocket Launch V3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom glow animation for the rocket background */
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px 0px rgba(51, 13, 242, 0.2); }
+            50% { box-shadow: 0 0 40px 10px rgba(51, 13, 242, 0.4); }
+        }
+        .rocket-glow {
+            animation: pulse-glow 3s infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex items-center justify-center p-4">
+<!-- Mobile Container -->
+<div class="w-full max-w-sm h-[844px] bg-background-light dark:bg-background-dark relative overflow-hidden flex flex-col shadow-2xl rounded-xl border border-primary/10">
+<!-- Status Bar Area (Mock) -->
+<div class="h-12 w-full flex justify-between items-end px-6 pb-2 text-gray-900 dark:text-white select-none z-20">
+<span class="text-sm font-bold">9:41</span>
+<div class="flex space-x-1.5 items-center">
+<span class="material-icons-outlined text-sm">signal_cellular_alt</span>
+<span class="material-icons-outlined text-sm">wifi</span>
+<span class="material-icons-outlined text-lg">battery_full</span>
+</div>
+</div>
+<!-- Header -->
+<header class="flex items-center justify-between px-6 py-4 z-20">
+<h1 class="text-2xl font-bold text-gray-900 dark:text-white">Analytics</h1>
+<button class="p-2 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+<span class="material-icons-outlined">notifications_none</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col items-center justify-center px-8 relative z-10">
+<!-- Rocket Illustration Container -->
+<div class="relative mb-10 group">
+<!-- Outer Glow Ring -->
+<div class="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-150 animate-pulse"></div>
+<!-- Inner Circle with Glow -->
+<div class="w-40 h-40 bg-gradient-to-br from-gray-800 to-black dark:from-[#1E1B36] dark:to-background-dark rounded-full flex items-center justify-center border border-primary/30 rocket-glow relative z-10">
+<!-- Rocket Icon -->
+<span class="material-icons-outlined text-7xl text-primary drop-shadow-[0_0_15px_rgba(51,13,242,0.8)] transform -rotate-45 translate-x-1 -translate-y-1">
+                        rocket_launch
+                    </span>
+</div>
+<!-- Floating Particles (Abstract Stars) -->
+<div class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full animate-bounce delay-700 opacity-60"></div>
+<div class="absolute bottom-4 left-0 w-1.5 h-1.5 bg-white rounded-full animate-pulse delay-300 opacity-40"></div>
+<div class="absolute -top-4 left-10 w-1 h-1 bg-primary/50 rounded-full opacity-30"></div>
+</div>
+<!-- Text Content -->
+<div class="text-center space-y-4 max-w-[280px]">
+<h2 class="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">
+                    Ready for takeoff?
+                </h2>
+<p class="text-gray-500 dark:text-gray-400 text-base leading-relaxed">
+                    Once your first campaign is sent, we’ll track everything here in real-time.
+                </p>
+</div>
+<!-- Action Button -->
+<div class="mt-12 w-full">
+<button class="w-full py-4 px-6 rounded-full border border-primary/50 text-primary hover:bg-primary hover:text-white dark:hover:text-white transition-all duration-300 font-medium flex items-center justify-center gap-2 group bg-primary/5">
+<span class="material-icons-outlined text-lg group-hover:animate-pulse">insert_chart_outlined</span>
+                    View Sample Data
+                </button>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="h-24 bg-white/5 dark:bg-[#1A162E]/90 backdrop-blur-lg border-t border-white/5 dark:border-primary/10 flex justify-between items-start px-8 pt-4 pb-8 z-20">
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-icons-outlined text-2xl text-gray-400 group-hover:text-primary transition-colors">dashboard</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-icons-outlined text-2xl text-gray-400 group-hover:text-primary transition-colors">send</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Campaigns</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="relative">
+<span class="material-icons-outlined text-2xl text-primary drop-shadow-[0_0_8px_rgba(51,13,242,0.6)]">analytics</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></span>
+</div>
+<span class="text-[10px] font-medium text-primary">Analytics</span>
+</a>
+<a class="flex flex-col items-center gap-1 group" href="#">
+<span class="material-icons-outlined text-2xl text-gray-400 group-hover:text-primary transition-colors">settings</span>
+<span class="text-[10px] font-medium text-gray-400 group-hover:text-primary transition-colors">Settings</span>
+</a>
+</nav>
+<!-- Background Decor elements -->
+<div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none z-0"></div>
+<div class="absolute -bottom-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+</div>
+</body></html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>What's New: Story Format V4</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .story-gradient {
+            background: linear-gradient(0deg, rgba(19, 16, 34, 1) 0%, rgba(19, 16, 34, 0.8) 20%, rgba(19, 16, 34, 0) 60%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white overflow-hidden">
+<!-- Main Container (iOS Phone Aspect Ratio Emulation / Full Screen) -->
+<div class="relative flex h-screen w-full flex-col bg-background-dark overflow-hidden">
+<!-- Story Background (Slide 1 Active) -->
+<div class="absolute inset-0 z-0 bg-cover bg-center transition-all duration-500" data-alt="Abstract glowing purple and blue digital waves" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCWb6bnn9OYoXtv7OepnvWWivDOXB5w7L6srBOfjLMl--2I5LW90K-aQR05pu1pdQeZF9AcC9pMnVdkFyyf0bVqSl42KhjGpqrL50EmJxti5ruQmMrmhepoMtdcbh-2Ur5wyjSl79hOv3I62P4XQ9MHhEVUaWpgg7rXvi1jOdIKOj5_6P92rddE7cq9873npHp2W-mR0ywuaAoQt2LfEGRi6FhNH3FM2qJdEklh19YM0A8Zkrwu5Q8IVRYzn5-ynk4VXKwnQWAImLQ");'>
+<div class="absolute inset-0 story-gradient"></div>
+</div>
+<!-- Top Navigation Overlay -->
+<div class="relative z-20 px-4 pt-6 pb-2">
+<!-- Progress Bars -->
+<div class="flex gap-1.5 mb-4">
+<div class="h-1 flex-1 rounded-full bg-white overflow-hidden">
+<div class="h-full bg-primary w-2/3"></div> <!-- Simulated progress -->
+</div>
+<div class="h-1 flex-1 rounded-full bg-white/30"></div>
+<div class="h-1 flex-1 rounded-full bg-white/30"></div>
+<div class="h-1 flex-1 rounded-full bg-white/30"></div>
+</div>
+<!-- Header Actions -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-lg bg-primary flex items-center justify-center shadow-[0_0_15px_rgba(51,13,242,0.5)]">
+<span class="material-symbols-outlined text-white text-xl">auto_awesome</span>
+</div>
+<span class="font-bold text-sm tracking-tight uppercase opacity-80">Wizard V4</span>
+</div>
+<button class="size-10 flex items-center justify-center rounded-full glass-panel border border-white/10 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-white">close</span>
+</button>
+</div>
+</div>
+<!-- Center Swipe Area (Empty for interaction) -->
+<div class="flex-1 relative z-10 flex">
+<!-- Left Tap Zone -->
+<div class="w-1/4 h-full"></div>
+<!-- Right Tap Zone -->
+<div class="w-3/4 h-full"></div>
+</div>
+<!-- Bottom Content Layer -->
+<div class="relative z-20 px-6 pb-12">
+<div class="mb-8">
+<h1 class="text-4xl font-bold leading-tight mb-3 drop-shadow-md">
+                    AI-Powered <br/>Subject Lines
+                </h1>
+<p class="text-lg text-white/80 max-w-xs font-light">
+                    Write titles that get opened. Let the Wizard craft your hook using advanced linguistic models.
+                </p>
+</div>
+<!-- Swipe Up Indicator -->
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="flex flex-col items-center animate-bounce">
+<span class="material-symbols-outlined text-primary text-2xl font-bold">keyboard_double_arrow_up</span>
+</div>
+<div class="glass-panel px-6 py-3 rounded-full border border-white/10 flex items-center gap-3 active:bg-white/20 transition-colors">
+<span class="text-sm font-bold tracking-widest uppercase">Learn More</span>
+<span class="material-symbols-outlined text-xs">arrow_forward_ios</span>
+</div>
+</div>
+</div>
+<!-- Horizontal Slide Indicators (Previewing next slides) -->
+<div class="absolute bottom-40 left-0 w-full overflow-x-auto hide-scrollbar z-30 opacity-40 hover:opacity-100 transition-opacity">
+<div class="flex gap-4 px-6">
+<div class="shrink-0 w-24 h-32 rounded-lg border-2 border-primary overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Abstract purple background preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGU2rEp9ZXAvrcAWM82xKTY4Hnk43uFZCD8avtZE-TpvO7Xp_pqR_Zc1CpKrZLYd4nohOl7jEnOySKaryBjxPVql9XGFeI3c3k2JGRIcUp9PGRs_7dGOHprXnVW9EYd-VOCwjhVFMQMjeSGblUgH2qkfIg__ofeUradA4SBkgr49sk9SS-l30ZqzmNENnGhCvpOCZfNXskNaH-HHoNXKyC-U6T_qvMMpxRexoU1oIwa_WDL3jTxTviZuHaztLTSNKuNdgd97O8hzc"/>
+<div class="absolute inset-0 bg-primary/20 flex items-center justify-center">
+<span class="text-[10px] font-bold">ACTIVE</span>
+</div>
+</div>
+<div class="shrink-0 w-24 h-32 rounded-lg border border-white/10 overflow-hidden opacity-60">
+<img class="w-full h-full object-cover" data-alt="Abstract geometric shapes preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsY-OOmAht0gkwlvefaZid90AdDaIHuuPBViiHVwMEPAtrHHUN1NbVQadKsmqG0WY86-86HmaLvRj0R5SUttgTAva20fFXkD9VBEvkPT1ls2gxetGzizJNiVXBf9eC_qagINvGMULehXx2EuSHlqd5Mlb_1ADS2QEejLbfJqkvhzn07ZYZdkTKMXy77LnYepBRJhqJ9X2Z8-9fTDsxhNUVQXXtPZx40kRQuazQVbpMiaa6VNld3YDDWcyLqVQ2-23gWd3UZfo7bFQ"/>
+</div>
+<div class="shrink-0 w-24 h-32 rounded-lg border border-white/10 overflow-hidden opacity-60">
+<img class="w-full h-full object-cover" data-alt="Digital analytics graph preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmn0AOPk9wB_INLUQks_eIQIwFBZG8kYTN5CBb4uPpPYgH-vnBEEIUdWo6e_IS6e4JGXIGsA7KCLxN4NkJIRSWgUgwVcRai87FMlY6jJANC-x-PtfcnrMHiUF9m-WcBiSXIqxutjjcRzJLkWwv2OMTgu4NgIkbTcjzwHcZFwXPSMJ59GYwQEQHtVz8e161kmymkMwwZsbA16sZl04EaIl-TsolSjePE0HtjiE7HDETdJEVDZ_JFST-67LQiXK7A-cSOhHWkRqY90I"/>
+</div>
+<div class="shrink-0 w-24 h-32 rounded-lg border border-white/10 overflow-hidden opacity-60">
+<img class="w-full h-full object-cover" data-alt="Social media icons abstract preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMQnWAYW2LHY77ajeTdaX7CG1MH7Q2c3JHfavAc3ZZilcThS_sQY7pjY6_fewPe_Rrquc5YSP3rEPXeBKD_-LOJzZQAED0vGMUcCdJfsx7tjRupXtE93rnK8VVn-Hw-7_AsAR3tRAHTVj_950c_QTJtyrCpgy-GhizX2zEFWt4DINrg8RHs-GX-RpCxwfCtsQRRy9_vi0fcyx1TlisGJKSJnmuNGXKvlQZatexzDwLRrH5b4FgHM-E1341pCnDZyBUMgb0rqRIeYE"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Hidden Navigation Controls (Simulated for layout context) -->
+<div class="fixed bottom-0 left-0 w-full bg-background-dark/80 backdrop-blur-md border-t border-white/5 px-6 py-4 flex justify-between items-center md:hidden">
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-white/40">home</span>
+<span class="material-symbols-outlined text-primary">dynamic_feed</span>
+<span class="material-symbols-outlined text-white/40">analytics</span>
+</div>
+<div class="size-8 rounded-full bg-white/10 border border-white/20"></div>
+</div>
+</body></html>

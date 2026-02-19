@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Search: AI Suggestions Empty State</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for clean horizontal scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-display flex flex-col items-center justify-center p-4">
+<!-- Mobile Container -->
+<div class="w-full max-w-md bg-white dark:bg-[#131022] min-h-[812px] h-full relative overflow-hidden rounded-xl shadow-2xl flex flex-col">
+<!-- Status Bar Area (Visual Placeholder) -->
+<div class="h-12 w-full flex items-center justify-between px-6 pt-2 z-20">
+<span class="text-xs font-medium text-slate-400">9:41</span>
+<div class="flex gap-1">
+<div class="w-4 h-4 rounded-full bg-slate-800/50 dark:bg-slate-200/20"></div>
+<div class="w-4 h-4 rounded-full bg-slate-800/50 dark:bg-slate-200/20"></div>
+</div>
+</div>
+<!-- Header / Search Bar -->
+<div class="px-6 py-4 z-20">
+<div class="relative">
+<input class="w-full bg-slate-100 dark:bg-slate-800/50 text-slate-900 dark:text-white rounded-lg pl-10 pr-10 py-3 text-sm focus:ring-2 focus:ring-primary focus:outline-none border-none placeholder-slate-400 font-medium" readonly="" type="text" value="Growth hacking tips"/>
+<span class="material-icons absolute left-3 top-3 text-slate-400 dark:text-slate-500">search</span>
+<button class="absolute right-3 top-3 text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-icons text-lg">close</span>
+</button>
+</div>
+</div>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col items-center justify-center px-6 relative z-10 -mt-10">
+<!-- Empty State Illustration/Icon -->
+<div class="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mb-6 relative">
+<div class="absolute inset-0 bg-primary/20 blur-xl rounded-full"></div>
+<span class="material-icons text-4xl text-primary/80">search_off</span>
+</div>
+<!-- Main Message -->
+<h1 class="text-3xl font-bold text-slate-900 dark:text-white text-center mb-2">
+                We couldn’t find that...
+            </h1>
+<p class="text-slate-500 dark:text-slate-400 text-center mb-8 text-sm">
+                No exact matches found for "<span class="text-primary font-medium">Growth hacking tips</span>" in your Knowledge Base.
+            </p>
+<!-- AI Assistant Card -->
+<div class="w-full bg-slate-50 dark:bg-[#1c1833] rounded-xl border border-primary/20 p-5 relative overflow-hidden group">
+<!-- AI Neon Glow Effect -->
+<div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/30 blur-3xl rounded-full opacity-50 group-hover:opacity-70 transition-opacity duration-500"></div>
+<!-- AI Header -->
+<div class="flex items-start gap-3 mb-4 relative z-10">
+<div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-indigo-600 flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-icons text-white text-lg">smart_toy</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-slate-900 dark:text-white font-bold text-base">Newsletter AI</h3>
+<span class="px-1.5 py-0.5 rounded text-[10px] bg-primary/20 text-primary font-bold uppercase tracking-wider">Beta</span>
+</div>
+<p class="text-slate-600 dark:text-slate-300 text-sm mt-1 leading-snug">
+                            But I found these related sources that might help you get started:
+                        </p>
+</div>
+</div>
+<!-- Suggestions Horizontal Scroll -->
+<div class="flex gap-3 overflow-x-auto no-scrollbar pb-2 relative z-10 -mr-5 pr-5">
+<!-- Card 1 -->
+<div class="flex-shrink-0 w-48 bg-white dark:bg-[#25213e] p-3 rounded-lg border border-slate-200 dark:border-slate-700/50 hover:border-primary/50 transition-colors cursor-pointer group/card">
+<div class="h-24 rounded bg-slate-100 dark:bg-[#2f2b4a] mb-3 overflow-hidden relative">
+<img alt="Abstract data visualization chart showing growth trends" class="w-full h-full object-cover opacity-80 group-hover/card:scale-105 transition-transform duration-500" data-alt="Abstract data visualization chart showing growth trends" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwyHSPWnG7lEl8xWpR-Uc2HcHWmIJLv1eaY_klFqhwCD1YY6F1EJsjr6szrvFRrdr8j5mJSizRdLIZCtUIwmOJhusmJKCXZrN153h9K_m6uF0NWUKjGF1AkV3zboJF9EXwSafjIWfXYge4xE2_wT_StuYeh-o0z8gY1Dfxl4YBhSgX_C1QDk41DP2KmBFAHxlsMLiUtPT2uQUuGdkCdPzvwEmuixyMXtEqXOePtfkp9uNjHkjvLKEWO3paytKLjwTMPBRynpis-Po"/>
+<div class="absolute top-1 right-1 bg-black/60 backdrop-blur-sm px-1.5 py-0.5 rounded text-[10px] text-white font-medium">
+                                92% Match
+                             </div>
+</div>
+<h4 class="text-slate-900 dark:text-white font-bold text-sm mb-1 truncate">Audience Segmentation</h4>
+<div class="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
+<span class="material-icons text-[12px]">article</span>
+<span>Guide</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex-shrink-0 w-48 bg-white dark:bg-[#25213e] p-3 rounded-lg border border-slate-200 dark:border-slate-700/50 hover:border-primary/50 transition-colors cursor-pointer group/card">
+<div class="h-24 rounded bg-slate-100 dark:bg-[#2f2b4a] mb-3 overflow-hidden relative">
+<img alt="Colorful abstract bubbles representing communication" class="w-full h-full object-cover opacity-80 group-hover/card:scale-105 transition-transform duration-500" data-alt="Colorful abstract bubbles representing communication" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfk_ULrlrNe513Xc6I5w5TUpDl_AUFxGQVAwuQ1vTj8e_CvTjBQNvc3lfzgD6ZwQxrvtZjMOGIa6r-COYQhmJR4meoA0lV-Mm4lJrOViQNwQjYZFbkW0xgclM4wahsnRUG9WDiXU4KRyzH1QntK1Ukt_0yccgi2GBzvbfPoRQsyCifg8kZWVBY9vPj2kzoNKo6MeWGJ6DCJFnx-KMM8z4YL58aWTaDldQz69TX6G4l9hcniNaB8fQfVtRfcHXtagOxsaFeYW2rJNc"/>
+<div class="absolute top-1 right-1 bg-black/60 backdrop-blur-sm px-1.5 py-0.5 rounded text-[10px] text-white font-medium">
+                                85% Match
+                             </div>
+</div>
+<h4 class="text-slate-900 dark:text-white font-bold text-sm mb-1 truncate">Viral Subject Lines</h4>
+<div class="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
+<span class="material-icons text-[12px]">lightbulb</span>
+<span>Tips</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="flex-shrink-0 w-48 bg-white dark:bg-[#25213e] p-3 rounded-lg border border-slate-200 dark:border-slate-700/50 hover:border-primary/50 transition-colors cursor-pointer group/card">
+<div class="h-24 rounded bg-slate-100 dark:bg-[#2f2b4a] mb-3 overflow-hidden relative">
+<img alt="Team working on analytics dashboard" class="w-full h-full object-cover opacity-80 group-hover/card:scale-105 transition-transform duration-500" data-alt="Team working on analytics dashboard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5cxc3KEQsEC763X2Xt-kWQdpLKB9dIYWO-ZSSTEFJ2hnA6e8a5f5n2E_fjr6iu7d4-RQ7bKdI7dfEqvJMpgAr6N9DmE3Va1Z0zc_8uuBcoccFh77kI8BMAFtmBfiFfGqTZiGwpfsJvHHRAuZLF-JMWr9VLf5fiWA1NzjRpII0CjlQhqni5QjArN_dcFfiuWg7t9PgOZ45ZSZZTlajF3nPdANDjtDyDQhzKbLCNYaSShg0lyjOXIs5ok2p-eLlvPnAyoyYFV16pQc"/>
+<div class="absolute top-1 right-1 bg-black/60 backdrop-blur-sm px-1.5 py-0.5 rounded text-[10px] text-white font-medium">
+                                78% Match
+                             </div>
+</div>
+<h4 class="text-slate-900 dark:text-white font-bold text-sm mb-1 truncate">Retention Strategy</h4>
+<div class="flex items-center gap-1 text-xs text-slate-500 dark:text-slate-400">
+<span class="material-icons text-[12px]">analytics</span>
+<span>Analysis</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Action -->
+<div class="mt-8 w-full">
+<button class="w-full py-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-100 dark:hover:bg-white/5 transition-colors flex items-center justify-center gap-2">
+<span class="material-icons text-sm">refresh</span>
+                    Start a new search
+                </button>
+</div>
+</div>
+<!-- Background Elements for deep atmosphere -->
+<div class="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-[#1a1533] to-transparent pointer-events-none z-0"></div>
+<div class="absolute bottom-0 right-0 w-64 h-64 bg-primary/5 blur-3xl rounded-full pointer-events-none z-0"></div>
+</div>
+</body></html>

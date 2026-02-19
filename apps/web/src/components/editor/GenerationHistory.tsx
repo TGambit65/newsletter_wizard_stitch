@@ -64,16 +64,16 @@ export function GenerationHistory({
       />
 
       {/* Drawer */}
-      <div className="fixed right-0 top-0 h-full w-96 max-w-full bg-white dark:bg-neutral-800 shadow-xl z-50 flex flex-col animate-in slide-in-from-right duration-300">
+      <div className="fixed right-0 top-0 h-full w-96 max-w-full bg-white dark:bg-surface-dark shadow-xl z-50 flex flex-col animate-in slide-in-from-right duration-300">
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+        <div className="flex items-center justify-between px-4 py-3 border-b border-neutral-200 dark:border-white/10">
           <h2 className="font-semibold text-neutral-900 dark:text-white flex items-center gap-2">
             <History className="w-5 h-5 text-primary-500" />
             Generation History
           </h2>
           <button
             onClick={onClose}
-            className="p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+            className="p-1.5 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
           >
             <X className="w-5 h-5 text-neutral-500" />
           </button>
@@ -89,7 +89,7 @@ export function GenerationHistory({
               </p>
             </div>
           ) : (
-            <div className="divide-y divide-neutral-100 dark:divide-neutral-700">
+            <div className="divide-y divide-neutral-100 dark:divide-white/5">
               {history.map((item, index) => (
                 <div
                   key={item.id}
@@ -125,7 +125,7 @@ export function GenerationHistory({
 
                   {/* Expanded actions */}
                   {selectedItem?.id === item.id && (
-                    <div className="mt-3 pt-3 border-t border-neutral-200 dark:border-neutral-700 flex gap-2">
+                    <div className="mt-3 pt-3 border-t border-neutral-200 dark:border-white/10 flex gap-2">
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
@@ -156,7 +156,7 @@ export function GenerationHistory({
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900">
+        <div className="p-4 border-t border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-background-dark">
           <p className="text-xs text-neutral-500 text-center">
             Showing last {Math.min(history.length, 5)} generations • History retained for 30 days
           </p>
@@ -166,15 +166,15 @@ export function GenerationHistory({
       {/* Compare Modal */}
       {showCompare && selectedItem && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-[60] p-4">
-          <div className="bg-white dark:bg-neutral-800 rounded-xl w-full max-w-4xl max-h-[80vh] overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+          <div className="bg-white dark:bg-surface-dark rounded-xl w-full max-w-4xl max-h-[80vh] overflow-hidden">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-neutral-200 dark:border-white/10">
               <h3 className="font-semibold text-neutral-900 dark:text-white flex items-center gap-2">
                 <GitCompare className="w-5 h-5 text-primary-500" />
                 Compare Versions
               </h3>
               <button
                 onClick={() => setShowCompare(false)}
-                className="p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+                className="p-1.5 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
               >
                 <X className="w-5 h-5 text-neutral-500" />
               </button>
@@ -183,22 +183,22 @@ export function GenerationHistory({
               <div>
                 <h4 className="text-sm font-medium text-neutral-500 mb-2">Previous Version</h4>
                 <div 
-                  className="prose dark:prose-invert prose-sm max-w-none p-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg"
+                  className="prose dark:prose-invert prose-sm max-w-none p-4 bg-neutral-50 dark:bg-background-dark rounded-lg"
                   dangerouslySetInnerHTML={{ __html: sanitizeHtml(selectedItem.content) }}
                 />
               </div>
               <div>
                 <h4 className="text-sm font-medium text-neutral-500 mb-2">Current Version</h4>
                 <div
-                  className="prose dark:prose-invert prose-sm max-w-none p-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg"
+                  className="prose dark:prose-invert prose-sm max-w-none p-4 bg-neutral-50 dark:bg-background-dark rounded-lg"
                   dangerouslySetInnerHTML={{ __html: sanitizeHtml(currentContent) }}
                 />
               </div>
             </div>
-            <div className="flex justify-end gap-2 p-4 border-t border-neutral-200 dark:border-neutral-700">
+            <div className="flex justify-end gap-2 p-4 border-t border-neutral-200 dark:border-white/10">
               <button
                 onClick={() => setShowCompare(false)}
-                className="px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors"
+                className="px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg transition-colors"
               >
                 Close
               </button>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Delete Account - Exit Survey</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f20d0d",
+                        "background-light": "#f8f5f5",
+                        "background-dark": "#221010",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom checkbox style handling for Tailwind Forms plugin */
+        input[type="checkbox"]:checked {
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-10 flex items-center justify-between p-4 bg-background-light dark:bg-background-dark border-b border-primary/10 dark:border-white/5 backdrop-blur-md">
+<button class="flex items-center justify-center w-10 h-10 rounded-full text-slate-900 dark:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Delete Account</h1>
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 py-6 max-w-md mx-auto w-full flex flex-col">
+<div class="mb-6">
+<h2 class="text-2xl font-bold tracking-tight mb-2">We're sorry to see you go.</h2>
+<p class="text-slate-600 dark:text-gray-400 text-base font-normal leading-relaxed">Please tell us why you are leaving. This will help us improve for future users.</p>
+</div>
+<!-- Survey List -->
+<div class="space-y-3 flex-1">
+<!-- Option 1 -->
+<label class="group relative flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 cursor-pointer transition-all hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+<span class="text-base font-medium text-slate-800 dark:text-gray-100">Too expensive</span>
+<input class="h-5 w-5 rounded border-gray-300 dark:border-gray-500 text-primary focus:ring-primary/20 dark:focus:ring-primary/40 focus:ring-offset-0 bg-transparent" type="checkbox"/>
+</label>
+<!-- Option 2 -->
+<label class="group relative flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 cursor-pointer transition-all hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+<span class="text-base font-medium text-slate-800 dark:text-gray-100">Hard to use</span>
+<input class="h-5 w-5 rounded border-gray-300 dark:border-gray-500 text-primary focus:ring-primary/20 dark:focus:ring-primary/40 focus:ring-offset-0 bg-transparent" type="checkbox"/>
+</label>
+<!-- Option 3 -->
+<label class="group relative flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 cursor-pointer transition-all hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+<span class="text-base font-medium text-slate-800 dark:text-gray-100">No longer need it</span>
+<input class="h-5 w-5 rounded border-gray-300 dark:border-gray-500 text-primary focus:ring-primary/20 dark:focus:ring-primary/40 focus:ring-offset-0 bg-transparent" type="checkbox"/>
+</label>
+<!-- Option 4 -->
+<label class="group relative flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 cursor-pointer transition-all hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+<span class="text-base font-medium text-slate-800 dark:text-gray-100">Found a better alternative</span>
+<input class="h-5 w-5 rounded border-gray-300 dark:border-gray-500 text-primary focus:ring-primary/20 dark:focus:ring-primary/40 focus:ring-offset-0 bg-transparent" type="checkbox"/>
+</label>
+<!-- Option 5 -->
+<label class="group relative flex items-center justify-between p-4 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 cursor-pointer transition-all hover:border-primary/50 dark:hover:border-primary/50 has-[:checked]:border-primary has-[:checked]:bg-primary/5 dark:has-[:checked]:bg-primary/10">
+<span class="text-base font-medium text-slate-800 dark:text-gray-100">Privacy concerns</span>
+<input class="h-5 w-5 rounded border-gray-300 dark:border-gray-500 text-primary focus:ring-primary/20 dark:focus:ring-primary/40 focus:ring-offset-0 bg-transparent" type="checkbox"/>
+</label>
+<!-- Other Input -->
+<div class="pt-2">
+<textarea class="w-full rounded-xl border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-gray-500 focus:border-primary focus:ring-1 focus:ring-primary text-base p-4 resize-none h-24" placeholder="Tell us more (optional)..."></textarea>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="mt-8 pb-6">
+<!-- Disclaimer -->
+<div class="flex gap-3 mb-6 p-4 rounded-lg bg-primary/5 border border-primary/20">
+<span class="material-symbols-outlined text-primary shrink-0 text-xl pt-0.5">warning</span>
+<p class="text-xs text-primary/90 leading-relaxed">
+                    This action cannot be undone. All your newsletters and subscriber data will be lost immediately.
+                </p>
+</div>
+<!-- Delete Button -->
+<button class="w-full h-14 rounded-full bg-primary hover:bg-red-700 active:bg-red-800 text-white font-bold text-lg shadow-lg shadow-primary/20 transition-all flex items-center justify-center gap-2 group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">delete_forever</span>
+                Delete My Data
+            </button>
+<!-- Cancel Link -->
+<button class="w-full mt-4 py-2 text-slate-500 dark:text-gray-500 hover:text-slate-800 dark:hover:text-white text-sm font-medium transition-colors">
+                Cancel
+            </button>
+</div>
+</main>
+</body></html>

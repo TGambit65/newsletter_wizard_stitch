@@ -176,7 +176,7 @@ function ToastItem({ toast, onRemove, animate }: { toast: Toast; onRemove: (id: 
   return (
     <div
       className={clsx(
-        'pointer-events-auto bg-white dark:bg-neutral-800 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 border-l-4 p-4',
+        'pointer-events-auto bg-white dark:bg-surface-dark rounded-lg shadow-lg border border-neutral-200 dark:border-white/10 border-l-4 p-4',
         bgColors[toast.type],
         animate && 'transition-all duration-200',
         animate && !isExiting && 'animate-slide-in-right',

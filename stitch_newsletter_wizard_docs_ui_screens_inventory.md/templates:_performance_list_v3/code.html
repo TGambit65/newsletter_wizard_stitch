@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Templates: Performance List V3</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1c1833", // Derived slightly lighter than bg-dark
+                        "surface-highlight": "#252042", // Hover/Active state
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar Hide for horizontal scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-100 min-h-screen flex justify-center selection:bg-primary selection:text-white">
+<!-- Mobile Container -->
+<div class="w-full max-w-md bg-background-light dark:bg-background-dark min-h-screen relative shadow-2xl overflow-hidden flex flex-col">
+<!-- Sticky Header Section -->
+<header class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md pt-12 pb-2 px-6 border-b border-primary/10 transition-colors">
+<div class="flex items-center justify-between mb-4">
+<h1 class="text-3xl font-bold tracking-tight">Select Template</h1>
+<div class="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-icons text-primary">person</span>
+</div>
+</div>
+<!-- Search Bar -->
+<div class="relative mb-4">
+<span class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-icons text-slate-400">search</span>
+</span>
+<input class="w-full py-3.5 pl-12 pr-4 bg-white dark:bg-surface-dark border-none ring-1 ring-slate-200 dark:ring-white/5 rounded-full text-sm placeholder-slate-400 focus:ring-2 focus:ring-primary focus:outline-none shadow-sm transition-all" placeholder="Search 50+ templates..." type="text"/>
+</div>
+<!-- Filter Chips -->
+<div class="flex space-x-3 overflow-x-auto no-scrollbar pb-2">
+<button class="flex-shrink-0 px-5 py-2 rounded-full bg-primary text-white text-sm font-medium shadow-lg shadow-primary/30 whitespace-nowrap">
+                    All
+                </button>
+<button class="flex-shrink-0 px-5 py-2 rounded-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-surface-highlight transition-colors whitespace-nowrap">
+                    Highest Rated
+                </button>
+<button class="flex-shrink-0 px-5 py-2 rounded-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-surface-highlight transition-colors whitespace-nowrap">
+                    Newest
+                </button>
+<button class="flex-shrink-0 px-5 py-2 rounded-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-surface-highlight transition-colors whitespace-nowrap">
+                    Business
+                </button>
+<button class="flex-shrink-0 px-5 py-2 rounded-full bg-white dark:bg-surface-dark border border-slate-200 dark:border-white/5 text-slate-600 dark:text-slate-300 text-sm font-medium hover:bg-slate-50 dark:hover:bg-surface-highlight transition-colors whitespace-nowrap">
+                    Creative
+                </button>
+</div>
+</header>
+<!-- Main Content List -->
+<main class="flex-1 overflow-y-auto px-4 pt-4 pb-24 space-y-3">
+<!-- List Header -->
+<div class="flex justify-between items-center px-2 mb-2">
+<span class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500">Trending Now</span>
+<span class="text-xs text-primary font-medium cursor-pointer">View Details</span>
+</div>
+<!-- Item 1 -->
+<div class="group relative flex items-center p-3 rounded-2xl bg-white dark:bg-surface-dark border border-transparent hover:border-primary/30 transition-all shadow-sm active:scale-[0.98]">
+<!-- Thumbnail -->
+<div class="h-16 w-16 flex-shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
+<img alt="Abstract blue tech layout pattern" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Abstract blue tech layout pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9Cnu_7YCPpCkJxY1RrWtlq57w2cPK7yzXhWIdIKR_BkNXk-m1P7HEX-nH_8ThUS5PtvLX0__xvdnbVCGnQ2YM0GKNAVxwacqu8oG2xtw25mi0ktX44WjnLbH0JM4Id2eUfb4ktUZX9SvuAt7ctO6vgEF9TIE58LWAIHr3uBrWvVFEjPaay4IQXoE3M6wDxMFGAXPPEqo5t76Ip3ngXUcyvrujNv8g1ZdfzaDRTwhId3VT6ucsl7RYoesKU9PVFbGjp6dS5H7mVP4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+</div>
+<!-- Content -->
+<div class="ml-4 flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-slate-900 dark:text-white truncate pr-2">Weekly Digest V2</h3>
+<div class="flex items-center bg-primary/10 dark:bg-primary/20 px-1.5 py-0.5 rounded-md">
+<span class="material-icons text-primary text-[14px] mr-0.5">star</span>
+<span class="text-xs font-bold text-primary">4.9</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5 truncate">Best for tech news &amp; updates</p>
+<div class="flex items-center mt-1.5 space-x-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400">Tech</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400">High CTR</span>
+</div>
+</div>
+<!-- Chevron -->
+<span class="material-icons text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors ml-2">chevron_right</span>
+</div>
+<!-- Item 2 -->
+<div class="group relative flex items-center p-3 rounded-2xl bg-white dark:bg-surface-dark border border-transparent hover:border-primary/30 transition-all shadow-sm active:scale-[0.98]">
+<!-- Thumbnail -->
+<div class="h-16 w-16 flex-shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
+<img alt="Gradient purple blue abstract waves" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Gradient purple blue abstract waves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBu2yiFBBEt1QgWuA9Cm5ItDHQ5fJFh1T9Ca8fkm-Vug1l-tTaOrhlsS5Z6btZamRqW_EIImXIiIvXZwuvnicNZTvsyn414k3RXem4BJls457Q0avCyln7d1GtIxjtrlp2RhzRAFN1U1_wbivOrEZHJ2hhOd37zDB04Ek-Cfw5Iv0_51rxu_Ntu2wSplv6M0VhHloTwLgWc2z-Rxe0OVW5TM7KoaKtKY4UQde_tgyBh7byP4QlZgIyrOQrzk2gRCA_KIlm4Qpyq228"/>
+</div>
+<!-- Content -->
+<div class="ml-4 flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-slate-900 dark:text-white truncate pr-2">Product Launch Alpha</h3>
+<div class="flex items-center bg-primary/10 dark:bg-primary/20 px-1.5 py-0.5 rounded-md">
+<span class="material-icons text-primary text-[14px] mr-0.5">star</span>
+<span class="text-xs font-bold text-primary">4.7</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5 truncate">Conversion optimized layout</p>
+<div class="flex items-center mt-1.5 space-x-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400">Sales</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-emerald-100 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400">New</span>
+</div>
+</div>
+<!-- Chevron -->
+<span class="material-icons text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors ml-2">chevron_right</span>
+</div>
+<!-- Item 3 -->
+<div class="group relative flex items-center p-3 rounded-2xl bg-white dark:bg-surface-dark border border-transparent hover:border-primary/30 transition-all shadow-sm active:scale-[0.98]">
+<!-- Thumbnail -->
+<div class="h-16 w-16 flex-shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
+<img alt="Minimalist white grey geometric pattern" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity grayscale" data-alt="Minimalist white grey geometric pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6ZM7G6q_MoJ1TBX-gQ0Rn9n58Xc6LurUyp89h66kiRPP8HgI-NrtD8BjwKty5Wb_NJy_j8U7avRPdtC7t9LHTqTbJrD0mhVc96xEZBh249TZ_9khuZvojypc8pLrEkCo3kpaK1rvwf85EJt7ETtW482D6tk-8Q2r1uM1_JOeyMw1pmLDlHuPywExfsOl85OJY9TIST-QhXFzUmku2rhJeBOhiL8zrFAFqtp27p2uYWCbeb5vHEtHt9ShXv3fnOLoLBDsL4NAhnDQ"/>
+</div>
+<!-- Content -->
+<div class="ml-4 flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-slate-900 dark:text-white truncate pr-2">Minimalist Updates</h3>
+<div class="flex items-center bg-primary/10 dark:bg-primary/20 px-1.5 py-0.5 rounded-md">
+<span class="material-icons text-primary text-[14px] mr-0.5">star</span>
+<span class="text-xs font-bold text-primary">4.5</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5 truncate">Text-focused AI layout</p>
+<div class="flex items-center mt-1.5 space-x-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400">Editorial</span>
+</div>
+</div>
+<!-- Chevron -->
+<span class="material-icons text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors ml-2">chevron_right</span>
+</div>
+<!-- Item 4 -->
+<div class="group relative flex items-center p-3 rounded-2xl bg-white dark:bg-surface-dark border border-transparent hover:border-primary/30 transition-all shadow-sm active:scale-[0.98]">
+<!-- Thumbnail -->
+<div class="h-16 w-16 flex-shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
+<img alt="Vibrant colorful mesh gradient" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Vibrant colorful mesh gradient" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkRXSEKv62l_wquD7H8GPe3WqCFZZ8eSdWSWwX9-FIAmRapkf-HoJq12Mk0qYM7SiGLotuBgOb7IrKp6hrA9hreh1ZTrK7bvFRjjmeMhLTNwutWQgr3SX5JAhmwRLtp9Lnre_O1pGWs0BN6oGO_PkI_NDOCCsekKek1bde7ME0u-k2PsAPvRZKaqDkbXhXw7JE1sK58h1r_Gl5suNGHjX8tro62irYM8-mwD6v4GrCW53GBUdEaCc-Hla-lBt0THRcnNqbRrlfRPA"/>
+</div>
+<!-- Content -->
+<div class="ml-4 flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-slate-900 dark:text-white truncate pr-2">Startup Spotlight</h3>
+<div class="flex items-center bg-primary/10 dark:bg-primary/20 px-1.5 py-0.5 rounded-md">
+<span class="material-icons text-primary text-[14px] mr-0.5">star</span>
+<span class="text-xs font-bold text-primary">4.4</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5 truncate">Bold headers &amp; visuals</p>
+<div class="flex items-center mt-1.5 space-x-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400">Business</span>
+</div>
+</div>
+<!-- Chevron -->
+<span class="material-icons text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors ml-2">chevron_right</span>
+</div>
+<!-- Item 5 -->
+<div class="group relative flex items-center p-3 rounded-2xl bg-white dark:bg-surface-dark border border-transparent hover:border-primary/30 transition-all shadow-sm active:scale-[0.98]">
+<!-- Thumbnail -->
+<div class="h-16 w-16 flex-shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
+<img alt="Dark mode cyber pattern" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Dark mode cyber pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGuZ-bunHTGTBaRnrQaA2czCqQlhE6JraG0jxV9aBj_LQgBsq41VkOaMqlHVs7YU7SxJrfHLgxdIbdvvoGDiF40Vd_iVstKLoUWOZcqnyMT2hS9gYBc-iVI0jX3QDQmIVKG_82qfv8jwmL0QN5mdLIxiWb2EsyMehfszPKHyB7YygqDrcODIU2dRu0jUpFnGCKu3BY0x3-5WTY6Q9Bm83Q5dFEARRwlPgStV8wvlAz1LEHp9vWZSY4ig-VrtFU8H0aHH04TuLltXw"/>
+</div>
+<!-- Content -->
+<div class="ml-4 flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-slate-900 dark:text-white truncate pr-2">Code Weekly</h3>
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded-md">
+<span class="material-icons text-slate-400 text-[14px] mr-0.5">star</span>
+<span class="text-xs font-bold text-slate-500">4.1</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5 truncate">Syntax highlighting ready</p>
+<div class="flex items-center mt-1.5 space-x-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400">Dev</span>
+</div>
+</div>
+<!-- Chevron -->
+<span class="material-icons text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors ml-2">chevron_right</span>
+</div>
+<!-- Item 6 -->
+<div class="group relative flex items-center p-3 rounded-2xl bg-white dark:bg-surface-dark border border-transparent hover:border-primary/30 transition-all shadow-sm active:scale-[0.98]">
+<!-- Thumbnail -->
+<div class="h-16 w-16 flex-shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-slate-800 relative">
+<img alt="Abstract orange and pink blur" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Abstract orange and pink blur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEyTvk_SVHlxtXNHVyaT7BGJ3mjK84o474C6KAzZQUUC0ApbSXIE2o51csedJ4UrZv5Les9SxHlEVKco9pZO8433Ml827QJOiZ4uXSdlinEHAjHSDKWUHzr_dWIYtdXuJjVa9iGGeyNp9GP3Xactx_iYHCTS0fUP-hSPBWw1c_qa7bcW2u-T9zuQ1V0___5LO3TY9qa6rlwgy3Pmtfne2TBXTrBg4apKYfOjAorYLekVSiqoQLq_w9mhXFxWzdNHzwhIG95YPnQiQ"/>
+</div>
+<!-- Content -->
+<div class="ml-4 flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<h3 class="text-base font-bold text-slate-900 dark:text-white truncate pr-2">Creator Pulse</h3>
+<div class="flex items-center bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded-md">
+<span class="material-icons text-slate-400 text-[14px] mr-0.5">star</span>
+<span class="text-xs font-bold text-slate-500">4.0</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-0.5 truncate">Visual-first approach</p>
+<div class="flex items-center mt-1.5 space-x-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 dark:bg-slate-700/50 text-slate-500 dark:text-slate-400">Art</span>
+</div>
+</div>
+<!-- Chevron -->
+<span class="material-icons text-slate-300 dark:text-slate-600 group-hover:text-primary transition-colors ml-2">chevron_right</span>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="absolute bottom-24 right-6 h-14 w-14 rounded-full bg-primary shadow-lg shadow-primary/50 flex items-center justify-center text-white hover:scale-110 active:scale-95 transition-transform z-30">
+<span class="material-icons text-3xl">add</span>
+</button>
+<!-- Bottom Navigation -->
+<nav class="bg-white dark:bg-[#0f0c1c] border-t border-slate-200 dark:border-white/5 py-4 pb-8 px-6 flex justify-between items-center z-20">
+<a class="flex flex-col items-center space-y-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-icons text-2xl">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center space-y-1 text-primary" href="#">
+<span class="material-icons text-2xl">dashboard</span>
+<span class="text-[10px] font-medium">Templates</span>
+</a>
+<a class="flex flex-col items-center space-y-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-icons text-2xl">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</a>
+</nav>
+<!-- Background Gradient Effects (Subtle) -->
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-60 h-60 bg-primary/10 rounded-full blur-[80px] pointer-events-none"></div>
+</div>
+</body></html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletter Wizard - Community Feedback</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#330df2",
+              "background-light": "#f6f5f8",
+              "background-dark": "#131022",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+            boxShadow: {
+                'neon': '0 0 20px rgba(51, 13, 242, 0.5)',
+                'neon-sm': '0 0 10px rgba(51, 13, 242, 0.3)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        /* Custom scrollbar for better aesthetics in dark mode */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white antialiased selection:bg-primary selection:text-white">
+<!-- Mobile Container -->
+<div class="max-w-md mx-auto min-h-screen relative flex flex-col shadow-2xl overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Status Bar Area (Simulated) -->
+<div class="h-12 w-full shrink-0 flex items-end justify-between px-6 pb-2 z-20">
+<span class="text-xs font-medium opacity-80">9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-icons-round text-sm">signal_cellular_alt</span>
+<span class="material-icons-round text-sm">wifi</span>
+<span class="material-icons-round text-sm">battery_full</span>
+</div>
+</div>
+<!-- Header -->
+<header class="px-6 py-4 flex items-center justify-between z-10 sticky top-0 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md">
+<div>
+<h1 class="text-2xl font-bold tracking-tight">Community Board</h1>
+<p class="text-sm text-gray-500 dark:text-gray-400">Vote on the future of Wizard 🧙‍♂️</p>
+</div>
+<button class="p-2 rounded-full bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-300 shadow-sm border border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-icons-round">filter_list</span>
+</button>
+</header>
+<!-- Main Content Area: Scrollable List -->
+<main class="flex-1 overflow-y-auto px-6 pb-40 hide-scrollbar space-y-4">
+<!-- Trending Badge -->
+<div class="flex items-center gap-2 mb-2">
+<span class="material-icons-round text-primary text-sm">local_fire_department</span>
+<span class="text-xs font-bold uppercase tracking-widest text-primary">Top Requested</span>
+</div>
+<!-- Card 1: Active/Primary -->
+<div class="group relative p-5 bg-white dark:bg-[#1c192e] rounded-xl border border-primary/20 shadow-neon-sm hover:shadow-neon transition-all duration-300">
+<div class="absolute -right-2 -top-2">
+<span class="bg-green-500 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg shadow-green-500/20">In Progress</span>
+</div>
+<div class="flex gap-4">
+<!-- Upvote Button -->
+<button class="flex flex-col items-center justify-center w-14 h-16 rounded-lg bg-primary text-white shadow-lg shadow-primary/30 shrink-0 hover:scale-105 transition-transform">
+<span class="material-icons-round text-lg -mb-1">keyboard_arrow_up</span>
+<span class="font-bold text-sm">452</span>
+</button>
+<!-- Content -->
+<div class="flex-1">
+<h3 class="font-bold text-lg leading-tight mb-1">Dark Mode for Email Editor</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Writing late at night is straining my eyes. We need a full dark theme for the WYSIWYG editor.</p>
+</div>
+</div>
+<!-- User Avatar Stack (Social Proof) -->
+<div class="mt-4 flex items-center justify-between border-t border-gray-100 dark:border-gray-800 pt-3">
+<div class="flex -space-x-2">
+<img class="w-6 h-6 rounded-full border-2 border-white dark:border-[#1c192e] object-cover" data-alt="User avatar 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNmTUt3Va739l8Vhe2IYe2VhEmkk-V7L3ljwkVmGsw67-_ybd2jqnmNx4M2oC1Ino3e2s_B-naMdVLxCmAGKJXEUr7Hp6IHJJDgA3d9XX8dxT-GKsxkkQqdq-W4KxWw0UD-sjEpOWWxuR-Srs3roWTsIm-Br5A7Q449KkaxwG8Ok_IAglOCpiuP8pS75X_5kv96HiEtDs1lB9BNy7D7mazvdM_N0fHlqEOPrR-V-KiO7U2EmfTOFGSHW97sDYgfcSumVh1i6VPM_c"/>
+<img class="w-6 h-6 rounded-full border-2 border-white dark:border-[#1c192e] object-cover" data-alt="User avatar 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA680lOsuOeEEGkXf5p7W3Zbc5BgRUcZX6HmzJx-wVBq4AoEz-zrYNji_O_H0WJQH2iQNzl55Mo734I9RkJLsZfQ-QjkEZ8UuJyo1nUYlnAPCxjBTQIjTE8dCroJw9Nf-CyKkuefOP10XsF9CDXntd2PnvvWJqrJJ5hd5Wq-VHSStKS14WmtLVjAdjW5aFaODeVrMNvvrVcthyvk9c-GnruAIN1nEybINZoa6NMfEAWBUaduwWuhqXstl9xlfOmiBs-QlUxkZ3aiBs"/>
+<img class="w-6 h-6 rounded-full border-2 border-white dark:border-[#1c192e] object-cover" data-alt="User avatar 3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgL0u9lre2MjPX6Sw-c_75H1eSRHG3NICDujl42oCLyD4LL2hfMdZXJuKUbOhCjDLKgGjD8ukO3eC6YraqB6FRQIPa104mAazKg7KuPboDoADChX34i50IaitPVcQazfu2-0ecnMoxHlVjbH39fEnApBb5yCWRY-xhnlCR_lkNn7Ef1xg0aa5UysTN6XO4Mqe4dzLfjuPPi2SxT-J-MN7z2Q18zC8gBAKKn2cbCJ81J4Hmzbpl2I5fLsQH_2wL6eF6Mf-8OgUxniI"/>
+<div class="w-6 h-6 rounded-full border-2 border-white dark:border-[#1c192e] bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-[8px] font-bold text-gray-600 dark:text-gray-300">+400</div>
+</div>
+<span class="text-xs text-primary font-medium">Top Pick</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="relative p-5 bg-white dark:bg-[#1c192e] rounded-xl border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-colors">
+<div class="absolute -right-2 -top-2">
+<span class="bg-yellow-400 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg shadow-yellow-400/20">Under Review</span>
+</div>
+<div class="flex gap-4">
+<!-- Upvote Button -->
+<button class="flex flex-col items-center justify-center w-14 h-16 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-400 hover:bg-primary/10 hover:text-primary transition-colors shrink-0">
+<span class="material-icons-round text-lg -mb-1">keyboard_arrow_up</span>
+<span class="font-bold text-sm">310</span>
+</button>
+<!-- Content -->
+<div class="flex-1">
+<h3 class="font-bold text-lg leading-tight mb-1">Export Analytics to PDF</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">I need to share my newsletter growth stats with my sponsors. A PDF export would be amazing.</p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="relative p-5 bg-white dark:bg-[#1c192e] rounded-xl border border-gray-100 dark:border-gray-800 hover:border-primary/30 transition-colors">
+<div class="absolute -right-2 -top-2">
+<span class="bg-purple-400 text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg shadow-purple-400/20">Planned</span>
+</div>
+<div class="flex gap-4">
+<!-- Upvote Button -->
+<button class="flex flex-col items-center justify-center w-14 h-16 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-400 hover:bg-primary/10 hover:text-primary transition-colors shrink-0">
+<span class="material-icons-round text-lg -mb-1">keyboard_arrow_up</span>
+<span class="font-bold text-sm">128</span>
+</button>
+<!-- Content -->
+<div class="flex-1">
+<h3 class="font-bold text-lg leading-tight mb-1">AI Subject Line Generator</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Sometimes I get writer's block. Help me generate catchy subject lines based on content.</p>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="relative p-5 bg-white dark:bg-[#1c192e] rounded-xl border border-gray-100 dark:border-gray-800 opacity-70 hover:opacity-100 transition-opacity">
+<div class="flex gap-4">
+<!-- Upvote Button -->
+<button class="flex flex-col items-center justify-center w-14 h-16 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-400 hover:bg-primary/10 hover:text-primary transition-colors shrink-0">
+<span class="material-icons-round text-lg -mb-1">keyboard_arrow_up</span>
+<span class="font-bold text-sm">89</span>
+</button>
+<!-- Content -->
+<div class="flex-1">
+<h3 class="font-bold text-lg leading-tight mb-1">Custom Domain Support</h3>
+<p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">Allow us to use our own domains for the web archive view.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Sheet / Form Section -->
+<div class="absolute bottom-0 left-0 w-full bg-white dark:bg-[#1c192e] border-t border-gray-100 dark:border-gray-800 rounded-t-lg shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.3)] z-30">
+<!-- Pull Handle -->
+<div class="w-full flex justify-center pt-3 pb-1">
+<div class="w-12 h-1.5 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+</div>
+<div class="px-6 pb-8 pt-2">
+<h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+<span class="material-icons-round text-primary">auto_fix_high</span>
+                    Submit your own idea
+                </h2>
+<form class="space-y-4">
+<!-- Title Input -->
+<div class="relative group">
+<input class="w-full bg-gray-50 dark:bg-background-dark border border-gray-200 dark:border-gray-700 rounded-full py-3 px-5 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600" placeholder="Short, descriptive title..." type="text"/>
+</div>
+<!-- Description Input -->
+<div class="relative group">
+<textarea class="w-full bg-gray-50 dark:bg-background-dark border border-gray-200 dark:border-gray-700 rounded-2xl py-3 px-5 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none placeholder:text-gray-400 dark:placeholder:text-gray-600" placeholder="Describe how this helps you..." rows="2"></textarea>
+</div>
+<!-- Submit Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-full shadow-lg shadow-primary/40 flex items-center justify-center gap-2 transition-all active:scale-[0.98]" type="button">
+<span>Cast Spell (Submit)</span>
+<span class="material-icons-round text-sm">send</span>
+</button>
+</form>
+</div>
+</div>
+<!-- Navigation Bar (Simulated) -->
+<nav class="absolute bottom-0 w-full hidden">
+<!-- Hidden for this specific screen request to focus on the form interaction, 
+                 but keeping structure if needed for context -->
+</nav>
+</div>
+</body></html>

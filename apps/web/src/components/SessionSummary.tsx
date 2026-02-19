@@ -57,12 +57,12 @@ export function SessionSummary({ metrics, onConfirmSignOut, onDismiss }: Session
   return (
     /* Backdrop */
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 px-4" role="dialog" aria-modal="true">
-      <div className="w-full max-w-sm bg-white dark:bg-neutral-800 rounded-2xl shadow-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+      <div className="w-full max-w-sm bg-white dark:bg-surface-dark rounded-2xl shadow-xl border border-neutral-200 dark:border-white/10 overflow-hidden">
         {/* Header */}
         <div className="relative bg-gradient-to-br from-primary-50 to-white dark:from-primary-900/20 dark:to-neutral-800 px-6 pt-8 pb-6 text-center">
           <button
             onClick={onDismiss}
-            className="absolute top-4 right-4 p-1.5 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+            className="absolute top-4 right-4 p-1.5 text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-200 rounded-lg hover:bg-neutral-100 dark:hover:bg-white/5 transition-colors"
             aria-label="Dismiss"
           >
             <X className="w-4 h-4" />
@@ -121,14 +121,14 @@ export function SessionSummary({ metrics, onConfirmSignOut, onDismiss }: Session
             <a
               href="/newsletters"
               onClick={onDismiss}
-              className="flex-1 text-center py-2 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+              className="flex-1 text-center py-2 border border-neutral-200 dark:border-white/10 rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
             >
               Save drafts
             </a>
             <a
               href="/scheduling"
               onClick={onDismiss}
-              className="flex-1 text-center py-2 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+              className="flex-1 text-center py-2 border border-neutral-200 dark:border-white/10 rounded-lg text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
             >
               Schedule pending
             </a>
@@ -138,7 +138,7 @@ export function SessionSummary({ metrics, onConfirmSignOut, onDismiss }: Session
           <div className="flex gap-3">
             <button
               onClick={onDismiss}
-              className="flex-1 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+              className="flex-1 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg text-sm font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
             >
               Keep working
             </button>

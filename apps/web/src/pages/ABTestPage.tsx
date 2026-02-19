@@ -279,7 +279,7 @@ export function ABTestPage() {
       <div className="flex items-center gap-4 mb-6">
         <button
           onClick={() => navigate(`/newsletters/${id}/edit`)}
-          className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors"
+          className="p-2 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg transition-colors"
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
@@ -309,7 +309,7 @@ export function ABTestPage() {
       )}
 
       {/* Test Name */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6 mb-6">
+      <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6 mb-6">
         <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
           Test Name
         </label>
@@ -319,12 +319,12 @@ export function ABTestPage() {
           onChange={(e) => setTestName(e.target.value)}
           placeholder="e.g., Subject Line Test - January"
           disabled={test?.status !== 'draft' && !!test}
-          className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none disabled:opacity-50"
+          className="w-full px-4 py-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none disabled:opacity-50"
         />
       </div>
 
       {/* Variants */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6 mb-6">
+      <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6 mb-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Variants</h2>
           {(!test || test.status === 'draft') && variants.length < 4 && (
@@ -343,7 +343,7 @@ export function ABTestPage() {
             const result = results.find(r => r.variant === variant.name);
             
             return (
-              <div key={variant.name} className="border border-neutral-200 dark:border-neutral-700 rounded-xl p-4">
+              <div key={variant.name} className="border border-neutral-200 dark:border-white/10 rounded-xl p-4">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-3">
                     <span className="w-8 h-8 bg-primary-100 dark:bg-primary-900/30 text-primary-600 rounded-lg flex items-center justify-center font-bold">
@@ -373,7 +373,7 @@ export function ABTestPage() {
 
                 {/* Results (if test is running or completed with real data) */}
                 {result && result.sends > 0 && (test?.status === 'running' || test?.status === 'completed') && (
-                  <div className="grid grid-cols-4 gap-4 mb-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg p-3">
+                  <div className="grid grid-cols-4 gap-4 mb-4 bg-neutral-50 dark:bg-background-dark rounded-lg p-3">
                     <div className="text-center">
                       <div className="flex items-center justify-center gap-1 text-neutral-500 text-xs mb-1">
                         <Users className="w-3 h-3" /> Sends
@@ -423,7 +423,7 @@ export function ABTestPage() {
                       onChange={(e) => updateVariant(index, 'subject', e.target.value)}
                       disabled={test?.status !== 'draft' && !!test}
                       placeholder="Enter subject line..."
-                      className="w-full px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm disabled:opacity-50"
+                      className="w-full px-3 py-2 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm disabled:opacity-50"
                     />
                   </div>
                   <div>
@@ -436,7 +436,7 @@ export function ABTestPage() {
                       disabled={test?.status !== 'draft' && !!test}
                       placeholder="Enter content (or leave same as original)..."
                       rows={4}
-                      className="w-full px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm font-mono resize-none disabled:opacity-50"
+                      className="w-full px-3 py-2 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm font-mono resize-none disabled:opacity-50"
                     />
                   </div>
                 </div>
@@ -447,7 +447,7 @@ export function ABTestPage() {
       </div>
 
       {/* Distribution */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6 mb-6">
+      <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6 mb-6">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">Traffic Distribution</h2>
         <div className="flex gap-2 mb-4">
           {variants.map((v) => (

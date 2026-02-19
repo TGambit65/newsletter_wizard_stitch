@@ -57,7 +57,7 @@ export function PressKitPage() {
       {/* About */}
       <section>
         <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-4">About Newsletter Wizard</h2>
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
           <p className="text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4">{BOILERPLATE}</p>
           <button
             onClick={copyBoilerplate}
@@ -74,7 +74,7 @@ export function PressKitPage() {
         <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-4">Logo assets</h2>
         <div className="grid md:grid-cols-3 gap-4">
           {LOGO_VARIANTS.map(logo => (
-            <div key={logo.name} className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+            <div key={logo.name} className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 overflow-hidden">
               <div className={`h-32 flex items-center justify-center ${logo.bg}`}>
                 {/* Representative logo placeholder — real assets served from /public/brand/ */}
                 <div className="flex items-center gap-2">
@@ -125,7 +125,7 @@ export function PressKitPage() {
         <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-4">Brand colors</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {BRAND_COLORS.map(color => (
-            <div key={color.hex} className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+            <div key={color.hex} className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 overflow-hidden">
               <div className="h-16" style={{ backgroundColor: color.hex }} />
               <div className="p-4">
                 <div className="flex items-start justify-between gap-2 mb-1">
@@ -149,7 +149,7 @@ export function PressKitPage() {
       {/* Typography */}
       <section>
         <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-4">Typography</h2>
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6 space-y-4">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6 space-y-4">
           <div>
             <p className="text-xs text-neutral-400 mb-1">Primary font — headings & UI</p>
             <p className="text-2xl font-bold text-neutral-900 dark:text-white font-sans">Inter</p>
@@ -164,7 +164,7 @@ export function PressKitPage() {
       {/* Media contact */}
       <section>
         <h2 className="text-xl font-bold text-neutral-900 dark:text-white mb-4">Media contact</h2>
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
           <div className="grid sm:grid-cols-2 gap-6">
             <div>
               <p className="text-sm text-neutral-500 mb-1">Press inquiries</p>

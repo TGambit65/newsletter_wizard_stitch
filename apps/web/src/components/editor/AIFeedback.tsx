@@ -55,7 +55,7 @@ export function AIFeedback({
   if (disabled) return null;
 
   return (
-    <div className="flex items-center gap-2 mt-3 pt-3 border-t border-neutral-100 dark:border-neutral-700">
+    <div className="flex items-center gap-2 mt-3 pt-3 border-t border-neutral-100 dark:border-white/10">
       {/* Feedback buttons */}
       <div className="flex items-center gap-1">
         <span className="text-xs text-neutral-500 mr-1">Was this helpful?</span>
@@ -66,7 +66,7 @@ export function AIFeedback({
             'p-1.5 rounded-lg transition-colors',
             feedbackGiven === 'up' 
               ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400'
-              : 'hover:bg-neutral-100 dark:hover:bg-neutral-700 text-neutral-500',
+              : 'hover:bg-neutral-100 dark:hover:bg-white/5 text-neutral-500',
             feedbackGiven !== null && feedbackGiven !== 'up' && 'opacity-50 cursor-not-allowed'
           )}
           title="Good response"
@@ -80,7 +80,7 @@ export function AIFeedback({
             'p-1.5 rounded-lg transition-colors',
             feedbackGiven === 'down'
               ? 'bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400'
-              : 'hover:bg-neutral-100 dark:hover:bg-neutral-700 text-neutral-500',
+              : 'hover:bg-neutral-100 dark:hover:bg-white/5 text-neutral-500',
             feedbackGiven !== null && feedbackGiven !== 'down' && 'opacity-50 cursor-not-allowed'
           )}
           title="Could be better"
@@ -117,12 +117,12 @@ export function AIFeedback({
               className="fixed inset-0 z-10" 
               onClick={() => setShowToneDropdown(false)} 
             />
-            <div className="absolute left-0 top-full mt-1 w-56 bg-white dark:bg-neutral-800 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 py-1 z-20">
+            <div className="absolute left-0 top-full mt-1 w-56 bg-white dark:bg-surface-dark rounded-lg shadow-lg border border-neutral-200 dark:border-white/10 py-1 z-20">
               {TONE_OPTIONS.map((option) => (
                 <button
                   key={option.value}
                   onClick={() => handleRegenerate(option.value === 'same' ? undefined : option.value)}
-                  className="w-full px-3 py-2 text-left hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+                  className="w-full px-3 py-2 text-left hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
                 >
                   <span className="block text-sm font-medium text-neutral-900 dark:text-white">
                     {option.label}
@@ -140,15 +140,15 @@ export function AIFeedback({
       {/* Feedback Modal */}
       {showFeedbackModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-neutral-800 rounded-xl w-full max-w-md shadow-xl">
-            <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-neutral-700">
+          <div className="bg-white dark:bg-surface-dark rounded-xl w-full max-w-md shadow-xl">
+            <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-white/10">
               <h3 className="font-semibold text-neutral-900 dark:text-white flex items-center gap-2">
                 <MessageSquare className="w-5 h-5" />
                 What could be better?
               </h3>
               <button
                 onClick={() => setShowFeedbackModal(false)}
-                className="p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+                className="p-1.5 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
               >
                 <X className="w-4 h-4 text-neutral-500" />
               </button>
@@ -159,12 +159,12 @@ export function AIFeedback({
                 onChange={(e) => setFeedbackComment(e.target.value)}
                 placeholder="Tell us what was wrong with the response... (optional)"
                 rows={3}
-                className="w-full px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none resize-none"
+                className="w-full px-3 py-2 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none resize-none"
               />
               <div className="flex justify-end gap-2 mt-4">
                 <button
                   onClick={() => setShowFeedbackModal(false)}
-                  className="px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors"
+                  className="px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg transition-colors"
                 >
                   Cancel
                 </button>

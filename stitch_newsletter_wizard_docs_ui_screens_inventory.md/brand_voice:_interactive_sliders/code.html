@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brand Voice: Interactive Sliders</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#460df2",
+                        "primary-glow": "#7c52ff",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        "neon": "0 0 10px theme('colors.primary'), 0 0 20px theme('colors.primary-glow')",
+                        "neon-sm": "0 0 5px theme('colors.primary')",
+                        "inner-glow": "inset 0 0 20px rgba(70, 13, 242, 0.2)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom range slider styling for cross-browser compatibility */
+        input[type=range] {
+            -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+            width: 100%; /* Specific width is required for Firefox. */
+            background: transparent; /* Otherwise white in Chrome */
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #460df2;
+            cursor: pointer;
+            margin-top: -10px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+            box-shadow: 0 0 10px #460df2, 0 0 20px #7c52ff; /* Neon glow */
+        }
+
+        input[type=range]::-moz-range-thumb {
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 2px solid #460df2;
+            cursor: pointer;
+            box-shadow: 0 0 10px #460df2, 0 0 20px #7c52ff;
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #2a2442;
+            border-radius: 2px;
+        }
+        
+        input[type=range]:focus::-webkit-slider-runnable-track {
+            background: #2a2442;
+        }
+
+        input[type=range]::-moz-range-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: #2a2442;
+            border-radius: 2px;
+        }
+        
+        /* Custom scrollbar hide */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-white font-display min-h-screen flex justify-center items-center p-0 sm:p-4">
+<!-- Mobile Container -->
+<div class="w-full max-w-md bg-white dark:bg-background-dark h-screen sm:h-[850px] sm:rounded-3xl overflow-hidden relative shadow-2xl border border-gray-200 dark:border-white/5 flex flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between px-6 pt-12 pb-4 z-10 bg-gradient-to-b from-background-dark/90 to-transparent absolute top-0 w-full">
+<button class="w-10 h-10 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/10 transition">
+<span class="material-icons">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<span class="text-xs uppercase tracking-[0.2em] text-primary-glow font-bold mb-1">Step 3 of 4</span>
+<h1 class="text-lg font-bold tracking-wide text-white">Tune Your Voice</h1>
+</div>
+<button class="w-10 h-10 rounded-full bg-white/5 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/10 transition">
+<span class="material-icons">info_outline</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto no-scrollbar pt-28 pb-32 relative">
+<!-- Glow Background Effect -->
+<div class="absolute top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-primary/20 rounded-full blur-[80px] pointer-events-none"></div>
+<!-- Central Avatar Visualizer -->
+<section class="flex flex-col items-center justify-center mb-10 px-6 relative">
+<div class="relative w-64 h-64 flex items-center justify-center">
+<!-- Outer rotating ring (simulated with CSS for layout purposes, assuming static output) -->
+<div class="absolute inset-0 border border-primary/30 rounded-full"></div>
+<div class="absolute inset-4 border border-dashed border-primary/20 rounded-full rotate-45"></div>
+<!-- Main Glowing Core -->
+<div class="w-40 h-40 rounded-full bg-gradient-to-tr from-primary to-primary-glow shadow-neon flex items-center justify-center relative overflow-hidden z-10">
+<!-- Abstract waveform visual inside -->
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&amp;w=2564&amp;auto=format&amp;fit=crop')] bg-cover bg-center opacity-80 mix-blend-overlay" data-alt="Abstract glowing purple waveform pattern"></div>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/40"></div>
+<!-- Pulse rings -->
+<div class="absolute w-full h-full border-2 border-white/20 rounded-full animate-ping opacity-20"></div>
+</div>
+<!-- Floating Badge -->
+<div class="absolute -bottom-4 bg-background-dark/80 backdrop-blur-md border border-white/10 px-4 py-1.5 rounded-full shadow-lg">
+<span class="text-xs font-semibold text-primary-glow tracking-widest uppercase">Persona Active</span>
+</div>
+</div>
+</section>
+<!-- Sliders Section -->
+<section class="px-6 space-y-10 mb-10">
+<!-- Complexity Slider -->
+<div class="relative group">
+<div class="flex justify-between items-end mb-4">
+<label class="text-sm font-medium text-gray-400 uppercase tracking-wider">Complexity</label>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20">Expert Level</span>
+</div>
+<div class="relative h-12 flex items-center">
+<!-- Track Background -->
+<div class="absolute w-full h-1 bg-white/10 rounded-full overflow-hidden">
+<!-- Filled Track -->
+<div class="h-full bg-gradient-to-r from-primary/50 to-primary w-[75%] shadow-[0_0_10px_rgba(70,13,242,0.5)]"></div>
+</div>
+<!-- Range Input -->
+<input class="relative z-10 w-full opacity-0 cursor-pointer h-full" max="100" min="0" style="opacity: 1;" type="range" value="75"/> <!-- Forcing opacity 1 to show custom CSS styled input -->
+<!-- Visual Markers -->
+<div class="absolute top-8 left-0 text-[10px] text-gray-500 font-medium">Simple</div>
+<div class="absolute top-8 right-0 text-[10px] text-gray-500 font-medium">Expert</div>
+</div>
+</div>
+<!-- Length Slider -->
+<div class="relative group">
+<div class="flex justify-between items-end mb-4">
+<label class="text-sm font-medium text-gray-400 uppercase tracking-wider">Length</label>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20">Balanced</span>
+</div>
+<div class="relative h-12 flex items-center">
+<!-- Track Background -->
+<div class="absolute w-full h-1 bg-white/10 rounded-full overflow-hidden">
+<!-- Filled Track -->
+<div class="h-full bg-gradient-to-r from-primary/50 to-primary w-[50%] shadow-[0_0_10px_rgba(70,13,242,0.5)]"></div>
+</div>
+<!-- Range Input -->
+<input class="relative z-10 w-full opacity-0 cursor-pointer h-full" max="100" min="0" style="opacity: 1;" type="range" value="50"/>
+<!-- Visual Markers -->
+<div class="absolute top-8 left-0 text-[10px] text-gray-500 font-medium">Concise</div>
+<div class="absolute top-8 right-0 text-[10px] text-gray-500 font-medium">Elaborate</div>
+</div>
+</div>
+<!-- Tone Slider (Optional Addition for completeness) -->
+<div class="relative group">
+<div class="flex justify-between items-end mb-4">
+<label class="text-sm font-medium text-gray-400 uppercase tracking-wider">Tone</label>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20">Friendly</span>
+</div>
+<div class="relative h-12 flex items-center">
+<!-- Track Background -->
+<div class="absolute w-full h-1 bg-white/10 rounded-full overflow-hidden">
+<!-- Filled Track -->
+<div class="h-full bg-gradient-to-r from-primary/50 to-primary w-[85%] shadow-[0_0_10px_rgba(70,13,242,0.5)]"></div>
+</div>
+<!-- Range Input -->
+<input class="relative z-10 w-full opacity-0 cursor-pointer h-full" max="100" min="0" style="opacity: 1;" type="range" value="85"/>
+<!-- Visual Markers -->
+<div class="absolute top-8 left-0 text-[10px] text-gray-500 font-medium">Formal</div>
+<div class="absolute top-8 right-0 text-[10px] text-gray-500 font-medium">Casual</div>
+</div>
+</div>
+</section>
+<!-- Quick Templates Carousel -->
+<section class="pl-6 mb-8">
+<div class="flex justify-between items-center pr-6 mb-3">
+<h3 class="text-sm font-semibold text-white">Quick Templates</h3>
+<span class="text-[10px] text-primary hover:text-primary-glow cursor-pointer">View All</span>
+</div>
+<div class="flex overflow-x-auto gap-4 pb-4 pr-6 no-scrollbar">
+<!-- Template Item: Active -->
+<button class="flex-shrink-0 relative group">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-primary-glow rounded-xl blur opacity-75 group-hover:opacity-100 transition duration-200"></div>
+<div class="relative w-32 h-24 bg-background-dark border border-white/10 rounded-xl flex flex-col items-center justify-center p-3 space-y-2">
+<span class="material-icons text-primary-glow">rocket_launch</span>
+<span class="text-xs font-bold text-white">Tech SaaS</span>
+</div>
+</button>
+<!-- Template Item: Inactive -->
+<button class="flex-shrink-0 relative group w-32 h-24 bg-white/5 border border-white/5 hover:border-white/20 rounded-xl flex flex-col items-center justify-center p-3 space-y-2 transition-all">
+<span class="material-icons text-gray-400 group-hover:text-white transition">shopping_bag</span>
+<span class="text-xs font-medium text-gray-400 group-hover:text-white transition">E-commerce</span>
+</button>
+<!-- Template Item: Inactive -->
+<button class="flex-shrink-0 relative group w-32 h-24 bg-white/5 border border-white/5 hover:border-white/20 rounded-xl flex flex-col items-center justify-center p-3 space-y-2 transition-all">
+<span class="material-icons text-gray-400 group-hover:text-white transition">face</span>
+<span class="text-xs font-medium text-gray-400 group-hover:text-white transition">Lifestyle</span>
+</button>
+<!-- Template Item: Inactive -->
+<button class="flex-shrink-0 relative group w-32 h-24 bg-white/5 border border-white/5 hover:border-white/20 rounded-xl flex flex-col items-center justify-center p-3 space-y-2 transition-all">
+<span class="material-icons text-gray-400 group-hover:text-white transition">school</span>
+<span class="text-xs font-medium text-gray-400 group-hover:text-white transition">Education</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Sticky Footer -->
+<div class="absolute bottom-0 w-full p-6 bg-gradient-to-t from-background-dark via-background-dark to-transparent z-20">
+<button class="w-full relative group overflow-hidden rounded-xl">
+<div class="absolute inset-0 w-full h-full bg-gradient-to-r from-primary to-primary-glow opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay"></div>
+<div class="relative py-4 flex items-center justify-center gap-2">
+<span class="material-icons text-white text-sm">auto_awesome</span>
+<span class="font-bold text-white tracking-wide uppercase text-sm">Activate Persona</span>
+</div>
+</button>
+</div>
+</div>
+</body></html>

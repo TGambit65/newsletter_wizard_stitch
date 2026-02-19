@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Scheduling: Calendar View V2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .calendar-dot {
+            box-shadow: 0 0 10px 2px rgba(51, 13, 242, 0.6);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .bottom-sheet-gradient {
+            background: linear-gradient(180deg, rgba(29, 24, 52, 0.95) 0%, rgba(19, 16, 34, 1) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen">
+<div class="relative mx-auto max-w-[430px] min-h-screen bg-background-light dark:bg-background-dark overflow-x-hidden flex flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between px-6 pt-12 pb-4 sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md z-30">
+<div class="flex items-center gap-3">
+<div class="bg-primary/20 p-2 rounded-full">
+<span class="material-symbols-outlined text-primary">calendar_month</span>
+</div>
+<h1 class="text-2xl font-bold tracking-tight">Scheduling</h1>
+</div>
+<button class="size-10 flex items-center justify-center rounded-full bg-slate-200 dark:bg-primary/10 text-slate-700 dark:text-primary">
+<span class="material-symbols-outlined">analytics</span>
+</button>
+</header>
+<!-- Upcoming Sends Horizontal Scroll -->
+<section class="py-4">
+<h2 class="px-6 text-sm font-semibold uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">Upcoming Sends</h2>
+<div class="flex overflow-x-auto gap-4 px-6 hide-scrollbar">
+<!-- Card 1 -->
+<div class="flex-shrink-0 w-64 p-4 rounded-xl bg-white dark:bg-[#1d1834] border border-slate-200 dark:border-primary/20 shadow-sm">
+<div class="flex items-start justify-between mb-3">
+<div class="size-12 rounded-lg bg-cover bg-center" data-alt="Vibrant abstract purple and blue 3D shapes" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDky1bJgkXXc4mdE1peWe9GBHw5hbefv3VgHHjj-a-nCUD3uCKay6cXyw0jOf7Y25XsnQKTBOdspkFbUkJaML3uDwUbk6XLZERyJeR_WaPTlh30j47xAUERa4wUcUGL-BsETZFlXD8J516YXYrp4heRlZkxQXqyj4liWvZDokqfnrqqpMcxZqHiZbVlaGQ9N-PZWtoXmPgnuXMlR6ETHD0Ryb_1yfLI-Mtxcflgck6jrRvA7BfTp0NMSmb7nPObpeX0cdpcLZlU4cM');"></div>
+<span class="text-[10px] font-bold px-2 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 uppercase tracking-tighter">In 2 Hours</span>
+</div>
+<h3 class="font-bold text-lg mb-1 truncate">Tech Weekly</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Oct 12, 10:00 AM
+                    </p>
+</div>
+<!-- Card 2 -->
+<div class="flex-shrink-0 w-64 p-4 rounded-xl bg-white dark:bg-[#1d1834] border border-slate-200 dark:border-primary/20 shadow-sm opacity-80">
+<div class="flex items-start justify-between mb-3">
+<div class="size-12 rounded-lg bg-cover bg-center" data-alt="Abstract gradient mesh pattern in deep blue" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDbre311AQrH2My9r2kjVjzcUsTBVtah9JANX1gwEL38m2HjGYoHKr5MJ0DQDahOb_X7pV9tIUZHN916CyHLtlTzO2258ldNsNE6byWVL665cmiEaWVnA8sHUGef_ekxSqaQVjXP1Ggd45Av-ogaQjwLQJMk5Nr9uV5V3kvntzj7zKOmPYjzBWHoqkLgp0R8TQ7BoxmXOi2zkeZnFsrPN9j71BVcyCEJgSGZFYUhUUbaUU5obyc_ftzIGK06QC-xBDMseYa9fLrkPE');"></div>
+<span class="text-[10px] font-bold px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 uppercase tracking-tighter">Tomorrow</span>
+</div>
+<h3 class="font-bold text-lg mb-1 truncate">Design Digest</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">schedule</span> Oct 13, 2:00 PM
+                    </p>
+</div>
+</div>
+</section>
+<!-- Smart Queue Toggle -->
+<section class="px-6 py-4">
+<div class="p-5 rounded-2xl bg-primary/10 border border-primary/30 flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="size-10 flex items-center justify-center rounded-full bg-primary shadow-[0_0_15px_rgba(51,13,242,0.4)]">
+<span class="material-symbols-outlined text-white text-[20px]">magic_button</span>
+</div>
+<div>
+<h4 class="font-bold text-sm">Smart Queue</h4>
+<p class="text-[11px] text-slate-500 dark:text-slate-400">AI-optimized slots</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-300 dark:bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</section>
+<!-- Calendar View -->
+<section class="flex-1 px-6 pt-4 pb-24">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xl font-bold">October 2023</h2>
+<div class="flex gap-2">
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-y-4 text-center">
+<!-- Weekdays -->
+<div class="text-[10px] font-bold text-slate-400 uppercase">Mon</div>
+<div class="text-[10px] font-bold text-slate-400 uppercase">Tue</div>
+<div class="text-[10px] font-bold text-slate-400 uppercase">Wed</div>
+<div class="text-[10px] font-bold text-slate-400 uppercase">Thu</div>
+<div class="text-[10px] font-bold text-slate-400 uppercase">Fri</div>
+<div class="text-[10px] font-bold text-slate-400 uppercase">Sat</div>
+<div class="text-[10px] font-bold text-slate-400 uppercase">Sun</div>
+<!-- Calendar Days (Partial representation) -->
+<div class="h-12 flex items-center justify-center text-slate-300 dark:text-slate-700">25</div>
+<div class="h-12 flex items-center justify-center text-slate-300 dark:text-slate-700">26</div>
+<div class="h-12 flex items-center justify-center text-slate-300 dark:text-slate-700">27</div>
+<div class="h-12 flex items-center justify-center text-slate-300 dark:text-slate-700">28</div>
+<div class="h-12 flex items-center justify-center text-slate-300 dark:text-slate-700">29</div>
+<div class="h-12 flex items-center justify-center text-slate-300 dark:text-slate-700">30</div>
+<div class="h-12 flex flex-col items-center justify-center relative cursor-pointer group">
+<span class="z-10 text-sm font-medium">1</span>
+</div>
+<!-- Row 1 -->
+<div class="h-12 flex flex-col items-center justify-center relative cursor-pointer group">
+<span class="z-10 text-sm font-medium">2</span>
+<div class="size-1.5 bg-primary rounded-full mt-1 calendar-dot"></div>
+</div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">3</span></div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">4</span></div>
+<div class="h-12 flex flex-col items-center justify-center relative cursor-pointer group">
+<span class="z-10 text-sm font-medium">5</span>
+<div class="size-1.5 bg-primary rounded-full mt-1 calendar-dot"></div>
+</div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">6</span></div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">7</span></div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">8</span></div>
+<!-- Row 2 -->
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">9</span></div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">10</span></div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">11</span></div>
+<div class="h-12 flex flex-col items-center justify-center relative cursor-pointer">
+<div class="absolute inset-1 rounded-full border-2 border-primary"></div>
+<span class="z-10 text-sm font-bold">12</span>
+<div class="size-1.5 bg-primary rounded-full mt-0.5 calendar-dot"></div>
+</div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">13</span></div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">14</span></div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">15</span></div>
+<!-- Row 3 -->
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">16</span></div>
+<div class="h-12 flex flex-col items-center justify-center relative cursor-pointer group">
+<span class="z-10 text-sm font-medium">17</span>
+<div class="size-1.5 bg-primary rounded-full mt-1 calendar-dot"></div>
+</div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">18</span></div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">19</span></div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">20</span></div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">21</span></div>
+<div class="h-12 flex items-center justify-center cursor-pointer"><span class="text-sm font-medium">22</span></div>
+</div>
+</section>
+<!-- Bottom Sheet Time Selector -->
+<div class="fixed inset-x-0 bottom-[84px] z-40 px-4">
+<div class="bottom-sheet-gradient rounded-t-3xl border-t border-x border-primary/20 shadow-2xl p-6 pb-8 transform translate-y-0 transition-transform duration-300">
+<div class="w-12 h-1.5 bg-slate-700 rounded-full mx-auto mb-6"></div>
+<div class="flex items-center justify-between mb-6">
+<div>
+<h5 class="text-lg font-bold">Thursday, Oct 12</h5>
+<p class="text-xs text-slate-400">Select a delivery time</p>
+</div>
+<div class="bg-primary/10 px-3 py-1 rounded-full">
+<span class="text-[10px] font-bold text-primary uppercase">2 Slots Available</span>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-3 mb-8">
+<button class="flex flex-col items-center justify-center py-3 rounded-2xl bg-slate-800 border border-transparent text-slate-400">
+<span class="text-sm font-bold">08:00</span>
+<span class="text-[9px] uppercase">AM</span>
+</button>
+<button class="flex flex-col items-center justify-center py-3 rounded-2xl bg-primary/20 border-2 border-primary text-primary ring-4 ring-primary/10">
+<span class="text-sm font-bold">10:00</span>
+<span class="text-[9px] uppercase">AM</span>
+</button>
+<button class="flex flex-col items-center justify-center py-3 rounded-2xl bg-slate-800 border border-transparent text-slate-400">
+<span class="text-sm font-bold">01:30</span>
+<span class="text-[9px] uppercase">PM</span>
+</button>
+<button class="flex flex-col items-center justify-center py-3 rounded-2xl bg-slate-800 border border-transparent text-slate-400">
+<span class="text-sm font-bold">06:00</span>
+<span class="text-[9px] uppercase">PM</span>
+</button>
+</div>
+<button class="w-full bg-primary py-4 rounded-full font-bold text-lg shadow-[0_10px_20px_rgba(51,13,242,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
+                    Confirm Slot
+                </button>
+</div>
+</div>
+<!-- Navigation Bar -->
+<nav class="fixed bottom-0 inset-x-0 bg-[#1d1834] border-t border-[#292249] px-6 pb-6 pt-2 z-50 flex justify-between items-center max-w-[430px] mx-auto">
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined text-[26px]">home</span>
+<span class="text-[10px] font-medium uppercase tracking-wider">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-[26px] fill-[1]">calendar_today</span>
+<span class="text-[10px] font-medium uppercase tracking-wider">Schedule</span>
+</a>
+<div class="relative -top-8">
+<button class="size-16 rounded-full bg-primary flex items-center justify-center shadow-[0_0_30px_rgba(51,13,242,0.5)] border-4 border-background-dark">
+<span class="material-symbols-outlined text-white text-3xl">add</span>
+</button>
+</div>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined text-[26px]">auto_fix_high</span>
+<span class="text-[10px] font-medium uppercase tracking-wider">Wizard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined text-[26px]">settings</span>
+<span class="text-[10px] font-medium uppercase tracking-wider">Settings</span>
+</a>
+</nav>
+</div>
+</body></html>

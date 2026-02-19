@@ -182,8 +182,8 @@ export function TeamPage() {
       </div>
 
       {/* Members list */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 mb-6">
-        <div className="px-6 py-4 border-b border-neutral-200 dark:border-neutral-700 flex items-center gap-2">
+      <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 mb-6">
+        <div className="px-6 py-4 border-b border-neutral-200 dark:border-white/10 flex items-center gap-2">
           <Users className="w-5 h-5 text-neutral-400" />
           <h2 className="font-semibold text-neutral-900 dark:text-white">
             Members <span className="text-neutral-400 font-normal text-sm ml-1">({members.length})</span>
@@ -195,7 +195,7 @@ export function TeamPage() {
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
           </div>
         ) : (
-          <div className="divide-y divide-neutral-100 dark:divide-neutral-700">
+          <div className="divide-y divide-neutral-100 dark:divide-white/5">
             {members.map(member => {
               const roleConf = ROLE_CONFIG[member.role];
               const RoleIcon = roleConf.icon;
@@ -251,8 +251,8 @@ export function TeamPage() {
       </div>
 
       {/* Pending invitations */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 mb-6">
-        <div className="px-6 py-4 border-b border-neutral-200 dark:border-neutral-700">
+      <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 mb-6">
+        <div className="px-6 py-4 border-b border-neutral-200 dark:border-white/10">
           <h2 className="font-semibold text-neutral-900 dark:text-white">
             Pending Invitations
             {invitations.length > 0 && (
@@ -272,7 +272,7 @@ export function TeamPage() {
             <p className="text-xs text-neutral-400 mt-1">Invitations expire after 7 days</p>
           </div>
         ) : (
-          <div className="divide-y divide-neutral-100 dark:divide-neutral-700">
+          <div className="divide-y divide-neutral-100 dark:divide-white/5">
             {invitations.map(inv => {
               const roleConf = ROLE_CONFIG[inv.role] || ROLE_CONFIG.viewer;
               return (
@@ -305,7 +305,7 @@ export function TeamPage() {
       </div>
 
       {/* Permissions Matrix toggle */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
+      <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10">
         <button
           onClick={() => setShowPermissions(v => !v)}
           className="w-full flex items-center justify-between px-6 py-4 text-left"
@@ -318,10 +318,10 @@ export function TeamPage() {
         </button>
 
         {showPermissions && (
-          <div className="overflow-x-auto border-t border-neutral-200 dark:border-neutral-700">
+          <div className="overflow-x-auto border-t border-neutral-200 dark:border-white/10">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-neutral-50 dark:bg-neutral-900">
+                <tr className="bg-neutral-50 dark:bg-background-dark">
                   <th className="text-left px-6 py-3 text-neutral-600 dark:text-neutral-400 font-medium">Permission</th>
                   {(['owner', 'admin', 'editor', 'viewer'] as Role[]).map(role => {
                     const conf = ROLE_CONFIG[role];
@@ -335,9 +335,9 @@ export function TeamPage() {
                   })}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-neutral-100 dark:divide-neutral-700">
+              <tbody className="divide-y divide-neutral-100 dark:divide-white/5">
                 {PERMISSIONS.map((perm, i) => (
-                  <tr key={i} className="hover:bg-neutral-50 dark:hover:bg-neutral-700/50">
+                  <tr key={i} className="hover:bg-neutral-50 dark:hover:bg-white/5">
                     <td className="px-6 py-3 text-neutral-700 dark:text-neutral-300">{perm.label}</td>
                     {(['owner', 'admin', 'editor', 'viewer'] as Role[]).map(role => (
                       <td key={role} className="px-4 py-3 text-center">
@@ -362,7 +362,7 @@ export function TeamPage() {
           className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4"
           onClick={e => { if (e.target === e.currentTarget) setShowInvite(false); }}
         >
-          <div className="w-full max-w-md bg-white dark:bg-neutral-800 rounded-2xl shadow-2xl p-6">
+          <div className="w-full max-w-md bg-white dark:bg-surface-dark rounded-2xl shadow-2xl p-6">
             <h3 className="text-lg font-semibold text-neutral-900 dark:text-white mb-1">Invite a team member</h3>
             <p className="text-sm text-neutral-500 mb-6">They'll receive an email with a link to join your workspace.</p>
 
@@ -377,7 +377,7 @@ export function TeamPage() {
                   onChange={e => setInviteEmail(e.target.value)}
                   required
                   placeholder="colleague@company.com"
-                  className="w-full px-3 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+                  className="w-full px-3 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg bg-white dark:bg-background-dark text-neutral-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
                 />
               </div>
 
@@ -388,7 +388,7 @@ export function TeamPage() {
                 <select
                   value={inviteRole}
                   onChange={e => setInviteRole(e.target.value as InviteRole)}
-                  className="w-full px-3 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white focus:ring-2 focus:ring-primary-500 outline-none"
+                  className="w-full px-3 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg bg-white dark:bg-background-dark text-neutral-900 dark:text-white focus:ring-2 focus:ring-primary-500 outline-none"
                 >
                   <option value="admin">Admin — Can manage team and most settings</option>
                   <option value="editor">Editor — Can create and edit content</option>
@@ -400,7 +400,7 @@ export function TeamPage() {
                 <button
                   type="button"
                   onClick={() => setShowInvite(false)}
-                  className="flex-1 px-4 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors font-medium"
+                  className="flex-1 px-4 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors font-medium"
                 >
                   Cancel
                 </button>

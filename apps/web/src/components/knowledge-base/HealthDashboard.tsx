@@ -189,7 +189,7 @@ export function HealthDashboard({
   if (sources.length === 0) return null;
 
   return (
-    <div className="mb-6 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+    <div className="mb-6 bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 overflow-hidden">
       {/* Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
@@ -213,25 +213,25 @@ export function HealthDashboard({
 
       {/* Expanded Content */}
       {isExpanded && (
-        <div className="px-6 pb-6 border-t border-neutral-100 dark:border-neutral-700">
+        <div className="px-6 pb-6 border-t border-neutral-100 dark:border-white/10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
             {/* Summary Cards */}
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-4">
+              <div className="bg-neutral-50 dark:bg-background-dark rounded-lg p-4">
                 <div className="flex items-center gap-2 text-neutral-500 text-sm mb-1">
                   <Database className="w-4 h-4" />
                   Total Sources
                 </div>
                 <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.total}</p>
               </div>
-              <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-4">
+              <div className="bg-neutral-50 dark:bg-background-dark rounded-lg p-4">
                 <div className="flex items-center gap-2 text-neutral-500 text-sm mb-1">
                   <CheckCircle className="w-4 h-4 text-green-500" />
                   Ready
                 </div>
                 <p className="text-2xl font-bold text-green-600">{stats.ready}</p>
               </div>
-              <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-4">
+              <div className="bg-neutral-50 dark:bg-background-dark rounded-lg p-4">
                 <div className="flex items-center gap-2 text-neutral-500 text-sm mb-1">
                   <Activity className="w-4 h-4" />
                   Tokens
@@ -240,7 +240,7 @@ export function HealthDashboard({
                   {stats.totalTokens >= 1000 ? `${(stats.totalTokens / 1000).toFixed(1)}k` : stats.totalTokens}
                 </p>
               </div>
-              <div className="bg-neutral-50 dark:bg-neutral-900 rounded-lg p-4">
+              <div className="bg-neutral-50 dark:bg-background-dark rounded-lg p-4">
                 <div className="flex items-center gap-2 text-neutral-500 text-sm mb-1">
                   <Clock className="w-4 h-4" />
                   Last Updated
@@ -407,7 +407,7 @@ export function HealthDashboard({
 
           {/* Processing Queue */}
           {processingQueue.length > 0 && (
-            <div className="mt-6 pt-6 border-t border-neutral-100 dark:border-neutral-700">
+            <div className="mt-6 pt-6 border-t border-neutral-100 dark:border-white/10">
               <h4 className="font-medium text-neutral-900 dark:text-white flex items-center gap-2 mb-3">
                 <RefreshCw className="w-4 h-4 text-amber-500 animate-spin" />
                 Processing Queue ({processingQueue.length})
@@ -416,7 +416,7 @@ export function HealthDashboard({
                 {processingQueue.slice(0, 5).map((source) => (
                   <div
                     key={source.id}
-                    className="flex items-center gap-3 bg-neutral-50 dark:bg-neutral-900 rounded-lg p-3"
+                    className="flex items-center gap-3 bg-neutral-50 dark:bg-background-dark rounded-lg p-3"
                   >
                     <div className="flex-1 min-w-0">
                       <p className="text-sm font-medium text-neutral-900 dark:text-white truncate">

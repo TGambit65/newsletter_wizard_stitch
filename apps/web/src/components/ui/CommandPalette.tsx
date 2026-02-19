@@ -192,9 +192,9 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
       className="fixed inset-0 bg-black/50 z-[100] flex items-start justify-center pt-[15vh] px-4"
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="w-full max-w-xl bg-white dark:bg-neutral-800 rounded-2xl shadow-2xl overflow-hidden border border-neutral-200 dark:border-neutral-700">
+      <div className="w-full max-w-xl bg-white dark:bg-surface-dark rounded-2xl shadow-2xl overflow-hidden border border-neutral-200 dark:border-white/10">
         {/* Search input */}
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-neutral-200 dark:border-neutral-700">
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-neutral-200 dark:border-white/10">
           <Search className="w-5 h-5 text-neutral-400 flex-shrink-0" />
           <input
             ref={inputRef}
@@ -262,7 +262,7 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
                       'w-full flex items-center gap-3 px-4 py-3 text-left transition-colors',
                       focusedIndex === idx
                         ? 'bg-primary-50 dark:bg-primary-900/20'
-                        : 'hover:bg-neutral-50 dark:hover:bg-neutral-700/50'
+                        : 'hover:bg-neutral-50 dark:hover:bg-white/5'
                     )}
                   >
                     <div className={clsx('w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0', TYPE_COLORS[item.type])}>
@@ -284,7 +284,7 @@ export function CommandPalette({ open, onClose }: CommandPaletteProps) {
         </div>
 
         {/* Footer hint */}
-        <div className="px-4 py-2 border-t border-neutral-100 dark:border-neutral-700 flex items-center gap-4 text-xs text-neutral-400">
+        <div className="px-4 py-2 border-t border-neutral-100 dark:border-white/10 flex items-center gap-4 text-xs text-neutral-400">
           <span className="flex items-center gap-1"><kbd className="px-1 border border-neutral-300 dark:border-neutral-600 rounded">↑↓</kbd> navigate</span>
           <span className="flex items-center gap-1"><kbd className="px-1 border border-neutral-300 dark:border-neutral-600 rounded">↵</kbd> open</span>
           <span className="flex items-center gap-1"><kbd className="px-1 border border-neutral-300 dark:border-neutral-600 rounded">Esc</kbd> close</span>

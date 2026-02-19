@@ -134,7 +134,7 @@ export function AcceptInvitePage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-white dark:from-neutral-900 dark:to-neutral-800 px-4">
       <div className="w-full max-w-md">
-        <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8">
+        <div className="bg-white dark:bg-surface-dark rounded-2xl shadow-xl p-8">
           {/* Logo */}
           <div className="flex items-center justify-center gap-2 mb-8">
             <div className="w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center">
@@ -264,7 +264,7 @@ export function AcceptInvitePage() {
                   </div>
                   <Link
                     to="/login"
-                    className="block w-full text-center px-4 py-3 border border-neutral-200 dark:border-neutral-700 rounded-xl text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700/50 transition-colors text-sm font-medium"
+                    className="block w-full text-center px-4 py-3 border border-neutral-200 dark:border-white/10 rounded-xl text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors text-sm font-medium"
                   >
                     Sign In with a Different Account
                   </Link>

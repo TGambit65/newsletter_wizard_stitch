@@ -421,7 +421,7 @@ export function SocialMediaPage() {
       <div className="flex items-center gap-4 mb-8">
         <Link
           to={`/newsletters/${id}/edit`}
-          className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors"
+          className="p-2 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg transition-colors"
         >
           <ArrowLeft className="w-5 h-5 text-neutral-500" />
         </Link>
@@ -434,7 +434,7 @@ export function SocialMediaPage() {
         <button
           onClick={() => editedPosts && savePosts(editedPosts)}
           disabled={saving || !editedPosts}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors disabled:opacity-50"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors disabled:opacity-50"
         >
           {saving ? (
             <RefreshCw className="w-4 h-4 animate-spin" />
@@ -456,7 +456,7 @@ export function SocialMediaPage() {
       </div>
 
       {/* Platform Tabs */}
-      <div className="flex flex-wrap gap-2 mb-6 border-b border-neutral-200 dark:border-neutral-700 pb-4">
+      <div className="flex flex-wrap gap-2 mb-6 border-b border-neutral-200 dark:border-white/10 pb-4">
         {platforms.map((platform) => {
           const config = PLATFORM_CONFIG[platform];
           return (
@@ -467,7 +467,7 @@ export function SocialMediaPage() {
                 'inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm transition-colors',
                 activeTab === platform
                   ? `${config.bgColor} ${config.color}`
-                  : 'bg-white dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-700 border border-neutral-200 dark:border-neutral-700'
+                  : 'bg-white dark:bg-surface-dark text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-white/5 border border-neutral-200 dark:border-white/10'
               )}
             >
               <PlatformIcon platform={platform} className="w-4 h-4" />
@@ -482,7 +482,7 @@ export function SocialMediaPage() {
 
       {/* Active Platform Card */}
       {editedPosts && (
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 overflow-hidden">
           {/* Platform Header */}
           <div className={clsx('px-6 py-4 flex items-center justify-between', PLATFORM_CONFIG[activeTab].bgColor)}>
             <div className="flex items-center gap-3">
@@ -530,7 +530,7 @@ export function SocialMediaPage() {
               value={getPostText(activeTab)}
               onChange={(e) => updatePostText(activeTab, e.target.value)}
               rows={8}
-              className="w-full p-4 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none resize-none font-mono text-sm"
+              className="w-full p-4 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none resize-none font-mono text-sm"
             />
             
             {/* Character Count */}
@@ -547,7 +547,7 @@ export function SocialMediaPage() {
             {/* Video Platform Extras */}
             {PLATFORM_CONFIG[activeTab].isVideo && editedPosts[activeTab] != null && (
               <div className="mt-6 space-y-4">
-                <div className="p-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg border border-neutral-200 dark:border-neutral-700">
+                <div className="p-4 bg-neutral-50 dark:bg-background-dark rounded-lg border border-neutral-200 dark:border-white/10">
                   <h3 className="font-medium text-neutral-900 dark:text-white mb-2">Video Generation Prompt</h3>
                   <p className="text-sm text-neutral-600 dark:text-neutral-400 whitespace-pre-wrap">
                     {(editedPosts[activeTab] as typeof editedPosts.tiktok).video_prompt}
@@ -626,13 +626,13 @@ export function SocialMediaPage() {
                       const charCount = tweet.length;
                       const overLimit = charCount > 280;
                       return (
-                        <div key={index} className="p-3 bg-neutral-50 dark:bg-neutral-900 rounded-lg border border-neutral-200 dark:border-neutral-700">
+                        <div key={index} className="p-3 bg-neutral-50 dark:bg-background-dark rounded-lg border border-neutral-200 dark:border-white/10">
                           <div className="flex items-center justify-between mb-2">
                             <span className="text-xs font-medium text-neutral-500">Tweet {index + 1}</span>
                             <div className="flex items-center gap-1">
                               <button
                                 onClick={() => handleCopy(tweet, `thread-${index}`)}
-                                className="p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded"
+                                className="p-1 hover:bg-neutral-200 dark:hover:bg-white/5 rounded"
                                 aria-label={`Copy tweet ${index + 1}`}
                               >
                                 {copied === `thread-${index}` ? (
@@ -658,7 +658,7 @@ export function SocialMediaPage() {
                                 value={tweet}
                                 onChange={e => updateTweet(index, e.target.value)}
                                 rows={3}
-                                className="w-full p-2 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded text-sm resize-none outline-none focus:ring-1 focus:ring-primary-500"
+                                className="w-full p-2 bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/10 rounded text-sm resize-none outline-none focus:ring-1 focus:ring-primary-500"
                               />
                               <div className="flex justify-end mt-1">
                                 <span className={clsx('text-xs font-medium', overLimit ? 'text-error' : 'text-neutral-400')}>
@@ -691,14 +691,14 @@ export function SocialMediaPage() {
       )}
 
       {generating && !editedPosts && (
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-12 text-center">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-12 text-center">
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent mx-auto mb-4" />
           <p className="text-neutral-500">Generating social media posts...</p>
         </div>
       )}
 
       {!generating && !editedPosts && (
-        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-12 text-center">
+        <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-12 text-center">
           <p className="text-neutral-500 mb-4">No posts generated yet.</p>
           <button
             onClick={handleRegenerate}

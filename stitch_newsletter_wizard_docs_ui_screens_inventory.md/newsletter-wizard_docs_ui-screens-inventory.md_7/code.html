@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Subscription and Pricing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --bg-dark: #0f1115;
+            --card-dark: #181b21;
+            --primary: #6366f1;
+            --primary-glow: #4f46e5;
+            --text-main: #ffffff;
+            --text-secondary: #9ca3af;
+            --border-color: #2a2f3a;
+            --purple-glow: rgba(139, 92, 246, 0.5);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+        .glow-border {
+            box-shadow: 0 0 15px var(--purple-glow), inset 0 0 5px var(--purple-glow);
+            border-color: #8b5cf6;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(844px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-[50vh] bg-gradient-to-b from-indigo-900/20 to-transparent pointer-events-none z-0"></div>
+<div class="absolute -top-32 -right-32 w-64 h-64 bg-purple-600/20 rounded-full blur-3xl pointer-events-none z-0"></div>
+<div class="absolute top-1/3 -left-20 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl pointer-events-none z-0"></div>
+<header class="sticky top-0 z-50 px-6 py-4 flex justify-between items-center backdrop-blur-sm bg-[#0f1115]/80">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--card-dark)] text-[var(--text-secondary)] hover:text-white transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<button class="text-sm font-medium text-[var(--text-secondary)] hover:text-white">
+            Restore Purchase
+        </button>
+</header>
+<main class="flex-1 flex flex-col px-6 z-10 pt-2 pb-10">
+<div class="text-center mb-8 mt-2">
+<div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 mb-6 shadow-lg shadow-indigo-500/30">
+<span class="material-symbols-outlined text-3xl text-white">diamond</span>
+</div>
+<h1 class="text-3xl font-bold tracking-tight text-white mb-2">Upgrade to Pro</h1>
+<p class="text-[var(--text-secondary)] text-sm leading-relaxed max-w-[280px] mx-auto">
+                Unlock the full potential of your newsletter with advanced AI and unlimited access.
+            </p>
+</div>
+<div class="flex justify-center mb-8">
+<div class="bg-[var(--card-dark)] p-1 rounded-full border border-[var(--border-color)] flex relative">
+<button class="px-6 py-2 rounded-full bg-[var(--border-color)] text-white text-sm font-semibold shadow-sm transition-all z-10">
+                    Monthly
+                </button>
+<button class="px-6 py-2 rounded-full text-[var(--text-secondary)] text-sm font-medium hover:text-white transition-all z-10 flex items-center gap-2">
+                    Yearly
+                    <span class="bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded uppercase tracking-wider">Save 20%</span>
+</button>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-3xl opacity-30 blur group-hover:opacity-50 transition duration-1000"></div>
+<div class="relative bg-[var(--card-dark)] rounded-3xl p-6 border border-indigo-500/50 shadow-[0_0_30px_-10px_rgba(99,102,241,0.3)]">
+<div class="flex justify-between items-baseline mb-6 border-b border-[var(--border-color)] pb-6">
+<div>
+<h2 class="text-xl font-bold text-white mb-1">Pro Plan</h2>
+<span class="text-xs text-indigo-400 font-medium bg-indigo-500/10 px-2 py-1 rounded">Most Popular</span>
+</div>
+<div class="text-right">
+<span class="text-3xl font-bold text-white">$19</span>
+<span class="text-[var(--text-secondary)] text-sm">/month</span>
+</div>
+</div>
+<div class="space-y-4 mb-2">
+<div class="flex items-center gap-3">
+<div class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-indigo-400">check</span>
+</div>
+<span class="text-sm text-gray-200">Unlimited Newsletters</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-indigo-400">check</span>
+</div>
+<span class="text-sm text-gray-200">Advanced AI Models (GPT-4)</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-indigo-400">check</span>
+</div>
+<span class="text-sm text-gray-200">10+ Repurposing Platforms</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex-shrink-0 w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-indigo-400">check</span>
+</div>
+<span class="text-sm text-gray-200">Priority Support</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1"></div>
+<div class="mt-8 space-y-4">
+<button class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-indigo-500/25 transition-all transform active:scale-[0.98] flex items-center justify-center group">
+                Start 7-Day Free Trial
+                <span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<p class="text-center text-xs text-[var(--text-secondary)]">
+                Recurring billing, cancel anytime.
+            </p>
+</div>
+</main>
+
+</body></html>

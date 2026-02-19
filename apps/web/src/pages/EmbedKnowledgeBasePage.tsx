@@ -175,7 +175,7 @@ export function EmbedKnowledgeBasePage() {
 
   if (!config.tenantId) {
     return (
-      <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 flex items-center justify-center p-6">
+      <div className="min-h-screen bg-neutral-50 dark:bg-background-dark flex items-center justify-center p-6">
         <div className="text-center">
           <BookOpen className="w-12 h-12 text-neutral-400 mx-auto mb-4" />
           <h1 className="text-xl font-semibold text-neutral-900 dark:text-white">Missing Tenant ID</h1>
@@ -186,7 +186,7 @@ export function EmbedKnowledgeBasePage() {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 p-6">
+    <div className="min-h-screen bg-neutral-50 dark:bg-background-dark p-6">
       <div className="max-w-3xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
@@ -209,7 +209,7 @@ export function EmbedKnowledgeBasePage() {
         </div>
 
         {/* Sources List */}
-        <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-sm overflow-hidden">
+        <div className="bg-white dark:bg-surface-dark rounded-xl shadow-sm overflow-hidden">
           {loading ? (
             <div className="p-8 text-center text-neutral-500">Loading...</div>
           ) : sources.length === 0 ? (
@@ -219,9 +219,9 @@ export function EmbedKnowledgeBasePage() {
               <p className="text-sm text-neutral-500 mt-1">Add URLs or text to build your knowledge base</p>
             </div>
           ) : (
-            <ul className="divide-y divide-neutral-200 dark:divide-neutral-700">
+            <ul className="divide-y divide-neutral-200 dark:divide-white/5">
               {sources.map(source => (
-                <li key={source.id} className="flex items-center gap-4 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-700/50">
+                <li key={source.id} className="flex items-center gap-4 p-4 hover:bg-neutral-50 dark:hover:bg-white/5">
                   <div className="flex-shrink-0">
                     {source.source_type === 'url' ? (
                       <Link className="w-5 h-5 text-neutral-400" />
@@ -259,10 +259,10 @@ export function EmbedKnowledgeBasePage() {
       {/* Add Modal */}
       {showAddModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white dark:bg-neutral-800 rounded-xl shadow-xl w-full max-w-md">
-            <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-neutral-700">
+          <div className="bg-white dark:bg-surface-dark rounded-xl shadow-xl w-full max-w-md">
+            <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-white/10">
               <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Add Source</h2>
-              <button onClick={() => setShowAddModal(false)} className="p-1 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded">
+              <button onClick={() => setShowAddModal(false)} className="p-1 hover:bg-neutral-100 dark:hover:bg-white/5 rounded">
                 <X className="w-5 h-5 text-neutral-500" />
               </button>
             </div>
@@ -338,10 +338,10 @@ export function EmbedKnowledgeBasePage() {
               )}
             </div>
 
-            <div className="flex gap-3 p-4 border-t border-neutral-200 dark:border-neutral-700">
+            <div className="flex gap-3 p-4 border-t border-neutral-200 dark:border-white/10">
               <button
                 onClick={() => setShowAddModal(false)}
-                className="flex-1 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700"
+                className="flex-1 py-2 border border-neutral-300 dark:border-neutral-600 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-white/5"
               >
                 Cancel
               </button>

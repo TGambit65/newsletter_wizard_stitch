@@ -48,8 +48,8 @@ export function AuthCallbackPage() {
 
   if (status === 'error') {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-neutral-50 dark:bg-neutral-900 px-4">
-        <div className="w-full max-w-md bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8 text-center">
+      <div className="min-h-screen flex items-center justify-center bg-neutral-50 dark:bg-background-dark px-4">
+        <div className="w-full max-w-md bg-white dark:bg-surface-dark rounded-2xl shadow-xl p-8 text-center">
           <div className="w-16 h-16 bg-error/10 rounded-full flex items-center justify-center mx-auto mb-6">
             <AlertCircle className="w-8 h-8 text-error" />
           </div>
@@ -68,7 +68,7 @@ export function AuthCallbackPage() {
             </Link>
             <Link
               to="/forgot-password"
-              className="block px-6 py-3 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+              className="block px-6 py-3 border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
             >
               Request a new link
             </Link>
@@ -79,7 +79,7 @@ export function AuthCallbackPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-50 dark:bg-neutral-900">
+    <div className="min-h-screen flex items-center justify-center bg-neutral-50 dark:bg-background-dark">
       <div className="text-center">
         <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent mx-auto mb-4" />
         <p className="text-neutral-600 dark:text-neutral-400">Completing sign in…</p>

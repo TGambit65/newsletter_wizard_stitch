@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Reset 2: Email Sent</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles for glass morphism and glows */
+        .glass-panel {
+            background: rgba(19, 16, 34, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .primary-glow {
+            box-shadow: 0 0 40px -10px rgba(51, 13, 242, 0.5);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(51, 13, 242, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display antialiased min-h-screen flex flex-col items-center justify-center p-4 relative overflow-hidden">
+<!-- Ambient Background Effects -->
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+<!-- Top Left Blob -->
+<div class="absolute -top-32 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-50 mix-blend-screen"></div>
+<!-- Bottom Right Blob -->
+<div class="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl opacity-40 mix-blend-screen"></div>
+<!-- Subtle Grid Pattern -->
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(white 1px, transparent 1px); background-size: 32px 32px;"></div>
+</div>
+<!-- Main Container -->
+<main class="w-full max-w-md mx-auto relative z-10 flex flex-col h-full min-h-[600px] justify-between">
+<!-- Top Navigation Area -->
+<div class="w-full pt-4 px-4 flex justify-start">
+<a class="inline-flex items-center text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-primary transition-colors duration-200 gap-2 text-sm font-medium" href="#">
+<span class="material-icons-outlined text-lg">arrow_back</span>
+                Back to Login
+            </a>
+</div>
+<!-- Central Content -->
+<div class="flex-1 flex flex-col items-center justify-center px-6 text-center">
+<!-- 3D Illustration Area -->
+<div class="relative w-64 h-64 mb-8 flex items-center justify-center animate-float">
+<!-- Inner Glow behind image -->
+<div class="absolute inset-0 bg-primary/30 rounded-full blur-3xl transform scale-75"></div>
+<!-- 3D Paper Plane Image -->
+<img alt="Abstract glowing 3D paper plane geometric shape" class="relative z-10 w-48 h-48 object-contain drop-shadow-2xl opacity-90 mix-blend-screen grayscale-[20%] sepia-[20%] hue-rotate-[220deg]" data-alt="Abstract glowing 3D paper plane geometric shape" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWldV0XSLvmb5WzIIFNv5bh446dxMq24A-viQALdkjZJBlw2KwsLRSCiY4RTuL1JYHRgVB0aBvx1NLR6xT-LBcYLb-XDiZyYVSimdCdRrABwv2_Gc_CgJEDrEsPbG7IBggNlk8PsuTC0EEwpizNzqSwHXjP-AlnW4BI_jZela48PHAYNkOsMaiylOAAgkniT5OZEpTI0OiCEN9Zh2Ucm8AqpRbnWLMA1jMIedf-5BoMCtCmNUsPjhS-JXrKq_2ntaD-yFltGopWis"/>
+</div>
+<!-- Headline -->
+<h1 class="text-3xl font-bold mb-4 tracking-tight bg-gradient-to-br from-white to-slate-400 bg-clip-text text-transparent">
+                Recovery Link Sent!
+            </h1>
+<!-- Subtext -->
+<p class="text-slate-500 dark:text-slate-300 text-base leading-relaxed mb-8 max-w-xs mx-auto">
+                We've sent an email to <span class="text-primary dark:text-indigo-400 font-medium tracking-wide">user@example.com</span> with instructions to reset your password.
+            </p>
+<!-- Card Note (Optional context) -->
+<div class="glass-panel rounded-2xl p-4 mb-8 w-full border-l-4 border-l-primary/50 text-left">
+<div class="flex items-start gap-3">
+<span class="material-icons-outlined text-primary/70 mt-0.5">info</span>
+<p class="text-xs text-slate-400 leading-5">
+                        Please check your spam folder if it doesn't appear within a few minutes.
+                    </p>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="w-full bg-primary hover:bg-indigo-600 text-white font-semibold py-4 px-6 rounded-full primary-glow transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex items-center justify-center gap-2 group">
+<span>Open Email App</span>
+<span class="material-icons-outlined text-lg group-hover:translate-x-1 transition-transform">open_in_new</span>
+</button>
+</div>
+<!-- Bottom Actions -->
+<div class="pb-8 px-6 text-center w-full">
+<div class="flex flex-col items-center gap-4">
+<p class="text-sm text-slate-500 dark:text-slate-400">
+                    Didn't receive the email?
+                </p>
+<button class="text-primary dark:text-indigo-400 font-medium hover:text-white transition-colors duration-200 flex items-center gap-2 py-2 px-4 rounded-full hover:bg-white/5">
+<span class="material-icons-outlined text-lg">refresh</span>
+<span>Resend Email</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

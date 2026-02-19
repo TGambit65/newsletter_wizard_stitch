@@ -68,7 +68,7 @@ export function BillingSettings({ currentTier, upgrading, onUpgrade }: BillingSe
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+      <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">Current Plan</h2>
         <div className="flex items-center justify-between">
           <div>
@@ -98,7 +98,7 @@ export function BillingSettings({ currentTier, upgrading, onUpgrade }: BillingSe
                 'rounded-xl border-2 p-6 relative',
                 currentTier === plan.tier
                   ? 'border-primary-500 bg-primary-50/50 dark:bg-primary-900/10'
-                  : 'border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-800'
+                  : 'border-neutral-200 dark:border-white/10 bg-white dark:bg-surface-dark'
               )}
             >
               {plan.popular && (

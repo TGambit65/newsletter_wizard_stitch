@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletter Preview</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    boxShadow: {
+                        'neon': '0 0 20px -5px rgba(51, 13, 242, 0.5)',
+                        'neon-strong': '0 0 30px -5px rgba(51, 13, 242, 0.7)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for the preview area to make it look embedded */
+        .preview-scroll::-webkit-scrollbar {
+            width: 4px;
+        }
+        .preview-scroll::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .preview-scroll::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+        
+        /* Mobile Frame Bezel */
+        .device-bezel {
+            box-shadow: inset 0 0 0 2px #333, 0 20px 40px -10px rgba(0,0,0,0.8);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-display min-h-screen flex flex-col overflow-hidden relative selection:bg-primary selection:text-white">
+<!-- Background ambient glow -->
+<div class="fixed top-[-10%] left-[-10%] w-[50%] h-[40%] bg-primary/20 blur-[100px] rounded-full pointer-events-none z-0"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[60%] h-[50%] bg-primary/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
+<!-- Header -->
+<header class="flex items-center justify-between px-6 py-5 z-10 relative">
+<button class="p-2 -ml-2 text-slate-400 hover:text-white transition-colors rounded-full hover:bg-white/5">
+<span class="material-icons-outlined">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Final Review</h1>
+<button class="text-primary hover:text-primary/80 font-semibold text-sm transition-colors">
+            Save Draft
+        </button>
+</header>
+<!-- View Toggle -->
+<div class="px-6 pb-6 z-10 relative flex justify-center w-full">
+<div class="bg-slate-800/50 backdrop-blur-md p-1 rounded-xl flex items-center shadow-lg border border-white/5">
+<button class="flex items-center gap-2 px-6 py-2 bg-primary text-white rounded-lg shadow-neon text-sm font-medium transition-all">
+<span class="material-icons-outlined text-[18px]">smartphone</span>
+                Mobile
+            </button>
+<button class="flex items-center gap-2 px-6 py-2 text-slate-400 hover:text-white rounded-lg text-sm font-medium transition-all hover:bg-white/5">
+<span class="material-icons-outlined text-[18px]">desktop_mac</span>
+                Desktop
+            </button>
+</div>
+</div>
+<!-- Main Content Area with Device Mockup -->
+<main class="flex-1 relative flex flex-col items-center justify-center px-4 w-full max-w-md mx-auto z-10">
+<!-- Device Frame -->
+<div class="relative w-full h-full max-h-[65vh] bg-neutral-900 rounded-[2.5rem] border-[6px] border-slate-800 device-bezel flex flex-col overflow-hidden shadow-2xl">
+<!-- Notch/Top Bar simulation -->
+<div class="h-6 w-full bg-neutral-900 flex justify-center items-center z-20 shrink-0">
+<div class="w-20 h-4 bg-black rounded-b-lg"></div>
+</div>
+<!-- Email Client Header Simulation -->
+<div class="bg-white px-4 py-3 border-b border-gray-100 shrink-0">
+<div class="flex items-center justify-between mb-2">
+<span class="text-xs font-bold text-gray-400">INBOX</span>
+<span class="text-xs text-gray-400">Now</span>
+</div>
+<h2 class="text-gray-900 font-bold text-lg leading-tight">Unlock Your Productivity Potential 🚀</h2>
+<div class="flex items-center gap-2 mt-2">
+<div class="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-purple-500 flex items-center justify-center text-[10px] text-white font-bold">W</div>
+<div class="text-xs text-gray-500">
+<span class="font-semibold text-gray-800">Wizard Weekly</span> &lt;hello@wizard.ai&gt;
+                    </div>
+</div>
+</div>
+<!-- Scrollable Preview Content -->
+<div class="bg-white flex-1 overflow-y-auto preview-scroll relative">
+<!-- Newsletter Hero Image -->
+<div class="w-full h-48 bg-gray-100 relative overflow-hidden">
+<img alt="Abstract neon 3d geometric shapes pattern" class="w-full h-full object-cover" data-alt="Abstract neon 3d geometric shapes pattern" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA30pcEkFeFuOD62pDUhkAYfkceBtQoCEcTQzN0czkpNXn7RtLEx8Az2y5CXJvcxF9IhDqit6t4au3SRylIBylsfkpv8dnFY8LsVcVFXoyfKgYCB8kArrIU6weFxQwxgvZXtwvmi0OsqGe1EnR3d0hTJQU9Ik93ebYK0av0PsNYGdQybcwJt1M2r3j-E776DGaRHSRPk0D4ngKloFH2bQK_fopZzjT1kRiHHGO9rH189ahqEllNEZMOFk5GY8il4BxriOzBMNarSJk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
+<span class="text-white text-sm font-medium bg-black/30 backdrop-blur-sm px-2 py-1 rounded">Weekly Issue #42</span>
+</div>
+</div>
+<!-- Newsletter Body -->
+<div class="p-5">
+<p class="text-gray-800 font-bold text-xl mb-4">Hey Alex,</p>
+<p class="text-gray-600 leading-relaxed mb-4 text-sm">
+                        Ready to supercharge your workflow? This week we're diving deep into the AI tools that are reshaping how creators build. 
+                    </p>
+<p class="text-gray-600 leading-relaxed mb-6 text-sm">
+                        We've analyzed over 500+ data points to bring you the top 3 insights you can't afford to miss.
+                    </p>
+<div class="bg-indigo-50 border-l-4 border-primary p-4 rounded-r-lg mb-6">
+<h3 class="text-primary font-bold text-sm mb-1">💡 Pro Tip</h3>
+<p class="text-gray-700 text-xs">Automate the boring stuff so you can focus on high-leverage creative work.</p>
+</div>
+<button class="w-full bg-black text-white py-3 rounded-lg font-semibold text-sm mb-6">
+                        Read Full Article
+                    </button>
+<hr class="border-gray-200 my-6"/>
+<div class="text-center">
+<p class="text-gray-400 text-xs uppercase tracking-wider font-semibold mb-2">Connect with us</p>
+<div class="flex justify-center gap-4">
+<div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-400">
+<span class="material-icons-outlined text-sm">public</span>
+</div>
+<div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center text-gray-400">
+<span class="material-icons-outlined text-sm">alternate_email</span>
+</div>
+</div>
+<p class="mt-6 text-[10px] text-gray-400">
+                            You received this email because you signed up for our newsletter.<br/>
+<a class="underline" href="#">Unsubscribe</a>
+</p>
+</div>
+<div class="h-10"></div> <!-- Spacer -->
+</div>
+</div>
+</div>
+<!-- Floating AI Feedback Bubble -->
+<div class="absolute bottom-6 right-2 transform translate-x-2 z-30">
+<div class="bg-slate-900/90 backdrop-blur-xl border border-primary/50 p-4 rounded-xl shadow-neon w-48 animate-fade-in-up">
+<div class="flex justify-between items-start mb-2">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-icons-outlined text-sm animate-pulse">auto_awesome</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">AI Analysis</span>
+</div>
+<div class="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.8)]"></div>
+</div>
+<div class="flex items-end gap-2 mb-2">
+<span class="text-3xl font-bold text-white leading-none">98</span>
+<span class="text-xs text-slate-400 mb-1">/100 score</span>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between text-[10px]">
+<span class="text-slate-400">Readability</span>
+<span class="text-green-400 font-bold">A+</span>
+</div>
+<div class="w-full bg-slate-700 h-1 rounded-full overflow-hidden">
+<div class="bg-green-400 w-[98%] h-full rounded-full"></div>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-white/10 flex items-center gap-2">
+<span class="material-icons-outlined text-slate-400 text-sm">mood</span>
+<span class="text-xs text-white">Tone: <span class="text-primary font-medium">Enthusiastic</span></span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<footer class="w-full p-6 pt-4 pb-8 z-20 bg-background-dark/80 backdrop-blur-lg border-t border-white/5 mt-auto">
+<div class="flex gap-4 max-w-md mx-auto">
+<button class="flex-1 py-3.5 px-4 rounded-xl border border-white/10 bg-white/5 text-white font-medium hover:bg-white/10 transition-colors flex items-center justify-center gap-2 group">
+<span class="material-icons-outlined text-slate-400 group-hover:text-white transition-colors text-lg">edit</span>
+                Edit Content
+            </button>
+<button class="flex-1 py-3.5 px-4 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 shadow-neon transition-all flex items-center justify-center gap-2 transform active:scale-95">
+                Send Now
+                <span class="material-icons-outlined text-lg">send</span>
+</button>
+</div>
+</footer>
+</body></html>

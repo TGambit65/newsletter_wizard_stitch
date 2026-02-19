@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add Source V2: Detailed List</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --bg-dark: #0f1115;
+            --card-dark: #181b21;
+            --primary: #6366f1;
+            --primary-glow: #4f46e5;
+            --text-main: #ffffff;
+            --text-secondary: #9ca3af;
+            --border-color: #2a2f3a;
+            --badge-popular-bg: #4f46e5;
+            --badge-popular-text: #ffffff;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-50 bg-[#0f1115]/90 backdrop-blur-md border-b border-[var(--border-color)] px-4 py-3">
+<div class="flex items-center gap-3">
+<button class="text-[var(--text-secondary)] hover:text-white p-2 -ml-2 rounded-full hover:bg-[var(--card-dark)] transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-white">Add Source</h1>
+</div>
+</header>
+<main class="flex-1 px-4 py-6">
+<div class="mb-6">
+<h2 class="text-2xl font-bold text-white mb-2">Connect Knowledge</h2>
+<p class="text-[var(--text-secondary)] text-sm">Select a source to train your AI assistant. It will learn from your content to write better newsletters.</p>
+</div>
+<div class="space-y-4">
+<button class="w-full text-left group bg-[var(--card-dark)] hover:bg-[#20242c] rounded-2xl p-5 border border-[var(--border-color)] relative transition-all active:scale-[0.98]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center shrink-0 border border-blue-500/20">
+<span class="material-symbols-outlined text-blue-500 text-[28px]">language</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-lg font-semibold text-white group-hover:text-blue-400 transition-colors">Website URL</h3>
+<span class="bg-[var(--badge-popular-bg)] text-[var(--badge-popular-text)] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Popular</span>
+</div>
+<p class="text-sm text-[var(--text-secondary)] leading-snug">Extract content from any public webpage, blog post, or article.</p>
+</div>
+</div>
+</button>
+<button class="w-full text-left group bg-[var(--card-dark)] hover:bg-[#20242c] rounded-2xl p-5 border border-[var(--border-color)] relative transition-all active:scale-[0.98]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center shrink-0 border border-red-500/20">
+<span class="material-symbols-outlined text-red-500 text-[28px]">picture_as_pdf</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-lg font-semibold text-white group-hover:text-red-400 transition-colors">PDF Document</h3>
+<span class="bg-[var(--badge-popular-bg)] text-[var(--badge-popular-text)] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">Popular</span>
+</div>
+<p class="text-sm text-[var(--text-secondary)] leading-snug">Upload reports, whitepapers, or any PDF file for analysis.</p>
+</div>
+</div>
+</button>
+<button class="w-full text-left group bg-[var(--card-dark)] hover:bg-[#20242c] rounded-2xl p-5 border border-[var(--border-color)] relative transition-all active:scale-[0.98]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center shrink-0 border border-purple-500/20">
+<span class="material-symbols-outlined text-purple-500 text-[28px]">text_snippet</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-lg font-semibold text-white group-hover:text-purple-400 transition-colors">Plain Text</h3>
+</div>
+<p class="text-sm text-[var(--text-secondary)] leading-snug">Paste text directly from your clipboard or notes app.</p>
+</div>
+</div>
+</button>
+<button class="w-full text-left group bg-[var(--card-dark)] hover:bg-[#20242c] rounded-2xl p-5 border border-[var(--border-color)] relative transition-all active:scale-[0.98]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center shrink-0 border border-amber-500/20">
+<span class="material-symbols-outlined text-amber-500 text-[28px]">table_view</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-lg font-semibold text-white group-hover:text-amber-400 transition-colors">Notion Database</h3>
+<span class="bg-[#2a2f3a] text-[var(--text-secondary)] text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide border border-[var(--border-color)]">Beta</span>
+</div>
+<p class="text-sm text-[var(--text-secondary)] leading-snug">Connect a database page to sync content automatically.</p>
+</div>
+</div>
+</button>
+<button class="w-full text-left group bg-[var(--card-dark)] hover:bg-[#20242c] rounded-2xl p-5 border border-[var(--border-color)] relative transition-all active:scale-[0.98]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center shrink-0 border border-green-500/20">
+<span class="material-symbols-outlined text-green-500 text-[28px]">rss_feed</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-lg font-semibold text-white group-hover:text-green-400 transition-colors">RSS Feed</h3>
+</div>
+<p class="text-sm text-[var(--text-secondary)] leading-snug">Monitor a feed for new articles to summarize.</p>
+</div>
+</div>
+</button>
+<button class="w-full text-left group bg-[var(--card-dark)] hover:bg-[#20242c] rounded-2xl p-5 border border-[var(--border-color)] relative transition-all active:scale-[0.98]">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center shrink-0 border border-cyan-500/20">
+<span class="material-symbols-outlined text-cyan-500 text-[28px]">smart_toy</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-1">
+<h3 class="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors">Twitter Thread</h3>
+</div>
+<p class="text-sm text-[var(--text-secondary)] leading-snug">Import a thread to repurpose into long-form content.</p>
+</div>
+</div>
+</button>
+</div>
+</main>
+
+</body></html>

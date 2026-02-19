@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notification Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#460df2",
+                        "primary-light": "#7c4dff",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                        "surface-dark": "#1e1a3a",
+                        "surface-darker": "#18142b",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    animation: {
+                        'pulse-glow': 'pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    boxShadow: {
+                        'purple-glow': '0 0 10px rgba(70, 13, 242, 0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .bg-indigo-gradient {
+            background: radial-gradient(circle at 50% 0%, #2e1a5e 0%, #141022 60%);
+        }.scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .notification-card {
+            backdrop-filter: blur(10px);
+        }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-white min-h-screen flex justify-center items-center p-0 sm:p-4">
+<div class="relative w-full max-w-md h-[100dvh] sm:h-[850px] bg-background-light dark:bg-background-dark sm:rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col sm:border sm:border-slate-200 dark:sm:border-white/10">
+<div class="absolute top-0 left-0 w-full h-full bg-indigo-gradient opacity-100 pointer-events-none z-0"></div>
+<header class="relative z-10 px-6 pt-12 pb-4 flex items-center justify-between border-b border-white/5 bg-background-dark/50 backdrop-blur-md sticky top-0">
+<div class="flex items-center gap-3">
+<button class="p-2 -ml-2 rounded-full hover:bg-white/10 transition-colors">
+<span class="material-icons text-white/70">arrow_back</span>
+</button>
+<h1 class="text-xl font-semibold tracking-wide text-white">Notifications</h1>
+</div>
+<button class="text-sm font-medium text-primary-light hover:text-white transition-colors">
+                Clear All
+            </button>
+</header>
+<main class="relative z-10 flex-1 flex flex-col px-6 overflow-y-auto scrollbar-hide pb-24">
+<div class="mt-6">
+<h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 px-1">Today</h2>
+<div class="space-y-4">
+<div class="group relative flex gap-4 p-4 rounded-xl bg-surface-dark/60 border border-primary/30 hover:bg-surface-dark transition-all duration-300 shadow-purple-glow notification-card">
+<div class="absolute top-3 right-3 w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center border border-primary/20">
+<span class="material-symbols-outlined text-primary-light text-2xl">auto_awesome</span>
+</div>
+<div class="flex-1 min-w-0 pt-0.5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-sm font-semibold text-white">AI Training Complete</h3>
+<span class="text-xs text-slate-500 font-medium">2m ago</span>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed line-clamp-2">
+                                Your knowledge base has been successfully indexed. The AI is now ready to write in your brand voice.
+                            </p>
+</div>
+</div>
+<div class="group relative flex gap-4 p-4 rounded-xl bg-surface-dark/40 border border-white/5 hover:bg-surface-dark transition-all duration-300 hover:border-primary/20 notification-card">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/10">
+<span class="material-symbols-outlined text-emerald-400 text-2xl">send</span>
+</div>
+<div class="flex-1 min-w-0 pt-0.5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-sm font-semibold text-white">Newsletter Sent</h3>
+<span class="text-xs text-slate-500 font-medium">2h ago</span>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed">
+                                "Weekly Tech Digest #42" was sent to 12,405 subscribers successfully.
+                            </p>
+<div class="mt-2 flex gap-4">
+<span class="text-xs text-emerald-400 flex items-center gap-1">
+<span class="material-symbols-outlined text-[10px]">open_in_new</span>
+                                    98% Delivered
+                                </span>
+</div>
+</div>
+</div>
+<div class="group relative flex gap-4 p-4 rounded-xl bg-surface-dark/40 border border-amber-500/20 hover:bg-surface-dark transition-all duration-300 shadow-[0_0_10px_rgba(245,158,11,0.05)] notification-card">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/10">
+<span class="material-symbols-outlined text-amber-400 text-2xl">warning</span>
+</div>
+<div class="flex-1 min-w-0 pt-0.5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-sm font-semibold text-amber-100">Low Open Rate Alert</h3>
+<span class="text-xs text-slate-500 font-medium">5h ago</span>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed">
+                                "Product Update v2.0" is performing 15% below average open rates.
+                            </p>
+<button class="mt-3 text-xs font-medium text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-1">
+                                View Analytics
+                                <span class="material-icons text-[10px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h2 class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 px-1">Yesterday</h2>
+<div class="space-y-4">
+<div class="group relative flex gap-4 p-4 rounded-xl bg-surface-dark/40 border border-white/5 hover:bg-surface-dark transition-all duration-300 hover:border-primary/20 notification-card">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center border border-indigo-500/10">
+<span class="material-symbols-outlined text-indigo-400 text-2xl">post_add</span>
+</div>
+<div class="flex-1 min-w-0 pt-0.5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-sm font-semibold text-white">New Source Added</h3>
+<span class="text-xs text-slate-500 font-medium">Yesterday</span>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed">
+                                "Q3_Marketing_Plan.pdf" was added to the knowledge base.
+                            </p>
+</div>
+</div>
+<div class="group relative flex gap-4 p-4 rounded-xl bg-surface-dark/40 border border-white/5 hover:bg-surface-dark transition-all duration-300 hover:border-primary/20 notification-card">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/10">
+<span class="material-symbols-outlined text-emerald-400 text-2xl">mark_email_read</span>
+</div>
+<div class="flex-1 min-w-0 pt-0.5">
+<div class="flex justify-between items-start mb-1">
+<h3 class="text-sm font-semibold text-white">Welcome Series #1</h3>
+<span class="text-xs text-slate-500 font-medium">Yesterday</span>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed">
+                                Automated campaign sent to 5 new users.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<div class="h-8"></div>
+</main>
+<nav class="absolute bottom-0 w-full bg-background-dark/80 backdrop-blur-xl border-t border-white/5 z-20 pb-6 pt-2">
+<div class="flex justify-around items-center px-2">
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">dashboard</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">edit_note</span>
+<span class="text-[10px] font-medium">Drafts</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-primary-light hover:text-white transition-colors group relative" href="#">
+<div class="absolute -top-[9px] w-8 h-1 bg-primary rounded-b-full shadow-[0_0_10px_#460df2]"></div>
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform fill-current">notifications</span>
+<span class="text-[10px] font-medium">Alerts</span>
+</a>
+<a class="flex flex-col items-center gap-1 p-2 text-slate-400 hover:text-white transition-colors group" href="#">
+<span class="material-symbols-outlined text-2xl group-hover:scale-110 transition-transform">settings</span>
+<span class="text-[10px] font-medium">Settings</span>
+</a>
+</div>
+</nav>
+</div>
+
+</body></html>

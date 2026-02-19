@@ -96,7 +96,7 @@ export function SuccessScreen({
             stats.length === 1 ? 'grid-cols-1 max-w-xs mx-auto' : 'grid-cols-2'
           )}>
             {stats.map(stat => (
-              <div key={stat.label} className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+              <div key={stat.label} className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-4">
                 <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stat.value}</p>
                 <p className="text-sm text-neutral-500 dark:text-neutral-400">{stat.label}</p>
               </div>
@@ -119,7 +119,7 @@ export function SuccessScreen({
                     'inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-colors text-sm',
                     action.primary
                       ? 'bg-primary-500 text-white hover:bg-primary-600'
-                      : 'border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                      : 'border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-white/5'
                   )}
                 >
                   {action.label}
@@ -132,7 +132,7 @@ export function SuccessScreen({
                     'inline-flex items-center justify-center px-6 py-3 rounded-lg font-medium transition-colors text-sm',
                     action.primary
                       ? 'bg-primary-500 text-white hover:bg-primary-600'
-                      : 'border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                      : 'border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-white/5'
                   )}
                 >
                   {action.label}

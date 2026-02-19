@@ -95,7 +95,7 @@ export function VoiceProfileSettings({ tenantId }: VoiceProfileSettingsProps) {
 
   return (
     <div className="space-y-6">
-      <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+      <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Voice Profiles</h2>
@@ -118,7 +118,7 @@ export function VoiceProfileSettings({ tenantId }: VoiceProfileSettingsProps) {
         ) : (
           <div className="space-y-4">
             {voiceProfiles.map((voice) => (
-              <div key={voice.id} className="p-4 border border-neutral-200 dark:border-neutral-700 rounded-lg">
+              <div key={voice.id} className="p-4 border border-neutral-200 dark:border-white/10 rounded-lg">
                 <div className="flex items-start justify-between">
                   <div>
                     <h3 className="font-medium text-neutral-900 dark:text-white">{voice.name}</h3>
@@ -160,7 +160,7 @@ export function VoiceProfileSettings({ tenantId }: VoiceProfileSettingsProps) {
                 </div>
 
                 {trainingProfile === voice.id && (
-                  <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-700">
+                  <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-white/10">
                     <h4 className="font-medium text-neutral-900 dark:text-white mb-2">
                       Training Samples
                     </h4>
@@ -178,7 +178,7 @@ export function VoiceProfileSettings({ tenantId }: VoiceProfileSettingsProps) {
                           }}
                           placeholder="Paste a writing sample here..."
                           rows={4}
-                          className="w-full px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm resize-none"
+                          className="w-full px-3 py-2 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm resize-none"
                         />
                       </div>
                     ))}
@@ -232,7 +232,7 @@ export function VoiceProfileSettings({ tenantId }: VoiceProfileSettingsProps) {
       {/* Create Voice Modal */}
       {showVoiceModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 w-full max-w-md">
+          <div className="bg-white dark:bg-surface-dark rounded-xl p-6 w-full max-w-md">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold text-neutral-900 dark:text-white">
                 Create Voice Profile
@@ -254,7 +254,7 @@ export function VoiceProfileSettings({ tenantId }: VoiceProfileSettingsProps) {
                   value={newVoiceName}
                   onChange={(e) => setNewVoiceName(e.target.value)}
                   placeholder="e.g., Professional, Casual, Brand Voice"
-                  className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
+                  className="w-full px-4 py-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
                 />
               </div>
               <div>
@@ -266,13 +266,13 @@ export function VoiceProfileSettings({ tenantId }: VoiceProfileSettingsProps) {
                   onChange={(e) => setNewVoiceDesc(e.target.value)}
                   placeholder="Describe this voice style..."
                   rows={3}
-                  className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none resize-none"
+                  className="w-full px-4 py-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none resize-none"
                 />
               </div>
               <div className="flex gap-3 pt-2">
                 <button
                   onClick={() => setShowVoiceModal(false)}
-                  className="flex-1 py-2.5 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700"
+                  className="flex-1 py-2.5 border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-50 dark:hover:bg-white/5"
                 >
                   Cancel
                 </button>

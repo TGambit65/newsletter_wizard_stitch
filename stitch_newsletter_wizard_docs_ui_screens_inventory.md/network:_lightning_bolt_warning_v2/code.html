@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Network Error - Lightning Bolt Warning</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4725f4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "indigo-deep": "#0c0a1d", 
+                        "amber-neon": "#FFBF00",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    boxShadow: {
+                        "neon-amber": "0 0 20px -5px rgba(255, 191, 0, 0.5), 0 0 40px -10px rgba(255, 191, 0, 0.3)",
+                        "glow-purple": "0 0 15px -3px rgba(71, 37, 244, 0.6)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        /* Custom pulsing glow animation for the lightning bolt */
+        @keyframes neonPulse {
+            0%, 100% { opacity: 0.8; filter: drop-shadow(0 0 8px rgba(255, 191, 0, 0.6)); }
+            50% { opacity: 1; filter: drop-shadow(0 0 20px rgba(255, 191, 0, 0.9)); }
+        }
+        .animate-neon {
+            animation: neonPulse 3s infinite ease-in-out;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white h-screen overflow-hidden flex flex-col items-center justify-center font-display antialiased selection:bg-primary selection:text-white">
+<!-- Main Container: Deep Indigo Gradient Background -->
+<div class="relative flex h-full w-full max-w-md flex-col overflow-hidden bg-gradient-to-b from-[#1a1635] via-background-dark to-indigo-deep shadow-2xl">
+<!-- Header / Nav area (Minimal) -->
+<div class="absolute top-0 left-0 right-0 flex items-center justify-between p-6 z-10">
+<button class="flex size-10 items-center justify-center rounded-full bg-white/5 hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-white/80" style="font-size: 24px;">arrow_back</span>
+</button>
+</div>
+<!-- Content Area: Vertically Centered -->
+<div class="flex flex-1 flex-col items-center justify-center px-8 text-center z-10 pt-20 pb-10">
+<!-- Neon Icon Container -->
+<div class="mb-10 relative flex items-center justify-center">
+<!-- Ambient background glow behind icon -->
+<div class="absolute inset-0 bg-amber-neon/10 blur-[60px] rounded-full scale-150"></div>
+<!-- Icon with animation -->
+<div class="text-amber-neon animate-neon relative z-10">
+<span class="material-symbols-outlined" style="font-size: 120px; font-variation-settings: 'FILL' 1, 'wght' 300;">bolt</span>
+</div>
+</div>
+<!-- Text Content -->
+<div class="space-y-4 max-w-[320px]">
+<h1 class="text-3xl font-bold tracking-tight text-white">Something Went Wrong</h1>
+<p class="text-base font-normal leading-relaxed text-slate-400">
+                    We are having trouble reaching the Wizard's tower. Ensure you are connected to Wi-Fi or Cellular data.
+                </p>
+</div>
+<!-- Primary Action -->
+<div class="mt-12 w-full max-w-[280px]">
+<button class="group relative flex w-full items-center justify-center overflow-hidden rounded-xl bg-primary h-14 px-6 text-white font-bold tracking-wide shadow-glow-purple hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 ring-2 ring-primary/50 ring-offset-2 ring-offset-background-dark">
+<!-- Button inner glow -->
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
+<span class="flex items-center gap-2 relative z-10">
+<span class="material-symbols-outlined" style="font-size: 20px;">refresh</span>
+                        Refresh
+                    </span>
+</button>
+</div>
+</div>
+<!-- Footer Action: System Status -->
+<div class="flex flex-col items-center justify-end pb-10 px-6 z-10">
+<a class="text-sm font-medium text-slate-500 hover:text-primary transition-colors flex items-center gap-2 py-3 px-4 rounded-lg hover:bg-white/5" href="#">
+                Check System Status
+                <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+</a>
+<!-- Safe Area Spacer if needed on actual device, minimal visually here -->
+<div class="h-2"></div>
+</div>
+<!-- Decorative background elements -->
+<div class="pointer-events-none absolute top-[-20%] left-[-20%] h-[500px] w-[500px] rounded-full bg-primary/5 blur-[100px]"></div>
+<div class="pointer-events-none absolute bottom-[-10%] right-[-10%] h-[300px] w-[300px] rounded-full bg-indigo-900/20 blur-[80px]"></div>
+</div>
+</body></html>

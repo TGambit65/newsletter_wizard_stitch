@@ -185,21 +185,21 @@ export function WhatsNewPage() {
               <div className="text-sm text-neutral-400">
                 {grouped[version][0].date}
               </div>
-              <div className="flex-1 border-t border-neutral-200 dark:border-neutral-700" />
+              <div className="flex-1 border-t border-neutral-200 dark:border-white/10" />
             </div>
 
             {/* Entries */}
-            <div className="space-y-4 pl-4 border-l-2 border-neutral-200 dark:border-neutral-700">
+            <div className="space-y-4 pl-4 border-l-2 border-neutral-200 dark:border-white/10">
               {grouped[version].map(entry => {
                 const tagConf = TAG_CONFIG[entry.tag];
                 const Icon = entry.icon;
                 const isNew = entry.date > lastRead;
                 return (
                   <div key={entry.id} className={clsx(
-                    'relative bg-white dark:bg-neutral-800 rounded-xl border p-5 transition-all',
+                    'relative bg-white dark:bg-surface-dark rounded-xl border p-5 transition-all',
                     isNew
                       ? 'border-primary-200 dark:border-primary-800 shadow-sm'
-                      : 'border-neutral-200 dark:border-neutral-700'
+                      : 'border-neutral-200 dark:border-white/10'
                   )}>
                     {/* Timeline dot */}
                     <div className="absolute -left-[calc(1rem+5px)] top-6 w-2.5 h-2.5 rounded-full border-2 border-white dark:border-neutral-900 bg-neutral-400 dark:bg-neutral-500" />
@@ -232,7 +232,7 @@ export function WhatsNewPage() {
       </div>
 
       {/* Footer */}
-      <div className="mt-10 p-5 bg-neutral-50 dark:bg-neutral-800/50 rounded-xl text-center">
+      <div className="mt-10 p-5 bg-neutral-50 dark:bg-surface-dark/50 rounded-xl text-center">
         <p className="text-sm text-neutral-500">
           Want to suggest a feature?{' '}
           <a href="/feedback" className="text-primary-600 dark:text-primary-400 hover:underline font-medium">

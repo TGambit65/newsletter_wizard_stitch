@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletter Wizard - Splash Screen V3</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                    animation: {
+                        'pulse-glow': 'pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.1)' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles for subtle background noise if needed, keeping it minimal for now */
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(51, 13, 242, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white h-screen w-screen overflow-hidden relative selection:bg-primary selection:text-white">
+<!-- Background Elements -->
+<div class="absolute inset-0 w-full h-full pointer-events-none z-0">
+<!-- Deep gradient background -->
+<div class="absolute inset-0 bg-gradient-to-b from-background-dark via-[#1a1245] to-background-dark opacity-90"></div>
+<!-- Center Primary Glow behind the desk -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[60%] bg-primary/20 blur-[120px] rounded-full mix-blend-screen"></div>
+<!-- Subtle Grid Overlay -->
+<div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+</div>
+<!-- Main Content Container -->
+<main class="relative z-10 h-full flex flex-col items-center justify-between py-12 px-6 safe-area-inset">
+<!-- Top: Logo Section -->
+<div class="mt-8 flex flex-col items-center animate-fade-in-down">
+<div class="relative mb-4">
+<div class="absolute inset-0 bg-primary/40 blur-xl rounded-full"></div>
+<div class="w-16 h-16 bg-gradient-to-br from-primary to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-primary/30 relative z-10 border border-white/10">
+<span class="material-icons text-white text-3xl">auto_fix_high</span>
+</div>
+</div>
+<h1 class="text-3xl font-bold tracking-tight text-white drop-shadow-lg">
+                Newsletter <span class="text-primary-300">Wizard</span>
+</h1>
+</div>
+<!-- Center: Hero 3D Illustration -->
+<div class="flex-1 w-full max-w-md flex items-center justify-center relative">
+<!-- Floating Container for 3D Effect -->
+<div class="relative w-full aspect-square animate-float">
+<!-- Main Illustration Image -->
+<!-- Ideally this is a transparent PNG or Lottie. Using an img tag with proper styling -->
+<div class="absolute inset-0 flex items-center justify-center z-20">
+<img alt="3D isometric wizard desk with glowing crystal ball" class="w-full h-full object-contain drop-shadow-2xl mix-blend-lighten opacity-90 scale-110" data-alt="3D isometric wizard desk with glowing crystal ball and floating quill" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPdNrH-VDVuI_LR9fC76FR_n4V3uDhvrBFIAo63oowuhub9B9upBth3QU6lHV3sQc2pSw2TqbgNLEGwmu_WTx62MiwrJpPP3C6X_C7nbEgWaDfVSQou4ILSro19AN0CWV2sL-SGlKpjl9cCvoL9LtoEGGN0LcMNGh623cuBhY3iGFVNc7CZ55vMdSutCO27rm11c522HXZw4fjnx3Ua2wF0KbF7YjMkNFfO1Ij39yv2lylYtMpwUSJ6cBG1DICtsIUxfPyoio09p0" style="mask-image: linear-gradient(to bottom, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);"/>
+</div>
+<!-- Magical Glow Effects (Simulated) -->
+<!-- Crystal Ball Glow -->
+<div class="absolute top-[35%] left-[45%] w-24 h-24 bg-primary rounded-full blur-[60px] opacity-60 animate-pulse-glow z-10"></div>
+<!-- Sparkles (CSS Based) -->
+<div class="absolute top-[20%] right-[20%] w-2 h-2 bg-white rounded-full blur-[1px] shadow-[0_0_10px_#fff] animate-bounce delay-100"></div>
+<div class="absolute top-[40%] left-[20%] w-1.5 h-1.5 bg-indigo-300 rounded-full blur-[1px] shadow-[0_0_8px_#fff] animate-pulse delay-300"></div>
+<div class="absolute bottom-[40%] right-[30%] w-1 h-1 bg-primary-200 rounded-full blur-[0px] shadow-[0_0_5px_#fff] animate-ping delay-700"></div>
+</div>
+</div>
+<!-- Bottom: Loading State -->
+<div class="mb-8 flex flex-col items-center w-full max-w-[240px]">
+<!-- Loading Spinner -->
+<div class="relative w-12 h-12 mb-6">
+<!-- Outer Ring -->
+<div class="absolute inset-0 border-4 border-primary/20 rounded-full"></div>
+<!-- Spinning Segment -->
+<div class="absolute inset-0 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+<!-- Inner Glow Dot -->
+<div class="absolute inset-0 m-auto w-2 h-2 bg-white rounded-full shadow-[0_0_15px_#330df2]"></div>
+</div>
+<!-- Status Text -->
+<div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-full px-6 py-2.5 flex items-center gap-3">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+<span class="text-sm font-medium text-gray-200 tracking-wide uppercase text-[11px]">Magic is loading...</span>
+</div>
+<!-- Version Number (Subtle) -->
+<span class="text-[10px] text-white/20 mt-4 font-mono">v3.0.1 (Beta)</span>
+</div>
+</main>
+<style>
+        /* Ensuring safe area support for iPhone notch/island */
+        .safe-area-inset {
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+</body></html>

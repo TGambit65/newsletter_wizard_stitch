@@ -184,7 +184,7 @@ export function ApiKeysPage() {
       {/* Created Key Modal */}
       {createdKey && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 max-w-md w-full mx-4">
+          <div className="bg-white dark:bg-surface-dark rounded-xl p-6 max-w-md w-full mx-4">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
                 <Check className="w-5 h-5 text-green-600" />
@@ -212,7 +212,7 @@ export function ApiKeysPage() {
               </button>
               <button
                 onClick={() => setCreatedKey(null)}
-                className="px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+                className="px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
               >
                 Done
               </button>
@@ -224,7 +224,7 @@ export function ApiKeysPage() {
       {/* Create Key Modal */}
       {showCreate && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 max-w-md w-full mx-4">
+          <div className="bg-white dark:bg-surface-dark rounded-xl p-6 max-w-md w-full mx-4">
             <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">Create API Key</h2>
             
             <div className="space-y-4">
@@ -276,7 +276,7 @@ export function ApiKeysPage() {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={() => setShowCreate(false)}
-                className="flex-1 px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+                className="flex-1 px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
               >
                 Cancel
               </button>
@@ -298,7 +298,7 @@ export function ApiKeysPage() {
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
         </div>
       ) : keys.length === 0 ? (
-        <div className="text-center py-12 bg-neutral-50 dark:bg-neutral-800 rounded-xl">
+        <div className="text-center py-12 bg-neutral-50 dark:bg-surface-dark rounded-xl">
           <Key className="w-12 h-12 text-neutral-400 mx-auto mb-3" />
           <p className="text-neutral-600 dark:text-neutral-400">No API keys yet</p>
         </div>
@@ -308,10 +308,10 @@ export function ApiKeysPage() {
             <div 
               key={key.id}
               className={clsx(
-                "bg-white dark:bg-neutral-800 rounded-xl p-4 border",
+                "bg-white dark:bg-surface-dark rounded-xl p-4 border",
                 key.revoked_at 
                   ? "border-red-200 dark:border-red-800 opacity-60"
-                  : "border-neutral-200 dark:border-neutral-700"
+                  : "border-neutral-200 dark:border-white/10"
               )}
             >
               <div className="flex items-center justify-between">
@@ -346,7 +346,7 @@ export function ApiKeysPage() {
                 ))}
               </div>
               {!key.revoked_at && (
-                <div className="mt-3 pt-3 border-t border-neutral-200 dark:border-neutral-700">
+                <div className="mt-3 pt-3 border-t border-neutral-200 dark:border-white/10">
                   <div className="flex items-center justify-between text-sm mb-1">
                     <span className="flex items-center gap-1 text-neutral-600 dark:text-neutral-400">
                       <Activity className="w-3.5 h-3.5" />

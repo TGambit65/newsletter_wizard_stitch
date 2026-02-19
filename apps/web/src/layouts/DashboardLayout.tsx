@@ -106,7 +106,7 @@ export function DashboardLayout() {
   }, []);
 
   return (
-    <div className="flex h-screen bg-neutral-50 dark:bg-neutral-900 transition-colors duration-150">
+    <div className="flex h-screen bg-neutral-50 dark:bg-background-dark transition-colors duration-150">
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <div 
@@ -119,13 +119,13 @@ export function DashboardLayout() {
       <aside
         aria-label="Sidebar navigation"
         className={clsx(
-          'fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white dark:bg-neutral-800 border-r border-neutral-200 dark:border-neutral-700 transform transition-transform duration-250 ease-out lg:translate-x-0',
+          'fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white dark:bg-surface-dark border-r border-neutral-200 dark:border-white/5 transform transition-transform duration-250 ease-out lg:translate-x-0',
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
         <div className="flex flex-col h-full">
           {/* Logo */}
-          <div className="flex items-center justify-between h-16 px-6 border-b border-neutral-200 dark:border-neutral-700">
+          <div className="flex items-center justify-between h-16 px-6 border-b border-neutral-200 dark:border-white/5">
             <Link to="/dashboard" className="flex items-center gap-2">
               {whiteLabel.logo_url ? (
                 <img src={whiteLabel.logo_url} alt={whiteLabel.brand_name} className="w-8 h-8 rounded-lg object-contain" />
@@ -134,7 +134,7 @@ export function DashboardLayout() {
                   <Wand2 className="w-5 h-5 text-white" />
                 </div>
               )}
-              <span className="font-semibold text-lg text-neutral-900 dark:text-white">{whiteLabel.brand_name}</span>
+              <span className="font-display font-semibold text-lg text-neutral-900 dark:text-white">{whiteLabel.brand_name}</span>
             </Link>
             <button
               aria-label="Close sidebar"
@@ -151,7 +151,7 @@ export function DashboardLayout() {
             <Link
               to="/wizard"
               aria-label="Create newsletter with AI"
-              className="flex items-center gap-2 px-3 py-2.5 mb-3 rounded-lg bg-primary-500 hover:bg-primary-600 text-white text-sm font-semibold transition-colors"
+              className="flex items-center gap-2 px-3 py-2.5 mb-3 btn-primary-gradient text-sm shadow-glow-sm"
               onClick={() => setSidebarOpen(false)}
             >
               <Plus className="w-4 h-4" />
@@ -170,8 +170,8 @@ export function DashboardLayout() {
                   className={clsx(
                     'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
                     isActive
-                      ? 'bg-primary-50 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400'
-                      : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-700'
+                      ? 'bg-primary-50 text-primary-600 dark:bg-primary-500/10 dark:text-primary-400 dark:shadow-glow-sm'
+                      : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-white/5'
                   )}
                   onClick={() => setSidebarOpen(false)}
                 >
@@ -182,7 +182,7 @@ export function DashboardLayout() {
             })}
 
             {/* Divider */}
-            <div className="my-2 border-t border-neutral-200 dark:border-neutral-700" />
+            <div className="my-2 border-t border-neutral-200 dark:border-white/5" />
 
             {/* Secondary nav */}
             {secondaryNav.map((item) => {
@@ -197,8 +197,8 @@ export function DashboardLayout() {
                   className={clsx(
                     'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
                     isActive
-                      ? 'bg-primary-50 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400'
-                      : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-700'
+                      ? 'bg-primary-50 text-primary-600 dark:bg-primary-500/10 dark:text-primary-400 dark:shadow-glow-sm'
+                      : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-white/5'
                   )}
                   onClick={() => setSidebarOpen(false)}
                 >
@@ -218,11 +218,11 @@ export function DashboardLayout() {
           </div>
 
           {/* User section */}
-          <div className="p-4 border-t border-neutral-200 dark:border-neutral-700">
+          <div className="p-4 border-t border-neutral-200 dark:border-white/5">
             <div className="relative">
               <button
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
-                className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+                className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-neutral-100 dark:hover:bg-white/5 transition-colors"
               >
                 <div className="w-9 h-9 bg-primary-100 rounded-full flex items-center justify-center">
                   <User className="w-5 h-5 text-primary-600" />
@@ -242,7 +242,7 @@ export function DashboardLayout() {
               </button>
 
               {userMenuOpen && (
-                <div className="absolute bottom-full left-0 right-0 mb-2 bg-white dark:bg-neutral-800 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 py-1">
+                <div className="absolute bottom-full left-0 right-0 mb-2 bg-white dark:bg-surface-dark rounded-lg shadow-lg border border-neutral-200 dark:border-white/5 py-1">
                   <div className="px-4 py-2 border-b border-neutral-100 dark:border-neutral-700">
                     <p className="text-xs text-neutral-500">Theme: {mode === 'system' ? 'System' : mode === 'dark' ? 'Dark' : 'Light'}</p>
                   </div>
@@ -263,10 +263,10 @@ export function DashboardLayout() {
       {/* Main content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Top bar */}
-        <header className="h-16 bg-white dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 flex items-center px-4 lg:px-8 transition-colors duration-150">
+        <header className="h-16 bg-white dark:bg-surface-dark border-b border-neutral-200 dark:border-white/5 flex items-center px-4 lg:px-8 transition-colors duration-150">
           <button
             aria-label="Open navigation menu"
-            className="lg:hidden p-2 -ml-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+            className="lg:hidden p-2 -ml-2 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
             onClick={() => setSidebarOpen(true)}
           >
             <Menu className="w-5 h-5 text-neutral-700 dark:text-neutral-300" />
@@ -289,7 +289,7 @@ export function DashboardLayout() {
           <button
             onClick={() => setCommandPaletteOpen(true)}
             aria-label="Open search (Cmd+K)"
-            className="hidden lg:flex items-center gap-2 px-3 py-1.5 text-sm text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-600 transition-colors mr-3"
+            className="hidden lg:flex items-center gap-2 px-3 py-1.5 text-sm text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-white/5 border border-neutral-200 dark:border-white/10 rounded-lg hover:bg-neutral-200 dark:hover:bg-white/10 transition-colors mr-3"
           >
             <Search className="w-4 h-4" />
             <span>Search</span>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Team Management: Shared Assets</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#460df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#141022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for horizontal scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white antialiased min-h-screen flex justify-center bg-gray-50 dark:bg-gray-900">
+<!-- Mobile Container -->
+<div class="w-full max-w-md bg-background-light dark:bg-background-dark h-screen overflow-hidden flex flex-col relative shadow-2xl">
+<!-- Header -->
+<header class="px-6 pt-12 pb-4 flex justify-between items-center z-10 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md sticky top-0">
+<button class="p-2 -ml-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400 transition-colors">
+<span class="material-icons">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold">Shared Assets</h1>
+<button class="p-2 -mr-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 text-primary dark:text-primary transition-colors">
+<span class="material-icons">settings</span>
+</button>
+</header>
+<!-- Main Content Scroll Area -->
+<main class="flex-1 overflow-y-auto pb-24 no-scrollbar">
+<!-- Team Member Strip -->
+<section class="mt-2 mb-8">
+<div class="px-6 mb-3 flex justify-between items-end">
+<h2 class="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">Team Members</h2>
+<span class="text-xs text-primary font-medium">View All</span>
+</div>
+<div class="flex overflow-x-auto px-6 space-x-4 pb-4 no-scrollbar items-center">
+<!-- Invite Button -->
+<div class="flex flex-col items-center space-y-2 flex-shrink-0">
+<button class="w-14 h-14 rounded-full border-2 border-dashed border-primary/50 flex items-center justify-center text-primary hover:bg-primary/10 transition-colors bg-background-light dark:bg-background-dark">
+<span class="material-icons">add</span>
+</button>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400">Invite</span>
+</div>
+<!-- Member 1 -->
+<div class="flex flex-col items-center space-y-2 flex-shrink-0 relative">
+<div class="relative">
+<img alt="Team member avatar" class="w-14 h-14 rounded-full object-cover border-2 border-transparent hover:border-primary transition-colors" data-alt="Portrait of a woman with short dark hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-VIKbI07BxFlNG4K8578v7SfwGZXNB5bHR-_TuHz-iEls6axtn8HyFb8pZTEW9OxYhZdGEyJFLcmPUDrAzppfRoUhsAt0m6a_bxAuh4WgfEOMe_ytzTUAMxokoENhOYdKolN5jEg5L_3IowFv1-AOtQK_3Y50WdSmQe4PRlTybruVzrGNgEHRaVSkqMGmhvfc3w58rmMOFrorY2h9Eir7990OsMoHd9ivo5eBtDv5fIBmi460xC_5jdGgu8cNk4mOBuFV3biIetg"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-background-light dark:border-background-dark rounded-full"></div>
+</div>
+<span class="text-xs font-medium text-gray-700 dark:text-gray-300">Sarah</span>
+</div>
+<!-- Member 2 -->
+<div class="flex flex-col items-center space-y-2 flex-shrink-0">
+<div class="relative">
+<img alt="Team member avatar" class="w-14 h-14 rounded-full object-cover border-2 border-transparent hover:border-primary transition-colors" data-alt="Portrait of a man with glasses and a beard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqi4xocVJXL1LWKwtbFtc0iCvS0U7OOBI1uOGfGbo_atsph77nHBBeWsPsmx6oVYcRvVCpVPx0ZkW8DlKntA12I0V3EOG9spEN8YDnma9bhJl5IbhWKEidPYBn_kaRwGRQmJ5mIJnIu4Ne9rlxBZ2EC5wFEdAUjuOwQL25zDuNjMZoZjgy2hrGUwbddakoq4CDfyzYCj_TcRdXFDuBBgxlRskiYPS8AVuNFBGErMWABXs8tVwc06GFf3wQQZJJC2QB23g_sArg5qQ"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-gray-400 border-2 border-background-light dark:border-background-dark rounded-full"></div>
+</div>
+<span class="text-xs font-medium text-gray-700 dark:text-gray-300">David</span>
+</div>
+<!-- Member 3 -->
+<div class="flex flex-col items-center space-y-2 flex-shrink-0">
+<div class="relative">
+<img alt="Team member avatar" class="w-14 h-14 rounded-full object-cover border-2 border-transparent hover:border-primary transition-colors" data-alt="Portrait of a young woman with curly hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3QThRN1WKVQEmHoSaakumd36f3eZCY9AOMAKexgjEbWsHLh39g_NKl708TzHJUfU9gzLfWVKHZldw2WevdPHS5ShsKGLlcnpZpB0YdO8CVxs0ESI62goiSwzWRdK4u7z95nWC-oLX-rDAkkydA_P2F4Zio8skJHMycTb7pwUDbQ4-VGoaVMg6jITGoeB8w0efWe0YkIitibtL_lFbyiOAV_jrq47Bm9di4WqxjLBtkoTboyWa38mdy28OjeN0k7_jSuiybQnKEjs"/>
+<div class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-background-light dark:border-background-dark rounded-full"></div>
+</div>
+<span class="text-xs font-medium text-gray-700 dark:text-gray-300">Elena</span>
+</div>
+<!-- Member 4 -->
+<div class="flex flex-col items-center space-y-2 flex-shrink-0">
+<div class="relative">
+<img alt="Team member avatar" class="w-14 h-14 rounded-full object-cover border-2 border-transparent hover:border-primary transition-colors" data-alt="Portrait of a man with a beanie" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByRBKIEnMmJFvbQHqPcWhGNiba8WRqYcHYGLtx3uIYT84_CxbKAGQ41rAS5PL0oQbYO0RugbSOr0qU18Jd_-fM6PrhZAfvhs72cN4D5Lt8cQpKZhWvA2j92A9sMcxqfKECYJRqyjR8WOkZvmdd43UvnegDaENxhzlsu6vqOxWUaz0xVBiUgXXfrNvVmg92AWTLMVazLKiTWqVo4SAHHpfAVKwCZGT5mF2Fj-N2Bi6Bjrm9nlzmTKQvnmxpF_gBUMVbhSeA9mTuGtI"/>
+</div>
+<span class="text-xs font-medium text-gray-700 dark:text-gray-300">Marcus</span>
+</div>
+</div>
+</section>
+<!-- Search / Filter -->
+<div class="px-6 mb-8">
+<div class="bg-white dark:bg-gray-800/50 rounded-xl p-1 flex items-center border border-gray-200 dark:border-white/5">
+<div class="grid grid-cols-2 w-full bg-gray-100 dark:bg-gray-900 rounded-lg p-1">
+<button class="py-2 text-sm font-medium rounded-md bg-white dark:bg-primary text-gray-900 dark:text-white shadow-sm transition-all">Overview</button>
+<button class="py-2 text-sm font-medium rounded-md text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all">Activity</button>
+</div>
+</div>
+</div>
+<!-- Knowledge Bases Section -->
+<section class="px-6 mb-8">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-bold">Knowledge Bases</h2>
+<button class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-icons text-sm">add</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Knowledge Card 1 -->
+<div class="bg-white dark:bg-[#1e1a2e] p-4 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm active:scale-95 transition-transform duration-100 cursor-pointer">
+<div class="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary mb-3">
+<span class="material-icons">auto_awesome</span>
+</div>
+<h3 class="font-bold text-sm mb-1 line-clamp-1">Brand Voice Guidelines</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Updated 2h ago</p>
+<div class="flex -space-x-2">
+<img alt="Avatar" class="w-6 h-6 rounded-full border border-white dark:border-[#1e1a2e]" data-alt="Small avatar of Sarah" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUj6CgQYk5G__cA4lmGN0Cy3VkrSjzxXP5kqopWGdmfxahnuWqXyLuNthNyu3MDYZSIyVvytcUkKnPA3TbnR3_UJXAAG6LULWi9mMtPCb3QkQBUjxRyFxQ4RGe4xqpaO7CJ9PCbbb2BAWQm-EBSZjwn3z9mNf7TRVPQxPHlwpOwdbrQOjj_18gNSSG0sNzruYkofWi0_9V9pYB8ol_k9mFExuOQ_YmM7UpD07x66fJfE561mvkBErNFxEdw13DxyCW7pI75-0LrgM"/>
+<img alt="Avatar" class="w-6 h-6 rounded-full border border-white dark:border-[#1e1a2e]" data-alt="Small avatar of David" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6FUxAZY9kQEU0XXVoRpYH0_imXtjllroyiPXagH1a_ja6YDILvOwGId90tMs-krdtV8AXQymY6sbPln34SBx_h4mBL0dGN5g3lTtDz9E3NGIbKAr97juwEJ44FevRTbpI8Wz5hRo3UX-ofhCvkJ52O2oSoAsQmp8E1vUkfpYJf7_h2lJxDWM_4usRuQ_V6L5-oGphcNqhhCcARln-E-V5Q0iRQ-H1YQZ5oZBgwPhCRt0PoTpWAKfxMyAgbNx-DF4P7trIJ3Mj1Uo"/>
+</div>
+</div>
+<!-- Knowledge Card 2 -->
+<div class="bg-white dark:bg-[#1e1a2e] p-4 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm active:scale-95 transition-transform duration-100 cursor-pointer">
+<div class="w-10 h-10 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400 mb-3">
+<span class="material-icons">history_edu</span>
+</div>
+<h3 class="font-bold text-sm mb-1 line-clamp-1">Previous Issues</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 mb-3">Updated 1d ago</p>
+<div class="flex -space-x-2">
+<img alt="Avatar" class="w-6 h-6 rounded-full border border-white dark:border-[#1e1a2e]" data-alt="Small avatar of Elena" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGUWctBBf9LIWh-SZUWuT70-LjYFSaRPxS8BprtaLPLf7t5ugnNQPvlLOGEyq6wzGCudpiSHZ1FXtl4EOTYludoHU0yXFjUoaO_AjUHJOeFwIzeET9tujvH8MxFeelqBp_FgmG28BnIiWbsB0KFbQPcEcba6nE8uyQ9fuaHxw-Zqhsz1yoijB4pLE_CUAGvkgH6hCI7PPgBktaM3c8fYPm_G6Fe3qPlR739JZrFzRtakPuTjJwwdkZx0X7uh0JbLP3kCxo_4rCGYU"/>
+</div>
+</div>
+<!-- Knowledge Card 3 -->
+<div class="bg-white dark:bg-[#1e1a2e] p-4 rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm active:scale-95 transition-transform duration-100 cursor-pointer col-span-2 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center text-pink-500">
+<span class="material-icons">analytics</span>
+</div>
+<div>
+<h3 class="font-bold text-sm">Competitor Analysis Q4</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400">Synced from Notion</p>
+</div>
+</div>
+<span class="material-icons text-gray-400 text-sm">chevron_right</span>
+</div>
+</div>
+</section>
+<!-- Active Drafts Section -->
+<section class="px-6 mb-8">
+<div class="flex justify-between items-center mb-4">
+<h2 class="text-lg font-bold">Active Drafts</h2>
+<span class="text-xs bg-primary/20 text-primary px-2 py-1 rounded-md">3 Active</span>
+</div>
+<div class="space-y-4">
+<!-- Draft Item 1 -->
+<div class="bg-white dark:bg-[#1e1a2e] rounded-xl p-4 border border-gray-100 dark:border-white/5 shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white shrink-0 shadow-lg shadow-primary/20">
+<span class="material-icons">drafts</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-sm truncate">October Weekly Digest</h3>
+<span class="text-[10px] font-bold uppercase tracking-wide bg-yellow-500/20 text-yellow-500 px-2 py-0.5 rounded-full">In Review</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-gray-500 dark:text-gray-400">Edited by Sarah</span>
+<div class="w-1 h-1 rounded-full bg-gray-600"></div>
+<span class="text-xs text-gray-500 dark:text-gray-400">14m ago</span>
+</div>
+</div>
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-icons">more_vert</span>
+</button>
+</div>
+<!-- Draft Item 2 -->
+<div class="bg-white dark:bg-[#1e1a2e] rounded-xl p-4 border border-gray-100 dark:border-white/5 shadow-sm flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 shrink-0">
+<span class="material-icons">celebration</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-sm truncate">Holiday Special Promo</h3>
+<span class="text-[10px] font-bold uppercase tracking-wide bg-blue-500/20 text-blue-500 px-2 py-0.5 rounded-full">Drafting</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-gray-500 dark:text-gray-400">Started by You</span>
+<div class="w-1 h-1 rounded-full bg-gray-600"></div>
+<span class="text-xs text-gray-500 dark:text-gray-400">2h ago</span>
+</div>
+</div>
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-icons">more_vert</span>
+</button>
+</div>
+<!-- Draft Item 3 -->
+<div class="bg-white dark:bg-[#1e1a2e] rounded-xl p-4 border border-gray-100 dark:border-white/5 shadow-sm flex items-center gap-4 opacity-75">
+<div class="w-12 h-12 rounded-lg bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-gray-500 dark:text-gray-400 shrink-0">
+<span class="material-icons">tips_and_updates</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-sm truncate">Product Update V2.0</h3>
+<span class="text-[10px] font-bold uppercase tracking-wide bg-green-500/20 text-green-500 px-2 py-0.5 rounded-full">Scheduled</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-xs text-gray-500 dark:text-gray-400">Ready for Oct 24</span>
+</div>
+</div>
+<button class="text-gray-400 hover:text-white transition-colors">
+<span class="material-icons">lock</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<div class="absolute bottom-6 right-6 z-20">
+<button class="w-14 h-14 bg-primary rounded-full shadow-lg shadow-primary/40 flex items-center justify-center text-white hover:bg-primary/90 transition-transform active:scale-95">
+<span class="material-icons text-2xl">add</span>
+</button>
+</div>
+<!-- Bottom Navigation (Simulated) -->
+<nav class="bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-white/5 px-6 py-3 flex justify-between items-center z-10">
+<button class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500">
+<span class="material-icons">dashboard</span>
+<span class="text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-icons">group_work</span>
+<span class="text-[10px] font-bold">Team</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500">
+<span class="material-icons">analytics</span>
+<span class="text-[10px]">Stats</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 dark:text-gray-500">
+<span class="material-icons">person</span>
+<span class="text-[10px]">Profile</span>
+</button>
+</nav>
+</div>
+</body></html>

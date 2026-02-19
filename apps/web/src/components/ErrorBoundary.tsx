@@ -59,7 +59,7 @@ export class ErrorBoundary extends React.Component<
             </button>
             <a
               href="/dashboard"
-              className="inline-flex items-center gap-2 px-5 py-2.5 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors font-medium"
+              className="inline-flex items-center gap-2 px-5 py-2.5 border border-neutral-200 dark:border-white/10 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors font-medium"
             >
               <LayoutDashboard className="w-4 h-4" />
               Go to dashboard

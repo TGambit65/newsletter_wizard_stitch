@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brand: Story Timeline V2</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4725f4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1d1834",
+                        "surface-light": "#ffffff",
+                        "neon-blue": "#3b82f6",
+                        "neon-cyan": "#06b6d4",
+                        "indigo-deep": "#312e81",
+                        "indigo-light": "#6366f1",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    boxShadow: {
+                        'neon': '0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(59, 130, 246, 0.3)',
+                        'neon-cyan': '0 0 10px rgba(6, 182, 212, 0.5), 0 0 20px rgba(6, 182, 212, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .timeline-line {
+            background: linear-gradient(to bottom, transparent 0%, #4725f4 10%, #06b6d4 50%, #4725f4 90%, transparent 100%);
+        }
+        .glowing-node {
+            box-shadow: 0 0 15px currentColor;
+        }
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white antialiased overflow-x-hidden">
+<div class="relative flex h-auto min-h-screen w-full flex-col max-w-md mx-auto shadow-2xl overflow-hidden bg-background-light dark:bg-background-dark">
+<div class="flex items-center sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md p-4 pb-2 justify-between border-b border-gray-200 dark:border-white/5">
+<button class="text-gray-900 dark:text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-gray-900 dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Our Story</h2>
+</div>
+<div class="px-6 pt-6 pb-2">
+<h1 class="text-gray-900 dark:text-white tracking-tight text-[32px] font-bold leading-tight text-left">Origin of the Wizard</h1>
+<p class="text-gray-500 dark:text-[#9a90cb] text-sm font-normal leading-normal pt-2 font-body">From a simple script to an AI powerhouse. The journey of transforming how newsletters are written.</p>
+</div>
+<div class="relative px-6 py-8">
+<div class="absolute left-[39px] top-8 bottom-8 w-0.5 timeline-line opacity-70 dark:opacity-50"></div>
+<div class="relative flex gap-6 mb-12 group">
+<div class="flex flex-col items-center">
+<div class="w-7 h-7 rounded-full bg-background-dark border-2 border-neon-cyan text-neon-cyan glowing-node z-10 flex items-center justify-center mt-1">
+<div class="w-2 h-2 rounded-full bg-neon-cyan"></div>
+</div>
+</div>
+<div class="flex-1 pt-0.5">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-neon-cyan font-bold text-sm tracking-wider">2021</span>
+<div class="h-px bg-white/10 flex-1"></div>
+</div>
+<h3 class="text-white text-xl font-bold mb-2">The "Spark" Script</h3>
+<div class="p-4 rounded-xl bg-surface-dark border border-white/5 shadow-lg relative overflow-hidden">
+<div class="absolute top-0 right-0 w-16 h-16 bg-neon-cyan/10 rounded-full blur-2xl -mr-8 -mt-8"></div>
+<p class="text-gray-400 text-sm leading-relaxed font-body">
+                        The first iteration was a simple Python script designed to summarize tech news. It hallucinated often, but the summaries had a unique, witty voice we fell in love with.
+                    </p>
+</div>
+</div>
+</div>
+<div class="relative flex gap-6 mb-12 group">
+<div class="flex flex-col items-center">
+<div class="w-7 h-7 rounded-full bg-background-dark border-2 border-primary text-primary glowing-node z-10 flex items-center justify-center mt-1">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+</div>
+<div class="flex-1 pt-0.5">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-primary font-bold text-sm tracking-wider">2022</span>
+<div class="h-px bg-white/10 flex-1"></div>
+</div>
+<h3 class="text-white text-xl font-bold mb-2">Context Awareness</h3>
+<div class="p-4 rounded-xl bg-surface-dark border border-white/5 shadow-lg relative overflow-hidden">
+<div class="absolute bottom-0 left-0 w-20 h-20 bg-primary/10 rounded-full blur-2xl -ml-8 -mb-8"></div>
+<p class="text-gray-400 text-sm leading-relaxed font-body">
+                        Breakthrough in context retention. The model learned to reference previous newsletters, creating continuity for readers rather than disjointed updates.
+                    </p>
+</div>
+</div>
+</div>
+<div class="relative flex gap-6 mb-12 group">
+<div class="flex flex-col items-center">
+<div class="w-7 h-7 rounded-full bg-background-dark border-2 border-indigo-light text-indigo-light glowing-node z-10 flex items-center justify-center mt-1">
+<div class="w-2 h-2 rounded-full bg-indigo-light"></div>
+</div>
+</div>
+<div class="flex-1 pt-0.5">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-indigo-light font-bold text-sm tracking-wider">2023</span>
+<div class="h-px bg-white/10 flex-1"></div>
+</div>
+<h3 class="text-white text-xl font-bold mb-2">Style Matching</h3>
+<div class="p-4 rounded-xl bg-surface-dark border border-white/5 shadow-lg relative overflow-hidden">
+<p class="text-gray-400 text-sm leading-relaxed font-body">
+                        Users could finally upload their own writing samples. The "Wizard" successfully mimicked nuanced tones, from corporate professional to casual blogger.
+                    </p>
+</div>
+</div>
+</div>
+<div class="relative flex gap-6 mb-4 group">
+<div class="flex flex-col items-center">
+<div class="w-7 h-7 rounded-full bg-background-dark border-2 border-white text-white glowing-node z-10 flex items-center justify-center mt-1 shadow-[0_0_15px_rgba(255,255,255,0.5)]">
+<div class="w-2 h-2 rounded-full bg-white"></div>
+</div>
+</div>
+<div class="flex-1 pt-0.5">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-white font-bold text-sm tracking-wider">2024</span>
+<div class="h-px bg-white/10 flex-1"></div>
+</div>
+<h3 class="text-white text-xl font-bold mb-2">Global Launch</h3>
+<div class="p-4 rounded-xl bg-gradient-to-br from-surface-dark to-primary/20 border border-white/10 shadow-lg relative overflow-hidden">
+<div class="absolute inset-0 bg-white/5 opacity-50"></div>
+<p class="text-gray-300 text-sm leading-relaxed font-body relative z-10">
+                        Newsletter Wizard goes mobile. Real-time drafting, analytics integration, and the launch of our proprietary curation engine.
+                    </p>
+</div>
+</div>
+</div>
+</div>
+<div class="px-6 py-8 bg-surface-dark/50 mt-4 border-t border-white/5">
+<h3 class="text-gray-400 dark:text-white/60 text-xs font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
+<span class="w-2 h-2 bg-primary rounded-full"></span>
+            Our Founders
+        </h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="group relative">
+<div class="aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-gray-800 relative">
+<img alt="Founder Portrait" class="object-cover w-full h-full opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0 duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUWxXt5Acoci7blJtMgGbjV_caBMMA4UqbkdNwr_zMc0v_9X3D8RoflviSTw52ziT_6k60CXPaobdrIpsSR3SjxGQ6r_UJp4rhrdF4Oqj8F78VF-nYqvJcXDB5s2mEgAoWgxE6y3DY8IbggyaIWcO1px3oCvkITydCE0Ad0xoRynPOBgGR_QRgNDRR-LZnBlvezKWCKHur9iOxTP7VQ1d4qlFFsmhWRdhnD0JqPlv8IYgDHR1tneBlmpWRaySQSUAJ2qutibjzOf8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent"></div>
+<div class="absolute bottom-3 left-3">
+<span class="material-symbols-outlined text-white/80">code</span>
+</div>
+</div>
+<h4 class="text-white font-bold text-base">Alex Chen</h4>
+<p class="text-primary text-xs font-medium">Co-Founder &amp; CTO</p>
+</div>
+<div class="group relative">
+<div class="aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-gray-800 relative">
+<img alt="Founder Portrait" class="object-cover w-full h-full opacity-80 group-hover:opacity-100 transition-opacity grayscale group-hover:grayscale-0 duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBil2Eb4Zn-hGlQ7NSGuSjiz0VbPakwcw1flPxTE8doTFAqJHFpgTisD287qnnyyu4MfCnx9N1bUJuj-oEV4PjnBHdKWyAvN13bxVImstNE7_CFzxZBpR-UVLYyR7x-67Pwrs7krkbfSnFvtrGlr5OhQ-0371xPsRe39u1MoEm3H2uFv7bp3F1yh5U6hmyjZ9vTUrN2tVemWtA4a4FCXwt0uhpDOQMst3PdWtjXXcjeqpHKgEuJewcMjtx5JRiSTKfs_2yvJTy_cIw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent"></div>
+<div class="absolute bottom-3 left-3">
+<span class="material-symbols-outlined text-white/80">design_services</span>
+</div>
+</div>
+<h4 class="text-white font-bold text-base">Sarah Miller</h4>
+<p class="text-neon-cyan text-xs font-medium">Co-Founder &amp; Lead Design</p>
+</div>
+</div>
+<div class="mt-8 p-5 rounded-2xl bg-indigo-deep/30 border border-white/5 text-center">
+<p class="text-gray-300 text-sm italic font-body">"We built the tool we wished we had when we started our own tech blog."</p>
+</div>
+</div>
+<div class="sticky bottom-0 bg-background-light dark:bg-background-dark/80 backdrop-blur-xl border-t border-white/5 p-4 mt-auto z-50">
+<button class="w-full bg-white text-background-dark font-bold py-3 px-6 rounded-lg flex items-center justify-center gap-2 hover:bg-gray-100 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+<span class="material-symbols-outlined text-xl">rocket_launch</span>
+            Join the Mission
+        </button>
+</div>
+</div>
+
+</body></html>

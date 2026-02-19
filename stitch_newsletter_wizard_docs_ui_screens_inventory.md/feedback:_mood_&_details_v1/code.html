@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Feedback: Mood &amp; Details V1</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+            extend: {
+                colors: {
+                    "primary": "#330df2",
+                    "background-light": "#f6f5f8",
+                    "background-dark": "#131022",
+                    "indigo-dark": "#0a0a1a", // Deep indigo-black as requested
+                },
+                fontFamily: {
+                    "display": ["Space Grotesk", "sans-serif"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.25rem", 
+                    "lg": "0.5rem", 
+                    "xl": "0.75rem", 
+                    "full": "9999px"
+                },
+                boxShadow: {
+                    'glow': '0 0 15px -3px rgba(51, 13, 242, 0.3)',
+                    'glow-strong': '0 0 20px -3px rgba(51, 13, 242, 0.5)',
+                }
+            },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #330df2; 
+            border-radius: 4px;
+        }
+        
+        /* Mood emoji animation classes */
+        .mood-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .mood-btn:active {
+            transform: scale(0.95);
+        }
+        .mood-btn.selected {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 8px rgba(51, 13, 242, 0.4));
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 min-h-screen flex justify-center items-center p-0 sm:p-4">
+<!-- Mobile Device Container -->
+<div class="relative w-full max-w-md h-screen sm:h-[850px] bg-background-light dark:bg-background-dark sm:rounded-[2.5rem] overflow-hidden shadow-2xl flex flex-col border border-gray-200 dark:border-white/5">
+<!-- Status Bar Imitation (iOS) -->
+<div class="h-12 w-full flex justify-between items-center px-6 pt-2 z-20 text-xs font-medium text-gray-900 dark:text-white select-none">
+<span>9:41</span>
+<div class="flex gap-1.5 items-center">
+<span class="material-icons-round text-sm">signal_cellular_alt</span>
+<span class="material-icons-round text-sm">wifi</span>
+<span class="material-icons-round text-sm rotate-180">battery_full</span>
+</div>
+</div>
+<!-- Header -->
+<header class="flex items-center justify-between px-4 py-2 z-10 sticky top-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+<button class="flex items-center text-gray-500 dark:text-gray-400 hover:text-primary dark:hover:text-primary transition-colors p-2 -ml-2 rounded-full active:bg-gray-200 dark:active:bg-white/10">
+<span class="material-icons-round text-2xl">chevron_left</span>
+<span class="text-base font-medium ml-1 hidden">Back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Feedback</h1>
+<button class="text-primary font-bold text-base px-2 py-1 rounded hover:bg-primary/10 transition-colors">
+                Send
+            </button>
+</header>
+<!-- Main Content Scroll Area -->
+<main class="flex-1 overflow-y-auto px-6 py-4 pb-24 space-y-8 scroll-smooth">
+<!-- Intro Text -->
+<div class="space-y-1">
+<h2 class="text-2xl font-bold leading-tight">Help us improve Newsletter Wizard.</h2>
+<p class="text-sm text-gray-500 dark:text-gray-400">Your input shapes the future of the app.</p>
+</div>
+<!-- Section 1: Mood Selector -->
+<section class="space-y-4">
+<label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider text-xs">How are you feeling?</label>
+<div class="flex justify-between items-center bg-white dark:bg-white/5 p-4 rounded-xl border border-gray-200 dark:border-white/10">
+<!-- Frustrated -->
+<button class="mood-btn group flex flex-col items-center gap-2 w-1/3 opacity-60 hover:opacity-100 transition-all">
+<div class="w-14 h-14 rounded-full bg-red-500/10 dark:bg-red-500/20 flex items-center justify-center text-3xl group-hover:bg-red-500/20 transition-colors">
+                            😡
+                        </div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400 group-hover:text-red-500 transition-colors">Frustrated</span>
+</button>
+<!-- Neutral -->
+<button class="mood-btn group flex flex-col items-center gap-2 w-1/3 opacity-60 hover:opacity-100 transition-all">
+<div class="w-14 h-14 rounded-full bg-yellow-500/10 dark:bg-yellow-500/20 flex items-center justify-center text-3xl group-hover:bg-yellow-500/20 transition-colors">
+                            😐
+                        </div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400 group-hover:text-yellow-500 transition-colors">Neutral</span>
+</button>
+<!-- Satisfied (Selected) -->
+<button class="mood-btn selected group flex flex-col items-center gap-2 w-1/3">
+<div class="w-14 h-14 rounded-full bg-primary/20 flex items-center justify-center text-3xl ring-2 ring-primary ring-offset-2 ring-offset-background-light dark:ring-offset-background-dark shadow-glow">
+                            🤩
+                        </div>
+<span class="text-xs font-bold text-primary">Satisfied</span>
+</button>
+</div>
+</section>
+<!-- Section 2: Category Selector -->
+<section class="space-y-4">
+<label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider text-xs">What is this about?</label>
+<div class="flex flex-wrap gap-3">
+<button class="px-5 py-2.5 rounded-lg text-sm font-medium bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-primary/50 text-gray-600 dark:text-gray-300 transition-all active:scale-95">
+                        Bug Report
+                    </button>
+<button class="px-5 py-2.5 rounded-lg text-sm font-bold bg-primary text-white shadow-glow border border-primary transition-all active:scale-95 flex items-center gap-2">
+<span class="material-icons-round text-base">auto_awesome</span>
+                        Feature Request
+                    </button>
+<button class="px-5 py-2.5 rounded-lg text-sm font-medium bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-primary/50 text-gray-600 dark:text-gray-300 transition-all active:scale-95">
+                        Question
+                    </button>
+</div>
+</section>
+<!-- Section 3: Details Input -->
+<section class="space-y-4">
+<label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider text-xs" for="feedback-details">Tell us more</label>
+<div class="relative group">
+<textarea class="w-full bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-xl p-4 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary shadow-sm focus:shadow-glow transition-all resize-none text-base leading-relaxed" id="feedback-details" placeholder="I'd love a way to automatically categorize my subscribers based on their activity..." rows="5"></textarea>
+<!-- Decorative glow element behind -->
+<div class="absolute inset-0 -z-10 bg-primary/5 rounded-xl blur-xl opacity-0 group-focus-within:opacity-100 transition-opacity duration-500"></div>
+</div>
+</section>
+<!-- Section 4: Attachments -->
+<section class="space-y-4">
+<div class="flex justify-between items-end">
+<label class="block text-sm font-semibold text-gray-700 dark:text-gray-300 uppercase tracking-wider text-xs">Visual Context</label>
+<span class="text-xs text-primary font-medium cursor-pointer hover:underline">+ Add another</span>
+</div>
+<div class="flex gap-4 overflow-x-auto py-2 pr-2">
+<!-- Current Screenshot Preview -->
+<div class="relative flex-shrink-0 group">
+<div class="w-24 h-40 rounded-lg overflow-hidden border border-gray-200 dark:border-white/10 shadow-lg relative bg-gray-800">
+<img alt="Mobile app dashboard screen showing analytics charts" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" data-alt="Mobile app dashboard screen showing analytics charts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZdt4J_UZIi2PP5F_vAVM4TpUvkXnuYPK0YusZcR7Eu6fgP6YHAFo7fK5Ss7Bs-5OvGkInSnQKKheWoS_q0vDwnHWIJjXxAAf82FOQNwZGUmAHStcSZ78_DAlSsuGDcqRan130jtLuLI2N5E65Fjt4dzlbFZkJJeU6zikT6agZPT_8PdKpWh9HcPomK3x8xiKInbT-WqX-RduwYpjh_woya75er7mVqlWgYExQaXHN4W6uYPhVdvAXMKbUn2hdt6BZxPAoQFt1i1A"/>
+<!-- Overlay gradient -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+</div>
+<!-- Remove button -->
+<button class="absolute -top-2 -right-2 bg-gray-800 text-white rounded-full p-0.5 border border-gray-600 shadow-md hover:bg-red-500 hover:border-red-500 transition-colors">
+<span class="material-icons-round text-sm block">close</span>
+</button>
+<div class="absolute bottom-1 left-2">
+<span class="text-[10px] text-white/90 font-medium bg-black/40 px-1.5 rounded backdrop-blur-sm">Screen.png</span>
+</div>
+</div>
+<!-- Upload Button -->
+<button class="flex-shrink-0 w-24 h-40 rounded-lg border-2 border-dashed border-gray-300 dark:border-white/20 hover:border-primary dark:hover:border-primary bg-gray-50 dark:bg-white/5 flex flex-col items-center justify-center gap-2 text-gray-400 dark:text-gray-500 hover:text-primary dark:hover:text-primary transition-all group">
+<div class="p-2 rounded-full bg-white dark:bg-white/5 group-hover:bg-primary/10 transition-colors">
+<span class="material-icons-round text-xl group-hover:scale-110 transition-transform">add_a_photo</span>
+</div>
+<span class="text-xs font-medium text-center px-1">Attach Screen</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Bottom Gradient Fade for scrolling -->
+<div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background-light dark:from-background-dark to-transparent pointer-events-none z-10"></div>
+</div>
+</body></html>

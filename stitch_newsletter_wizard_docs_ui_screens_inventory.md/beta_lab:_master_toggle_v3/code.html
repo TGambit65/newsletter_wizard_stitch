@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Beta Lab: Master Toggle V3</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1e1b2e",
+                        "border-dark": "#2a2640",
+                        "text-dim": "#9a90cb",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "glow": "0 0 20px -5px rgba(51, 13, 242, 0.5)",
+                        "glow-sm": "0 0 10px -2px rgba(51, 13, 242, 0.4)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white min-h-screen flex flex-col antialiased">
+<!-- Mobile Container -->
+<div class="mx-auto w-full max-w-md min-h-screen flex flex-col relative overflow-hidden bg-background-light dark:bg-background-dark shadow-2xl">
+<!-- Header -->
+<header class="flex items-center justify-between px-4 pt-12 pb-4 bg-background-light dark:bg-background-dark sticky top-0 z-20">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-200 dark:hover:bg-surface-dark transition-colors text-slate-900 dark:text-white">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Beta Lab</h1>
+<div class="w-10"></div> <!-- Spacer for centering title -->
+</header>
+<!-- Main Content -->
+<main class="flex-1 px-4 py-2 space-y-6 overflow-y-auto pb-24">
+<!-- Master Control Card -->
+<section class="relative">
+<!-- Abstract background blur for glow effect -->
+<div class="absolute inset-0 bg-primary/20 blur-2xl rounded-2xl transform scale-95 translate-y-2"></div>
+<div class="relative bg-white dark:bg-surface-dark border border-slate-200 dark:border-primary/30 rounded-2xl p-5 shadow-glow transition-all duration-300">
+<div class="flex items-center justify-between gap-4">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary text-xl">science</span>
+<h2 class="text-lg font-bold">Master Beta Access</h2>
+</div>
+<p class="text-sm text-slate-500 dark:text-text-dim leading-relaxed">
+                                Enable global access to all experimental tools and features.
+                            </p>
+</div>
+<!-- Master Toggle -->
+<label class="relative inline-flex items-center cursor-pointer group">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-14 h-8 bg-slate-200 dark:bg-[#292249] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-6 rtl:peer-checked:after:-translate-x-6 peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-primary shadow-inner"></div>
+<!-- Glow ring on active state -->
+<div class="absolute inset-0 rounded-full ring-2 ring-primary/0 peer-checked:ring-primary/30 transition-all duration-500 transform scale-110"></div>
+</label>
+</div>
+</div>
+</section>
+<div class="h-px bg-slate-200 dark:bg-border-dark w-full"></div>
+<!-- Available Experiments Section -->
+<section class="space-y-4">
+<div class="flex items-center justify-between px-1">
+<h3 class="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-text-dim">Available Experiments</h3>
+<span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded border border-primary/20">v3.2.0</span>
+</div>
+<!-- Experiment Item 1 -->
+<div class="group flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-surface-dark border border-transparent hover:border-slate-200 dark:hover:border-primary/30 transition-colors duration-200">
+<div class="flex-shrink-0 mt-1 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-medium text-base truncate pr-2">AI Auto-Draft</h4>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-[#292249] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<p class="text-sm text-slate-500 dark:text-text-dim line-clamp-2">
+                            Let AI analyze your topic and write the first paragraph automatically.
+                        </p>
+</div>
+</div>
+<!-- Experiment Item 2 -->
+<div class="group flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-surface-dark border border-transparent hover:border-slate-200 dark:hover:border-primary/30 transition-colors duration-200">
+<div class="flex-shrink-0 mt-1 w-10 h-10 rounded-lg bg-indigo-500/10 dark:bg-white/5 flex items-center justify-center text-indigo-500 dark:text-white/80">
+<span class="material-symbols-outlined">dark_mode</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-medium text-base truncate pr-2">Dark Mode Preview</h4>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-[#292249] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<p class="text-sm text-slate-500 dark:text-text-dim line-clamp-2">
+                            Simulate how your email renders on devices with forced dark mode.
+                        </p>
+</div>
+</div>
+<!-- Experiment Item 3 -->
+<div class="group flex items-start gap-4 p-4 rounded-xl bg-white dark:bg-surface-dark border border-transparent hover:border-slate-200 dark:hover:border-primary/30 transition-colors duration-200">
+<div class="flex-shrink-0 mt-1 w-10 h-10 rounded-lg bg-indigo-500/10 dark:bg-white/5 flex items-center justify-center text-indigo-500 dark:text-white/80">
+<span class="material-symbols-outlined">schedule_send</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-medium text-base truncate pr-2">Smart Send Time</h4>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-slate-200 dark:bg-[#292249] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<p class="text-sm text-slate-500 dark:text-text-dim line-clamp-2">
+                            Predict optimal open rates based on historical user activity data.
+                        </p>
+</div>
+</div>
+</section>
+<!-- Safety Note Card -->
+<section class="mt-8">
+<div class="relative overflow-hidden rounded-xl bg-amber-500/10 dark:bg-amber-500/5 border border-amber-500/20 p-4">
+<div class="flex gap-3">
+<div class="flex-shrink-0 text-amber-600 dark:text-amber-500">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div class="flex-1">
+<h4 class="text-sm font-bold text-amber-700 dark:text-amber-400 mb-1">Proceed with caution</h4>
+<p class="text-xs text-amber-800/80 dark:text-amber-200/60 leading-relaxed">
+                                These features are in active development. Using them may cause app instability, unexpected crashes, or data loss.
+                            </p>
+</div>
+</div>
+<!-- Decorative background element -->
+<div class="absolute -bottom-4 -right-4 w-24 h-24 bg-amber-500/10 rounded-full blur-xl pointer-events-none"></div>
+</div>
+</section>
+</main>
+<!-- Bottom safe area spacer if needed -->
+<div class="h-6 w-full bg-background-light dark:bg-background-dark"></div>
+</div>
+</body></html>

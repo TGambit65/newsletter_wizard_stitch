@@ -40,7 +40,7 @@ type ViewMode = 'month' | 'week' | 'list';
 const STATUS_COLORS: Record<string, string> = {
   scheduled: 'bg-info/10 text-info border-info/20',
   sent: 'bg-success/10 text-success border-success/20',
-  draft: 'bg-neutral-100 text-neutral-600 border-neutral-200 dark:bg-neutral-700 dark:text-neutral-300 dark:border-neutral-600',
+  draft: 'bg-neutral-100 text-neutral-600 border-neutral-200 dark:bg-white/10 dark:text-neutral-300 dark:border-neutral-600',
 };
 
 function getNewslettersForDay(newsletters: Newsletter[], day: Date): Newsletter[] {
@@ -164,13 +164,13 @@ export function SchedulingPage() {
         {/* Calendar panel */}
         <div className="flex-1">
           {/* Calendar controls */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
-            <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-neutral-700">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 overflow-hidden">
+            <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-white/10">
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => navigate(-1)}
                   aria-label="Previous period"
-                  className="p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors"
+                  className="p-1.5 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg transition-colors"
                 >
                   <ChevronLeft className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
                 </button>
@@ -180,25 +180,25 @@ export function SchedulingPage() {
                 <button
                   onClick={() => navigate(1)}
                   aria-label="Next period"
-                  className="p-1.5 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors"
+                  className="p-1.5 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg transition-colors"
                 >
                   <ChevronRight className="w-4 h-4 text-neutral-600 dark:text-neutral-400" />
                 </button>
                 <button
                   onClick={goToToday}
-                  className="ml-2 px-2.5 py-1 text-xs font-medium border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 rounded hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+                  className="ml-2 px-2.5 py-1 text-xs font-medium border border-neutral-200 dark:border-white/10 text-neutral-600 dark:text-neutral-400 rounded hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
                 >
                   Today
                 </button>
               </div>
-              <div className="flex items-center gap-1 bg-neutral-100 dark:bg-neutral-900 rounded-lg p-1">
+              <div className="flex items-center gap-1 bg-neutral-100 dark:bg-background-dark rounded-lg p-1">
                 <button
                   onClick={() => setViewMode('month')}
                   aria-label="Month view"
                   className={clsx(
                     'p-1.5 rounded transition-colors',
                     viewMode === 'month'
-                      ? 'bg-white dark:bg-neutral-700 shadow-sm text-neutral-900 dark:text-white'
+                      ? 'bg-white dark:bg-white/10 shadow-sm text-neutral-900 dark:text-white'
                       : 'text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300'
                   )}
                 >
@@ -210,7 +210,7 @@ export function SchedulingPage() {
                   className={clsx(
                     'p-1.5 rounded transition-colors',
                     viewMode === 'week'
-                      ? 'bg-white dark:bg-neutral-700 shadow-sm text-neutral-900 dark:text-white'
+                      ? 'bg-white dark:bg-white/10 shadow-sm text-neutral-900 dark:text-white'
                       : 'text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300'
                   )}
                 >
@@ -235,7 +235,7 @@ export function SchedulingPage() {
                   ))}
                 </div>
                 {/* Day cells */}
-                <div className="grid grid-cols-7 gap-px bg-neutral-200 dark:bg-neutral-700 rounded-lg overflow-hidden">
+                <div className="grid grid-cols-7 gap-px bg-neutral-200 dark:bg-white/10 rounded-lg overflow-hidden">
                   {monthDays.map(day => {
                     const dayNewsletters = getNewslettersForDay(newsletters, day);
                     const isCurrentMonth = isSameMonth(day, currentDate);
@@ -244,7 +244,7 @@ export function SchedulingPage() {
                       <div
                         key={day.toISOString()}
                         className={clsx(
-                          'min-h-[80px] p-1.5 bg-white dark:bg-neutral-800 transition-colors',
+                          'min-h-[80px] p-1.5 bg-white dark:bg-surface-dark transition-colors',
                           !isCurrentMonth && 'opacity-40',
                           todayFlag && 'bg-primary-50 dark:bg-primary-900/10'
                         )}
@@ -285,7 +285,7 @@ export function SchedulingPage() {
             ) : (
               /* Week view */
               <div className="p-4">
-                <div className="grid grid-cols-7 gap-px bg-neutral-200 dark:bg-neutral-700 rounded-lg overflow-hidden">
+                <div className="grid grid-cols-7 gap-px bg-neutral-200 dark:bg-white/10 rounded-lg overflow-hidden">
                   {weekDays.map(day => {
                     const dayNewsletters = getNewslettersForDay(newsletters, day);
                     const todayFlag = isToday(day);
@@ -293,7 +293,7 @@ export function SchedulingPage() {
                       <div
                         key={day.toISOString()}
                         className={clsx(
-                          'min-h-[200px] p-2 bg-white dark:bg-neutral-800',
+                          'min-h-[200px] p-2 bg-white dark:bg-surface-dark',
                           todayFlag && 'bg-primary-50 dark:bg-primary-900/10'
                         )}
                       >
@@ -342,8 +342,8 @@ export function SchedulingPage() {
 
         {/* Upcoming sidebar */}
         <div className="lg:w-72 flex-shrink-0">
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
-            <div className="p-4 border-b border-neutral-200 dark:border-neutral-700">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 overflow-hidden">
+            <div className="p-4 border-b border-neutral-200 dark:border-white/10">
               <h3 className="font-semibold text-neutral-900 dark:text-white flex items-center gap-2">
                 <Clock className="w-4 h-4 text-primary-500" />
                 Upcoming Sends
@@ -354,7 +354,7 @@ export function SchedulingPage() {
               <div className="p-4 space-y-3">
                 {[...Array(3)].map((_, i) => (
                   <div key={i} className="animate-pulse">
-                    <div className="h-3 bg-neutral-200 dark:bg-neutral-700 rounded w-3/4 mb-1.5" />
+                    <div className="h-3 bg-neutral-200 dark:bg-white/10 rounded w-3/4 mb-1.5" />
                     <div className="h-2.5 bg-neutral-100 dark:bg-neutral-600 rounded w-1/2" />
                   </div>
                 ))}
@@ -372,7 +372,7 @@ export function SchedulingPage() {
                 </Link>
               </div>
             ) : (
-              <div className="divide-y divide-neutral-200 dark:divide-neutral-700 max-h-[500px] overflow-y-auto">
+              <div className="divide-y divide-neutral-200 dark:divide-white/5 max-h-[500px] overflow-y-auto">
                 {upcoming.map(n => {
                   const dateStr = n.scheduled_at || n.sent_at;
                   const date = dateStr ? parseISO(dateStr) : null;
@@ -380,7 +380,7 @@ export function SchedulingPage() {
                     <Link
                       key={n.id}
                       to={`/newsletters/${n.id}/edit`}
-                      className="flex items-start gap-3 p-4 hover:bg-neutral-50 dark:hover:bg-neutral-700/50 transition-colors"
+                      className="flex items-start gap-3 p-4 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
                     >
                       <div className={clsx(
                         'w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5',
@@ -416,7 +416,7 @@ export function SchedulingPage() {
           </div>
 
           {/* Legend */}
-          <div className="mt-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+          <div className="mt-4 bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-4">
             <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-3">Legend</p>
             <div className="space-y-2">
               {[
@@ -432,7 +432,7 @@ export function SchedulingPage() {
           </div>
 
           {/* AI Send Time Recommendations — beta-gated */}
-          <div className="mt-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+          <div className="mt-4 bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-4">
             <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-3 flex items-center gap-1.5">
               <Zap className="w-3.5 h-3.5 text-warning" />
               AI Best Times
@@ -451,7 +451,7 @@ export function SchedulingPage() {
             ) : loadingSendTime ? (
               <div className="space-y-2 animate-pulse">
                 {[...Array(3)].map((_, i) => (
-                  <div key={i} className="h-3 bg-neutral-200 dark:bg-neutral-700 rounded" />
+                  <div key={i} className="h-3 bg-neutral-200 dark:bg-white/10 rounded" />
                 ))}
               </div>
             ) : sendSlots.length === 0 ? (

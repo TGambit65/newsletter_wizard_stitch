@@ -43,7 +43,7 @@ export function ApiKeySettings({
   const [showConvertkit, setShowConvertkit] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+    <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6">
       <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-2">API Keys</h2>
       <p className="text-neutral-500 text-sm mb-6">Configure your AI provider and ESP API keys.</p>
 
@@ -62,7 +62,7 @@ export function ApiKeySettings({
                 value={openaiKey}
                 onChange={(e) => onOpenaiChange(e.target.value)}
                 placeholder="sk-..."
-                className="w-full px-4 py-3 pr-12 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none font-mono text-sm"
+                className="w-full px-4 py-3 pr-12 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none font-mono text-sm"
               />
               <button
                 type="button"
@@ -84,7 +84,7 @@ export function ApiKeySettings({
                 value={anthropicKey}
                 onChange={(e) => onAnthropicChange(e.target.value)}
                 placeholder="sk-ant-..."
-                className="w-full px-4 py-3 pr-12 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none font-mono text-sm"
+                className="w-full px-4 py-3 pr-12 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none font-mono text-sm"
               />
               <button
                 type="button"
@@ -98,7 +98,7 @@ export function ApiKeySettings({
         </div>
 
         {/* ESP Keys */}
-        <div className="pt-4 border-t border-neutral-200 dark:border-neutral-700 space-y-4">
+        <div className="pt-4 border-t border-neutral-200 dark:border-white/10 space-y-4">
           <h3 className="font-medium text-neutral-900 dark:text-white">Email Service Provider</h3>
 
           <div>
@@ -108,7 +108,7 @@ export function ApiKeySettings({
             <select
               value={espProvider}
               onChange={(e) => onEspProviderChange(e.target.value)}
-              className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
+              className="w-full px-4 py-3 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
             >
               <option value="sendgrid">SendGrid</option>
               <option value="mailchimp">Mailchimp</option>
@@ -126,7 +126,7 @@ export function ApiKeySettings({
                 value={sendgridKey}
                 onChange={(e) => onSendgridChange(e.target.value)}
                 placeholder="SG..."
-                className="w-full px-4 py-3 pr-12 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none font-mono text-sm"
+                className="w-full px-4 py-3 pr-12 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none font-mono text-sm"
               />
               <button
                 type="button"
@@ -148,7 +148,7 @@ export function ApiKeySettings({
                 value={mailchimpKey}
                 onChange={(e) => onMailchimpChange(e.target.value)}
                 placeholder="xxx-dc"
-                className="w-full px-4 py-3 pr-12 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none font-mono text-sm"
+                className="w-full px-4 py-3 pr-12 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none font-mono text-sm"
               />
               <button
                 type="button"
@@ -170,7 +170,7 @@ export function ApiKeySettings({
                 value={convertkitKey}
                 onChange={(e) => onConvertkitChange(e.target.value)}
                 placeholder="API Secret"
-                className="w-full px-4 py-3 pr-12 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none font-mono text-sm"
+                className="w-full px-4 py-3 pr-12 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none font-mono text-sm"
               />
               <button
                 type="button"

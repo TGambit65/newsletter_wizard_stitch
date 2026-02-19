@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Preview: Accuracy Check</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for cleaner mobile look */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200 min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white">
+<!-- Mobile Container -->
+<div class="max-w-md mx-auto w-full h-screen flex flex-col bg-background-light dark:bg-background-dark relative overflow-hidden shadow-2xl">
+<!-- 1. Header Navigation -->
+<header class="flex items-center justify-between px-6 py-4 z-20 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md sticky top-0">
+<button class="p-2 -ml-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300">
+<span class="material-icons">arrow_back</span>
+</button>
+<div class="flex flex-col items-center">
+<h1 class="text-sm font-bold uppercase tracking-widest text-primary">Accuracy Check</h1>
+</div>
+<div class="flex items-center gap-1">
+<span class="text-sm font-medium text-slate-400">Step</span>
+<span class="text-sm font-bold text-primary">3/4</span>
+</div>
+</header>
+<!-- Main Content Area: Split View -->
+<main class="flex-1 flex flex-col overflow-hidden relative">
+<!-- Top Pane: Source Context (approx 35%) -->
+<section class="h-[35%] flex flex-col border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1a162e]">
+<div class="px-6 py-3 flex items-center justify-between">
+<h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-2">
+<span class="material-icons text-sm">auto_awesome</span>
+                        Sources Used
+                    </h2>
+<span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full border border-primary/20">3 SOURCES</span>
+</div>
+<!-- Horizontal Scroll for Sources -->
+<div class="flex-1 overflow-x-auto scrollbar-hide px-6 pb-4 flex gap-4 items-center snap-x snap-mandatory">
+<!-- Source Card 1 (Active) -->
+<div class="snap-center shrink-0 w-[85%] h-full bg-slate-50 dark:bg-[#231e3d] rounded-xl p-4 border-2 border-primary shadow-lg shadow-primary/10 flex flex-col relative group">
+<div class="absolute -top-2 -right-2 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">
+                            USED 40%
+                        </div>
+<div class="flex items-center gap-2 mb-2">
+<div class="w-6 h-6 rounded bg-orange-100 flex items-center justify-center text-orange-600 shrink-0">
+<span class="material-icons text-sm">rss_feed</span>
+</div>
+<h3 class="font-bold text-sm truncate text-slate-800 dark:text-slate-100">TechCrunch: AI Trends 2024</h3>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed">
+                            "...generative AI models are moving from experimental phases to core business logic integration, reducing latency by 40% in customer service applications..."
+                        </p>
+<div class="mt-auto pt-2 flex justify-between items-center border-t border-slate-200 dark:border-slate-700/50">
+<span class="text-[10px] text-slate-400">Added 2h ago</span>
+<button class="text-primary text-[10px] font-bold hover:underline">VIEW FULL</button>
+</div>
+</div>
+<!-- Source Card 2 -->
+<div class="snap-center shrink-0 w-[85%] h-full bg-white dark:bg-[#1f1b36] rounded-xl p-4 border border-slate-200 dark:border-slate-700/50 flex flex-col opacity-70 scale-95">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-6 h-6 rounded bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
+<span class="material-icons text-sm">description</span>
+</div>
+<h3 class="font-bold text-sm truncate text-slate-800 dark:text-slate-100">Internal Memo: Q3 Goals</h3>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed">
+                            "Our focus for Q3 remains strictly on user retention. We need to leverage AI to personalize weekly touchpoints..."
+                        </p>
+<div class="mt-auto pt-2 flex justify-between items-center border-t border-slate-200 dark:border-slate-700/50">
+<span class="text-[10px] text-slate-400">Added yesterday</span>
+<button class="text-slate-500 dark:text-slate-300 text-[10px] font-bold hover:underline">VIEW FULL</button>
+</div>
+</div>
+<!-- Source Card 3 -->
+<div class="snap-center shrink-0 w-[85%] h-full bg-white dark:bg-[#1f1b36] rounded-xl p-4 border border-slate-200 dark:border-slate-700/50 flex flex-col opacity-70 scale-95">
+<div class="flex items-center gap-2 mb-2">
+<div class="w-6 h-6 rounded bg-purple-100 flex items-center justify-center text-purple-600 shrink-0">
+<span class="material-icons text-sm">link</span>
+</div>
+<h3 class="font-bold text-sm truncate text-slate-800 dark:text-slate-100">Competitor Analysis</h3>
+</div>
+<p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed">
+                            "Competitor X launched a similar feature but lacks the real-time processing capabilities we've developed..."
+                        </p>
+<div class="mt-auto pt-2 flex justify-between items-center border-t border-slate-200 dark:border-slate-700/50">
+<span class="text-[10px] text-slate-400">Added 3 days ago</span>
+<button class="text-slate-500 dark:text-slate-300 text-[10px] font-bold hover:underline">VIEW FULL</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Bottom Pane: Newsletter Preview (approx 65%) -->
+<section class="flex-1 bg-slate-100 dark:bg-[#0f0c1d] relative overflow-hidden flex flex-col">
+<!-- Preview Header -->
+<div class="px-6 py-3 bg-slate-50/90 dark:bg-[#1a162e]/90 backdrop-blur border-b border-slate-200 dark:border-slate-800 flex justify-between items-center sticky top-0 z-10">
+<h2 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-2">
+<span class="material-icons text-sm">visibility</span>
+                        Draft Preview
+                    </h2>
+<div class="flex gap-2">
+<button class="w-6 h-6 flex items-center justify-center rounded hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+<span class="material-icons text-sm">edit</span>
+</button>
+<button class="w-6 h-6 flex items-center justify-center rounded hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+<span class="material-icons text-sm">refresh</span>
+</button>
+</div>
+</div>
+<!-- Email Content Simulator -->
+<div class="flex-1 overflow-y-auto p-4 pb-32">
+<!-- Email Container -->
+<div class="bg-white dark:bg-[#131022] rounded-lg shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden mx-auto max-w-sm">
+<!-- Hero Image -->
+<div class="h-32 w-full relative bg-slate-200 dark:bg-slate-800">
+<img alt="Abstract neon purple AI network visualization" class="w-full h-full object-cover" data-alt="Abstract neon purple AI network visualization" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRKO3Nru0v3AoaKIUsjXV-03yleFg6tE8uJx3qMrJzikDVqk_DxZTWYvHbv21dFBORj7P23S2lSJysEWr4y6jOOq8BFo-8LFGV736O8sKPN_C_-UWd0K4135uq8YySrAjNM3NQao40U3mbvdQFW9gqsUNWZM7sdTukPw8LZ-BXIZNg-5-YGYeBOmelFGXWs3OzsGyzDqyvGFyYgffr7pey5jAbuNyuq4csP5dymKUDWopsnx8SdMOEog3NmF50WTLpwHcJHWhqisg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#131022] to-transparent opacity-60"></div>
+<div class="absolute bottom-3 left-3 text-white">
+<span class="bg-primary px-2 py-0.5 text-[10px] font-bold rounded uppercase">Weekly Issue #42</span>
+</div>
+</div>
+<!-- Email Body -->
+<div class="p-5">
+<h1 class="text-xl font-bold mb-3 text-slate-900 dark:text-white leading-tight">Your Weekly AI Roundup: Integration is Key</h1>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+                                Hello Team,
+                            </p>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+                                This week, the conversation shifts from experimentation to execution. As highlighted in the latest <span class="text-primary font-bold cursor-pointer bg-primary/10 px-1 rounded hover:bg-primary/20 transition-colors">TechCrunch report</span>, companies are seeing a 40% reduction in latency by integrating models directly into business logic.
+                            </p>
+<!-- Callout Box inside email -->
+<div class="bg-slate-50 dark:bg-[#1a162e] border-l-4 border-primary p-3 mb-4 rounded-r">
+<h4 class="text-xs font-bold text-primary mb-1 uppercase">Key Takeaway</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 italic">
+                                    "Our Q3 goal of user retention aligns perfectly with these new capabilities."
+                                </p>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                                We've analyzed the internal data and it's clear: personalized touchpoints are the next frontier. Check out the dashboard below for live stats.
+                            </p>
+<button class="w-full bg-primary text-white font-bold py-3 px-4 rounded text-sm hover:bg-primary/90 transition-colors mb-4">
+                                Read Full Report
+                            </button>
+<hr class="border-slate-200 dark:border-slate-800 my-4"/>
+<p class="text-[10px] text-center text-slate-400">
+                                You received this email because you are subscribed to the Product Update list.
+                                <br/><a class="underline" href="#">Unsubscribe</a>
+</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Action Bar (Sticky Footer) -->
+<footer class="absolute bottom-0 left-0 right-0 p-5 pb-8 bg-white/90 dark:bg-[#131022]/90 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 z-30 flex gap-4">
+<button class="flex-1 py-3.5 px-4 rounded-lg font-bold text-sm text-primary dark:text-white border border-slate-300 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors flex items-center justify-center gap-2">
+<span class="material-icons text-sm">schedule</span>
+                Schedule Later
+            </button>
+<button class="flex-1 py-3.5 px-4 rounded-lg font-bold text-sm text-white bg-primary shadow-lg shadow-primary/30 hover:bg-primary/90 transition-transform active:scale-95 flex items-center justify-center gap-2">
+                Send Now
+                <span class="material-icons text-sm">send</span>
+</button>
+</footer>
+</div>
+</body></html>

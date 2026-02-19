@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brand: Our Story V1</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#6366f1", // Indigo-500
+              "primary-glow": "#818cf8", // Indigo-400
+              "background-dark": "#0f0c29", // Deep Indigo/Black
+              "surface-dark": "#1a1638", // Lighter Indigo
+              "neon-purple": "#a855f7",
+              "neon-blue": "#3b82f6",
+              "text-main": "#e0e7ff",
+              "text-muted": "#818cf8",
+            },
+            fontFamily: {
+              "display": ["Space Grotesk", "sans-serif"],
+              "body": ["Noto Sans", "sans-serif"],
+            },
+            backgroundImage: {
+                'indigo-gradient': 'linear-gradient(to bottom right, #0f0c29, #302b63, #24243e)',
+                'card-glow': 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .text-gradient {
+            background: linear-gradient(to right, #c084fc, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glow-border {
+            position: relative;
+        }
+        .glow-border::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            z-index: -1;
+            background: linear-gradient(to right, #6366f1, #a855f7);
+            border-radius: inherit;
+            opacity: 0.3;
+        }
+    </style>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-text-main antialiased overflow-x-hidden selection:bg-neon-purple selection:text-white">
+<div class="relative flex h-auto min-h-screen w-full flex-col max-w-md mx-auto shadow-2xl overflow-hidden bg-background-dark">
+<div class="fixed top-0 left-0 right-0 h-[500px] bg-primary/20 blur-[100px] pointer-events-none z-0"></div>
+<div class="flex items-center sticky top-0 z-50 bg-background-dark/80 backdrop-blur-md p-4 pb-2 justify-between border-b border-white/5">
+<button class="text-white flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-white text-sm font-bold uppercase tracking-widest flex-1 text-center pr-12 opacity-70">Brand Story</h2>
+</div>
+<div class="relative px-6 pt-6 pb-8 z-10 text-center">
+<h1 class="text-5xl font-bold tracking-tight mb-2">
+<span class="text-gradient">Our Story</span>
+</h1>
+<p class="text-text-muted text-sm font-body max-w-xs mx-auto">
+            Where artificial intelligence meets human creativity to craft the perfect newsletter.
+        </p>
+</div>
+<div class="px-6 mb-8 relative z-10 group perspective-1000">
+<div class="relative aspect-square w-full rounded-2xl overflow-hidden shadow-2xl shadow-indigo-500/20 transform transition-transform duration-700 hover:scale-[1.02] border border-white/10">
+<img alt="3D illustration of a glowing magic portal opening into a world of floating digital papers and neon particles" class="object-cover w-full h-full opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUWxXt5Acoci7blJtMgGbjV_caBMMA4UqbkdNwr_zMc0v_9X3D8RoflviSTw52ziT_6k60CXPaobdrIpsSR3SjxGQ6r_UJp4rhrdF4Oqj8F78VF-nYqvJcXDB5s2mEgAoWgxE6y3DY8IbggyaIWcO1px3oCvkITydCE0Ad0xoRynPOBgGR_QRgNDRR-LZnBlvezKWCKHur9iOxTP7VQ1d4qlFFsmhWRdhnD0JqPlv8IYgDHR1tneBlmpWRaySQSUAJ2qutibjzOf8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+<div class="bg-black/30 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-neon-purple animate-pulse"></span>
+<span class="text-[10px] uppercase font-bold tracking-wider text-white">Est. 2023</span>
+</div>
+</div>
+</div>
+</div>
+<div class="px-5 space-y-6 pb-24 z-10 relative">
+<div class="relative group">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-neon-blue to-primary rounded-xl opacity-20 group-hover:opacity-40 blur transition duration-500"></div>
+<div class="relative bg-surface-dark rounded-xl p-6 border border-white/5 shadow-xl">
+<div class="flex items-center gap-3 mb-3">
+<div class="bg-neon-blue/20 p-2 rounded-lg text-neon-blue">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<h3 class="text-xl font-bold text-white">The Spark</h3>
+</div>
+<p class="text-gray-400 font-body text-sm leading-relaxed">
+                    It started with a simple frustration: creators spent more time formatting emails than writing great content. We saw brilliant ideas getting lost in the clutter of clunky tools.
+                </p>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-neon-purple rounded-xl opacity-20 group-hover:opacity-40 blur transition duration-500"></div>
+<div class="relative bg-surface-dark rounded-xl p-6 border border-white/5 shadow-xl">
+<div class="flex items-center gap-3 mb-3">
+<div class="bg-neon-purple/20 p-2 rounded-lg text-neon-purple">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+<h3 class="text-xl font-bold text-white">The Magic</h3>
+</div>
+<p class="text-gray-400 font-body text-sm leading-relaxed">
+                    We built the Newsletter Wizard—an AI companion that doesn't just check grammar, but understands tone, structure, and engagement. It's like having a senior editor in your pocket.
+                </p>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-neon-purple to-pink-500 rounded-xl opacity-20 group-hover:opacity-40 blur transition duration-500"></div>
+<div class="relative bg-surface-dark rounded-xl p-6 border border-white/5 shadow-xl">
+<div class="flex items-center gap-3 mb-3">
+<div class="bg-pink-500/20 p-2 rounded-lg text-pink-500">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<h3 class="text-xl font-bold text-white">The Mission</h3>
+</div>
+<p class="text-gray-400 font-body text-sm leading-relaxed">
+                    To empower every storyteller to build a community without the technical barriers. We believe your voice deserves to be heard, loud and clear, in every inbox.
+                </p>
+</div>
+</div>
+</div>
+<div class="fixed bottom-0 left-0 right-0 max-w-md mx-auto p-5 z-50 bg-gradient-to-t from-background-dark via-background-dark to-transparent pt-12">
+<button class="w-full bg-gradient-to-r from-primary to-neon-purple text-white font-bold text-lg py-4 rounded-xl shadow-lg shadow-primary/40 hover:shadow-primary/60 transform active:scale-[0.98] transition-all flex items-center justify-center gap-2 group border border-white/20">
+<span>Join the Magic</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+
+</body></html>

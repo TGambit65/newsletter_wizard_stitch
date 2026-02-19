@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Help Center: AI Assistant V2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "accent": "#6d52ff",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#0a0817",
+                        "surface-dark": "#131022",
+                        "card-dark": "#1d1834"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply font-display bg-background-dark text-slate-100;
+                min-height: 100dvh;
+            }
+        }
+        .glow-border {
+            box-shadow: 0 0 15px rgba(51, 13, 242, 0.05), inset 0 0 1px rgba(51, 13, 242, 0.3);
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .search-gradient {
+            background: linear-gradient(135deg, rgba(51, 13, 242, 0.1) 0%, rgba(109, 82, 255, 0.05) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="pb-24">
+<header class="sticky top-0 z-50 bg-background-dark/80 ios-blur border-b border-primary/20 px-4 py-4">
+<div class="flex items-center justify-between max-w-lg mx-auto">
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-primary/10 text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">Help Center</h1>
+<button class="flex items-center justify-center p-2 rounded-full hover:bg-primary/10 text-primary transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<main class="max-w-lg mx-auto px-4 pt-6 space-y-8">
+<section class="space-y-4">
+<div class="space-y-2">
+<h2 class="text-2xl font-bold tracking-tight text-white">How can we help?</h2>
+<p class="text-slate-400 text-sm">Ask our AI Assistant anything about the Newsletter Wizard.</p>
+</div>
+<div class="relative group">
+<div class="absolute -inset-0.5 bg-gradient-to-r from-primary to-accent rounded-2xl blur opacity-20 group-focus-within:opacity-40 transition duration-300"></div>
+<div class="relative flex items-center bg-card-dark border border-primary/30 rounded-2xl p-1 shadow-2xl">
+<span class="material-symbols-outlined ml-4 text-primary">smart_toy</span>
+<input class="w-full bg-transparent border-none focus:ring-0 text-white placeholder:text-slate-500 py-4 px-4 text-base" placeholder="Ask our AI Assistant..." type="text"/>
+<button class="bg-primary hover:bg-accent text-white p-3 rounded-xl transition-all mr-1 shadow-lg">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest w-full mb-1">Quick Fixes</span>
+<button class="px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-medium text-primary hover:bg-primary/20 transition-colors">Reset Password</button>
+<button class="px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-medium text-primary hover:bg-primary/20 transition-colors">Billing Export</button>
+<button class="px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-xs font-medium text-primary hover:bg-primary/20 transition-colors">API Keys</button>
+</div>
+</section>
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-sm font-black uppercase tracking-widest text-slate-400">Trending Articles</h3>
+<button class="text-xs font-bold text-primary hover:underline">View all</button>
+</div>
+<div class="space-y-3">
+<div class="group bg-card-dark border border-white/5 rounded-xl p-4 flex items-center gap-4 hover:border-primary/40 transition-all glow-border">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">auto_awesome</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-bold text-white truncate group-hover:text-primary transition-colors">Automate your first sequence</h4>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-[10px] text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">visibility</span> 2.4k views
+                            </span>
+<span class="text-[10px] text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">schedule</span> 4 min read
+                            </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-600 text-sm">chevron_right</span>
+</div>
+<div class="group bg-card-dark border border-white/5 rounded-xl p-4 flex items-center gap-4 hover:border-primary/40 transition-all glow-border">
+<div class="size-12 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-bold text-white truncate group-hover:text-primary transition-colors">Customizing email templates</h4>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-[10px] text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">visibility</span> 1.8k views
+                            </span>
+<span class="text-[10px] text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">schedule</span> 6 min read
+                            </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-600 text-sm">chevron_right</span>
+</div>
+<div class="group bg-card-dark border border-white/5 rounded-xl p-4 flex items-center gap-4 hover:border-primary/40 transition-all glow-border">
+<div class="size-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">auto_awesome</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-bold text-white truncate group-hover:text-primary transition-colors">AI Content Repurposing Guide</h4>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-[10px] text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">visibility</span> 5.1k views
+                            </span>
+<span class="text-[10px] text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">schedule</span> 10 min read
+                            </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-600 text-sm">chevron_right</span>
+</div>
+<div class="group bg-card-dark border border-white/5 rounded-xl p-4 flex items-center gap-4 hover:border-primary/40 transition-all glow-border">
+<div class="size-12 rounded-lg bg-slate-800 flex items-center justify-center text-slate-400 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">person_add</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="text-sm font-bold text-white truncate group-hover:text-primary transition-colors">Managing your workspace team</h4>
+<div class="flex items-center gap-3 mt-1">
+<span class="text-[10px] text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">visibility</span> 942 views
+                            </span>
+<span class="text-[10px] text-slate-500 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">schedule</span> 3 min read
+                            </span>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-600 text-sm">chevron_right</span>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-2xl bg-surface-dark border border-white/5 hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-primary mb-2">payments</span>
+<h5 class="text-sm font-bold">Billing &amp; Plans</h5>
+</div>
+<div class="p-4 rounded-2xl bg-surface-dark border border-white/5 hover:border-primary/30 transition-colors">
+<span class="material-symbols-outlined text-primary mb-2">settings_suggest</span>
+<h5 class="text-sm font-bold">Account Setup</h5>
+</div>
+</section>
+</main>
+<div class="fixed bottom-6 right-6 z-50">
+<button class="size-16 rounded-full bg-gradient-to-tr from-primary to-accent text-white flex items-center justify-center shadow-[0_8px_30px_rgba(51,13,242,0.4)] transition-transform active:scale-90 group">
+<span class="material-symbols-outlined text-3xl transition-transform group-hover:rotate-12" style="font-variation-settings: 'FILL' 1">chat_bubble</span>
+<div class="absolute -top-1 -right-1 size-4 bg-green-500 border-2 border-background-dark rounded-full"></div>
+</button>
+</div>
+
+</body></html>

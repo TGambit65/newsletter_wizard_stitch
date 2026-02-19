@@ -204,7 +204,7 @@ export function WebhooksPage() {
       {/* Created Webhook Secret Modal */}
       {createdWebhook && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 max-w-md w-full mx-4">
+          <div className="bg-white dark:bg-surface-dark rounded-xl p-6 max-w-md w-full mx-4">
             <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">Webhook Created</h2>
             <p className="text-sm text-neutral-600 dark:text-neutral-400 mb-3">
               Use this secret to verify webhook signatures:
@@ -225,7 +225,7 @@ export function WebhooksPage() {
       {/* Create Webhook Modal */}
       {showCreate && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-          <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 max-w-md w-full mx-4">
+          <div className="bg-white dark:bg-surface-dark rounded-xl p-6 max-w-md w-full mx-4">
             <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4">Add Webhook</h2>
             
             <div className="space-y-4">
@@ -265,7 +265,7 @@ export function WebhooksPage() {
             <div className="flex gap-3 mt-6">
               <button
                 onClick={() => setShowCreate(false)}
-                className="flex-1 px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+                className="flex-1 px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
               >
                 Cancel
               </button>
@@ -287,7 +287,7 @@ export function WebhooksPage() {
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
         </div>
       ) : webhooks.length === 0 ? (
-        <div className="text-center py-12 bg-neutral-50 dark:bg-neutral-800 rounded-xl">
+        <div className="text-center py-12 bg-neutral-50 dark:bg-surface-dark rounded-xl">
           <Webhook className="w-12 h-12 text-neutral-400 mx-auto mb-3" />
           <p className="text-neutral-600 dark:text-neutral-400">No webhooks configured</p>
         </div>
@@ -296,7 +296,7 @@ export function WebhooksPage() {
           {webhooks.map(webhook => (
             <div 
               key={webhook.id}
-              className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden"
+              className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 overflow-hidden"
             >
               <div className="p-4">
                 <div className="flex items-center justify-between">
@@ -342,7 +342,7 @@ export function WebhooksPage() {
                     </button>
                     <button
                       onClick={() => toggleExpand(webhook.id)}
-                      className="p-2 text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+                      className="p-2 text-neutral-500 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
                     >
                       {expandedId === webhook.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </button>
@@ -352,7 +352,7 @@ export function WebhooksPage() {
               
               {/* Delivery Logs */}
               {expandedId === webhook.id && (
-                <div className="border-t border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-900 p-4">
+                <div className="border-t border-neutral-200 dark:border-white/10 bg-neutral-50 dark:bg-background-dark p-4">
                   <h4 className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-3">Recent Deliveries</h4>
                   {deliveries[webhook.id]?.length ? (
                     <div className="space-y-2">

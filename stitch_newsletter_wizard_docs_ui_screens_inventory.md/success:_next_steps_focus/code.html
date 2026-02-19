@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Success: Next Steps Focus</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px -5px rgba(51, 13, 242, 0.5)',
+                        'glow-sm': '0 0 10px -3px rgba(51, 13, 242, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for clean look */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Subtle entrance animation */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-enter {
+            animation: fadeSlideUp 0.6s ease-out forwards;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-white antialiased selection:bg-primary selection:text-white overflow-hidden h-screen flex flex-col relative">
+<!-- Top Status Bar Mockup (Space filler for iOS status bar) -->
+<div class="w-full h-12 shrink-0 flex items-center justify-between px-6 text-xs font-medium text-gray-500 dark:text-gray-400 z-10">
+<span>9:41</span>
+<div class="flex items-center gap-1">
+<span class="material-icons-round text-sm">signal_cellular_alt</span>
+<span class="material-icons-round text-sm">wifi</span>
+<span class="material-icons-round text-sm">battery_full</span>
+</div>
+</div>
+<!-- Main Scrollable Area -->
+<main class="flex-1 overflow-y-auto hide-scrollbar px-6 pb-24 pt-4 flex flex-col items-center w-full max-w-md mx-auto">
+<!-- Header / Success Indicator -->
+<div class="flex flex-col items-center text-center mb-10 w-full animate-enter">
+<div class="relative mb-6 group">
+<!-- Glowing effect behind icon -->
+<div class="absolute inset-0 bg-primary rounded-full blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500"></div>
+<div class="relative bg-background-dark border border-primary/30 rounded-full p-4 shadow-glow flex items-center justify-center h-20 w-20">
+<span class="material-icons-round text-primary text-4xl">check</span>
+</div>
+</div>
+<h1 class="text-3xl font-bold text-white mb-2">Newsletter Sent!</h1>
+<p class="text-gray-400 text-sm max-w-[280px] leading-relaxed">
+                Your campaign "Q3 Product Update" is on its way to <span class="text-white font-medium">12,405 readers</span>.
+            </p>
+</div>
+<!-- Section Title -->
+<div class="w-full mb-4 animate-enter delay-100">
+<h2 class="text-sm uppercase tracking-widest text-primary font-bold mb-4 pl-1">Suggested Next Steps</h2>
+</div>
+<!-- Cards Container -->
+<div class="w-full flex flex-col gap-4">
+<!-- Card 1: Primary Action (Repurpose) -->
+<button class="w-full group animate-enter delay-100 text-left relative overflow-hidden">
+<!-- Card Background & Border -->
+<div class="absolute inset-0 bg-white/5 dark:bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-primary/40 group-hover:border-primary transition-colors duration-300"></div>
+<!-- Hover Glow -->
+<div class="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-r from-primary/10 to-transparent transition-opacity duration-300 rounded-2xl pointer-events-none"></div>
+<div class="relative p-5 flex items-start gap-4">
+<div class="h-12 w-12 rounded-xl bg-gradient-to-br from-primary to-indigo-600 flex items-center justify-center shrink-0 shadow-lg shadow-primary/20">
+<span class="material-icons-round text-white text-xl">auto_awesome</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between mb-1">
+<h3 class="font-bold text-lg text-white group-hover:text-primary transition-colors">Repurpose for Social</h3>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-primary/20 text-indigo-300 border border-primary/30 uppercase tracking-wide">AI Powered</span>
+</div>
+<p class="text-sm text-gray-400 leading-snug mb-3">
+                            Let AI draft 3 tweets and a LinkedIn post based on this issue's content.
+                        </p>
+<div class="flex items-center text-primary text-sm font-bold mt-2">
+<span>Generate Drafts</span>
+<span class="material-icons-round text-sm ml-1 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+</button>
+<!-- Card 2: Knowledge Base Sync -->
+<button class="w-full group animate-enter delay-200 text-left relative">
+<div class="absolute inset-0 bg-white/5 dark:bg-white/[0.03] rounded-2xl border border-white/10 group-hover:border-primary/50 transition-colors duration-300"></div>
+<div class="relative p-5 flex items-center gap-4">
+<div class="h-10 w-10 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:border-primary/30 transition-colors">
+<span class="material-icons-round text-gray-300 group-hover:text-primary text-lg">sync</span>
+</div>
+<div class="flex-1">
+<h3 class="font-semibold text-white mb-0.5">Sync Knowledge Base</h3>
+<p class="text-xs text-gray-400">Update your archive with this new content.</p>
+</div>
+<span class="material-icons-round text-gray-600 group-hover:text-primary transition-colors">chevron_right</span>
+</div>
+</button>
+<!-- Card 3: Create New Draft -->
+<button class="w-full group animate-enter delay-300 text-left relative">
+<div class="absolute inset-0 bg-white/5 dark:bg-white/[0.03] rounded-2xl border border-white/10 group-hover:border-primary/50 transition-colors duration-300"></div>
+<div class="relative p-5 flex items-center gap-4">
+<div class="h-10 w-10 rounded-xl bg-gray-800 border border-gray-700 flex items-center justify-center shrink-0 group-hover:bg-primary/20 group-hover:border-primary/30 transition-colors">
+<span class="material-icons-round text-gray-300 group-hover:text-primary text-lg">edit_note</span>
+</div>
+<div class="flex-1">
+<h3 class="font-semibold text-white mb-0.5">Start New Draft</h3>
+<p class="text-xs text-gray-400">Keep the momentum going.</p>
+</div>
+<span class="material-icons-round text-gray-600 group-hover:text-primary transition-colors">add</span>
+</div>
+</button>
+</div>
+</main>
+<!-- Footer / Bottom Navigation -->
+<footer class="absolute bottom-0 left-0 w-full p-6 pb-8 bg-gradient-to-t from-background-dark via-background-dark to-transparent z-20">
+<div class="w-full max-w-md mx-auto">
+<button class="w-full py-4 text-gray-500 hover:text-white font-medium text-sm transition-colors flex items-center justify-center gap-2 group">
+<span class="material-icons-round text-lg group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                Back to Dashboard
+            </button>
+<!-- Home Indicator -->
+<div class="w-32 h-1 bg-white/20 rounded-full mx-auto mt-4"></div>
+</div>
+</footer>
+</body></html>

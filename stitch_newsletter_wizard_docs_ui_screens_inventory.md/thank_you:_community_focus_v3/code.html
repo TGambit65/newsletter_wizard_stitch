@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thank You: Community Focus V3</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4725f4",
+                        "primary-content": "#ffffff",
+                        "primary-dark": "#341bc2",
+                        "primary-light": "#6b4df7",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022", // Deep indigo
+                        "surface-dark": "#1e1b3a",
+                        "surface-highlight": "#2a2652",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    boxShadow: {
+                        'glow': '0 0 40px -10px rgba(71, 37, 244, 0.5)',
+                        'glow-sm': '0 0 20px -5px rgba(71, 37, 244, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        /* Custom glow effect for the heart */
+        .heart-glow {
+            filter: drop-shadow(0 0 15px rgba(236, 72, 153, 0.6)) drop-shadow(0 0 40px rgba(71, 37, 244, 0.4));
+        }
+
+        /* Gradient border trick */
+        .gradient-border {
+            position: relative;
+            background: #1e1b3a; /* Match surface color */
+            border-radius: 0.5rem; /* rounded-lg */
+            z-index: 1;
+        }
+
+        .gradient-border::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            z-index: -1;
+            border-radius: 0.6rem; /* slightly larger than parent */
+            background: linear-gradient(135deg, #4725f4, #ec4899);
+            opacity: 0.6;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-white flex flex-col justify-center items-center p-0 m-0 overflow-hidden relative">
+<!-- Ambient background gradient blobs -->
+<div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+<div class="absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-purple-600/10 rounded-full blur-[80px]"></div>
+</div>
+<!-- Main Content Container (Mobile Form Factor) -->
+<div class="relative w-full max-w-md h-full min-h-screen flex flex-col z-10 px-6 py-8">
+<!-- Header / Spacer -->
+<div class="flex-1 flex flex-col items-center justify-center min-h-[40vh]">
+<!-- Glowing Heart Icon -->
+<div class="relative mb-8">
+<div class="absolute inset-0 bg-pink-500 blur-[60px] opacity-30 rounded-full w-32 h-32 m-auto"></div>
+<div class="heart-glow relative z-10 text-pink-500">
+<span class="material-symbols-outlined !text-[120px]" style="font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;">
+                        favorite
+                    </span>
+</div>
+</div>
+<!-- Typography Stack -->
+<div class="flex flex-col items-center gap-3 text-center">
+<h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white drop-shadow-sm">
+                    We're glad you're here
+                </h1>
+<p class="text-slate-400 dark:text-slate-300 text-base font-normal leading-relaxed max-w-[320px]">
+                    Your feedback helps the Wizard grow. Have a moment to share your thoughts?
+                </p>
+</div>
+</div>
+<!-- Action Cards Section -->
+<div class="flex flex-col gap-4 w-full mb-8">
+<!-- Discord Card -->
+<button class="group/card relative w-full text-left">
+<!-- Gradient Border Wrapper -->
+<div class="gradient-border p-[1px] rounded-lg transition-transform active:scale-[0.98]">
+<div class="flex items-center justify-between gap-4 rounded-lg bg-surface-dark p-4 h-full w-full hover:bg-surface-highlight transition-colors duration-300">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-lg bg-[#5865F2]/20 text-[#5865F2]">
+<!-- Using Material Symbol to represent Discord visually as requested, though SVG logo is standard -->
+<span class="material-symbols-outlined text-2xl">
+                                    forum
+                                </span>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-white text-base font-bold leading-none group-hover/card:text-primary-light transition-colors">Join Discord</p>
+<p class="text-slate-400 text-sm font-normal">Connect with other wizards</p>
+</div>
+</div>
+<div class="text-slate-500 group-hover/card:text-white transition-colors">
+<span class="material-symbols-outlined">
+                                chevron_right
+                            </span>
+</div>
+</div>
+</div>
+</button>
+<!-- Feedback Card -->
+<button class="group/card relative w-full text-left">
+<div class="gradient-border p-[1px] rounded-lg transition-transform active:scale-[0.98]">
+<div class="flex items-center justify-between gap-4 rounded-lg bg-surface-dark p-4 h-full w-full hover:bg-surface-highlight transition-colors duration-300">
+<div class="flex items-center gap-4">
+<div class="flex items-center justify-center w-12 h-12 rounded-lg bg-pink-500/20 text-pink-500">
+<span class="material-symbols-outlined text-2xl">
+                                    rate_review
+                                </span>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-white text-base font-bold leading-none group-hover/card:text-pink-400 transition-colors">Share Feedback</p>
+<p class="text-slate-400 text-sm font-normal">Help us improve the app</p>
+</div>
+</div>
+<div class="text-slate-500 group-hover/card:text-white transition-colors">
+<span class="material-symbols-outlined">
+                                chevron_right
+                            </span>
+</div>
+</div>
+</div>
+</button>
+</div>
+<!-- Footer Action -->
+<div class="mt-auto flex justify-center pb-8 safe-area-pb">
+<button class="text-slate-500 hover:text-white transition-colors text-sm font-bold tracking-wide uppercase py-3 px-6 rounded-full hover:bg-white/5">
+                Sign Out
+            </button>
+</div>
+</div>
+</body></html>

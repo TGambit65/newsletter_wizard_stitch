@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>What's New: Update Timeline V2</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#050215",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .timeline-glow {
+            box-shadow: 0 0 15px rgba(51, 13, 242, 0.6);
+        }
+        .neon-text {
+            text-shadow: 0 0 10px rgba(51, 13, 242, 0.8);
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(51, 13, 242, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<!-- Sticky iOS Header -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-6 py-4 ios-blur bg-white/70 dark:bg-background-dark/70 border-b border-primary/10">
+<button class="flex items-center justify-center size-10 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[22px]">close</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight">What's New</h1>
+<button class="flex items-center justify-center size-10 rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined text-[22px]">share</span>
+</button>
+</header>
+<main class="relative px-6 pt-8 pb-32">
+<!-- The Vertical Glowing Timeline Line -->
+<div class="absolute left-10 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-primary/50 to-transparent timeline-glow"></div>
+<!-- Timeline Container -->
+<div class="flex flex-col gap-12 relative">
+<!-- Release Node: Latest -->
+<section class="relative pl-12 group">
+<!-- Node Indicator -->
+<div class="absolute left-[-11px] top-2 size-5 rounded-full bg-primary border-4 border-background-dark ring-4 ring-primary/20 animate-pulse"></div>
+<div class="flex flex-col gap-2">
+<div class="flex items-end justify-between">
+<h2 class="text-4xl font-extrabold text-primary neon-text tracking-tighter italic">v2.4.0</h2>
+<span class="text-xs font-medium uppercase tracking-widest text-primary/60 mb-2">Released Today</span>
+</div>
+<!-- Content Card -->
+<div class="mt-4 p-5 rounded-xl border border-primary/20 bg-primary/5 space-y-5">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/20 p-2 rounded-lg text-[20px]">auto_awesome</span>
+<div>
+<h3 class="font-bold text-slate-100">AI Subject Line Generator</h3>
+<p class="text-sm text-slate-400 mt-1">Generate high-conversion subject lines with custom tone control and A/B testing suggestions.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/20 p-2 rounded-lg text-[20px]">bolt</span>
+<div>
+<h3 class="font-bold text-slate-100">Launch Performance</h3>
+<p class="text-sm text-slate-400 mt-1">App launch sequence is now 30% faster thanks to our new pre-warming engine.</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary bg-primary/20 p-2 rounded-lg text-[20px]">build</span>
+<div>
+<h3 class="font-bold text-slate-100">Image Upload Fix</h3>
+<p class="text-sm text-slate-400 mt-1">Resolved intermittent timeout issues when uploading high-res images on 3G networks.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Release Node: Historical 1 -->
+<section class="relative pl-12 opacity-80 transition-opacity hover:opacity-100">
+<!-- Node Indicator -->
+<div class="absolute left-[-11px] top-2 size-5 rounded-full bg-primary/40 border-4 border-background-dark ring-4 ring-primary/5"></div>
+<div class="flex flex-col gap-2">
+<div class="flex items-end justify-between">
+<h2 class="text-3xl font-bold text-slate-400 tracking-tighter">v2.3.5</h2>
+<span class="text-xs font-medium uppercase tracking-widest text-slate-500 mb-2">Oct 12, 2023</span>
+</div>
+<div class="mt-4 p-5 rounded-xl border border-white/5 bg-white/5 space-y-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 text-[18px]">verified</span>
+<p class="text-sm text-slate-400">Newsletter preview engine updated for iPadOS 17.</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-400 text-[18px]">bug_report</span>
+<p class="text-sm text-slate-400">Fixed dark mode flickering in editor.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Release Node: Historical 2 -->
+<section class="relative pl-12 opacity-60 transition-opacity hover:opacity-100">
+<!-- Node Indicator -->
+<div class="absolute left-[-11px] top-2 size-5 rounded-full bg-primary/20 border-4 border-background-dark ring-4 ring-primary/5"></div>
+<div class="flex flex-col gap-2">
+<div class="flex items-end justify-between">
+<h2 class="text-3xl font-bold text-slate-500 tracking-tighter">v2.3.0</h2>
+<span class="text-xs font-medium uppercase tracking-widest text-slate-600 mb-2">Oct 01, 2023</span>
+</div>
+<div class="mt-4 p-5 rounded-xl border border-white/5 bg-white/5 space-y-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-500 text-[18px]">palette</span>
+<p class="text-sm text-slate-500">Introduced 15 new modern email templates.</p>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-500 text-[18px]">groups</span>
+<p class="text-sm text-slate-500">Collaborative editing mode Beta.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Fixed Bottom Feedback CTA -->
+<footer class="fixed bottom-0 left-0 right-0 p-6 ios-blur bg-white/70 dark:bg-background-dark/70 border-t border-primary/10">
+<div class="max-w-md mx-auto space-y-4">
+<p class="text-center text-xs text-slate-500 font-medium uppercase tracking-widest">Enjoying the new features?</p>
+<button class="w-full h-14 bg-primary text-white font-bold text-base rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/30 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined text-[20px]">chat_bubble</span>
+                Give Feedback
+            </button>
+</div>
+</footer>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 left-0 right-0 z-[60] pb-safe">
+<div class="flex gap-2 border-t border-primary/20 bg-background-dark px-4 pb-3 pt-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined text-[24px]">description</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Drafts</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-[24px] font-bold">celebration</span>
+<p class="text-[10px] font-bold leading-normal tracking-wide">Updates</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined text-[24px]">settings</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">Settings</p>
+</a>
+</div>
+</nav>
+<!-- Spacer for Bottom Nav height -->
+<div class="h-20 bg-background-dark"></div>
+</body></html>

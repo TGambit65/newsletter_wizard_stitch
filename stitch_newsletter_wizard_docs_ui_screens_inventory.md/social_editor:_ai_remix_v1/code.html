@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Social Editor: AI Remix V1</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#0a0a14",
+                        "indigo-tint": "#131022",
+                        "surface-dark": "#1d1834",
+                        "border-dark": "#292249"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col">
+<!-- Header Navigation -->
+<header class="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-border-dark px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button class="flex h-10 w-10 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-surface-dark transition-colors">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">brand_family</span>
+<h1 class="text-lg font-bold leading-tight tracking-tight">X / Twitter Editor</h1>
+</div>
+<span class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Draft v1.4</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-bold hover:bg-primary/20 transition-all">
+                Save Draft
+            </button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto px-4 py-6 space-y-6">
+<!-- Platform Badge Indicator -->
+<div class="flex items-center justify-between bg-primary/5 border border-primary/20 p-3 rounded-2xl">
+<div class="flex items-center gap-3">
+<div class="bg-primary h-10 w-10 rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white">bolt</span>
+</div>
+<div>
+<p class="text-sm font-bold">AI Repurposed</p>
+<p class="text-xs text-slate-400">Optimized for high-engagement X threads</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary/40">info</span>
+</div>
+<!-- Text Editor Section -->
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<p class="text-sm font-semibold text-slate-500 dark:text-slate-400">Post Content</p>
+<div class="flex items-center gap-2 bg-surface-dark/50 px-3 py-1 rounded-full border border-border-dark">
+<div class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
+<span class="text-xs font-medium text-slate-300">142 / 280 characters</span>
+</div>
+</div>
+<div class="relative group">
+<textarea class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-2xl text-white focus:outline-0 focus:ring-2 focus:ring-primary/50 border border-slate-200 dark:border-border-dark bg-white dark:bg-surface-dark placeholder:text-slate-400 dark:placeholder:text-slate-500 p-5 text-lg font-normal leading-relaxed min-h-[220px] transition-all" placeholder="Refine your AI-generated post here...">Designing a SaaS isn't just about the pixels. It's about the workflow automation that saves your users 10 hours a week. 
+
+That's the true ROI of good UX. 🚀</textarea>
+<div class="absolute bottom-4 right-4 flex gap-2">
+<button class="p-2 rounded-lg bg-slate-100 dark:bg-background-dark/50 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- AI Remix Toolbar -->
+<div class="space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary fill-1">magic_button</span>
+<h3 class="text-lg font-bold tracking-tight">AI Remix</h3>
+</div>
+<div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2">
+<button class="flex items-center gap-2 whitespace-nowrap bg-primary text-white px-5 py-3 rounded-full font-bold shadow-lg shadow-primary/25 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+                    Make it Punchy
+                </button>
+<button class="flex items-center gap-2 whitespace-nowrap bg-surface-dark border border-border-dark text-slate-200 px-5 py-3 rounded-full font-bold hover:border-primary/50 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">tag</span>
+                    Add Hashtags
+                </button>
+<button class="flex items-center gap-2 whitespace-nowrap bg-surface-dark border border-border-dark text-slate-200 px-5 py-3 rounded-full font-bold hover:border-primary/50 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">reorder</span>
+                    Turn into Thread
+                </button>
+<button class="flex items-center gap-2 whitespace-nowrap bg-surface-dark border border-border-dark text-slate-200 px-5 py-3 rounded-full font-bold hover:border-primary/50 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">translate</span>
+                    Tone: Bold
+                </button>
+</div>
+</div>
+<!-- Live Preview Card -->
+<div class="space-y-4 pb-24">
+<h3 class="text-sm font-semibold text-slate-500 dark:text-slate-400">Live Preview</h3>
+<div class="bg-white dark:bg-[#000000] border border-slate-200 dark:border-zinc-800 rounded-2xl p-4 shadow-xl">
+<div class="flex gap-3">
+<div class="h-12 w-12 rounded-full bg-gradient-to-tr from-primary to-indigo-400 overflow-hidden flex-shrink-0 border-2 border-slate-100 dark:border-zinc-900 shadow-sm">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Modern professional male profile headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkm_C0bQ5Avp47Xhht772ccR2Mvo-kZ9d0_F94aZJ2LRbgOw5YkgIMHs75Peg022JzQwu80XvMawCrEfnB-w3HBRItQftKCBg_FiqmObytZlBrLSpgILQoNQJ4R-m6XzvQ__FQqHLFXQ7_cP9IwSvTF7oLg-u7DSwEIppuPZublhyhftU88bReoY4Mcgm1-Jkx2DztiZUUE5BTbpdo2wSGwQ900IUZ8Q2_Szbifg0uPRNpuXgg9qyesgDyl7_tBuTk65odhOGd7nI"/>
+</div>
+<div class="flex flex-col w-full">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1">
+<span class="font-bold text-[15px]">Newsletter Wizard</span>
+<span class="material-symbols-outlined text-primary text-[16px] fill-1">verified</span>
+<span class="text-slate-500 dark:text-zinc-500 text-[14px]">@wiz_ai · 2m</span>
+</div>
+<span class="material-symbols-outlined text-slate-400 dark:text-zinc-600">more_horiz</span>
+</div>
+<p class="text-[15px] leading-normal mt-1 dark:text-zinc-100">
+                            Designing a SaaS isn't just about the pixels. It's about the workflow automation that saves your users 10 hours a week. <br/><br/>That's the true ROI of good UX. 🚀
+                        </p>
+<div class="flex justify-between mt-4 text-slate-500 dark:text-zinc-500 max-w-[280px]">
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px]">chat_bubble</span> <span class="text-xs">0</span></div>
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px]">repeat</span> <span class="text-xs">0</span></div>
+<div class="flex items-center gap-1.5 text-primary"><span class="material-symbols-outlined text-[18px] fill-1">favorite</span> <span class="text-xs">1</span></div>
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px]">bar_chart</span> <span class="text-xs">12</span></div>
+<span class="material-symbols-outlined text-[18px]">share</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<div class="fixed bottom-0 inset-x-0 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-border-dark p-4 pb-8 z-50">
+<div class="max-w-md mx-auto flex gap-3">
+<button class="flex-1 bg-primary text-white h-14 rounded-2xl font-bold text-lg shadow-xl shadow-primary/30 flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">send</span>
+                Publish Now
+            </button>
+<button class="w-14 h-14 rounded-2xl bg-surface-dark border border-border-dark flex items-center justify-center text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-2xl">schedule</span>
+</button>
+</div>
+</div>
+<!-- Bottom Navigation Bar (App Level) -->
+<nav class="fixed bottom-0 left-0 right-0 hidden">
+<!-- Hidden as it's a sub-editor screen, but keeping structure for layout balance if needed -->
+</nav>
+<!-- Character limit overlay (Mobile UI element) -->
+<div class="fixed bottom-24 right-6 pointer-events-none">
+<div class="h-12 w-12 rounded-full bg-surface-dark/80 backdrop-blur-md border border-border-dark flex items-center justify-center shadow-2xl">
+<svg class="h-8 w-8 -rotate-90">
+<circle class="text-slate-700" cx="16" cy="16" fill="transparent" r="14" stroke="currentColor" stroke-width="3"></circle>
+<circle class="text-primary" cx="16" cy="16" fill="transparent" r="14" stroke="currentColor" stroke-dasharray="88" stroke-dashoffset="44" stroke-width="3"></circle>
+</svg>
+</div>
+</div>
+</body></html>

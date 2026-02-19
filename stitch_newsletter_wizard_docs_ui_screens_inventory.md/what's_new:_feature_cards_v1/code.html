@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>What's New: Feature Cards V1</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#330df2",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "card-bg": "#1d1834",
+                        "accent-purple": "#9a90cb",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glow-border {
+            border: 1px solid rgba(51, 13, 242, 0.3);
+            box-shadow: 0 0 15px rgba(51, 13, 242, 0.1);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/30">
+<!-- Main Container (Mobile Form Factor) -->
+<div class="relative flex min-h-screen w-full max-w-[430px] mx-auto flex-col bg-background-light dark:bg-background-dark overflow-x-hidden shadow-2xl">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-20 flex items-center bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 justify-between border-b border-primary/10">
+<div class="w-10"></div>
+<div class="flex items-center gap-2">
+<h1 class="text-white text-xl font-bold leading-tight tracking-tight">What's New</h1>
+<span class="material-symbols-outlined text-primary text-2xl">auto_awesome</span>
+</div>
+<div class="flex w-10 items-center justify-end">
+<button class="flex items-center justify-center rounded-full h-8 w-8 bg-white/5 text-white hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+</header>
+<!-- Version Badge Section -->
+<div class="px-4 pt-6 pb-2 flex flex-col items-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/40 mb-2">
+<span class="text-primary text-xs font-bold uppercase tracking-wider">Version 2.1</span>
+<div class="h-1 w-1 rounded-full bg-primary/60"></div>
+<span class="text-primary text-xs font-bold uppercase tracking-wider">Current</span>
+</div>
+<p class="text-accent-purple text-sm font-medium">Released March 15, 2024</p>
+</div>
+<!-- Main Feed -->
+<main class="flex-1 p-4 space-y-6">
+<!-- Feature Card 1 -->
+<article class="group relative flex flex-col overflow-hidden rounded-xl bg-card-bg glow-border transition-all hover:translate-y-[-2px]">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="AI processing interface" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Futuristic AI interface processing social media posts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8YTPxhVvEm1WcXYc3QBe05fppjDWdt6waAZfGHQVrCY_Q5T1Fao7gwxZVksHnHuiZzATwhilTF9-jU-nn0yb0HeQZQ8OXi5NxCOZqgIUHUQPqAA0xnT-9w5H0kfMORv8qceV_Pj78mdvYb0OxxEGDudmW7BRKscjb14ozS4BbU0myFX_TNLU_Fk78sW1zFYzlNaOcJa2vOfntRjsJRd9QS335fhcUOGmbRxblPAQ6DamTjqvs_VFGE_lfhokML0lnzIpqSPcb0C0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-card-bg via-transparent to-transparent"></div>
+</div>
+<div class="p-5 space-y-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">rebase_edit</span>
+<h2 class="text-white text-lg font-bold">Improved AI Repurposing</h2>
+</div>
+<p class="text-accent-purple text-sm leading-relaxed">
+                        Automatically transform your newsletters into optimized social media posts for LinkedIn, X, and Instagram with a single click. Our new engine preserves your unique voice across formats.
+                    </p>
+<div class="pt-2">
+<button class="w-full flex items-center justify-center gap-2 rounded-lg h-12 bg-primary text-white text-sm font-bold transition-all hover:bg-primary/90 active:scale-95 shadow-lg shadow-primary/20">
+<span>Try it Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Feature Card 2 -->
+<article class="group relative flex flex-col overflow-hidden rounded-xl bg-card-bg glow-border transition-all hover:translate-y-[-2px]">
+<div class="relative h-48 w-full overflow-hidden">
+<img alt="Calendar scheduling view" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Modern digital calendar with colorful scheduling blocks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeQavqFgi_6Wsvc04-55MqDJURyUsC94LB4hKduBWsrixLZ-E6qoaGON06B03WOeZvCtpDondWRlo550JCS_2Vgv78Loq6vdA0OmTZwrllMCEC1Q69z5W5ld_hxQvrR2d4JCuMS3MDDZZ3yStvQBn-5WqzSZWIwYnDvcRZ1MMOtWn3swrmjJVAlATIkQYlc77ERIoLJpKrNsaE3dmv4LW3N_Riv6liu6Af9IsyL4UxGvW93YsAlKvUMLJ-L2pnZkc_ZuEW2j5Z1CI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-card-bg via-transparent to-transparent"></div>
+</div>
+<div class="p-5 space-y-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">event_upcoming</span>
+<h2 class="text-white text-lg font-bold">Smart Scheduling</h2>
+</div>
+<p class="text-accent-purple text-sm leading-relaxed">
+                        Maximize open rates with our AI-driven calendar. The app now predicts the best time to send based on your audience's historical engagement patterns.
+                    </p>
+<div class="pt-2">
+<button class="w-full flex items-center justify-center gap-2 rounded-lg h-12 bg-primary text-white text-sm font-bold transition-all hover:bg-primary/90 active:scale-95 shadow-lg shadow-primary/20">
+<span>Explore Calendar</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Feature Card 3 (Small Variant) -->
+<article class="flex items-center gap-4 p-4 rounded-xl bg-card-bg glow-border group transition-all">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10 border border-primary/20">
+<span class="material-symbols-outlined text-primary">palette</span>
+</div>
+<div class="flex-1">
+<h3 class="text-white text-base font-bold">New Layout Templates</h3>
+<p class="text-accent-purple text-xs">5 fresh minimalist designs added.</p>
+</div>
+<button class="flex h-8 w-8 items-center justify-center rounded-full bg-white/5 text-white transition-colors group-hover:bg-primary/20">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</article>
+<!-- Bottom Spacer for Nav -->
+<div class="h-20"></div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[430px] border-t border-primary/20 bg-card-bg/95 backdrop-blur-lg px-4 pb-6 pt-2 z-30">
+<div class="flex justify-around items-center">
+<a class="flex flex-col items-center gap-1 text-accent-purple transition-colors hover:text-white" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-medium uppercase tracking-tighter">Home</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-accent-purple transition-colors hover:text-white" href="#">
+<span class="material-symbols-outlined">add_circle</span>
+<p class="text-[10px] font-medium uppercase tracking-tighter">Create</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Updates</p>
+<div class="h-1 w-1 rounded-full bg-primary mt-0.5"></div>
+</a>
+<a class="flex flex-col items-center gap-1 text-accent-purple transition-colors hover:text-white" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<p class="text-[10px] font-medium uppercase tracking-tighter">Profile</p>
+</a>
+</div>
+</nav>
+<!-- iOS Home Indicator -->
+<div class="fixed bottom-1 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/20 rounded-full z-40"></div>
+</div>
+</body></html>

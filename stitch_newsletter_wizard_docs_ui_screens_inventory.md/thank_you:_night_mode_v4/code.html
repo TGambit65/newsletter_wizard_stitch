@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Thank You: Night Mode V4</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4725f4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                    boxShadow: {
+                        'glow': '0 0 20px -5px rgba(71, 37, 244, 0.5)',
+                        'inner-glow': 'inset 0 0 20px 0px rgba(71, 37, 244, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        /* Custom deep indigo gradient background */
+        .bg-night-gradient {
+            background: linear-gradient(180deg, #131022 0%, #0f0535 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col items-center justify-center font-display antialiased text-slate-900 dark:text-white selection:bg-primary selection:text-white overflow-hidden">
+<!-- Main Container -->
+<main class="bg-night-gradient relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto shadow-2xl">
+<!-- Background Ambient Glow -->
+<div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/20 blur-[100px] rounded-full pointer-events-none"></div>
+<!-- Spacer for top content alignment -->
+<div class="flex-1 flex flex-col items-center justify-center z-10 px-6">
+<!-- Central Visual: 3D Crystal Ball -->
+<div class="relative group cursor-pointer mb-12">
+<!-- Outer Glow Ring -->
+<div class="absolute -inset-1 bg-gradient-to-tr from-primary/40 to-transparent rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+<!-- The Crystal Ball Image -->
+<div class="relative w-64 h-64 rounded-full overflow-hidden shadow-2xl border border-white/10 bg-black/40 backdrop-blur-sm flex items-center justify-center">
+<!-- Image acting as the sphere content/reflection -->
+<img alt="3D crystal ball reflecting abstract galaxy lights and wizard logo" class="w-full h-full object-cover opacity-80 mix-blend-overlay scale-110" data-alt="3D crystal ball reflecting abstract galaxy lights and wizard logo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY8fAkiRYqG01kMkALJPr4N3ub_cwIMdXbGGTOwYymGu_gc8CzrE5sceLbnsm2iEh7JYV_K6ovzFMiQkl57JMJnG-6aPvKhJbKHMFRgvjHkO8Z-i64DsiA_mdvQ6UsTkCiTFmEdpBoLbJD5ugwy-LdEKoKyRBFESgSFS-MVeMSuRoPMzrWWKwee6GqnJea23nz7hA_X-d_oENFrgy4b3qkRrSXjX69wYfEvCvycKFXBcCIZveix6LoGrt-5TRIjBdS80PqJ2SXeNo"/>
+<!-- Inner Shine/Reflection Effect overlay -->
+<div class="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-primary/40 rounded-full pointer-events-none"></div>
+<div class="absolute top-4 left-8 w-16 h-8 bg-white/20 blur-xl rounded-[100%] transform -rotate-45 pointer-events-none"></div>
+<!-- Center Icon/Logo inside the ball -->
+<span class="material-symbols-outlined absolute text-white/90 text-6xl drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] z-20">
+                        auto_fix_high
+                    </span>
+</div>
+</div>
+<!-- Text Content -->
+<div class="text-center space-y-3 z-10">
+<h1 class="text-3xl font-light tracking-wide text-white drop-shadow-lg">
+                    Sweet Dreams &amp; <br/><span class="font-bold text-primary/90 bg-clip-text text-transparent bg-gradient-to-r from-white via-primary/50 to-white">Magic Words</span>
+</h1>
+<p class="text-white/60 text-sm font-normal tracking-wide">
+                    Your drafts are safe until morning.
+                </p>
+</div>
+</div>
+<!-- Bottom Action Area -->
+<div class="w-full px-6 pb-10 pt-4 z-10 bg-gradient-to-t from-[#0f0535] to-transparent">
+<button class="group relative w-full h-14 flex items-center justify-center overflow-hidden rounded-xl bg-transparent transition-all duration-300 active:scale-[0.98]">
+<!-- Border Gradient -->
+<div class="absolute inset-0 rounded-xl p-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-70 group-hover:opacity-100 group-hover:via-primary/80 transition-opacity">
+<div class="w-full h-full bg-[#0f0535]/80 backdrop-blur-md rounded-xl"></div>
+</div>
+<!-- Button Glow Effect -->
+<div class="absolute inset-0 shadow-[0_0_20px_rgba(71,37,244,0.15)] rounded-xl group-hover:shadow-[0_0_30px_rgba(71,37,244,0.3)] transition-shadow duration-500"></div>
+<!-- Button Content -->
+<div class="relative flex items-center gap-2 text-white">
+<span class="text-base font-bold tracking-widest uppercase">Sign Out</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1">
+                        logout
+                    </span>
+</div>
+</button>
+</div>
+</main>
+</body></html>

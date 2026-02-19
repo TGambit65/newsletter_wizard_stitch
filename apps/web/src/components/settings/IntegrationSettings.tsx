@@ -14,12 +14,12 @@ interface IntegrationSettingsProps {
 
 export function IntegrationSettings({ integrations }: IntegrationSettingsProps) {
   return (
-    <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
-      <div className="p-6 border-b border-neutral-200 dark:border-neutral-700">
+    <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10">
+      <div className="p-6 border-b border-neutral-200 dark:border-white/10">
         <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Integrations</h2>
         <p className="text-neutral-500 text-sm mt-1">Connect your favorite tools</p>
       </div>
-      <div className="divide-y divide-neutral-200 dark:divide-neutral-700">
+      <div className="divide-y divide-neutral-200 dark:divide-white/5">
         {integrations.map((integration) => (
           <div key={integration.name} className="flex items-center justify-between p-4">
             <div className="flex items-center gap-4">

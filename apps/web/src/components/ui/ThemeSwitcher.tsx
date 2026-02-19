@@ -82,7 +82,7 @@ function ThemeDropdown({ mode, setMode, CurrentIcon, size, className }: {
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-label="Select theme"
-        className="p-2 rounded-lg text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+        className="p-2 rounded-lg text-neutral-500 hover:bg-neutral-100 dark:hover:bg-white/5 transition-colors"
       >
         <CurrentIcon className={clsx(size === 'sm' ? 'w-4 h-4' : 'w-5 h-5')} />
       </button>
@@ -90,7 +90,7 @@ function ThemeDropdown({ mode, setMode, CurrentIcon, size, className }: {
         <div
           role="listbox"
           aria-label="Theme options"
-          className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-neutral-800 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 py-1 z-50"
+          className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-surface-dark rounded-lg shadow-lg border border-neutral-200 dark:border-white/10 py-1 z-50"
         >
           {THEME_OPTIONS.map((option, idx) => {
             const Icon = option.icon;
@@ -108,7 +108,7 @@ function ThemeDropdown({ mode, setMode, CurrentIcon, size, className }: {
                   'w-full px-3 py-2 text-left flex items-center gap-2 text-sm transition-colors focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-700',
                   isSelected
                     ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400'
-                    : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                    : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-white/5'
                 )}
               >
                 <Icon className="w-4 h-4" />
@@ -139,7 +139,7 @@ export function ThemeSwitcher({ variant = 'segmented', size = 'md', className }:
                 'p-2 rounded-lg transition-colors',
                 isActive
                   ? 'bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400'
-                  : 'text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-700'
+                  : 'text-neutral-500 hover:bg-neutral-100 dark:hover:bg-white/5'
               )}
               title={option.label}
             >
@@ -203,7 +203,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     <button
       onClick={toggleTheme}
       className={clsx(
-        'p-2 rounded-lg text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors',
+        'p-2 rounded-lg text-neutral-500 hover:bg-neutral-100 dark:hover:bg-white/5 transition-colors',
         className
       )}
       title={resolvedTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}

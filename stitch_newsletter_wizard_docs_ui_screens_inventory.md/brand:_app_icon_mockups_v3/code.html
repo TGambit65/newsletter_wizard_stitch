@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Newsletter Wizard - App Icon Mockups</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#4725f4",
+                        "primary-light": "#6b4cff",
+                        "primary-dark": "#321ac4",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#131022",
+                        "surface-dark": "#1c192e",
+                        "surface-darker": "#0f0c1d",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"], 
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Utilities for Gradient Text & Glows */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #fff, #a5b4fc);
+        }
+        .glow-effect {
+            box-shadow: 0 0 40px -10px rgba(71, 37, 244, 0.5);
+        }
+        .ios-blur {
+            backdrop-filter: blur(20px);
+            background-color: rgba(28, 25, 46, 0.7);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-x-hidden">
+<div class="relative flex h-auto min-h-screen w-full flex-col mx-auto max-w-md bg-background-dark overflow-hidden border-x border-slate-800 shadow-2xl">
+<!-- Ambient Background Glow -->
+<div class="absolute top-0 left-0 w-full h-[500px] bg-primary/20 blur-[100px] rounded-full pointer-events-none -translate-y-1/2"></div>
+<!-- Sticky Header -->
+<div class="sticky top-0 z-50 bg-background-dark/90 backdrop-blur-md border-b border-white/5">
+<div class="flex items-center p-4 pb-2 justify-between">
+<button class="text-white hover:text-primary-light transition-colors flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-white/5">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h2 class="text-white text-sm uppercase tracking-widest font-bold flex-1 text-center opacity-80">Newsletter Wizard</h2>
+<button class="flex items-center justify-end text-primary-light hover:text-white transition-colors">
+<span class="text-sm font-bold tracking-wide">Export</span>
+</button>
+</div>
+<!-- Progress Indicator -->
+<div class="flex w-full flex-row items-center justify-center gap-3 py-3">
+<div class="h-1.5 w-1.5 rounded-full bg-slate-600"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-slate-600"></div>
+<div class="h-1.5 w-8 rounded-full bg-primary shadow-[0_0_10px_rgba(71,37,244,0.6)]"></div>
+<div class="h-1.5 w-1.5 rounded-full bg-slate-600"></div>
+</div>
+</div>
+<!-- Main Content Scrollable Area -->
+<div class="flex-1 overflow-y-auto pb-24">
+<!-- Title Section -->
+<div class="px-6 pt-6 pb-2 text-center relative z-10">
+<h1 class="text-white text-3xl font-bold leading-tight mb-1 text-gradient">App Iconography</h1>
+<p class="text-slate-400 text-sm font-medium">Variant 03 — 3D Render Series</p>
+</div>
+<!-- Style Selector (Tab Switcher) -->
+<div class="px-4 py-6 sticky top-[84px] z-40 bg-gradient-to-b from-background-dark via-background-dark to-transparent">
+<div class="flex p-1 bg-surface-dark rounded-xl border border-white/5 shadow-inner">
+<label class="flex-1 relative cursor-pointer group">
+<input checked="" class="peer sr-only" name="style_variant" type="radio" value="glass"/>
+<div class="flex items-center justify-center py-2.5 rounded-lg text-sm font-medium text-slate-400 transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-lg hover:text-white">
+<span class="material-symbols-outlined text-[18px] mr-1.5">blur_on</span> Glass
+                        </div>
+</label>
+<label class="flex-1 relative cursor-pointer group">
+<input class="peer sr-only" name="style_variant" type="radio" value="gradient"/>
+<div class="flex items-center justify-center py-2.5 rounded-lg text-sm font-medium text-slate-400 transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-lg hover:text-white">
+<span class="material-symbols-outlined text-[18px] mr-1.5">palette</span> Gradient
+                        </div>
+</label>
+<label class="flex-1 relative cursor-pointer group">
+<input class="peer sr-only" name="style_variant" type="radio" value="matte"/>
+<div class="flex items-center justify-center py-2.5 rounded-lg text-sm font-medium text-slate-400 transition-all duration-300 peer-checked:bg-primary peer-checked:text-white peer-checked:shadow-lg hover:text-white">
+<span class="material-symbols-outlined text-[18px] mr-1.5">dark_mode</span> Matte
+                        </div>
+</label>
+</div>
+</div>
+<!-- Hero Asset Display -->
+<div class="relative w-full aspect-square max-h-[320px] flex items-center justify-center mb-8">
+<!-- Background Glow Ring -->
+<div class="absolute w-48 h-48 bg-primary rounded-full blur-[80px] opacity-40 animate-pulse"></div>
+<!-- 3D Icon Render Placeholder -->
+<div class="relative z-10 w-48 h-48 rounded-[22%] bg-gradient-to-br from-white/10 to-white/5 border border-white/10 shadow-2xl flex items-center justify-center backdrop-blur-sm glow-effect group overflow-hidden">
+<!-- Inner Content simulating 3D Glass Icon -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-purple-900/50 opacity-80"></div>
+<div class="relative z-20 text-white transform group-hover:scale-110 transition-transform duration-500">
+<span class="material-symbols-outlined text-[80px] drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]">auto_awesome</span>
+</div>
+<!-- Gloss shine -->
+<div class="absolute -top-10 -left-10 w-32 h-32 bg-white/20 blur-xl rounded-full pointer-events-none"></div>
+</div>
+<!-- Spec Tags -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+<span class="px-3 py-1 bg-surface-dark/80 border border-white/5 rounded-full text-[10px] uppercase tracking-wider text-slate-400 backdrop-blur-sm">512x512</span>
+<span class="px-3 py-1 bg-surface-dark/80 border border-white/5 rounded-full text-[10px] uppercase tracking-wider text-slate-400 backdrop-blur-sm">PNG</span>
+</div>
+</div>
+<!-- Contextual Mockups Section -->
+<div class="px-6 space-y-6">
+<div class="flex items-center justify-between mb-2">
+<h3 class="text-white text-lg font-bold tracking-tight">Real-world Context</h3>
+<button class="text-xs text-primary-light font-bold uppercase tracking-wider hover:text-white transition-colors">View All</button>
+</div>
+<!-- Mockup 1: iOS Home Screen -->
+<div class="bg-surface-dark rounded-xl p-4 border border-white/5 hover:border-primary/30 transition-colors group">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-500 text-sm">smartphone</span>
+<span class="text-slate-300 text-sm font-medium">Home Screen</span>
+</div>
+<span class="text-[10px] text-slate-500 bg-black/20 px-2 py-0.5 rounded">iOS 17</span>
+</div>
+<!-- Mockup Visualization -->
+<div class="relative h-32 w-full bg-slate-800 rounded-lg overflow-hidden flex items-end justify-center pb-4" data-alt="Abstract colorful gradient wallpaper representing an iOS home screen background" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDXQGehAV-SbCVYsrRgYE800G0dGt4h1LaH67kAucMRUO724Oy33LcfZR8aP8hmnTCTCRKS_CiqiG1QI53phhnrEWGNpnTVBHzI57dbQvxIyIPDMRDOuD2ujTAhvme6YDgWXyeVkf3utMQ5K94urWN23GmEKgG9wUdK22kBytXZftsS9pAx39S6_rUkSLHk2IunOgXUEOsjJDGQ6rgKCOcZbj4p0-jtZAIhIrHNk1aTjwteUVoKrFMi7o2hcHvjmC6uvCQjwy4sKAw'); background-size: cover; background-position: center;">
+<div class="absolute inset-0 bg-black/30"></div>
+<!-- Fake App Grid Row -->
+<div class="relative z-10 flex gap-6 px-4 w-full justify-center">
+<div class="flex flex-col items-center gap-1 opacity-50 grayscale">
+<div class="w-12 h-12 bg-slate-700 rounded-[22%]"></div>
+<div class="h-1 w-8 bg-white/50 rounded-full"></div>
+</div>
+<!-- Our App -->
+<div class="flex flex-col items-center gap-1">
+<div class="w-12 h-12 bg-gradient-to-br from-primary-light to-primary-dark rounded-[22%] shadow-lg flex items-center justify-center border border-white/20">
+<span class="material-symbols-outlined text-white text-xl">auto_awesome</span>
+</div>
+<div class="text-[9px] text-white font-medium drop-shadow-md">Wizard</div>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-50 grayscale">
+<div class="w-12 h-12 bg-slate-700 rounded-[22%]"></div>
+<div class="h-1 w-8 bg-white/50 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Mockup 2: Notification Banner -->
+<div class="bg-surface-dark rounded-xl p-4 border border-white/5 hover:border-primary/30 transition-colors">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-500 text-sm">notifications_active</span>
+<span class="text-slate-300 text-sm font-medium">Push Notification</span>
+</div>
+</div>
+<!-- Notification Card -->
+<div class="bg-[#2C2C2E]/80 backdrop-blur-md rounded-2xl p-3 shadow-lg border border-white/5">
+<div class="flex items-start gap-3">
+<div class="w-10 h-10 bg-gradient-to-br from-primary-light to-primary-dark rounded-[22%] flex-shrink-0 flex items-center justify-center border border-white/10">
+<span class="material-symbols-outlined text-white text-lg">auto_awesome</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-0.5">
+<h4 class="text-white text-[13px] font-semibold truncate pr-2">Newsletter Wizard</h4>
+<span class="text-[#8E8E93] text-[10px]">now</span>
+</div>
+<p class="text-white text-[13px] leading-snug">Weekly Digest Ready</p>
+<p class="text-[#8E8E93] text-[13px] leading-snug truncate">Your curated AI insights for the week are ready to view.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Mockup 3: App Store -->
+<div class="bg-surface-dark rounded-xl p-4 border border-white/5 hover:border-primary/30 transition-colors">
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-slate-500 text-sm">store</span>
+<span class="text-slate-300 text-sm font-medium">App Store Preview</span>
+</div>
+</div>
+<div class="flex gap-3 items-center bg-black/20 p-3 rounded-lg border border-white/5">
+<div class="w-16 h-16 bg-gradient-to-br from-primary-light to-primary-dark rounded-[22%] flex-shrink-0 flex items-center justify-center border border-white/10 shadow-lg">
+<span class="material-symbols-outlined text-white text-3xl">auto_awesome</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<h4 class="text-white text-base font-bold">Newsletter Wizard</h4>
+<p class="text-slate-500 text-xs">AI-Powered Curation</p>
+<div class="flex items-center gap-2 mt-1">
+<span class="bg-white/10 text-primary-light text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Get</span>
+<span class="text-[10px] text-slate-500">In-App Purchases</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Technical Specs -->
+<div class="px-6 py-8">
+<div class="bg-surface-darker rounded-xl p-5 border border-white/5">
+<h4 class="text-white text-xs font-bold uppercase tracking-widest mb-4 opacity-70">Asset Specifications</h4>
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1">
+<span class="text-slate-500 text-xs">Base Grid</span>
+<span class="text-white font-mono text-sm">1024px</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-slate-500 text-xs">Corner Radius</span>
+<span class="text-white font-mono text-sm">22.5% (Squircle)</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-slate-500 text-xs">Safe Zone</span>
+<span class="text-white font-mono text-sm">168px Margin</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-slate-500 text-xs">Color Profile</span>
+<span class="text-white font-mono text-sm">Display P3</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Action Button Area -->
+<div class="absolute bottom-6 right-6 z-50">
+<button class="bg-primary hover:bg-primary-light text-white rounded-full p-4 shadow-lg shadow-primary/40 transition-all hover:scale-105 active:scale-95 flex items-center justify-center group">
+<span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform">check</span>
+</button>
+</div>
+</div>
+</body></html>

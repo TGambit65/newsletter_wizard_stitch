@@ -234,7 +234,7 @@ export function FeedbackPage() {
       </div>
 
       {/* Quick Feedback Card */}
-      <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6 mb-8">
+      <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-6 mb-8">
         <h2 className="font-semibold text-neutral-900 dark:text-white mb-1">How's Newsletter Wizard working for you?</h2>
         <p className="text-sm text-neutral-500 mb-5">Takes 10 seconds. Helps a lot.</p>
 
@@ -264,7 +264,7 @@ export function FeedbackPage() {
                       'flex-1 flex flex-col items-center gap-2 py-4 rounded-xl border-2 transition-all',
                       mood === m.id
                         ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20'
-                        : 'border-neutral-200 dark:border-neutral-700 hover:border-neutral-300 dark:hover:border-neutral-600'
+                        : 'border-neutral-200 dark:border-white/10 hover:border-neutral-300 dark:hover:border-neutral-600'
                     )}
                   >
                     <Icon className={clsx('w-7 h-7', mood === m.id ? 'text-primary-500' : m.color)} />
@@ -282,7 +282,7 @@ export function FeedbackPage() {
               onChange={e => setFeedbackText(e.target.value)}
               rows={3}
               placeholder="Tell us more (optional) — what's working, what isn't..."
-              className="w-full px-3 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white text-sm resize-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+              className="w-full px-3 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg bg-white dark:bg-background-dark text-neutral-900 dark:text-white text-sm resize-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
             />
 
             <button
@@ -315,21 +315,21 @@ export function FeedbackPage() {
 
         {/* New request form */}
         {showNewRequest && (
-          <form onSubmit={handleNewRequest} className="mb-4 p-4 bg-white dark:bg-neutral-800 border border-primary-200 dark:border-primary-800 rounded-xl space-y-3">
+          <form onSubmit={handleNewRequest} className="mb-4 p-4 bg-white dark:bg-surface-dark border border-primary-200 dark:border-primary-800 rounded-xl space-y-3">
             <input
               type="text"
               value={newTitle}
               onChange={e => setNewTitle(e.target.value)}
               required
               placeholder="Feature title (be specific)"
-              className="w-full px-3 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white text-sm focus:ring-2 focus:ring-primary-500 outline-none"
+              className="w-full px-3 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg bg-white dark:bg-background-dark text-neutral-900 dark:text-white text-sm focus:ring-2 focus:ring-primary-500 outline-none"
             />
             <textarea
               value={newDesc}
               onChange={e => setNewDesc(e.target.value)}
               rows={2}
               placeholder="Describe the problem this would solve..."
-              className="w-full px-3 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg bg-white dark:bg-neutral-900 text-neutral-900 dark:text-white text-sm resize-none focus:ring-2 focus:ring-primary-500 outline-none"
+              className="w-full px-3 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg bg-white dark:bg-background-dark text-neutral-900 dark:text-white text-sm resize-none focus:ring-2 focus:ring-primary-500 outline-none"
             />
             <div className="flex gap-2">
               <button
@@ -342,7 +342,7 @@ export function FeedbackPage() {
               <button
                 type="button"
                 onClick={() => setShowNewRequest(false)}
-                className="px-4 py-2 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 text-sm"
+                className="px-4 py-2 border border-neutral-200 dark:border-white/10 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-white/5 text-sm"
               >
                 Cancel
               </button>
@@ -360,7 +360,7 @@ export function FeedbackPage() {
                 'px-3 py-1 rounded-full text-xs font-medium transition-colors capitalize',
                 filterStatus === s
                   ? 'bg-primary-500 text-white'
-                  : 'bg-white dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                  : 'bg-white dark:bg-surface-dark text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-white/10 hover:bg-neutral-50 dark:hover:bg-white/5'
               )}
             >
               {s === 'all' ? 'All' : STATUS_CONFIG[s as FeatureRequest['status']]?.label || s}
@@ -387,7 +387,7 @@ export function FeedbackPage() {
             {sorted.map((req, i) => {
               const statusConf = STATUS_CONFIG[req.status];
               return (
-                <div key={req.id} className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl p-4 flex gap-4">
+                <div key={req.id} className="bg-white dark:bg-surface-dark border border-neutral-200 dark:border-white/10 rounded-xl p-4 flex gap-4">
                   {/* Rank */}
                   <div className="flex-shrink-0 flex flex-col items-center gap-1 pt-1">
                     {i < 3 && filterStatus === 'all' && req.status !== 'shipped' ? (
@@ -405,7 +405,7 @@ export function FeedbackPage() {
                         'flex flex-col items-center gap-0.5 px-2.5 py-2 rounded-lg border-2 transition-all min-w-[52px]',
                         req.userVoted
                           ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400'
-                          : 'border-neutral-200 dark:border-neutral-700 text-neutral-500 hover:border-neutral-300 dark:hover:border-neutral-600'
+                          : 'border-neutral-200 dark:border-white/10 text-neutral-500 hover:border-neutral-300 dark:hover:border-neutral-600'
                       )}
                       aria-label={req.userVoted ? 'Remove vote' : 'Vote for this feature'}
                     >

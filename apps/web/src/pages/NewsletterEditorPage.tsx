@@ -533,7 +533,7 @@ export function NewsletterEditorPage() {
           </div>
           <div className="space-y-4">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+              <div key={i} className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-4">
                 <div className="h-5 w-20 bg-neutral-200 dark:bg-neutral-700 rounded animate-pulse mb-3" />
                 <div className="h-10 w-full bg-neutral-200 dark:bg-neutral-700 rounded animate-pulse" />
               </div>
@@ -564,7 +564,7 @@ export function NewsletterEditorPage() {
         <div className="flex items-center gap-4">
           <button
             onClick={() => navigate('/newsletters')}
-            className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors"
+            className="p-2 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg transition-colors"
           >
             <ArrowLeft className="w-5 h-5 text-neutral-500" />
           </button>
@@ -598,7 +598,7 @@ export function NewsletterEditorPage() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setShowPreview(!showPreview)}
-            className="inline-flex items-center gap-2 px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg transition-colors"
           >
             <Eye className="w-5 h-5" />
             Preview
@@ -629,7 +629,7 @@ export function NewsletterEditorPage() {
         {/* Editor */}
         <div className="lg:col-span-2 space-y-4">
           {/* Subject Line */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-4">
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
               Subject Line
             </label>
@@ -642,12 +642,12 @@ export function NewsletterEditorPage() {
               }}
               disabled={isSent}
               placeholder="Enter your email subject line"
-              className="w-full px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-full px-3 py-2 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none disabled:cursor-not-allowed disabled:opacity-60"
             />
           </div>
 
           {/* Preheader */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-4">
             <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1">
               Preheader
             </label>
@@ -660,12 +660,12 @@ export function NewsletterEditorPage() {
               }}
               disabled={isSent}
               placeholder="Preview text shown in inbox"
-              className="w-full px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none disabled:cursor-not-allowed disabled:opacity-60"
+              className="w-full px-3 py-2 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none disabled:cursor-not-allowed disabled:opacity-60"
             />
           </div>
 
           {/* Editor */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 overflow-hidden">
             <EditorToolbar
               editor={editor}
               isSent={isSent}
@@ -695,7 +695,7 @@ export function NewsletterEditorPage() {
         {/* Sidebar */}
         <div className="space-y-4">
           {/* Status */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-4">
             <h3 className="font-semibold text-neutral-900 dark:text-white mb-3">Status</h3>
             <div className="flex items-center gap-2">
               <span className={clsx(
@@ -710,7 +710,7 @@ export function NewsletterEditorPage() {
 
           {/* Schedule */}
           {!isSent && (
-            <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+            <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-4">
               <h3 className="font-semibold text-neutral-900 dark:text-white mb-3">Schedule</h3>
               {newsletter.scheduled_at ? (
                 <div className="text-sm text-neutral-600 dark:text-neutral-400">
@@ -728,7 +728,7 @@ export function NewsletterEditorPage() {
               ) : (
                 <button 
                   onClick={() => setShowScheduleModal(true)}
-                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+                  className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
                 >
                   <Clock className="w-5 h-5" />
                   Schedule Send
@@ -739,11 +739,11 @@ export function NewsletterEditorPage() {
 
           {/* A/B Testing */}
           {!isSent && (
-            <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+            <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-4">
               <h3 className="font-semibold text-neutral-900 dark:text-white mb-3">A/B Testing</h3>
               <button 
                 onClick={() => navigate(`/newsletters/${id}/ab-test`)}
-                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+                className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
               >
                 <FlaskConical className="w-5 h-5" />
                 Create A/B Test
@@ -752,11 +752,11 @@ export function NewsletterEditorPage() {
           )}
 
           {/* Social Media */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-4">
             <h3 className="font-semibold text-neutral-900 dark:text-white mb-3">Social Media</h3>
             <button 
               onClick={() => navigate(`/newsletters/${id}/social`)}
-              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+              className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-white/5 transition-colors"
             >
               <Share2 className="w-5 h-5" />
               Generate Social Posts
@@ -764,7 +764,7 @@ export function NewsletterEditorPage() {
           </div>
 
           {/* Test Send */}
-          <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+          <div className="bg-white dark:bg-surface-dark rounded-xl border border-neutral-200 dark:border-white/10 p-4">
             <h3 className="font-semibold text-neutral-900 dark:text-white mb-3">Test</h3>
             <div className="space-y-3">
               <input
@@ -772,7 +772,7 @@ export function NewsletterEditorPage() {
                 value={testEmail}
                 onChange={(e) => setTestEmail(e.target.value)}
                 placeholder="test@example.com"
-                className="w-full px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm"
+                className="w-full px-3 py-2 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm"
               />
               <button 
                 onClick={sendTestEmail}
@@ -809,14 +809,14 @@ export function NewsletterEditorPage() {
       {/* Send Modal */}
       {showSendModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-neutral-800 rounded-2xl w-full max-w-lg">
-            <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-neutral-700">
+          <div className="bg-white dark:bg-surface-dark rounded-2xl w-full max-w-lg">
+            <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-white/10">
               <h2 className="font-semibold text-neutral-900 dark:text-white flex items-center gap-2">
                 <Send className="w-5 h-5" /> Send Newsletter
               </h2>
               <button
                 onClick={() => setShowSendModal(false)}
-                className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
+                className="p-2 hover:bg-neutral-100 dark:hover:bg-white/5 rounded-lg"
               >
                 <X className="w-5 h-5 text-neutral-500" />
               </button>
@@ -835,7 +835,7 @@ export function NewsletterEditorPage() {
                   onChange={(e) => setSendRecipients(e.target.value)}
                   placeholder="user1@example.com, user2@example.com"
                   rows={5}
-                  className="w-full px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm font-mono"
+                  className="w-full px-3 py-2 bg-neutral-50 dark:bg-background-dark border border-neutral-200 dark:border-white/10 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none text-sm font-mono"
                 />
               </div>
               
@@ -850,7 +850,7 @@ export function NewsletterEditorPage() {
               <div className="flex gap-3">
                 <button
                   onClick={() => setShowSendModal(false)}
-                  className="flex-1 px-4 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 font-medium hover:bg-neutral-50 dark:hover:bg-neutral-700"
+                  className="flex-1 px-4 py-2.5 border border-neutral-200 dark:border-white/10 rounded-lg text-neutral-700 dark:text-neutral-300 font-medium hover:bg-neutral-50 dark:hover:bg-white/5"
                 >
                   Cancel
                 </button>

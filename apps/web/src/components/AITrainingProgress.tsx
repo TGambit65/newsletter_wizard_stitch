@@ -68,7 +68,7 @@ export function AITrainingProgress({ open, onComplete, error, onRetry }: AITrain
 
   return (
     <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center px-4">
-      <div className="w-full max-w-md bg-white dark:bg-neutral-800 rounded-2xl shadow-2xl p-8">
+      <div className="w-full max-w-md bg-white dark:bg-surface-dark rounded-2xl shadow-2xl p-8">
 
         {error ? (
           <div className="flex flex-col items-center text-center gap-4">
