@@ -26,6 +26,18 @@ const routeLabels: Record<string, string> = {
   'edit': 'Edit',
   'api-keys': 'API Keys',
   'webhooks': 'Webhooks',
+  'templates': 'Templates',
+  'scheduling': 'Scheduling',
+  'brand-voice': 'Brand Voice',
+  'team': 'Team',
+  'search': 'Search',
+  'beta': 'Beta Lab',
+  'referral': 'Referrals',
+  'whats-new': "What's New",
+  'feedback': 'Feedback',
+  'sent': 'Sent',
+  'delete-account': 'Delete Account',
+  'onboarding': 'Onboarding',
 };
 
 export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
