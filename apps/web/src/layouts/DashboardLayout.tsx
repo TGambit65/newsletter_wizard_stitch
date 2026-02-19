@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useWhiteLabel } from '@/contexts/WhiteLabelContext';
 import { useTheme } from '@/hooks/useTheme';
 import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
+import { CommandPalette } from '@/components/ui/CommandPalette';
 import {
   LayoutDashboard,
   Database,
@@ -20,6 +21,9 @@ import {
   BookOpen,
   Calendar,
   Plus,
+  Mic,
+  Users,
+  Search,
 } from 'lucide-react';
 import clsx from 'clsx';
 import { Breadcrumbs, MobileBreadcrumb } from '@/components/ui/Breadcrumbs';
@@ -34,7 +38,9 @@ const primaryNav = [
 ];
 
 const secondaryNav = [
+  { name: 'Brand Voice', href: '/brand-voice', icon: Mic },
   { name: 'Scheduling', href: '/scheduling', icon: Calendar },
+  { name: 'Team', href: '/team', icon: Users },
   { name: 'Settings', href: '/settings', icon: Settings },
   { name: 'Partner Portal', href: '/partner', icon: Building2 },
 ];
@@ -44,8 +50,21 @@ export function DashboardLayout() {
   const { config: whiteLabel } = useWhiteLabel();
   const { mode } = useTheme();
   const location = useLocation();
+  const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setCommandPaletteOpen(prev => !prev);
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   return (
     <div className="flex h-screen bg-neutral-50 dark:bg-neutral-900 transition-colors duration-150">
@@ -222,7 +241,25 @@ export function DashboardLayout() {
           
           {/* Spacer */}
           <div className="flex-1" />
-          
+
+          {/* Search / Command Palette trigger */}
+          <button
+            onClick={() => setCommandPaletteOpen(true)}
+            aria-label="Open search (Cmd+K)"
+            className="hidden lg:flex items-center gap-2 px-3 py-1.5 text-sm text-neutral-500 dark:text-neutral-400 bg-neutral-100 dark:bg-neutral-700 border border-neutral-200 dark:border-neutral-600 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-600 transition-colors mr-3"
+          >
+            <Search className="w-4 h-4" />
+            <span>Search</span>
+            <kbd className="ml-1 text-xs text-neutral-400 border border-neutral-300 dark:border-neutral-500 rounded px-1">⌘K</kbd>
+          </button>
+          <button
+            onClick={() => navigate('/search')}
+            aria-label="Search"
+            className="lg:hidden p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg mr-1"
+          >
+            <Search className="w-5 h-5 text-neutral-500 dark:text-neutral-400" />
+          </button>
+
           {/* Theme switcher in header (icon variant for desktop) */}
           <div className="hidden lg:block">
             <ThemeSwitcher variant="dropdown" />
@@ -237,6 +274,9 @@ export function DashboardLayout() {
         {/* Mobile bottom navigation */}
         <MobileNavigation />
       </div>
+
+      {/* Command Palette */}
+      <CommandPalette open={commandPaletteOpen} onClose={() => setCommandPaletteOpen(false)} />
     </div>
   );
 }

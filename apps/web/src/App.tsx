@@ -31,6 +31,9 @@ const SocialMediaPage = lazy(() => import('@/pages/SocialMediaPage').then(m => (
 const OnboardingPage = lazy(() => import('@/pages/OnboardingPage').then(m => ({ default: m.OnboardingPage })));
 const TemplatesPage = lazy(() => import('@/pages/TemplatesPage').then(m => ({ default: m.TemplatesPage })));
 const SchedulingPage = lazy(() => import('@/pages/SchedulingPage').then(m => ({ default: m.SchedulingPage })));
+const BrandVoicePage = lazy(() => import('@/pages/BrandVoicePage').then(m => ({ default: m.BrandVoicePage })));
+const TeamPage = lazy(() => import('@/pages/TeamPage').then(m => ({ default: m.TeamPage })));
+const SearchPage = lazy(() => import('@/pages/SearchPage').then(m => ({ default: m.SearchPage })));
 
 function LoadingSpinner() {
   return (
@@ -107,6 +110,9 @@ function AppRoutes() {
           <Route path="partner" element={<PartnerPortalPage />} />
           <Route path="templates" element={<TemplatesPage />} />
           <Route path="scheduling" element={<SchedulingPage />} />
+          <Route path="brand-voice" element={<BrandVoicePage />} />
+          <Route path="team" element={<TeamPage />} />
+          <Route path="search" element={<SearchPage />} />
         </Route>
         
         {/* Fallback */}

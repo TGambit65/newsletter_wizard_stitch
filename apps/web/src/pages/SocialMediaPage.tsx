@@ -5,7 +5,7 @@ import { supabase, Newsletter } from '@/lib/supabase';
 import { api } from '@/lib/api';
 import { useToast } from '@/components/ui/Toast';
 import { ConfirmDialog } from '@/components/ui/Dialog';
-import { 
+import {
   ArrowLeft,
   Copy,
   Check,
@@ -16,7 +16,9 @@ import {
   Instagram,
   Video,
   MessageCircle,
-  Play
+  Play,
+  Plus,
+  Trash2,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -463,32 +465,116 @@ export function SocialMediaPage() {
               </div>
             )}
 
-            {/* Twitter Thread */}
-            {activeTab === 'twitter' && editedPosts.twitter?.thread && editedPosts.twitter.thread.length > 0 && (
-              <div className="mt-6">
-                <h3 className="font-medium text-neutral-900 dark:text-white mb-3">Thread Posts</h3>
-                <div className="space-y-3">
-                  {editedPosts.twitter.thread.map((post, index) => (
-                    <div key={index} className="p-3 bg-neutral-50 dark:bg-neutral-900 rounded-lg border border-neutral-200 dark:border-neutral-700">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-xs font-medium text-neutral-500">Tweet {index + 1}</span>
-                        <button
-                          onClick={() => handleCopy(post, `thread-${index}`)}
-                          className="p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded"
-                        >
-                          {copied === `thread-${index}` ? (
-                            <Check className="w-4 h-4 text-success" />
+            {/* Twitter / Threads Thread Builder */}
+            {(activeTab === 'twitter' || activeTab === 'threads') && (() => {
+              const tweetThread: string[] = (
+                activeTab === 'twitter'
+                  ? editedPosts.twitter?.thread
+                  : editedPosts.threads
+                    ? [editedPosts.threads.post]
+                    : null
+              ) || [];
+
+              function updateTweet(idx: number, text: string) {
+                const updated = { ...editedPosts! };
+                if (activeTab === 'twitter' && updated.twitter) {
+                  const newThread = [...(updated.twitter.thread || [])];
+                  newThread[idx] = text;
+                  updated.twitter = { ...updated.twitter, thread: newThread };
+                }
+                setEditedPosts(updated);
+              }
+
+              function addTweet() {
+                const updated = { ...editedPosts! };
+                if (activeTab === 'twitter' && updated.twitter) {
+                  updated.twitter = { ...updated.twitter, thread: [...(updated.twitter.thread || []), ''] };
+                }
+                setEditedPosts(updated);
+              }
+
+              function removeTweet(idx: number) {
+                const updated = { ...editedPosts! };
+                if (activeTab === 'twitter' && updated.twitter?.thread) {
+                  const newThread = updated.twitter.thread.filter((_, i) => i !== idx);
+                  updated.twitter = { ...updated.twitter, thread: newThread };
+                }
+                setEditedPosts(updated);
+              }
+
+              if (tweetThread.length === 0) return null;
+
+              return (
+                <div className="mt-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="font-medium text-neutral-900 dark:text-white">Thread Builder</h3>
+                    <span className="text-xs text-neutral-400">{tweetThread.length} tweet{tweetThread.length !== 1 ? 's' : ''}</span>
+                  </div>
+                  <div className="space-y-3">
+                    {tweetThread.map((tweet, index) => {
+                      const charCount = tweet.length;
+                      const overLimit = charCount > 280;
+                      return (
+                        <div key={index} className="p-3 bg-neutral-50 dark:bg-neutral-900 rounded-lg border border-neutral-200 dark:border-neutral-700">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs font-medium text-neutral-500">Tweet {index + 1}</span>
+                            <div className="flex items-center gap-1">
+                              <button
+                                onClick={() => handleCopy(tweet, `thread-${index}`)}
+                                className="p-1 hover:bg-neutral-200 dark:hover:bg-neutral-700 rounded"
+                                aria-label={`Copy tweet ${index + 1}`}
+                              >
+                                {copied === `thread-${index}` ? (
+                                  <Check className="w-4 h-4 text-success" />
+                                ) : (
+                                  <Copy className="w-4 h-4 text-neutral-500" />
+                                )}
+                              </button>
+                              {activeTab === 'twitter' && tweetThread.length > 1 && (
+                                <button
+                                  onClick={() => removeTweet(index)}
+                                  aria-label={`Remove tweet ${index + 1}`}
+                                  className="p-1 hover:bg-error/10 rounded text-neutral-400 hover:text-error transition-colors"
+                                >
+                                  <Trash2 className="w-3.5 h-3.5" />
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                          {activeTab === 'twitter' ? (
+                            <>
+                              <textarea
+                                value={tweet}
+                                onChange={e => updateTweet(index, e.target.value)}
+                                rows={3}
+                                className="w-full p-2 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded text-sm resize-none outline-none focus:ring-1 focus:ring-primary-500"
+                              />
+                              <div className="flex justify-end mt-1">
+                                <span className={clsx('text-xs font-medium', overLimit ? 'text-error' : 'text-neutral-400')}>
+                                  {charCount} / 280
+                                </span>
+                              </div>
+                            </>
                           ) : (
-                            <Copy className="w-4 h-4 text-neutral-500" />
+                            <p className="text-sm text-neutral-700 dark:text-neutral-300">{tweet}</p>
                           )}
-                        </button>
-                      </div>
-                      <p className="text-sm text-neutral-700 dark:text-neutral-300">{post}</p>
-                    </div>
-                  ))}
+                        </div>
+                      );
+                    })}
+
+                    {activeTab === 'twitter' && (
+                      <button
+                        onClick={addTweet}
+                        className="w-full flex items-center justify-center gap-2 py-2.5 border-2 border-dashed border-neutral-300 dark:border-neutral-600 rounded-lg text-sm text-neutral-500 hover:border-primary-400 hover:text-primary-500 transition-colors"
+                      >
+                        <Plus className="w-4 h-4" />
+                        Add tweet to thread
+                      </button>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            })()}
           </div>
         </div>
       )}

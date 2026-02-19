@@ -1,22 +1,25 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase, Newsletter } from '@/lib/supabase';
+import { supabase, Newsletter, NewsletterStats } from '@/lib/supabase';
 import { useTheme } from '@/hooks/useTheme';
 import { getChartTheme } from '@/lib/chart-colors';
 import EChartsReact from 'echarts-for-react';
 
 const ReactECharts = EChartsReact as any;
-import { 
-  TrendingUp, 
+import {
+  TrendingUp,
   TrendingDown,
   Mail,
   MousePointerClick,
   Eye,
   Users,
-  Calendar,
-  ArrowUpRight
+  Lightbulb,
+  Target,
+  Clock,
+  Zap,
 } from 'lucide-react';
 import clsx from 'clsx';
+import { format } from 'date-fns';
 
 interface AnalyticsData {
   totalSent: number;
@@ -27,11 +30,23 @@ interface AnalyticsData {
   clickRateTrend: number;
 }
 
+interface NewsletterWithStats extends Newsletter {
+  stats?: Pick<NewsletterStats, 'open_rate' | 'click_rate' | 'total_sent' | 'unsubscribes'>;
+}
+
+interface PerformanceTip {
+  title: string;
+  description: string;
+  icon: React.ComponentType<{ className?: string }>;
+  color: string;
+  bg: string;
+}
+
 export function AnalyticsPage() {
   const { tenant } = useAuth();
   const { resolvedTheme } = useTheme();
   const ct = useMemo(() => getChartTheme(resolvedTheme), [resolvedTheme]);
-  const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
+  const [newsletters, setNewsletters] = useState<NewsletterWithStats[]>([]);
   const [loading, setLoading] = useState(true);
   const [dateRange, setDateRange] = useState<'7d' | '30d' | '90d'>('30d');
   const [analytics, setAnalytics] = useState<AnalyticsData>({
@@ -52,22 +67,58 @@ export function AnalyticsPage() {
   async function loadAnalytics() {
     setLoading(true);
     try {
-      const { data } = await supabase
+      const cutoff = new Date();
+      const days = dateRange === '7d' ? 7 : dateRange === '30d' ? 30 : 90;
+      cutoff.setDate(cutoff.getDate() - days);
+
+      const { data: newsletterData } = await supabase
         .from('newsletters')
         .select('*')
         .eq('tenant_id', tenant!.id)
-        .eq('status', 'sent');
-      
-      setNewsletters(data || []);
+        .eq('status', 'sent')
+        .gte('sent_at', cutoff.toISOString())
+        .order('sent_at', { ascending: false });
 
-      // Mock analytics data
+      const sent = newsletterData || [];
+
+      let statsMap: Record<string, Pick<NewsletterStats, 'open_rate' | 'click_rate' | 'total_sent' | 'unsubscribes'>> = {};
+      if (sent.length > 0) {
+        const { data: statsData } = await supabase
+          .from('newsletter_stats')
+          .select('newsletter_id, open_rate, click_rate, total_sent, unsubscribes')
+          .in('newsletter_id', sent.map(n => n.id));
+        if (statsData) {
+          statsMap = Object.fromEntries(statsData.map(s => [s.newsletter_id, {
+            open_rate: s.open_rate,
+            click_rate: s.click_rate,
+            total_sent: s.total_sent,
+            unsubscribes: s.unsubscribes,
+          }]));
+        }
+      }
+
+      const withStats: NewsletterWithStats[] = sent.map(n => ({ ...n, stats: statsMap[n.id] }));
+      setNewsletters(withStats);
+
+      const openRates = withStats.filter(n => n.stats).map(n => n.stats!.open_rate);
+      const clickRates = withStats.filter(n => n.stats).map(n => n.stats!.click_rate);
+      const avg = (arr: number[]) => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
+
+      const midpoint = Math.floor(openRates.length / 2);
+      const recentOpen = avg(openRates.slice(0, midpoint));
+      const olderOpen = avg(openRates.slice(midpoint));
+      const openTrend = olderOpen > 0 ? +(recentOpen - olderOpen).toFixed(1) : 0;
+      const recentClick = avg(clickRates.slice(0, midpoint));
+      const olderClick = avg(clickRates.slice(midpoint));
+      const clickTrend = olderClick > 0 ? +(recentClick - olderClick).toFixed(1) : 0;
+
       setAnalytics({
-        totalSent: data?.length || 0,
-        avgOpenRate: 24.5,
-        avgClickRate: 3.2,
-        totalSubscribers: 1250,
-        openRateTrend: 2.3,
-        clickRateTrend: -0.5
+        totalSent: sent.length,
+        avgOpenRate: +avg(openRates).toFixed(1),
+        avgClickRate: +avg(clickRates).toFixed(1),
+        totalSubscribers: 0,
+        openRateTrend: openTrend,
+        clickRateTrend: clickTrend,
       });
     } catch (error) {
       console.error('Error loading analytics:', error);
@@ -75,6 +126,74 @@ export function AnalyticsPage() {
       setLoading(false);
     }
   }
+
+  // Generate AI tips based on real data
+  const aiTips = useMemo((): PerformanceTip[] => {
+    const tips: PerformanceTip[] = [];
+
+    if (analytics.avgOpenRate < 20 && analytics.totalSent > 0) {
+      tips.push({
+        title: 'Improve your subject lines',
+        description: `Your average open rate is ${analytics.avgOpenRate}% — below the 20% industry benchmark. Try shorter, curiosity-driven subject lines (30–50 characters).`,
+        icon: Mail,
+        color: 'text-primary-600 dark:text-primary-400',
+        bg: 'bg-primary-50 dark:bg-primary-900/20',
+      });
+    }
+
+    if (analytics.avgClickRate < 2.5 && analytics.totalSent > 0) {
+      tips.push({
+        title: 'Strengthen your calls to action',
+        description: `Click rate of ${analytics.avgClickRate}% suggests readers aren't converting. Add a single, clear CTA button in the first 300 words.`,
+        icon: Target,
+        color: 'text-success',
+        bg: 'bg-success/10',
+      });
+    }
+
+    if (analytics.totalSent === 0) {
+      tips.push({
+        title: 'Send your first newsletter',
+        description: 'No analytics data yet. Create and send your first newsletter to start tracking performance.',
+        icon: Zap,
+        color: 'text-warning',
+        bg: 'bg-warning/10',
+      });
+    }
+
+    if (analytics.openRateTrend < -2) {
+      tips.push({
+        title: 'Engagement is trending down',
+        description: `Open rates dropped ${Math.abs(analytics.openRateTrend)}% recently. Review your send frequency and list hygiene.`,
+        icon: TrendingDown,
+        color: 'text-error',
+        bg: 'bg-error/10',
+      });
+    }
+
+    if (analytics.openRateTrend > 2) {
+      tips.push({
+        title: 'Great momentum — keep it up',
+        description: `Open rates are up ${analytics.openRateTrend}% this period. Analyze what's working (subject line style, send time) and replicate it.`,
+        icon: TrendingUp,
+        color: 'text-success',
+        bg: 'bg-success/10',
+      });
+    }
+
+    // Default tip when there are no specific issues
+    if (tips.length === 0) {
+      tips.push({
+        title: 'Consistency is key',
+        description: 'Your metrics look healthy. Maintain a regular send cadence (weekly or bi-weekly) to keep subscribers engaged.',
+        icon: Clock,
+        color: 'text-info',
+        bg: 'bg-info/10',
+      });
+    }
+
+    return tips.slice(0, 4);
+  }, [analytics]);
 
   const statCards = [
     {
@@ -216,13 +335,6 @@ export function AnalyticsPage() {
     ]
   }), [ct]);
 
-  const topLinks = [
-    { url: 'example.com/product', clicks: 245, ctr: '4.2%' },
-    { url: 'example.com/blog/tips', clicks: 189, ctr: '3.8%' },
-    { url: 'example.com/signup', clicks: 156, ctr: '3.1%' },
-    { url: 'example.com/pricing', clicks: 134, ctr: '2.7%' },
-  ];
-
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
@@ -307,35 +419,90 @@ export function AnalyticsPage() {
         </div>
       </div>
 
-      {/* Top Links */}
+      {/* AI Performance Tips */}
       <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
-        <div className="p-6 border-b border-neutral-200 dark:border-neutral-700">
-          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Top Performing Links</h2>
+        <div className="p-6 border-b border-neutral-200 dark:border-neutral-700 flex items-center gap-2">
+          <Lightbulb className="w-5 h-5 text-warning" />
+          <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">AI Performance Tips</h2>
         </div>
-        <div className="divide-y divide-neutral-200 dark:divide-neutral-700">
-          {topLinks.map((link, index) => (
-            <div key={index} className="flex items-center justify-between p-4">
-              <div className="flex items-center gap-3">
-                <span className="w-6 h-6 bg-neutral-100 dark:bg-neutral-700 rounded-full flex items-center justify-center text-sm font-medium text-neutral-600 dark:text-neutral-400">
-                  {index + 1}
-                </span>
-                <span className="text-neutral-900 dark:text-white">{link.url}</span>
-              </div>
-              <div className="flex items-center gap-6">
-                <div className="text-right">
-                  <p className="text-sm font-medium text-neutral-900 dark:text-white">{link.clicks}</p>
-                  <p className="text-xs text-neutral-500">clicks</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-6">
+          {aiTips.map((tip, i) => {
+            const TipIcon = tip.icon;
+            return (
+              <div key={i} className={clsx('flex gap-3 p-4 rounded-xl', tip.bg)}>
+                <div className="flex-shrink-0 mt-0.5">
+                  <TipIcon className={clsx('w-5 h-5', tip.color)} />
                 </div>
-                <div className="text-right">
-                  <p className="text-sm font-medium text-primary-600">{link.ctr}</p>
-                  <p className="text-xs text-neutral-500">CTR</p>
+                <div>
+                  <p className={clsx('font-medium text-sm mb-1', tip.color)}>{tip.title}</p>
+                  <p className="text-sm text-neutral-600 dark:text-neutral-400">{tip.description}</p>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-neutral-400" />
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
+
+      {/* Newsletter Comparison Table */}
+      {newsletters.length > 0 && (
+        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700">
+          <div className="p-6 border-b border-neutral-200 dark:border-neutral-700">
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-white">Newsletter Performance</h2>
+            <p className="text-sm text-neutral-500 mt-1">All sent newsletters in the selected period</p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-neutral-50 dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-700">
+                  <th className="text-left px-6 py-3 text-neutral-600 dark:text-neutral-400 font-medium">Newsletter</th>
+                  <th className="text-right px-4 py-3 text-neutral-600 dark:text-neutral-400 font-medium">Sent</th>
+                  <th className="text-right px-4 py-3 text-neutral-600 dark:text-neutral-400 font-medium">Open Rate</th>
+                  <th className="text-right px-4 py-3 text-neutral-600 dark:text-neutral-400 font-medium">Click Rate</th>
+                  <th className="text-right px-6 py-3 text-neutral-600 dark:text-neutral-400 font-medium">Unsubs</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-neutral-100 dark:divide-neutral-700">
+                {newsletters.map(n => (
+                  <tr key={n.id} className="hover:bg-neutral-50 dark:hover:bg-neutral-700/50">
+                    <td className="px-6 py-3">
+                      <p className="font-medium text-neutral-900 dark:text-white truncate max-w-xs">{n.title}</p>
+                      {n.sent_at && (
+                        <p className="text-xs text-neutral-400 mt-0.5">{format(new Date(n.sent_at), 'MMM d, yyyy')}</p>
+                      )}
+                    </td>
+                    <td className="px-4 py-3 text-right text-neutral-700 dark:text-neutral-300">
+                      {n.stats?.total_sent?.toLocaleString() || '—'}
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      {n.stats ? (
+                        <span className={clsx(
+                          'font-medium',
+                          n.stats.open_rate >= 20 ? 'text-success' : n.stats.open_rate >= 10 ? 'text-warning' : 'text-error'
+                        )}>
+                          {n.stats.open_rate.toFixed(1)}%
+                        </span>
+                      ) : '—'}
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      {n.stats ? (
+                        <span className={clsx(
+                          'font-medium',
+                          n.stats.click_rate >= 3 ? 'text-success' : n.stats.click_rate >= 1 ? 'text-warning' : 'text-error'
+                        )}>
+                          {n.stats.click_rate.toFixed(1)}%
+                        </span>
+                      ) : '—'}
+                    </td>
+                    <td className="px-6 py-3 text-right text-neutral-500">
+                      {n.stats?.unsubscribes ?? '—'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
