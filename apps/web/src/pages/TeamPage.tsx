@@ -3,6 +3,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/Toast';
 import { ConfirmDialog } from '@/components/ui/Dialog';
+import { inviteTeamMember, getTeamInvitations, revokeInvitation, type TeamInvitation } from '@/lib/api';
 import {
   Users,
   UserPlus,
@@ -57,9 +58,15 @@ export function TeamPage() {
   const [inviting, setInviting] = useState(false);
   const [removeId, setRemoveId] = useState<string | null>(null);
   const [showPermissions, setShowPermissions] = useState(false);
+  const [invitations, setInvitations] = useState<TeamInvitation[]>([]);
+  const [loadingInvitations, setLoadingInvitations] = useState(true);
+  const [revokingId, setRevokingId] = useState<string | null>(null);
 
   useEffect(() => {
-    if (tenant) loadMembers();
+    if (tenant) {
+      loadMembers();
+      loadInvitations();
+    }
   }, [tenant]);
 
   async function loadMembers() {
@@ -88,21 +95,51 @@ export function TeamPage() {
     }
   }
 
+  async function loadInvitations() {
+    setLoadingInvitations(true);
+    try {
+      const result = await getTeamInvitations();
+      setInvitations(result.invitations);
+    } catch {
+      // Non-critical — don't block the page
+    } finally {
+      setLoadingInvitations(false);
+    }
+  }
+
   async function handleInvite(e: React.FormEvent) {
     e.preventDefault();
     if (!inviteEmail.trim()) return;
 
     setInviting(true);
     try {
-      // Backend invite endpoint not yet wired — show toast and log
-      await new Promise(r => setTimeout(r, 800)); // simulate network
-      toast.success(`Invitation sent to ${inviteEmail}`);
+      const result = await inviteTeamMember({ email: inviteEmail.trim(), role: inviteRole });
+      if (result.already_invited) {
+        toast.success(`${inviteEmail} was already invited`);
+      } else {
+        toast.success(`Invitation sent to ${inviteEmail}`);
+        loadInvitations();
+      }
       setInviteEmail('');
       setShowInvite(false);
-    } catch {
-      toast.error('Failed to send invitation');
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Failed to send invitation';
+      toast.error(msg);
     } finally {
       setInviting(false);
+    }
+  }
+
+  async function handleRevoke(invitationId: string) {
+    setRevokingId(invitationId);
+    try {
+      await revokeInvitation(invitationId);
+      setInvitations(prev => prev.filter(inv => inv.id !== invitationId));
+      toast.success('Invitation revoked');
+    } catch {
+      toast.error('Failed to revoke invitation');
+    } finally {
+      setRevokingId(null);
     }
   }
 
@@ -213,16 +250,58 @@ export function TeamPage() {
         )}
       </div>
 
-      {/* Pending invitations placeholder */}
+      {/* Pending invitations */}
       <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 mb-6">
         <div className="px-6 py-4 border-b border-neutral-200 dark:border-neutral-700">
-          <h2 className="font-semibold text-neutral-900 dark:text-white">Pending Invitations</h2>
+          <h2 className="font-semibold text-neutral-900 dark:text-white">
+            Pending Invitations
+            {invitations.length > 0 && (
+              <span className="ml-2 text-sm text-neutral-400 font-normal">({invitations.length})</span>
+            )}
+          </h2>
         </div>
-        <div className="px-6 py-8 text-center">
-          <Mail className="w-10 h-10 text-neutral-300 mx-auto mb-3" />
-          <p className="text-sm text-neutral-500">No pending invitations</p>
-          <p className="text-xs text-neutral-400 mt-1">Invitations expire after 7 days</p>
-        </div>
+
+        {loadingInvitations ? (
+          <div className="flex justify-center py-8">
+            <div className="h-6 w-6 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
+          </div>
+        ) : invitations.length === 0 ? (
+          <div className="px-6 py-8 text-center">
+            <Mail className="w-10 h-10 text-neutral-300 mx-auto mb-3" />
+            <p className="text-sm text-neutral-500">No pending invitations</p>
+            <p className="text-xs text-neutral-400 mt-1">Invitations expire after 7 days</p>
+          </div>
+        ) : (
+          <div className="divide-y divide-neutral-100 dark:divide-neutral-700">
+            {invitations.map(inv => {
+              const roleConf = ROLE_CONFIG[inv.role] || ROLE_CONFIG.viewer;
+              return (
+                <div key={inv.id} className="flex items-center gap-4 px-6 py-4">
+                  <div className="w-10 h-10 rounded-full bg-neutral-100 dark:bg-neutral-700 flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-4 h-4 text-neutral-400" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-medium text-neutral-900 dark:text-white truncate">{inv.email}</p>
+                    <p className="text-xs text-neutral-400 mt-0.5">
+                      Expires {format(new Date(inv.expires_at), 'MMM d, yyyy')}
+                    </p>
+                  </div>
+                  <div className={clsx('flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium', roleConf.bg, roleConf.color)}>
+                    {inv.role}
+                  </div>
+                  <button
+                    onClick={() => handleRevoke(inv.id)}
+                    disabled={revokingId === inv.id}
+                    aria-label="Revoke invitation"
+                    className="p-2 text-neutral-400 hover:text-error hover:bg-error/10 rounded-lg transition-colors disabled:opacity-50"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       {/* Permissions Matrix toggle */}

@@ -331,6 +331,54 @@ export async function getReferralLeaderboard(): Promise<{ leaderboard: Leaderboa
   return callAuthEdgeFunction('manage-referrals', { action: 'get_leaderboard' });
 }
 
+// ── Voice playground ──────────────────────────────────────────────────────────
+
+export interface PreviewVoiceRequest {
+  tenant_id:    string;
+  sample_text:  string;
+  tone_markers: {
+    archetype:    string;
+    formality:    number;
+    humor:        number;
+    technicality: number;
+    energy:       number;
+  };
+}
+
+export async function previewVoice(request: PreviewVoiceRequest): Promise<{ rewritten_text: string }> {
+  return callEdgeFunction('preview-voice', request);
+}
+
+// ── Team management ───────────────────────────────────────────────────────────
+
+export interface TeamInvitation {
+  id:         string;
+  email:      string;
+  role:       'admin' | 'editor' | 'viewer';
+  status:     string;
+  created_at: string;
+  expires_at: string;
+}
+
+export async function inviteTeamMember(body: {
+  email: string;
+  role:  'admin' | 'editor' | 'viewer';
+}): Promise<{ success: boolean; already_invited: boolean; invitation_id?: string }> {
+  return callAuthEdgeFunction('manage-team', { action: 'invite', ...body });
+}
+
+export async function getTeamInvitations(): Promise<{ invitations: TeamInvitation[] }> {
+  return callAuthEdgeFunction('manage-team', { action: 'list_invitations' });
+}
+
+export async function revokeInvitation(invitation_id: string): Promise<{ success: boolean }> {
+  return callAuthEdgeFunction('manage-team', { action: 'revoke', invitation_id });
+}
+
+export async function changeTeamMemberRole(member_id: string, role: string): Promise<{ success: boolean }> {
+  return callAuthEdgeFunction('manage-team', { action: 'change_role', member_id, role });
+}
+
 export const api = {
   processSource,
   ragSearch,
@@ -347,4 +395,9 @@ export const api = {
   getReferralStats,
   sendReferralInvite,
   getReferralLeaderboard,
+  previewVoice,
+  inviteTeamMember,
+  getTeamInvitations,
+  revokeInvitation,
+  changeTeamMemberRole,
 };

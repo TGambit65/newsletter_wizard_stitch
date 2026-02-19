@@ -4,7 +4,7 @@ import { supabase } from '@/lib/supabase';
 import { useToast } from '@/components/ui/Toast';
 import { ConfirmDialog } from '@/components/ui/Dialog';
 import { AITrainingProgress } from '@/components/AITrainingProgress';
-import { api } from '@/lib/api';
+import { api, previewVoice } from '@/lib/api';
 import {
   BookOpen,
   Laugh,
@@ -267,28 +267,27 @@ export function BrandVoicePage() {
   }
 
   const runPlayground = useCallback(async (text: string) => {
-    if (!text.trim() || !archetype) return;
+    if (!text.trim() || !archetype || !tenant) return;
     setPlaygroundLoading(true);
     try {
-      const tone_markers: Record<string, string> = {
-        archetype: archetype || '',
-        formality: String(sliders.formality),
-        humor: String(sliders.humor),
-        technicality: String(sliders.technicality),
-        energy: String(sliders.energy),
-      };
-      // Optimistic mock — show a placeholder while real edge fn is not wired
-      await new Promise(r => setTimeout(r, 1200));
-      const arch = ARCHETYPES.find(a => a.id === archetype);
-      setPlaygroundResult(
-        `[${arch?.label || 'Voice'} style applied — ${sliders.formality > 60 ? 'formal' : 'casual'}, ${sliders.energy > 60 ? 'energetic' : 'measured'} tone]\n\n${text}`
-      );
+      const result = await previewVoice({
+        tenant_id:   tenant.id,
+        sample_text: text,
+        tone_markers: {
+          archetype:    archetype,
+          formality:    sliders.formality,
+          humor:        sliders.humor,
+          technicality: sliders.technicality,
+          energy:       sliders.energy,
+        },
+      });
+      setPlaygroundResult(result.rewritten_text);
     } catch {
-      setPlaygroundResult('Could not generate preview. Check your API keys in Settings.');
+      setPlaygroundResult('Could not generate preview. Check your API keys in Settings → Integrations.');
     } finally {
       setPlaygroundLoading(false);
     }
-  }, [archetype, sliders]);
+  }, [archetype, sliders, tenant]);
 
   function handlePlaygroundChange(text: string) {
     setPlaygroundText(text);
