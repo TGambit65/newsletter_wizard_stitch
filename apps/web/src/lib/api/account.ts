@@ -30,3 +30,7 @@ export async function deleteAccount(body: {
 export async function reactivateAccount(): Promise<{ success: boolean }> {
   return callAuthEdgeFunction('reactivate-account', {});
 }
+
+export async function createWorkspace(): Promise<{ success: boolean; already_exists: boolean }> {
+  return callAuthEdgeFunction('create-workspace', {});
+}

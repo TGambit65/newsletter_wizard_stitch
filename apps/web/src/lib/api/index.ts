@@ -17,7 +17,7 @@ import {
 
 import { trainVoice, previewVoice }  from './voice';
 import { sendMailchimp, sendConvertKit } from './newsletter';
-import { exportUserData, deleteAccount, reactivateAccount } from './account';
+import { exportUserData, deleteAccount, reactivateAccount, createWorkspace } from './account';
 import {
   getReferralCode,
   getReferralStats,
@@ -48,6 +48,7 @@ export const api = {
   exportUserData,
   deleteAccount,
   reactivateAccount,
+  createWorkspace,
   getReferralCode,
   getReferralStats,
   sendReferralInvite,

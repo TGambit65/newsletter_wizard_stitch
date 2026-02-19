@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase, Profile, Tenant } from '@/lib/supabase';
+import { createWorkspace } from '@/lib/api';
 
 interface AuthContextType {
   user: User | null;
@@ -49,7 +50,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setProfile(null);
           setTenant(null);
         } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
-          // Reload profile and tenant on sign-in and token refresh to prevent stale data
+          // Reload profile and tenant on sign-in and token refresh.
+          // loadProfileAndTenant auto-creates a workspace if none exists
+          // (handles the email-confirmation flow where workspace isn't created
+          //  until after the user confirms and logs in for the first time).
           loadProfileAndTenant(session.user.id);
         }
       }
@@ -58,7 +62,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  async function loadProfileAndTenant(userId: string) {
+  // autoCreate = true: if no profile found, call create-workspace edge function
+  // autoCreate = false: reload only (used after workspace was just created)
+  async function loadProfileAndTenant(userId: string, autoCreate = true) {
     const { data: profileData } = await supabase
       .from('profiles')
       .select('*')
@@ -73,6 +79,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         .eq('id', profileData.tenant_id)
         .maybeSingle();
       setTenant(tenantData);
+    } else if (autoCreate) {
+      // No profile yet — create workspace server-side (atomic tenant + profile).
+      // This throws if the edge function fails, letting callers handle the error.
+      await createWorkspace();
+      // Reload now that workspace exists
+      await loadProfileAndTenant(userId, false);
     }
   }
 
@@ -90,62 +102,23 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       password,
       options: {
         emailRedirectTo: `${window.location.origin}/auth/callback`,
-        data: { full_name: fullName }
-      }
+        data: { full_name: fullName },
+      },
     });
 
-    if (!error && data.user) {
-      // Create tenant and profile — these are separate client-side calls.
-      // If either fails, the auth user exists but has no tenant/profile (broken state).
-      // TODO: Replace with a server-side edge function for atomic creation.
+    if (!error && data.user && data.session) {
+      // Session is immediately available (email confirmation disabled or auto-confirmed).
+      // Workspace is created atomically via the create-workspace edge function.
       try {
-        const tenantSlug = email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '-');
-        const { data: tenantData, error: tenantError } = await supabase
-          .from('tenants')
-          .insert({
-            name: fullName || email.split('@')[0],
-            slug: `${tenantSlug}-${Date.now()}`,
-            subscription_tier: 'free'
-          })
-          .select()
-          .maybeSingle();
-
-        if (tenantError) throw tenantError;
-
-        if (tenantData) {
-          const { error: profileError } = await supabase.from('profiles').insert({
-            id: data.user.id,
-            tenant_id: tenantData.id,
-            email,
-            full_name: fullName,
-            role: 'owner'
-          });
-
-          if (profileError) {
-            // Rollback: remove the tenant we just created to avoid orphaned records
-            await supabase.from('tenants').delete().eq('id', tenantData.id);
-            throw profileError;
-          }
-
-          setProfile({
-            id: data.user.id,
-            tenant_id: tenantData.id,
-            email,
-            full_name: fullName,
-            avatar_url: null,
-            role: 'owner',
-            timezone: 'UTC',
-            is_active: true,
-            created_at: new Date().toISOString()
-          });
-          setTenant(tenantData);
-        }
+        await loadProfileAndTenant(data.user.id);
       } catch (setupError) {
-        // Sign the user out to prevent them being stuck in a broken logged-in state
+        // Sign out to prevent a broken logged-in state (auth user, no workspace)
         await supabase.auth.signOut();
         return { error: new Error('Account setup failed. Please try signing up again.') };
       }
     }
+    // If data.session is null (email confirmation required), the workspace will be
+    // created automatically when the user confirms and SIGNED_IN fires.
     return { error: error as Error | null };
   }
 
@@ -159,7 +132,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   async function resetPassword(email: string) {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth/reset-password`
+      redirectTo: `${window.location.origin}/auth/reset-password`,
     });
     return { error: error as Error | null };
   }
