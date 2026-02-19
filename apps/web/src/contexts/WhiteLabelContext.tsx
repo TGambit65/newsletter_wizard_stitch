@@ -25,7 +25,7 @@ interface WhiteLabelContextType {
 const defaultConfig: WhiteLabelConfig = {
   brand_name: 'Newsletter Wizard',
   logo_url: null,
-  primary_color: '#6366f1',
+  primary_color: '#0066FF',
   secondary_color: '#8b5cf6',
   custom_domain: null,
   feature_flags: {
@@ -45,6 +45,23 @@ export function useWhiteLabel() {
   return useContext(WhiteLabelContext);
 }
 
+// Derives Tailwind-compatible RGB channel strings from a hex color for all primary shades.
+// CSS variables are set as space-separated channels (e.g. "0 102 255") so Tailwind's
+// rgb(var(--color-primary-500) / <alpha-value>) opacity syntax works correctly.
+function applyPrimaryColorVars(primaryColor: string) {
+  const match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(primaryColor.trim());
+  if (!match) return;
+  const [r, g, b] = [parseInt(match[1], 16), parseInt(match[2], 16), parseInt(match[3], 16)];
+  const mix = (c: number, target: number, t: number) => Math.round(c + (target - c) * t);
+  const channels = (rr: number, gg: number, bb: number) => `${rr} ${gg} ${bb}`;
+  const root = document.documentElement;
+  root.style.setProperty('--color-primary-50', channels(mix(r,255,0.9), mix(g,255,0.9), mix(b,255,0.9)));
+  root.style.setProperty('--color-primary-100', channels(mix(r,255,0.8), mix(g,255,0.8), mix(b,255,0.8)));
+  root.style.setProperty('--color-primary-500', channels(r, g, b));
+  root.style.setProperty('--color-primary-600', channels(mix(r,0,0.2), mix(g,0,0.2), mix(b,0,0.2)));
+  root.style.setProperty('--color-primary-900', channels(mix(r,0,0.4), mix(g,0,0.4), mix(b,0,0.4)));
+}
+
 export function WhiteLabelProvider({ children }: { children: ReactNode }) {
   const { tenant } = useAuth();
   const [config, setConfig] = useState<WhiteLabelConfig>(defaultConfig);
@@ -55,11 +72,10 @@ export function WhiteLabelProvider({ children }: { children: ReactNode }) {
   }, [tenant]);
 
   useEffect(() => {
-    // Apply CSS variables when config changes
     if (config) {
-      document.documentElement.style.setProperty('--color-primary', config.primary_color);
+      applyPrimaryColorVars(config.primary_color);
       document.documentElement.style.setProperty('--color-secondary', config.secondary_color);
-      
+
       // Update meta theme-color for mobile browsers
       const metaTheme = document.querySelector('meta[name="theme-color"]');
       if (metaTheme) {

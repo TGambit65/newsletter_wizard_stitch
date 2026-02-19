@@ -23,12 +23,12 @@ module.exports = {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         primary: {
-          50: '#E6F0FF',
-          100: '#CCE0FF',
-          500: '#0066FF',
-          600: '#0052CC',
-          900: '#003D99',
-          DEFAULT: '#0066FF',
+          50: 'rgb(var(--color-primary-50) / <alpha-value>)',
+          100: 'rgb(var(--color-primary-100) / <alpha-value>)',
+          500: 'rgb(var(--color-primary-500) / <alpha-value>)',
+          600: 'rgb(var(--color-primary-600) / <alpha-value>)',
+          900: 'rgb(var(--color-primary-900) / <alpha-value>)',
+          DEFAULT: 'rgb(var(--color-primary-500) / <alpha-value>)',
           foreground: '#FFFFFF',
         },
         neutral: {

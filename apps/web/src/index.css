@@ -6,6 +6,12 @@
 
 @layer base {
   :root {
+    /* Primary color channel defaults (#0066FF) — overridden at runtime by WhiteLabelContext */
+    --color-primary-50: 230 240 255;
+    --color-primary-100: 204 224 255;
+    --color-primary-500: 0 102 255;
+    --color-primary-600: 0 82 204;
+    --color-primary-900: 0 61 153;
     --radius: 0.5rem;
     --background: 0 0% 100%;
     --foreground: 0 0% 9%;
