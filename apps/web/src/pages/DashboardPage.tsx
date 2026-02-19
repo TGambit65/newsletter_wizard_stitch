@@ -304,13 +304,13 @@ export function DashboardPage() {
                 <div className="flex justify-between text-sm mb-1">
                   <span className="text-neutral-600 dark:text-neutral-400">Newsletters</span>
                   <span className="font-medium text-neutral-900 dark:text-white">
-                    {stats.totalNewsletters} / {limits.newsletters}
+                    {stats.sentNewsletters} / {limits.newsletters}
                   </span>
                 </div>
                 <div className="h-2 bg-neutral-100 dark:bg-neutral-700 rounded-full overflow-hidden">
-                  <div 
+                  <div
                     className="h-full bg-success rounded-full transition-all duration-500"
-                    style={{ width: `${(stats.totalNewsletters / limits.newsletters) * 100}%` }}
+                    style={{ width: `${(stats.sentNewsletters / limits.newsletters) * 100}%` }}
                   />
                 </div>
               </div>
