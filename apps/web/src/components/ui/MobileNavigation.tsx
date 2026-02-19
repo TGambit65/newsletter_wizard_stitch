@@ -1,12 +1,12 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Database, Mail, Wand2, Settings } from 'lucide-react';
+import { LayoutDashboard, Database, Wand2, BarChart3, Settings } from 'lucide-react';
 import clsx from 'clsx';
 
 const mobileNavItems = [
-  { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
+  { name: 'Home', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Sources', href: '/knowledge-base', icon: Database },
   { name: 'Create', href: '/wizard', icon: Wand2, primary: true },
-  { name: 'Newsletters', href: '/newsletters', icon: Mail },
+  { name: 'Analytics', href: '/analytics', icon: BarChart3 },
   { name: 'Settings', href: '/settings', icon: Settings },
 ];
 
@@ -25,16 +25,23 @@ export function MobileNavigation() {
               <Link
                 key={item.name}
                 to={item.href}
+                aria-label={item.name}
                 aria-current={isActive ? 'page' : undefined}
                 className="flex flex-col items-center justify-center -mt-6"
               >
-                <div className={clsx(
-                  'w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform',
-                  isActive 
-                    ? 'bg-primary-600 scale-110' 
-                    : 'bg-primary-500 hover:bg-primary-600'
-                )}>
-                  <item.icon className="w-6 h-6 text-white" />
+                <div className="relative">
+                  <div className={clsx(
+                    'w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-transform',
+                    isActive
+                      ? 'bg-primary-600 scale-110'
+                      : 'bg-primary-500 hover:bg-primary-600'
+                  )}>
+                    <item.icon className="w-6 h-6 text-white" />
+                  </div>
+                  {/* Glow pulse — only when not active */}
+                  {!isActive && (
+                    <span className="absolute inset-0 rounded-full bg-primary-500 animate-ping opacity-20" />
+                  )}
                 </div>
                 <span className="text-xs font-medium mt-1 text-primary-600 dark:text-primary-400">
                   {item.name}

@@ -4,30 +4,37 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useWhiteLabel } from '@/contexts/WhiteLabelContext';
 import { useTheme } from '@/hooks/useTheme';
 import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
-import { 
-  LayoutDashboard, 
-  Database, 
-  Mail, 
-  BarChart3, 
-  Settings, 
-  Wand2, 
-  LogOut, 
-  Menu, 
+import {
+  LayoutDashboard,
+  Database,
+  Mail,
+  BarChart3,
+  Settings,
+  Wand2,
+  LogOut,
+  Menu,
   X,
   ChevronDown,
   User,
-  Building2
+  Building2,
+  BookOpen,
+  Calendar,
+  Plus,
 } from 'lucide-react';
 import clsx from 'clsx';
 import { Breadcrumbs, MobileBreadcrumb } from '@/components/ui/Breadcrumbs';
 import { MobileNavigation } from '@/components/ui/MobileNavigation';
 
-const navigation = [
+const primaryNav = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
   { name: 'Knowledge Base', href: '/knowledge-base', icon: Database },
   { name: 'Newsletters', href: '/newsletters', icon: Mail },
-  { name: 'Create', href: '/wizard', icon: Wand2 },
+  { name: 'Templates', href: '/templates', icon: BookOpen },
   { name: 'Analytics', href: '/analytics', icon: BarChart3 },
+];
+
+const secondaryNav = [
+  { name: 'Scheduling', href: '/scheduling', icon: Calendar },
   { name: 'Settings', href: '/settings', icon: Settings },
   { name: 'Partner Portal', href: '/partner', icon: Building2 },
 ];
@@ -51,10 +58,13 @@ export function DashboardLayout() {
       )}
 
       {/* Sidebar */}
-      <aside className={clsx(
-        'fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white dark:bg-neutral-800 border-r border-neutral-200 dark:border-neutral-700 transform transition-transform duration-250 ease-out lg:translate-x-0',
-        sidebarOpen ? 'translate-x-0' : '-translate-x-full'
-      )}>
+      <aside
+        aria-label="Sidebar navigation"
+        className={clsx(
+          'fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white dark:bg-neutral-800 border-r border-neutral-200 dark:border-neutral-700 transform transition-transform duration-250 ease-out lg:translate-x-0',
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        )}
+      >
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="flex items-center justify-between h-16 px-6 border-b border-neutral-200 dark:border-neutral-700">
@@ -68,7 +78,8 @@ export function DashboardLayout() {
               )}
               <span className="font-semibold text-lg text-neutral-900 dark:text-white">{whiteLabel.brand_name}</span>
             </Link>
-            <button 
+            <button
+              aria-label="Close sidebar"
               className="lg:hidden p-1 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded"
               onClick={() => setSidebarOpen(false)}
             >
@@ -77,14 +88,53 @@ export function DashboardLayout() {
           </div>
 
           {/* Navigation */}
-          <nav className="flex-1 px-3 py-4 space-y-1">
-            {navigation.map((item) => {
-              const isActive = location.pathname === item.href || 
+          <nav aria-label="Main navigation" className="flex-1 px-3 py-4 flex flex-col gap-1 overflow-y-auto">
+            {/* Create Newsletter prominent button */}
+            <Link
+              to="/wizard"
+              aria-label="Create newsletter with AI"
+              className="flex items-center gap-2 px-3 py-2.5 mb-3 rounded-lg bg-primary-500 hover:bg-primary-600 text-white text-sm font-semibold transition-colors"
+              onClick={() => setSidebarOpen(false)}
+            >
+              <Plus className="w-4 h-4" />
+              Create Newsletter
+            </Link>
+
+            {/* Primary nav */}
+            {primaryNav.map((item) => {
+              const isActive = location.pathname === item.href ||
                 (item.href !== '/dashboard' && location.pathname.startsWith(item.href));
               return (
                 <Link
                   key={item.name}
                   to={item.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={clsx(
+                    'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
+                    isActive
+                      ? 'bg-primary-50 text-primary-600 dark:bg-primary-900/20 dark:text-primary-400'
+                      : 'text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-700'
+                  )}
+                  onClick={() => setSidebarOpen(false)}
+                >
+                  <item.icon className={clsx('w-5 h-5', isActive ? 'text-primary-500' : 'text-neutral-500')} />
+                  {item.name}
+                </Link>
+              );
+            })}
+
+            {/* Divider */}
+            <div className="my-2 border-t border-neutral-200 dark:border-neutral-700" />
+
+            {/* Secondary nav */}
+            {secondaryNav.map((item) => {
+              const isActive = location.pathname === item.href ||
+                (item.href !== '/dashboard' && location.pathname.startsWith(item.href));
+              return (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  aria-current={isActive ? 'page' : undefined}
                   className={clsx(
                     'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200',
                     isActive
@@ -153,6 +203,7 @@ export function DashboardLayout() {
         {/* Top bar */}
         <header className="h-16 bg-white dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 flex items-center px-4 lg:px-8 transition-colors duration-150">
           <button
+            aria-label="Open navigation menu"
             className="lg:hidden p-2 -ml-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
             onClick={() => setSidebarOpen(true)}
           >

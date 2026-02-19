@@ -5,6 +5,8 @@ import { WhiteLabelProvider } from '@/contexts/WhiteLabelContext';
 import { ThemeProvider } from '@/hooks/useTheme';
 import { ToastProvider } from '@/components/ui/Toast';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
+import { SplashScreen } from '@/components/SplashScreen';
+import { hasCompletedOnboarding } from '@/pages/OnboardingPage';
 
 // Lazy load pages for better performance
 const LoginPage = lazy(() => import('@/pages/auth/LoginPage').then(m => ({ default: m.LoginPage })));
@@ -26,6 +28,9 @@ const PartnerPortalPage = lazy(() => import('@/pages/PartnerPortalPage').then(m 
 const EmbedWizardPage = lazy(() => import('@/pages/EmbedWizardPage').then(m => ({ default: m.EmbedWizardPage })));
 const EmbedKnowledgeBasePage = lazy(() => import('@/pages/EmbedKnowledgeBasePage').then(m => ({ default: m.EmbedKnowledgeBasePage })));
 const SocialMediaPage = lazy(() => import('@/pages/SocialMediaPage').then(m => ({ default: m.SocialMediaPage })));
+const OnboardingPage = lazy(() => import('@/pages/OnboardingPage').then(m => ({ default: m.OnboardingPage })));
+const TemplatesPage = lazy(() => import('@/pages/TemplatesPage').then(m => ({ default: m.TemplatesPage })));
+const SchedulingPage = lazy(() => import('@/pages/SchedulingPage').then(m => ({ default: m.SchedulingPage })));
 
 function LoadingSpinner() {
   return (
@@ -35,31 +40,35 @@ function LoadingSpinner() {
   );
 }
 
-function ProtectedRoute({ children }: { children: React.ReactNode }) {
+function ProtectedRoute({ children, skipOnboarding = false }: { children: React.ReactNode; skipOnboarding?: boolean }) {
   const { user, loading } = useAuth();
-  
+
   if (loading) {
-    return <LoadingSpinner />;
+    return <SplashScreen />;
   }
-  
+
   if (!user) {
     return <Navigate to="/login" replace />;
   }
-  
+
+  if (!skipOnboarding && !hasCompletedOnboarding(user.id)) {
+    return <Navigate to="/onboarding" replace />;
+  }
+
   return <>{children}</>;
 }
 
 function PublicRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
-  
+
   if (loading) {
-    return <LoadingSpinner />;
+    return <SplashScreen />;
   }
-  
+
   if (user) {
     return <Navigate to="/dashboard" replace />;
   }
-  
+
   return <>{children}</>;
 }
 
@@ -73,6 +82,9 @@ function AppRoutes() {
         <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordPage /></PublicRoute>} />
         <Route path="/auth/callback" element={<AuthCallbackPage />} />
         <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
+
+        {/* Onboarding — shown to new users before dashboard */}
+        <Route path="/onboarding" element={<ProtectedRoute skipOnboarding><OnboardingPage /></ProtectedRoute>} />
         
         {/* Embeddable wizard (public) */}
         <Route path="/embed" element={<EmbedWizardPage />} />
@@ -93,6 +105,8 @@ function AppRoutes() {
           <Route path="settings/api-keys" element={<ApiKeysPage />} />
           <Route path="settings/webhooks" element={<WebhooksPage />} />
           <Route path="partner" element={<PartnerPortalPage />} />
+          <Route path="templates" element={<TemplatesPage />} />
+          <Route path="scheduling" element={<SchedulingPage />} />
         </Route>
         
         {/* Fallback */}
