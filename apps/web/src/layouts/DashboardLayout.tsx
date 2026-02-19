@@ -21,7 +21,6 @@ import {
   X,
   ChevronDown,
   User,
-  Building2,
   BookOpen,
   Calendar,
   Plus,
@@ -62,7 +61,6 @@ const secondaryNav = [
   { name: 'Referrals', href: '/referral', icon: Gift },
   { name: "What's New", href: '/whats-new', icon: Sparkles, showBadge: true },
   { name: 'Settings', href: '/settings', icon: Settings },
-  { name: 'Partner Portal', href: '/partner', icon: Building2 },
 ];
 
 export function DashboardLayout() {

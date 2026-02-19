@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase, TIER_LIMITS, SubscriptionTier } from '@/lib/supabase';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
 import { useToast } from '@/components/ui/Toast';
 import { api } from '@/lib/api';
-import { 
-  User, 
-  CreditCard, 
-  Link as LinkIcon, 
+import {
+  User,
+  CreditCard,
+  Link as LinkIcon,
   Check,
   ArrowRight,
   Mail,
@@ -20,7 +22,8 @@ import {
   Plus,
   Trash2,
   RefreshCw,
-  X
+  X,
+  Building2,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -72,6 +75,7 @@ export function SettingsPage() {
   const [trainingSamples, setTrainingSamples] = useState<string[]>(['']);
   const [trainingProfile, setTrainingProfile] = useState<string | null>(null);
   const [training, setTraining] = useState(false);
+  const [deleteProfileId, setDeleteProfileId] = useState<string | null>(null);
 
   const tabs = [
     { id: 'profile', name: 'Profile', icon: User },
@@ -177,10 +181,14 @@ export function SettingsPage() {
   }
 
   async function deleteVoiceProfile(id: string) {
-    if (!confirm('Delete this voice profile?')) return;
-    
-    await supabase.from('voice_profiles').delete().eq('id', id);
-    setVoiceProfiles(voiceProfiles.filter(v => v.id !== id));
+    setDeleteProfileId(id);
+  }
+
+  async function confirmDeleteVoiceProfile() {
+    if (!deleteProfileId) return;
+    await supabase.from('voice_profiles').delete().eq('id', deleteProfileId);
+    setVoiceProfiles(voiceProfiles.filter(v => v.id !== deleteProfileId));
+    setDeleteProfileId(null);
   }
 
   async function trainVoiceProfile(profileId: string) {
@@ -281,6 +289,15 @@ export function SettingsPage() {
               <span className="font-medium">{tab.name}</span>
             </button>
           ))}
+          <div className="pt-2 mt-2 border-t border-neutral-200 dark:border-neutral-700">
+            <Link
+              to="/partner"
+              className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-colors text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700"
+            >
+              <Building2 className="w-5 h-5" />
+              <span className="font-medium">Partner Portal</span>
+            </Link>
+          </div>
         </nav>
 
         {/* Content */}
@@ -612,6 +629,17 @@ export function SettingsPage() {
           )}
         </div>
       </div>
+
+      {/* Delete voice profile confirmation */}
+      <ConfirmDialog
+        open={!!deleteProfileId}
+        onOpenChange={(open) => { if (!open) setDeleteProfileId(null); }}
+        title="Delete voice profile?"
+        description="This action cannot be undone."
+        confirmLabel="Delete"
+        variant="danger"
+        onConfirm={confirmDeleteVoiceProfile}
+      />
 
       {/* Create Voice Modal */}
       {showVoiceModal && (
