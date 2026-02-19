@@ -1,4 +1,4 @@
-import { callEdgeFunction } from './core';
+import { callEdgeFunction, callAuthEdgeFunction } from './core';
 
 interface TrainVoiceRequest {
   voice_profile_id: string;
@@ -30,4 +30,8 @@ export async function trainVoice(request: TrainVoiceRequest): Promise<TrainVoice
 
 export async function previewVoice(request: PreviewVoiceRequest): Promise<{ rewritten_text: string }> {
   return callEdgeFunction('preview-voice', request);
+}
+
+export async function generateStyleGuide(voiceProfileId: string): Promise<{ style_guide_html: string }> {
+  return callAuthEdgeFunction('generate-style-guide', { voice_profile_id: voiceProfileId });
 }
