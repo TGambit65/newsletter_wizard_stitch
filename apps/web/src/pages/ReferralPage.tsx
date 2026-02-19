@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { useAuth } from '@/contexts/AuthContext';
+import { useState, useEffect } from 'react';
 import { useToast } from '@/components/ui/Toast';
+import { getReferralCode, getReferralStats, sendReferralInvite, getReferralLeaderboard, type LeaderboardEntry } from '@/lib/api';
 import {
   Link2,
   Copy,
@@ -49,31 +49,43 @@ const REWARD_TIERS: RewardTier[] = [
   },
 ];
 
-// Simulated leaderboard — real implementation queries referral_codes + referrals tables
-const LEADERBOARD = [
-  { rank: 1, name: 'Sarah K.', referrals: 24, badge: '🥇' },
-  { rank: 2, name: 'Marcus T.', referrals: 18, badge: '🥈' },
-  { rank: 3, name: 'Priya M.', referrals: 15, badge: '🥉' },
-  { rank: 4, name: 'David R.', referrals: 11, badge: null },
-  { rank: 5, name: 'Chen W.', referrals: 9, badge: null },
-];
+const RANK_BADGES: Record<number, string> = { 1: '🥇', 2: '🥈', 3: '🥉' };
 
 export function ReferralPage() {
-  const { profile } = useAuth();
   const toast = useToast();
 
-  // Derive referral code from user ID (first 8 chars) — real impl queries referral_codes table
-  const referralCode = profile?.id?.slice(0, 8).toUpperCase() ?? 'XXXXXXXX';
-  const referralLink = `https://newsletterwizard.io/signup?ref=${referralCode}`;
+  const [referralCode, setReferralCode]   = useState('');
+  const [referralLink, setReferralLink]   = useState('');
+  const [stats, setStats]                 = useState({ sent: 0, converted: 0, earned: '$0' });
+  const [leaderboard, setLeaderboard]     = useState<LeaderboardEntry[]>([]);
+  const [loading, setLoading]             = useState(true);
+  const [copied, setCopied]               = useState(false);
+  const [inviteEmail, setInviteEmail]     = useState('');
+  const [inviting, setInviting]           = useState(false);
+  const [inviteSent, setInviteSent]       = useState(false);
 
-  const [copied, setCopied] = useState(false);
-  const [inviteEmail, setInviteEmail] = useState('');
-  const [inviting, setInviting] = useState(false);
-  const [inviteSent, setInviteSent] = useState(false);
+  const referralsMade = stats.converted; // for tier progress
 
-  // Simulated stats — real impl queries referrals table
-  const stats = { sent: 0, converted: 0, earned: '$0' };
-  const referralsMade = 0; // for tier progress
+  useEffect(() => {
+    async function load() {
+      try {
+        const [codeData, statsData, boardData] = await Promise.all([
+          getReferralCode(),
+          getReferralStats(),
+          getReferralLeaderboard(),
+        ]);
+        setReferralCode(codeData.code);
+        setReferralLink(codeData.link);
+        setStats(statsData);
+        setLeaderboard(boardData.leaderboard);
+      } catch {
+        toast.error('Failed to load referral data');
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
 
   function handleCopy() {
     navigator.clipboard.writeText(referralLink).then(() => {
@@ -87,13 +99,23 @@ export function ReferralPage() {
     e.preventDefault();
     if (!inviteEmail.trim()) return;
     setInviting(true);
-    // Simulate sending invite — real impl calls manage-referrals edge function
-    await new Promise(r => setTimeout(r, 1000));
-    setInviteSent(true);
-    setInviting(false);
-    toast.success(`Invite sent to ${inviteEmail}`);
-    setInviteEmail('');
-    setTimeout(() => setInviteSent(false), 3000);
+    try {
+      const result = await sendReferralInvite(inviteEmail.trim());
+      if (result.already_invited) {
+        toast.success(`${inviteEmail} was already invited`);
+      } else {
+        toast.success(`Invite sent to ${inviteEmail}`);
+      }
+      setInviteSent(true);
+      setInviteEmail('');
+      setTimeout(() => setInviteSent(false), 3000);
+      // Refresh stats
+      getReferralStats().then(setStats);
+    } catch {
+      toast.error('Failed to send invite. Please try again.');
+    } finally {
+      setInviting(false);
+    }
   }
 
   return (
@@ -103,6 +125,14 @@ export function ReferralPage() {
         <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-1">Referral Program</h1>
         <p className="text-neutral-500">Invite friends and earn rewards for every sign-up.</p>
       </div>
+
+      {loading && (
+        <div className="flex justify-center py-12">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
+        </div>
+      )}
+
+      {loading ? null : (<>
 
       {/* Stats row */}
       <div className="grid grid-cols-3 gap-4">
@@ -217,10 +247,12 @@ export function ReferralPage() {
             <h2 className="font-semibold text-neutral-900 dark:text-white">Top referrers</h2>
           </div>
           <div className="space-y-2">
-            {LEADERBOARD.map(entry => (
+            {leaderboard.length === 0 ? (
+              <p className="text-sm text-neutral-400 text-center py-4">No referrals yet — be the first!</p>
+            ) : leaderboard.map(entry => (
               <div key={entry.rank} className="flex items-center gap-3">
                 <span className="w-6 text-center text-sm font-mono text-neutral-400">
-                  {entry.badge ?? `${entry.rank}.`}
+                  {RANK_BADGES[entry.rank] ?? `${entry.rank}.`}
                 </span>
                 <span className="flex-1 text-sm text-neutral-700 dark:text-neutral-300">{entry.name}</span>
                 <span className="text-sm font-semibold text-neutral-900 dark:text-white">
@@ -232,6 +264,7 @@ export function ReferralPage() {
           <p className="mt-4 text-xs text-neutral-400">Updated daily</p>
         </div>
       </div>
+    </>)}
     </div>
   );
 }

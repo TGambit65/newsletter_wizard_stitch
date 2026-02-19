@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/components/ui/Toast';
+import { supabase } from '@/lib/supabase';
 import {
   MessageSquare,
   ThumbsUp,
@@ -8,7 +10,6 @@ import {
   Smile,
   Meh,
   Frown,
-  ArrowUpRight,
   CheckCircle2,
   Trophy,
 } from 'lucide-react';
@@ -26,136 +27,197 @@ interface FeatureRequest {
 }
 
 const STATUS_CONFIG: Record<FeatureRequest['status'], { label: string; color: string; bg: string }> = {
-  open: { label: 'Open', color: 'text-neutral-600 dark:text-neutral-400', bg: 'bg-neutral-100 dark:bg-neutral-700' },
-  planned: { label: 'Planned', color: 'text-info', bg: 'bg-info/10' },
+  open:        { label: 'Open',        color: 'text-neutral-600 dark:text-neutral-400', bg: 'bg-neutral-100 dark:bg-neutral-700' },
+  planned:     { label: 'Planned',     color: 'text-info',    bg: 'bg-info/10'    },
   'in-progress': { label: 'In Progress', color: 'text-warning', bg: 'bg-warning/10' },
-  shipped: { label: 'Shipped', color: 'text-success', bg: 'bg-success/10' },
+  shipped:     { label: 'Shipped',     color: 'text-success', bg: 'bg-success/10' },
 };
 
-const INITIAL_REQUESTS: FeatureRequest[] = [
-  {
-    id: '1',
-    title: 'Newsletter duplication / copy',
-    description: 'Clone an existing newsletter as a starting point for a new one, keeping the same structure and template.',
-    votes: 287,
-    userVoted: false,
-    status: 'planned',
-  },
-  {
-    id: '2',
-    title: 'Email preview mode in mobile browser',
-    description: 'Mobile-friendly preview of newsletters that matches how they look in email clients on iOS/Android.',
-    votes: 214,
-    userVoted: false,
-    status: 'in-progress',
-  },
-  {
-    id: '3',
-    title: 'Drag-and-drop section reordering',
-    description: 'Reorder newsletter sections by dragging them up/down in the editor without cutting and pasting.',
-    votes: 198,
-    userVoted: false,
-    status: 'planned',
-  },
-  {
-    id: '4',
-    title: 'Custom unsubscribe page',
-    description: 'Branded unsubscribe flow with "pause instead of unsubscribe" option and reason survey.',
-    votes: 156,
-    userVoted: false,
-    status: 'open',
-  },
-  {
-    id: '5',
-    title: 'Zapier / Make integration',
-    description: 'Trigger newsletters or add knowledge sources via Zapier/Make.com automations.',
-    votes: 143,
-    userVoted: false,
-    status: 'open',
-  },
-  {
-    id: '6',
-    title: 'AI-generated images inline',
-    description: 'Generate images directly inside the newsletter editor using DALL-E or Stable Diffusion.',
-    votes: 121,
-    userVoted: false,
-    status: 'open',
-  },
-  {
-    id: '7',
-    title: 'Multi-language newsletter generation',
-    description: 'Auto-translate or natively generate newsletters in Spanish, French, German, and other languages.',
-    votes: 98,
-    userVoted: false,
-    status: 'open',
-  },
-  {
-    id: '8',
-    title: 'Dark mode email templates',
-    description: 'Newsletter templates that properly render in dark mode email clients with appropriate color inversions.',
-    votes: 89,
-    userVoted: false,
-    status: 'shipped',
-  },
-];
+const DB_MOOD_MAP: Record<NonNullable<Mood>, 'happy' | 'neutral' | 'sad'> = {
+  great: 'happy',
+  okay:  'neutral',
+  poor:  'sad',
+};
 
 const MOOD_CONFIG: { id: Mood; label: string; icon: React.ComponentType<{ className?: string }>; color: string }[] = [
-  { id: 'great', label: 'Great!', icon: Smile, color: 'text-success' },
-  { id: 'okay', label: 'Okay', icon: Meh, color: 'text-warning' },
-  { id: 'poor', label: 'Needs work', icon: Frown, color: 'text-error' },
+  { id: 'great', label: 'Great!',     icon: Smile, color: 'text-success' },
+  { id: 'okay',  label: 'Okay',       icon: Meh,   color: 'text-warning' },
+  { id: 'poor',  label: 'Needs work', icon: Frown,  color: 'text-error'   },
 ];
 
 export function FeedbackPage() {
+  const { profile } = useAuth();
   const toast = useToast();
 
+  const tenantId = profile?.tenant_id;
+  const userId   = profile?.id;
+
   // Quick feedback
-  const [mood, setMood] = useState<Mood>(null);
-  const [feedbackText, setFeedbackText] = useState('');
+  const [mood, setMood]                     = useState<Mood>(null);
+  const [feedbackText, setFeedbackText]     = useState('');
   const [feedbackSubmitted, setFeedbackSubmitted] = useState(false);
+  const [submitting, setSubmitting]         = useState(false);
 
   // Feature requests
-  const [requests, setRequests] = useState<FeatureRequest[]>(INITIAL_REQUESTS);
+  const [requests, setRequests]             = useState<FeatureRequest[]>([]);
+  const [loading, setLoading]               = useState(true);
   const [showNewRequest, setShowNewRequest] = useState(false);
-  const [newTitle, setNewTitle] = useState('');
-  const [newDesc, setNewDesc] = useState('');
-  const [filterStatus, setFilterStatus] = useState<FeatureRequest['status'] | 'all'>('all');
+  const [newTitle, setNewTitle]             = useState('');
+  const [newDesc, setNewDesc]               = useState('');
+  const [submittingRequest, setSubmittingRequest] = useState(false);
+  const [filterStatus, setFilterStatus]     = useState<FeatureRequest['status'] | 'all'>('all');
 
-  function handleFeedbackSubmit(e: React.FormEvent) {
+  // ── Load feature requests ────────────────────────────────────────────────
+  useEffect(() => {
+    if (!tenantId) return;
+
+    async function load() {
+      const [requestsResult, votesResult] = await Promise.all([
+        supabase.from('feature_requests').select('*').order('vote_count', { ascending: false }),
+        supabase.from('feature_request_votes').select('feature_request_id').eq('tenant_id', tenantId),
+      ]);
+
+      if (requestsResult.error) {
+        toast.error('Failed to load feature requests');
+        setLoading(false);
+        return;
+      }
+
+      const votedIds = new Set((votesResult.data ?? []).map(v => v.feature_request_id));
+
+      const merged: FeatureRequest[] = (requestsResult.data ?? []).map((r: {
+        id: string; title: string; description: string | null;
+        vote_count: number; status: string;
+      }) => ({
+        id:          r.id,
+        title:       r.title,
+        description: r.description ?? '',
+        votes:       r.vote_count,
+        userVoted:   votedIds.has(r.id),
+        status:      r.status as FeatureRequest['status'],
+      }));
+
+      setRequests(merged);
+      setLoading(false);
+    }
+
+    load();
+  }, [tenantId]);
+
+  // ── Submit mood feedback ─────────────────────────────────────────────────
+  async function handleFeedbackSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!mood) {
       toast.error('Please select how you feel first');
       return;
     }
-    setFeedbackSubmitted(true);
-    toast.success('Thanks for your feedback!');
+    if (!tenantId || !userId) return;
+
+    setSubmitting(true);
+    const { error } = await supabase.from('feedback').insert({
+      tenant_id: tenantId,
+      user_id:   userId,
+      mood:      DB_MOOD_MAP[mood],
+      comment:   feedbackText.trim() || null,
+    });
+    setSubmitting(false);
+
+    if (error) {
+      toast.error('Failed to submit feedback — please try again');
+    } else {
+      setFeedbackSubmitted(true);
+      toast.success('Thanks for your feedback!');
+    }
   }
 
-  function handleVote(id: string) {
-    setRequests(prev => prev.map(r => {
-      if (r.id !== id) return r;
-      return {
-        ...r,
-        userVoted: !r.userVoted,
-        votes: r.userVoted ? r.votes - 1 : r.votes + 1,
-      };
-    }));
+  // ── Vote on feature request ──────────────────────────────────────────────
+  async function handleVote(id: string) {
+    if (!tenantId) return;
+
+    const req = requests.find(r => r.id === id);
+    if (!req) return;
+
+    const wasVoted  = req.userVoted;
+    const newVoted  = !wasVoted;
+    const delta     = newVoted ? 1 : -1;
+
+    // Optimistic update
+    setRequests(prev => prev.map(r =>
+      r.id === id ? { ...r, userVoted: newVoted, votes: r.votes + delta } : r
+    ));
+
+    let voteError: { message: string } | null = null;
+    let countError: { message: string } | null = null;
+
+    if (newVoted) {
+      const result = await supabase.from('feature_request_votes').insert({
+        tenant_id:          tenantId,
+        feature_request_id: id,
+      });
+      voteError = result.error;
+    } else {
+      const result = await supabase.from('feature_request_votes')
+        .delete()
+        .eq('tenant_id', tenantId)
+        .eq('feature_request_id', id);
+      voteError = result.error;
+    }
+
+    if (!voteError) {
+      const result = await supabase.from('feature_requests')
+        .update({ vote_count: req.votes + delta })
+        .eq('id', id);
+      countError = result.error;
+    }
+
+    if (voteError || countError) {
+      // Revert
+      setRequests(prev => prev.map(r =>
+        r.id === id ? { ...r, userVoted: wasVoted, votes: req.votes } : r
+      ));
+      toast.error('Vote failed — please try again');
+    }
   }
 
-  function handleNewRequest(e: React.FormEvent) {
+  // ── Submit new feature request ───────────────────────────────────────────
+  async function handleNewRequest(e: React.FormEvent) {
     e.preventDefault();
-    if (!newTitle.trim()) return;
+    if (!newTitle.trim() || !tenantId) return;
+
+    setSubmittingRequest(true);
+    const { data, error } = await supabase.from('feature_requests').insert({
+      title:       newTitle.trim(),
+      description: newDesc.trim() || null,
+      status:      'open',
+      vote_count:  1,
+    }).select().single();
+
+    if (error || !data) {
+      setSubmittingRequest(false);
+      toast.error('Failed to submit request — please try again');
+      return;
+    }
+
+    // Also cast a vote for the newly created request
+    await supabase.from('feature_request_votes').insert({
+      tenant_id:          tenantId,
+      feature_request_id: data.id,
+    });
+
     const newReq: FeatureRequest = {
-      id: Date.now().toString(),
-      title: newTitle.trim(),
-      description: newDesc.trim(),
-      votes: 1,
-      userVoted: true,
-      status: 'open',
+      id:          data.id,
+      title:       data.title,
+      description: data.description ?? '',
+      votes:       1,
+      userVoted:   true,
+      status:      'open',
     };
+
     setRequests(prev => [newReq, ...prev]);
     setNewTitle('');
     setNewDesc('');
     setShowNewRequest(false);
+    setSubmittingRequest(false);
     toast.success('Feature request submitted!');
   }
 
@@ -225,10 +287,11 @@ export function FeedbackPage() {
 
             <button
               type="submit"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors font-medium text-sm"
+              disabled={submitting}
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Send className="w-4 h-4" />
-              Send feedback
+              {submitting ? 'Sending...' : 'Send feedback'}
             </button>
           </form>
         )}
@@ -271,9 +334,10 @@ export function FeedbackPage() {
             <div className="flex gap-2">
               <button
                 type="submit"
-                className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors text-sm font-medium"
+                disabled={submittingRequest}
+                className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors text-sm font-medium disabled:opacity-50"
               >
-                Submit
+                {submittingRequest ? 'Submitting...' : 'Submit'}
               </button>
               <button
                 type="button"
@@ -304,54 +368,69 @@ export function FeedbackPage() {
           ))}
         </div>
 
+        {/* Loading */}
+        {loading && (
+          <div className="flex justify-center py-12">
+            <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent" />
+          </div>
+        )}
+
         {/* Request list */}
-        <div className="space-y-3">
-          {sorted.map((req, i) => {
-            const statusConf = STATUS_CONFIG[req.status];
-            return (
-              <div key={req.id} className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl p-4 flex gap-4">
-                {/* Rank */}
-                <div className="flex-shrink-0 flex flex-col items-center gap-1 pt-1">
-                  {i < 3 && filterStatus === 'all' && req.status !== 'shipped' ? (
-                    <Trophy className={clsx('w-5 h-5', i === 0 ? 'text-amber-500' : i === 1 ? 'text-neutral-400' : 'text-amber-700')} />
-                  ) : (
-                    <span className="text-sm font-bold text-neutral-400 w-5 text-center">{i + 1}</span>
-                  )}
-                </div>
-
-                {/* Vote button */}
-                <div className="flex-shrink-0">
-                  <button
-                    onClick={() => handleVote(req.id)}
-                    className={clsx(
-                      'flex flex-col items-center gap-0.5 px-2.5 py-2 rounded-lg border-2 transition-all min-w-[52px]',
-                      req.userVoted
-                        ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400'
-                        : 'border-neutral-200 dark:border-neutral-700 text-neutral-500 hover:border-neutral-300 dark:hover:border-neutral-600'
-                    )}
-                    aria-label={req.userVoted ? 'Remove vote' : 'Vote for this feature'}
-                  >
-                    <ThumbsUp className="w-4 h-4" />
-                    <span className="text-xs font-bold">{req.votes}</span>
-                  </button>
-                </div>
-
-                {/* Content */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap mb-0.5">
-                    <h3 className="font-medium text-neutral-900 dark:text-white">{req.title}</h3>
-                    <span className={clsx('text-xs px-2 py-0.5 rounded-full font-medium', statusConf.bg, statusConf.color)}>
-                      {statusConf.label}
-                    </span>
-                  </div>
-                  {req.description && (
-                    <p className="text-sm text-neutral-500 dark:text-neutral-400">{req.description}</p>
-                  )}
-                </div>
+        {!loading && (
+          <div className="space-y-3">
+            {sorted.length === 0 && (
+              <div className="text-center py-12 text-neutral-400">
+                <MessageSquare className="w-10 h-10 mx-auto mb-3 opacity-40" />
+                <p>No feature requests yet — be the first!</p>
               </div>
-            );
-          })}
-        </div>
+            )}
+            {sorted.map((req, i) => {
+              const statusConf = STATUS_CONFIG[req.status];
+              return (
+                <div key={req.id} className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl p-4 flex gap-4">
+                  {/* Rank */}
+                  <div className="flex-shrink-0 flex flex-col items-center gap-1 pt-1">
+                    {i < 3 && filterStatus === 'all' && req.status !== 'shipped' ? (
+                      <Trophy className={clsx('w-5 h-5', i === 0 ? 'text-amber-500' : i === 1 ? 'text-neutral-400' : 'text-amber-700')} />
+                    ) : (
+                      <span className="text-sm font-bold text-neutral-400 w-5 text-center">{i + 1}</span>
+                    )}
+                  </div>
+
+                  {/* Vote button */}
+                  <div className="flex-shrink-0">
+                    <button
+                      onClick={() => handleVote(req.id)}
+                      className={clsx(
+                        'flex flex-col items-center gap-0.5 px-2.5 py-2 rounded-lg border-2 transition-all min-w-[52px]',
+                        req.userVoted
+                          ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400'
+                          : 'border-neutral-200 dark:border-neutral-700 text-neutral-500 hover:border-neutral-300 dark:hover:border-neutral-600'
+                      )}
+                      aria-label={req.userVoted ? 'Remove vote' : 'Vote for this feature'}
+                    >
+                      <ThumbsUp className="w-4 h-4" />
+                      <span className="text-xs font-bold">{req.votes}</span>
+                    </button>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap mb-0.5">
+                      <h3 className="font-medium text-neutral-900 dark:text-white">{req.title}</h3>
+                      <span className={clsx('text-xs px-2 py-0.5 rounded-full font-medium', statusConf.bg, statusConf.color)}>
+                        {statusConf.label}
+                      </span>
+                    </div>
+                    {req.description && (
+                      <p className="text-sm text-neutral-500 dark:text-neutral-400">{req.description}</p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

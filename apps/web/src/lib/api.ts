@@ -229,6 +229,108 @@ export async function generateSocialPosts(request: GenerateSocialPostsRequest): 
   return await callEdgeFunction('generate-social-posts', request);
 }
 
+// ── Authenticated edge function caller ───────────────────────────────────────
+// Uses the current user's JWT (not the anon key) — required for user-scoped
+// functions (export-user-data, delete-account, manage-referrals).
+async function callAuthEdgeFunction<T>(functionName: string, body: object): Promise<T> {
+  const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+  if (sessionError || !session) {
+    throw new ApiError(errorMessages['AUTH_ERROR'], 'AUTH_ERROR', false);
+  }
+
+  const controller = new AbortController();
+  const timeoutId  = setTimeout(() => controller.abort(), 30000);
+
+  try {
+    const response = await fetch(`${supabaseUrl}/functions/v1/${functionName}`, {
+      method:  'POST',
+      headers: {
+        'Content-Type':  'application/json',
+        'Authorization': `Bearer ${session.access_token}`,
+      },
+      body:   JSON.stringify(body),
+      signal: controller.signal,
+    });
+    clearTimeout(timeoutId);
+
+    const data = await response.json();
+    if (!response.ok) {
+      const msg = data?.error ?? errorMessages['UNKNOWN'];
+      throw new ApiError(typeof msg === 'string' ? msg : errorMessages['UNKNOWN'], 'API_ERROR', false);
+    }
+    return data as T;
+  } catch (error) {
+    clearTimeout(timeoutId);
+    if (error instanceof ApiError) throw error;
+    if (error instanceof Error && error.name === 'AbortError') {
+      throw new ApiError(errorMessages['TIMEOUT'], 'TIMEOUT', true);
+    }
+    throw new ApiError(errorMessages['NETWORK_ERROR'], 'NETWORK_ERROR', true);
+  }
+}
+
+// ── New backend API wrappers ──────────────────────────────────────────────────
+
+export interface ExportUserDataResponse {
+  exported_at:       string;
+  export_version:    string;
+  profile:           Record<string, unknown>;
+  tenant:            Record<string, unknown> | null;
+  newsletters:       unknown[];
+  newsletter_stats:  unknown[];
+  knowledge_sources: unknown[];
+  voice_profiles:    unknown[];
+  api_keys:          unknown[];
+  referral_codes:    unknown[];
+  referrals:         unknown[];
+  feedback:          unknown[];
+}
+
+export async function exportUserData(): Promise<ExportUserDataResponse> {
+  return callAuthEdgeFunction<ExportUserDataResponse>('export-user-data', {});
+}
+
+export async function deleteAccount(body: {
+  confirmation: string;
+  reason?:      string;
+  comment?:     string;
+}): Promise<{ success: true }> {
+  return callAuthEdgeFunction<{ success: true }>('delete-account', body);
+}
+
+export interface ReferralCodeResponse {
+  code: string;
+  link: string;
+}
+
+export async function getReferralCode(): Promise<ReferralCodeResponse> {
+  return callAuthEdgeFunction<ReferralCodeResponse>('manage-referrals', { action: 'get_code' });
+}
+
+export interface ReferralStatsResponse {
+  sent:      number;
+  converted: number;
+  earned:    string;
+}
+
+export async function getReferralStats(): Promise<ReferralStatsResponse> {
+  return callAuthEdgeFunction<ReferralStatsResponse>('manage-referrals', { action: 'get_stats' });
+}
+
+export async function sendReferralInvite(email: string): Promise<{ success: boolean; already_invited: boolean }> {
+  return callAuthEdgeFunction('manage-referrals', { action: 'send_invite', email });
+}
+
+export interface LeaderboardEntry {
+  rank:      number;
+  name:      string;
+  referrals: number;
+}
+
+export async function getReferralLeaderboard(): Promise<{ leaderboard: LeaderboardEntry[] }> {
+  return callAuthEdgeFunction('manage-referrals', { action: 'get_leaderboard' });
+}
+
 export const api = {
   processSource,
   ragSearch,
@@ -239,4 +341,10 @@ export const api = {
   sendMailchimp,
   sendConvertKit,
   generateSocialPosts,
+  exportUserData,
+  deleteAccount,
+  getReferralCode,
+  getReferralStats,
+  sendReferralInvite,
+  getReferralLeaderboard,
 };
