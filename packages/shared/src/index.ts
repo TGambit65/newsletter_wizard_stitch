@@ -48,8 +48,9 @@ export interface KnowledgeSource {
   token_count: number;
   chunk_count: number;
   file_path?: string | null;
-  file_size?: number | null;
+  original_filename?: string | null;
   mime_type?: string | null;
+  file_size_bytes?: number | null;
   created_at: string;
   updated_at: string;
 }

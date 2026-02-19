@@ -1,32 +1,18 @@
-import { SourceType, RAGSearchResult } from '../supabase';
+import {
+  RAGSearchResult,
+  ProcessSourceRequest,
+  GenerateContentRequest,
+  GenerateContentResponse,
+} from '@newsletter-wizard/shared';
 import { callEdgeFunction } from './core';
 
-interface ProcessSourceRequest {
-  source_id:   string;
-  source_type: SourceType;
-  content?:    string;
-  url?:        string;
-  file_path?:  string;
-}
+// Re-export so callers importing from '@/lib/api' continue to find these types.
+export type { GenerateContentRequest, GenerateContentResponse };
 
 interface RAGSearchRequest {
   tenant_id: string;
   query:     string;
   limit?:    number;
-}
-
-export interface GenerateContentRequest {
-  tenant_id:        string;
-  topic:            string;
-  context:          RAGSearchResult[];
-  voice_profile_id?: string;
-}
-
-export interface GenerateContentResponse {
-  title:        string;
-  subject_line: string;
-  content_html: string;
-  citations:    { chunk_id: string; text: string }[];
 }
 
 interface UploadDocumentRequest {
