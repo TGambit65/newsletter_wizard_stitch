@@ -20,6 +20,7 @@ import {
   Plus,
   Trash2,
   Wand2,
+  Save,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -113,6 +114,9 @@ export function SocialMediaPage() {
   const [activeTab, setActiveTab] = useState<PlatformKey>('twitter');
   const [showRegenConfirm, setShowRegenConfirm] = useState(false);
   const [remixing, setRemixing] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [saveSuccess, setSaveSuccess] = useState(false);
+  const [postRowIds, setPostRowIds] = useState<Partial<Record<PlatformKey, string>>>({});
   const toast = useToast();
 
   useEffect(() => {
@@ -124,17 +128,32 @@ export function SocialMediaPage() {
   async function loadNewsletter() {
     setLoading(true);
     try {
-      const { data } = await supabase
-        .from('newsletters')
-        .select('*')
-        .eq('id', id)
-        .eq('tenant_id', tenant!.id)
-        .single();
-      
-      if (data) {
-        setNewsletter(data);
-        // Do NOT auto-generate on load — user must click "Regenerate All"
-        // to avoid destroying any previously edited posts on every visit
+      const [{ data: nl }, { data: savedPosts }] = await Promise.all([
+        supabase
+          .from('newsletters')
+          .select('*')
+          .eq('id', id)
+          .eq('tenant_id', tenant!.id)
+          .single(),
+        supabase
+          .from('social_posts')
+          .select('id, platform, content_json')
+          .eq('newsletter_id', id)
+          .eq('tenant_id', tenant!.id),
+      ]);
+
+      if (nl) setNewsletter(nl);
+
+      if (savedPosts && savedPosts.length > 0) {
+        const rowIds: Partial<Record<PlatformKey, string>> = {};
+        const loaded: Partial<SocialPosts> = {};
+        for (const row of savedPosts) {
+          rowIds[row.platform as PlatformKey] = row.id;
+          loaded[row.platform as PlatformKey] = row.content_json as SocialPosts[PlatformKey];
+        }
+        setPostRowIds(rowIds);
+        setPosts(loaded);
+        setEditedPosts(loaded);
       }
     } catch (error) {
       console.error('Error loading newsletter:', error);
@@ -150,15 +169,49 @@ export function SocialMediaPage() {
         newsletter_content: nl.content_html || '',
         newsletter_title: nl.title,
       });
-      
+
       if (result.posts) {
-        setPosts(result.posts as Partial<SocialPosts>);
-        setEditedPosts(result.posts as Partial<SocialPosts>);
+        const p = result.posts as Partial<SocialPosts>;
+        setPosts(p);
+        setEditedPosts(p);
+        await savePosts(p);
       }
     } catch (error) {
       console.error('Error generating social posts:', error);
     } finally {
       setGenerating(false);
+    }
+  }
+
+  async function savePosts(postsToSave: Partial<SocialPosts>) {
+    if (!tenant || !id) return;
+    setSaving(true);
+    try {
+      const newRowIds = { ...postRowIds };
+      for (const [platform, content] of Object.entries(postsToSave)) {
+        const existingId = newRowIds[platform as PlatformKey];
+        if (existingId) {
+          await supabase
+            .from('social_posts')
+            .update({ content_json: content, updated_at: new Date().toISOString() })
+            .eq('id', existingId);
+        } else {
+          const { data } = await supabase
+            .from('social_posts')
+            .insert({ newsletter_id: id, tenant_id: tenant.id, platform, content_json: content })
+            .select('id')
+            .single();
+          if (data) newRowIds[platform as PlatformKey] = data.id;
+        }
+      }
+      setPostRowIds(newRowIds);
+      setSaveSuccess(true);
+      setTimeout(() => setSaveSuccess(false), 2500);
+    } catch (error) {
+      console.error('Error saving social posts:', error);
+      toast.error('Failed to save posts');
+    } finally {
+      setSaving(false);
     }
   }
 
@@ -365,6 +418,20 @@ export function SocialMediaPage() {
             Generated from: {newsletter.title}
           </p>
         </div>
+        <button
+          onClick={() => editedPosts && savePosts(editedPosts)}
+          disabled={saving || !editedPosts}
+          className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors disabled:opacity-50"
+        >
+          {saving ? (
+            <RefreshCw className="w-4 h-4 animate-spin" />
+          ) : saveSuccess ? (
+            <Check className="w-4 h-4 text-success" />
+          ) : (
+            <Save className="w-4 h-4" />
+          )}
+          {saving ? 'Saving...' : saveSuccess ? 'Saved' : 'Save'}
+        </button>
         <button
           onClick={handleRegenerateClick}
           disabled={generating}
