@@ -212,28 +212,9 @@ export function ABTestPage() {
       .update({ status: 'running' })
       .eq('id', activeTest.id);
 
-    // DEMO MODE: Simulated results for demonstration purposes.
-    // Real A/B testing requires ESP webhook integration to track actual opens/clicks.
-    // To implement real tracking:
-    // 1. Configure ESP webhooks to call a Supabase edge function
-    // 2. The edge function should update ab_test_results based on webhook events
-    // 3. Each email should include tracking pixels and unique link parameters
-    const simulatedResults = variants.map(v => ({
-      test_id: activeTest.id,
-      variant: v.name,
-      sends: Math.floor(Math.random() * 500) + 100,
-      opens: Math.floor(Math.random() * 200) + 50,
-      clicks: Math.floor(Math.random() * 50) + 10,
-    }));
-
-    for (const result of simulatedResults) {
-      await supabase
-        .from('ab_test_results')
-        .update(result)
-        .eq('test_id', result.test_id)
-        .eq('variant', result.variant);
-    }
-
+    // Results will populate via ESP webhook integration.
+    // Each email variant needs tracking pixels and unique link parameters.
+    // ESP webhooks should call a Supabase edge function to update ab_test_results.
     await loadData();
   }
 
@@ -382,8 +363,16 @@ export function ABTestPage() {
                   )}
                 </div>
 
-                {/* Results (if test is running or completed) */}
-                {result && (test?.status === 'running' || test?.status === 'completed') && (
+                {/* Awaiting results placeholder */}
+                {test?.status === 'running' && (!result || result.sends === 0) && (
+                  <div className="mb-4 bg-info/5 border border-info/20 rounded-lg p-3 text-sm text-neutral-500 dark:text-neutral-400 flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-info animate-pulse" />
+                    Awaiting results — configure ESP webhooks to track opens and clicks.
+                  </div>
+                )}
+
+                {/* Results (if test is running or completed with real data) */}
+                {result && result.sends > 0 && (test?.status === 'running' || test?.status === 'completed') && (
                   <div className="grid grid-cols-4 gap-4 mb-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg p-3">
                     <div className="text-center">
                       <div className="flex items-center justify-center gap-1 text-neutral-500 text-xs mb-1">

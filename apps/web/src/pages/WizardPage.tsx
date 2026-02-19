@@ -386,25 +386,6 @@ export function WizardPage() {
             ))}
           </div>
 
-          {/* Engagement Metrics */}
-          <div className="bg-neutral-50 dark:bg-neutral-900 rounded-xl p-4 mb-6">
-            <h3 className="font-medium text-neutral-900 dark:text-white mb-3">Audience Insights</h3>
-            <div className="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <p className="text-2xl font-bold text-primary-500">42%</p>
-                <p className="text-xs text-neutral-500">Avg Open Rate</p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-success">8.5%</p>
-                <p className="text-xs text-neutral-500">Click Rate</p>
-              </div>
-              <div>
-                <p className="text-2xl font-bold text-info">3.2</p>
-                <p className="text-xs text-neutral-500">Avg Emails/Subscriber</p>
-              </div>
-            </div>
-          </div>
-
           <div className="flex justify-end">
             <button
               onClick={() => setStep('ideation')}

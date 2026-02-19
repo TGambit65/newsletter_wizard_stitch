@@ -5,7 +5,7 @@ import { useToast } from '@/components/ui/Toast';
 import { ConfirmDialog } from '@/components/ui/Dialog';
 import {
   Building2, Users, FileText, Key, Webhook, Palette,
-  Plus, Trash2, Settings, BarChart3, ArrowUpRight, DollarSign
+  Plus, Trash2, Settings, BarChart3, ArrowUpRight, DollarSign, Copy, CheckCircle
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -316,38 +316,117 @@ export function PartnerPortalPage() {
       ) : (
         <>
           {/* Dashboard Tab */}
-          {activeTab === 'dashboard' && stats && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700">
-                <div className="flex items-center gap-3">
-                  <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-lg">
-                    <Users className="w-6 h-6 text-primary-600" />
+          {activeTab === 'dashboard' && (
+            <div className="space-y-6">
+              {/* Stats (if loaded) */}
+              {stats && (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700">
+                    <div className="flex items-center gap-3">
+                      <div className="p-3 bg-primary-100 dark:bg-primary-900/30 rounded-lg">
+                        <Users className="w-6 h-6 text-primary-600" />
+                      </div>
+                      <div>
+                        <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.total_tenants}</p>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Sub-Tenants</p>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.total_tenants}</p>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">Sub-Tenants</p>
+                  <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700">
+                    <div className="flex items-center gap-3">
+                      <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                        <FileText className="w-6 h-6 text-green-600" />
+                      </div>
+                      <div>
+                        <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.total_newsletters}</p>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Newsletters</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700">
+                    <div className="flex items-center gap-3">
+                      <div className="p-3 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
+                        <ArrowUpRight className="w-6 h-6 text-amber-600" />
+                      </div>
+                      <div>
+                        <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.total_sources}</p>
+                        <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Sources</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700">
-                <div className="flex items-center gap-3">
-                  <div className="p-3 bg-green-100 dark:bg-green-900/30 rounded-lg">
-                    <FileText className="w-6 h-6 text-green-600" />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.total_newsletters}</p>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Newsletters</p>
+              )}
+
+              {/* Getting Started Guide */}
+              <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-6">
+                <h2 className="text-lg font-semibold text-neutral-900 dark:text-white mb-4 flex items-center gap-2">
+                  <Building2 className="w-5 h-5 text-primary-500" />
+                  Get started with the Partner Portal
+                </h2>
+                <ol className="space-y-4 mb-6">
+                  {[
+                    { step: 1, icon: Key, title: 'Create an API key', desc: 'Go to the API Keys tab and generate a key to authenticate your integration.' },
+                    { step: 2, icon: Users, title: 'Create a sub-tenant', desc: 'Use the Sub-Tenants tab to provision a workspace for each of your clients.' },
+                    { step: 3, icon: Webhook, title: 'Configure webhooks', desc: 'Set up webhook endpoints to receive real-time events for newsletter sends and opens.' },
+                    { step: 4, icon: Palette, title: 'Apply white-label branding', desc: 'Customise the logo and colours under the White Label tab to match your brand.' },
+                  ].map(({ step, icon: Icon, title, desc }) => (
+                    <li key={step} className="flex gap-4">
+                      <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 flex items-center justify-center text-sm font-bold">
+                        {step}
+                      </div>
+                      <div>
+                        <p className="font-medium text-neutral-900 dark:text-white flex items-center gap-2">
+                          <Icon className="w-4 h-4 text-primary-500" />
+                          {title}
+                        </p>
+                        <p className="text-sm text-neutral-500 mt-0.5">{desc}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+
+                {/* API key usage snippet */}
+                <div className="mb-4">
+                  <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Example API request</p>
+                  <div className="relative bg-neutral-900 rounded-lg p-4 font-mono text-xs text-neutral-300 overflow-x-auto">
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText('curl -X POST https://<project>.supabase.co/functions/v1/generate-content \\\n  -H "Authorization: Bearer <YOUR_API_KEY>" \\\n  -H "Content-Type: application/json" \\\n  -d \'{"topic":"AI trends","tenant_id":"<TENANT_ID>"}\'');
+                        toast.success('Copied to clipboard');
+                      }}
+                      className="absolute top-2 right-2 p-1.5 hover:bg-neutral-700 rounded"
+                      aria-label="Copy code"
+                    >
+                      <Copy className="w-3.5 h-3.5 text-neutral-400" />
+                    </button>
+                    <pre className="whitespace-pre-wrap">{`curl -X POST https://<project>.supabase.co/functions/v1/generate-content \\
+  -H "Authorization: Bearer <YOUR_API_KEY>" \\
+  -H "Content-Type: application/json" \\
+  -d '{"topic":"AI trends","tenant_id":"<TENANT_ID>"}'`}</pre>
                   </div>
                 </div>
-              </div>
-              <div className="bg-white dark:bg-neutral-800 rounded-xl p-6 border border-neutral-200 dark:border-neutral-700">
-                <div className="flex items-center gap-3">
-                  <div className="p-3 bg-amber-100 dark:bg-amber-900/30 rounded-lg">
-                    <ArrowUpRight className="w-6 h-6 text-amber-600" />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold text-neutral-900 dark:text-white">{stats.total_sources}</p>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">Total Sources</p>
+
+                {/* Webhook payload example */}
+                <div>
+                  <p className="text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">Webhook payload example</p>
+                  <div className="relative bg-neutral-900 rounded-lg p-4 font-mono text-xs text-neutral-300 overflow-x-auto">
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText('{\n  "event": "newsletter.sent",\n  "tenant_id": "<TENANT_ID>",\n  "newsletter_id": "<ID>",\n  "sent_at": "2026-02-19T12:00:00Z",\n  "recipient_count": 1500\n}');
+                        toast.success('Copied to clipboard');
+                      }}
+                      className="absolute top-2 right-2 p-1.5 hover:bg-neutral-700 rounded"
+                      aria-label="Copy code"
+                    >
+                      <Copy className="w-3.5 h-3.5 text-neutral-400" />
+                    </button>
+                    <pre className="whitespace-pre-wrap">{`{
+  "event": "newsletter.sent",
+  "tenant_id": "<TENANT_ID>",
+  "newsletter_id": "<ID>",
+  "sent_at": "2026-02-19T12:00:00Z",
+  "recipient_count": 1500
+}`}</pre>
                   </div>
                 </div>
               </div>
