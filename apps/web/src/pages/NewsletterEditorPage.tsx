@@ -7,6 +7,7 @@ import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
 import { useToast } from '@/components/ui/Toast';
 import { sanitizeHtml } from '@/lib/sanitize';
+import { api } from '@/lib/api';
 import { EditorSkeleton } from '@/components/ui/Skeleton';
 import { AIFeedback, InlineAIMenu, GenerationHistory } from '@/components/editor';
 import {
@@ -126,6 +127,16 @@ export function NewsletterEditorPage() {
   const [previewDevice, setPreviewDevice] = useState<PreviewDevice>('desktop');
   const [qualityResult, setQualityResult] = useState<QualityResult | null>(null);
   const [showQualityPanel, setShowQualityPanel] = useState(false);
+  const [richQuality, setRichQuality] = useState<{
+    readability_score: number;
+    spam_score: number;
+    spam_words_found: string[];
+    missing_alt_text: string[];
+    links_found: string[];
+    overall_score: number;
+    overall_grade: string;
+  } | null>(null);
+  const [richQualityLoading, setRichQualityLoading] = useState(false);
   
   // Send state
   const [showSendModal, setShowSendModal] = useState(false);
@@ -1050,9 +1061,23 @@ export function NewsletterEditorPage() {
 
               {/* Quality check toggle */}
               <button
-                onClick={() => {
-                  setQualityResult(runQualityCheck(subjectLine, html));
+                onClick={async () => {
+                  const localResult = runQualityCheck(subjectLine, html);
+                  setQualityResult(localResult);
+                  const wasOpen = showQualityPanel;
                   setShowQualityPanel(v => !v);
+                  if (!wasOpen) {
+                    setRichQuality(null);
+                    setRichQualityLoading(true);
+                    try {
+                      const rich = await api.checkNewsletterQuality({ content_html: html, subject_line: subjectLine });
+                      setRichQuality(rich);
+                    } catch {
+                      // local-only fallback
+                    } finally {
+                      setRichQualityLoading(false);
+                    }
+                  }
                 }}
                 className={clsx(
                   'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors',
@@ -1081,8 +1106,8 @@ export function NewsletterEditorPage() {
             {showQualityPanel && quality && (
               <div className="flex-shrink-0 bg-white dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 px-4 py-3">
                 <div className="max-w-4xl mx-auto flex flex-wrap items-center gap-4">
-                  <div className={clsx('w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold flex-shrink-0', GRADE_COLORS[quality.grade])}>
-                    {quality.grade}
+                  <div className={clsx('w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold flex-shrink-0', GRADE_COLORS[richQuality ? richQuality.overall_grade : quality.grade])}>
+                    {richQuality ? richQuality.overall_grade : quality.grade}
                   </div>
                   <div className="flex flex-wrap gap-3">
                     <div className="flex items-center gap-1.5">
@@ -1109,6 +1134,32 @@ export function NewsletterEditorPage() {
                           : `Spam words: ${quality.spamWords.found.join(', ')}`}
                       </span>
                     </div>
+                    {richQuality && (
+                      <>
+                        <div className="flex items-center gap-1.5">
+                          <CheckCircle2 className={clsx('w-4 h-4', richQuality.readability_score >= 60 ? 'text-success' : richQuality.readability_score >= 30 ? 'text-warning' : 'text-error')} />
+                          <span className="text-sm text-neutral-700 dark:text-neutral-300">Readability: {richQuality.readability_score}/100</span>
+                        </div>
+                        {richQuality.missing_alt_text.length > 0 && (
+                          <div className="flex items-center gap-1.5">
+                            <XCircle className="w-4 h-4 text-warning" />
+                            <span className="text-sm text-neutral-700 dark:text-neutral-300">{richQuality.missing_alt_text.length} image(s) missing alt text</span>
+                          </div>
+                        )}
+                        {richQuality.links_found.length > 0 && (
+                          <div className="flex items-center gap-1.5">
+                            <CheckCircle2 className="w-4 h-4 text-info" />
+                            <span className="text-sm text-neutral-700 dark:text-neutral-300">{richQuality.links_found.length} link(s)</span>
+                          </div>
+                        )}
+                      </>
+                    )}
+                    {richQualityLoading && (
+                      <div className="flex items-center gap-1.5">
+                        <div className="h-3 w-3 animate-spin rounded-full border-2 border-primary-500 border-t-transparent" />
+                        <span className="text-xs text-neutral-400">Checking...</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

@@ -17,9 +17,11 @@ import {
   Target,
   Clock,
   Zap,
+  Download,
 } from 'lucide-react';
 import clsx from 'clsx';
 import { format } from 'date-fns';
+import { api } from '@/lib/api';
 
 interface AnalyticsData {
   totalSent: number;
@@ -48,6 +50,7 @@ export function AnalyticsPage() {
   const ct = useMemo(() => getChartTheme(resolvedTheme), [resolvedTheme]);
   const [newsletters, setNewsletters] = useState<NewsletterWithStats[]>([]);
   const [loading, setLoading] = useState(true);
+  const [exportingReport, setExportingReport] = useState(false);
   const [dateRange, setDateRange] = useState<'7d' | '30d' | '90d'>('30d');
   const [analytics, setAnalytics] = useState<AnalyticsData>({
     totalSent: 0,
@@ -124,6 +127,23 @@ export function AnalyticsPage() {
       console.error('Error loading analytics:', error);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleExportReport() {
+    setExportingReport(true);
+    try {
+      const days = dateRange === '7d' ? 7 : dateRange === '30d' ? 30 : 90;
+      const cutoff = new Date();
+      cutoff.setDate(cutoff.getDate() - days);
+      const result = await api.exportPerformanceReport({ date_range: { start: cutoff.toISOString() } });
+      const blob = new Blob([result.report_html], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank');
+    } catch {
+      // silently fail — no data to export
+    } finally {
+      setExportingReport(false);
     }
   }
 
@@ -351,21 +371,31 @@ export function AnalyticsPage() {
           <h1 className="text-3xl font-bold text-neutral-900 dark:text-white">Analytics</h1>
           <p className="text-neutral-500 mt-1">Track your newsletter performance</p>
         </div>
-        <div className="flex items-center gap-2 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-1">
-          {(['7d', '30d', '90d'] as const).map((range) => (
-            <button
-              key={range}
-              onClick={() => setDateRange(range)}
-              className={clsx(
-                'px-4 py-2 rounded-md text-sm font-medium transition-colors',
-                dateRange === range
-                  ? 'bg-primary-500 text-white'
-                  : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700'
-              )}
-            >
-              {range === '7d' ? '7 Days' : range === '30d' ? '30 Days' : '90 Days'}
-            </button>
-          ))}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={handleExportReport}
+            disabled={exportingReport || analytics.totalSent === 0}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-600 transition-colors text-sm font-medium disabled:opacity-50"
+          >
+            <Download className="w-4 h-4" />
+            {exportingReport ? 'Exporting...' : 'Export Report'}
+          </button>
+          <div className="flex items-center gap-2 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg p-1">
+            {(['7d', '30d', '90d'] as const).map((range) => (
+              <button
+                key={range}
+                onClick={() => setDateRange(range)}
+                className={clsx(
+                  'px-4 py-2 rounded-md text-sm font-medium transition-colors',
+                  dateRange === range
+                    ? 'bg-primary-500 text-white'
+                    : 'text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700'
+                )}
+              >
+                {range === '7d' ? '7 Days' : range === '30d' ? '30 Days' : '90 Days'}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

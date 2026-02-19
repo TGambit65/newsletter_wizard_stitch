@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase, Newsletter } from '@/lib/supabase';
+import { api, SendTimeSlot } from '@/lib/api';
 import { useToast } from '@/components/ui/Toast';
 import {
   ChevronLeft,
@@ -11,6 +12,7 @@ import {
   Clock,
   Mail,
   Plus,
+  Zap,
 } from 'lucide-react';
 import clsx from 'clsx';
 import {
@@ -54,10 +56,27 @@ export function SchedulingPage() {
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<ViewMode>('month');
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [sendSlots, setSendSlots] = useState<SendTimeSlot[]>([]);
+  const [loadingSendTime, setLoadingSendTime] = useState(false);
 
   useEffect(() => {
-    if (tenant) loadScheduledNewsletters();
+    if (tenant) {
+      loadScheduledNewsletters();
+      loadSendTimeRecommendations();
+    }
   }, [tenant]);
+
+  async function loadSendTimeRecommendations() {
+    setLoadingSendTime(true);
+    try {
+      const result = await api.suggestSendTime();
+      setSendSlots(result.recommended_slots);
+    } catch {
+      // silently fail — no recommendations
+    } finally {
+      setLoadingSendTime(false);
+    }
+  }
 
   async function loadScheduledNewsletters() {
     setLoading(true);
@@ -407,6 +426,44 @@ export function SchedulingPage() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* AI Send Time Recommendations */}
+          <div className="mt-4 bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-4">
+            <p className="text-xs font-medium text-neutral-500 uppercase tracking-wide mb-3 flex items-center gap-1.5">
+              <Zap className="w-3.5 h-3.5 text-warning" />
+              AI Best Times
+            </p>
+            {loadingSendTime ? (
+              <div className="space-y-2 animate-pulse">
+                {[...Array(3)].map((_, i) => (
+                  <div key={i} className="h-3 bg-neutral-200 dark:bg-neutral-700 rounded" />
+                ))}
+              </div>
+            ) : sendSlots.length === 0 ? (
+              <p className="text-xs text-neutral-400 leading-relaxed">
+                Send more newsletters to get personalized timing recommendations.
+              </p>
+            ) : (
+              <div className="space-y-2">
+                {sendSlots.slice(0, 3).map((slot, i) => {
+                  const hour = slot.hour;
+                  const timeLabel = hour === 0 ? '12am' : hour < 12 ? `${hour}am` : hour === 12 ? '12pm' : `${hour - 12}pm`;
+                  return (
+                    <div key={i} className="flex items-center justify-between text-xs">
+                      <span className="text-neutral-700 dark:text-neutral-300">
+                        {slot.day_name}s at {timeLabel}
+                      </span>
+                      {slot.avg_open_rate != null && (
+                        <span className="text-success font-medium">
+                          {slot.avg_open_rate.toFixed(1)}%
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>

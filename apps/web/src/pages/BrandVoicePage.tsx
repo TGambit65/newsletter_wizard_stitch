@@ -18,6 +18,7 @@ import {
   Wand2,
   RefreshCw,
   ChevronRight,
+  FileText,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -138,6 +139,9 @@ export function BrandVoicePage() {
 
   // Delete
   const [deleteId, setDeleteId] = useState<string | null>(null);
+
+  // Style guide
+  const [generatingGuide, setGeneratingGuide] = useState(false);
 
   useEffect(() => {
     if (tenant) loadProfiles();
@@ -311,6 +315,21 @@ export function BrandVoicePage() {
       toast.error('Failed to delete voice profile');
     } finally {
       setDeleteId(null);
+    }
+  }
+
+  async function handleGenerateStyleGuide() {
+    if (!selectedId) return;
+    setGeneratingGuide(true);
+    try {
+      const result = await api.generateStyleGuide(selectedId);
+      const blob = new Blob([result.style_guide_html], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      window.open(url, '_blank');
+    } catch {
+      toast.error('Failed to generate style guide');
+    } finally {
+      setGeneratingGuide(false);
     }
   }
 
@@ -551,6 +570,17 @@ export function BrandVoicePage() {
                 >
                   <RefreshCw className="w-4 h-4" />
                   Train Voice Model
+                </button>
+              )}
+
+              {selectedId && (
+                <button
+                  onClick={handleGenerateStyleGuide}
+                  disabled={generatingGuide}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 font-medium rounded-lg hover:bg-neutral-200 dark:hover:bg-neutral-600 transition-colors disabled:opacity-50"
+                >
+                  <FileText className="w-4 h-4" />
+                  {generatingGuide ? 'Generating...' : 'Style Guide'}
                 </button>
               )}
             </div>

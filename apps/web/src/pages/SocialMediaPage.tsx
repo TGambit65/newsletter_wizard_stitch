@@ -19,6 +19,7 @@ import {
   Play,
   Plus,
   Trash2,
+  Wand2,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -111,6 +112,7 @@ export function SocialMediaPage() {
   const [copied, setCopied] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<PlatformKey>('twitter');
   const [showRegenConfirm, setShowRegenConfirm] = useState(false);
+  const [remixing, setRemixing] = useState(false);
   const toast = useToast();
 
   useEffect(() => {
@@ -163,6 +165,25 @@ export function SocialMediaPage() {
   async function handleRegenerate() {
     if (newsletter) {
       await generatePosts(newsletter);
+    }
+  }
+
+  async function handleRemix() {
+    if (!tenant || !editedPosts) return;
+    setRemixing(true);
+    try {
+      const content = getPostText(activeTab);
+      const result = await api.remixSocialPost({
+        content,
+        target_platform: activeTab,
+        tenant_id: tenant.id,
+      });
+      updatePostText(activeTab, result.remixed_content);
+      toast.success(`Remixed for ${PLATFORM_CONFIG[activeTab].name}`);
+    } catch {
+      toast.error('Failed to remix post');
+    } finally {
+      setRemixing(false);
     }
   }
 
@@ -395,22 +416,32 @@ export function SocialMediaPage() {
                 </p>
               </div>
             </div>
-            <button
-              onClick={() => handleCopy(getPostText(activeTab), activeTab)}
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors text-sm font-medium"
-            >
-              {copied === activeTab ? (
-                <>
-                  <Check className="w-4 h-4 text-success" />
-                  Copied
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4" />
-                  Copy
-                </>
-              )}
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleRemix}
+                disabled={remixing || !getPostText(activeTab)}
+                className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors text-sm font-medium disabled:opacity-50"
+              >
+                <Wand2 className={clsx('w-4 h-4', remixing && 'animate-spin')} />
+                {remixing ? 'Remixing...' : 'Remix'}
+              </button>
+              <button
+                onClick={() => handleCopy(getPostText(activeTab), activeTab)}
+                className="inline-flex items-center gap-2 px-3 py-1.5 bg-white dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-600 transition-colors text-sm font-medium"
+              >
+                {copied === activeTab ? (
+                  <>
+                    <Check className="w-4 h-4 text-success" />
+                    Copied
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4" />
+                    Copy
+                  </>
+                )}
+              </button>
+            </div>
           </div>
 
           {/* Content Area */}

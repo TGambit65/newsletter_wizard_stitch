@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import { supabase } from '@/lib/supabase';
+import { api } from '@/lib/api';
 import { Search, Mail, Database, ArrowRight, Calendar, X } from 'lucide-react';
 import clsx from 'clsx';
 import { format } from 'date-fns';
@@ -49,6 +49,7 @@ export function SearchPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('q') || '');
   const [results, setResults] = useState<SearchResult[]>([]);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [typeFilter, setTypeFilter] = useState<ResultType | 'all'>('all');
   const [searched, setSearched] = useState(false);
@@ -56,6 +57,7 @@ export function SearchPage() {
   const search = useCallback(async (q: string) => {
     if (!q.trim()) {
       setResults([]);
+      setSuggestions([]);
       setSearched(false);
       return;
     }
@@ -63,47 +65,30 @@ export function SearchPage() {
     setSearched(true);
     try {
       const qLower = q.toLowerCase();
-
-      const [newsletterRes, sourceRes] = await Promise.all([
-        tenant
-          ? supabase
-              .from('newsletters')
-              .select('id, title, status, subject_line, created_at')
-              .eq('tenant_id', tenant.id)
-              .ilike('title', `%${q}%`)
-              .order('created_at', { ascending: false })
-              .limit(20)
-          : Promise.resolve({ data: null }),
-        tenant
-          ? supabase
-              .from('knowledge_sources')
-              .select('id, title, source_type, created_at')
-              .eq('tenant_id', tenant.id)
-              .ilike('title', `%${q}%`)
-              .limit(20)
-          : Promise.resolve({ data: null }),
-      ]);
-
       const pages = STATIC_PAGES.filter(p => p.title.toLowerCase().includes(qLower));
 
+      if (!tenant) {
+        setResults(pages);
+        return;
+      }
+
+      const apiResult = await api.globalSearch({
+        query: q,
+        filters: { types: ['newsletter', 'source'] },
+        limit: 40,
+      });
+
+      setSuggestions(apiResult.suggestions || []);
+
       const combined: SearchResult[] = [
-        ...(newsletterRes.data || []).map(n => ({
-          id: `newsletter-${n.id}`,
-          type: 'newsletter' as const,
-          title: n.title,
-          snippet: n.subject_line || undefined,
-          date: n.created_at,
-          href: `/newsletters/${n.id}/edit`,
-          meta: n.status,
-        })),
-        ...(sourceRes.data || []).map(s => ({
-          id: `source-${s.id}`,
-          type: 'source' as const,
-          title: s.title,
-          snippet: s.source_type,
-          date: s.created_at,
-          href: '/knowledge-base',
-          meta: s.source_type,
+        ...apiResult.results.map(r => ({
+          id: `${r.type}-${r.id}`,
+          type: r.type as ResultType,
+          title: r.title,
+          snippet: r.snippet || undefined,
+          date: r.date || undefined,
+          href: r.type === 'newsletter' ? `/newsletters/${r.id}/edit` : '/knowledge-base',
+          meta: r.status || undefined,
         })),
         ...pages,
       ];
@@ -132,6 +117,7 @@ export function SearchPage() {
     setQuery('');
     setSearchParams({});
     setResults([]);
+    setSuggestions([]);
     setSearched(false);
   }
 
@@ -177,6 +163,22 @@ export function SearchPage() {
           </div>
         </div>
       </form>
+
+      {/* AI search suggestions */}
+      {suggestions.length > 0 && !loading && (
+        <div className="flex items-center gap-2 mb-4 flex-wrap">
+          <span className="text-xs text-neutral-400">Try:</span>
+          {suggestions.map(s => (
+            <button
+              key={s}
+              onClick={() => { setQuery(s); setSearchParams({ q: s }); }}
+              className="px-2.5 py-1 text-xs bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-400 rounded-full hover:bg-primary-50 dark:hover:bg-primary-900/20 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+      )}
 
       {/* Type filter pills */}
       {searched && results.length > 0 && (

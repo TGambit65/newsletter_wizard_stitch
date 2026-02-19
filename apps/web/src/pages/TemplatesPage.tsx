@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
@@ -217,6 +217,35 @@ export function TemplatesPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [previewTemplate, setPreviewTemplate] = useState<SystemTemplate | null>(null);
   const [creating, setCreating] = useState(false);
+  const [templates, setTemplates] = useState<SystemTemplate[]>(SYSTEM_TEMPLATES);
+
+  useEffect(() => {
+    if (!tenant) return;
+    supabase
+      .from('newsletter_templates')
+      .select('*')
+      .or(`is_system.eq.true,tenant_id.eq.${tenant.id}`)
+      .order('avg_open_rate', { ascending: false })
+      .then(({ data }) => {
+        if (data && data.length > 0) {
+          setTemplates(data.map(row => ({
+            id: row.id as string,
+            name: row.name as string,
+            description: (row.description || '') as string,
+            category: (row.category || 'curated') as Category,
+            goal_tags: (row.goal_tags || []) as Goal[],
+            content_html: (row.content_html || '') as string,
+            avg_open_rate: Number(row.avg_open_rate) || 0,
+            avg_click_rate: Number(row.avg_click_rate) || 0,
+            usage_count: Number(row.usage_count) || 0,
+            preview_lines: (row.preview_lines || []) as string[],
+          })));
+        }
+      })
+      .catch(() => {
+        // keep SYSTEM_TEMPLATES fallback
+      });
+  }, [tenant]);
 
   function toggleGoal(goal: Goal) {
     setActiveGoals(prev =>
@@ -225,14 +254,14 @@ export function TemplatesPage() {
   }
 
   const filtered = useMemo(() => {
-    return SYSTEM_TEMPLATES.filter(t => {
+    return templates.filter(t => {
       if (category !== 'all' && t.category !== category) return false;
       if (activeGoals.length > 0 && !activeGoals.some(g => t.goal_tags.includes(g))) return false;
       if (searchQuery && !t.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
           !t.description.toLowerCase().includes(searchQuery.toLowerCase())) return false;
       return true;
     });
-  }, [category, activeGoals, searchQuery]);
+  }, [category, activeGoals, searchQuery, templates]);
 
   const sorted = useMemo(() => [...filtered].sort((a, b) => b.avg_open_rate - a.avg_open_rate), [filtered]);
 
