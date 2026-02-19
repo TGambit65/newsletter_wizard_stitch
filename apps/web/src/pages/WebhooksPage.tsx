@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Webhook, Plus, Trash2, Check, X, ChevronDown, ChevronUp } from 'lucide-react';
 import clsx from 'clsx';
+import { useToast } from '@/components/ui/Toast';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 
 interface WebhookData {
   id: string;
@@ -30,6 +32,7 @@ const AVAILABLE_EVENTS = [
 
 export function WebhooksPage() {
   const { session } = useAuth();
+  const { toast } = useToast();
   const [webhooks, setWebhooks] = useState<WebhookData[]>([]);
   const [loading, setLoading] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
@@ -39,6 +42,7 @@ export function WebhooksPage() {
   const [creating, setCreating] = useState(false);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [deliveries, setDeliveries] = useState<Record<string, Delivery[]>>({});
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
   useEffect(() => {
     loadWebhooks();
@@ -59,6 +63,7 @@ export function WebhooksPage() {
       setWebhooks(data.webhooks || []);
     } catch (error) {
       console.error('Error loading webhooks:', error);
+      toast.error('Failed to load webhooks.');
     } finally {
       setLoading(false);
     }
@@ -104,9 +109,11 @@ export function WebhooksPage() {
         setNewUrl('');
         setNewEvents(['newsletter.sent']);
         await loadWebhooks();
+        toast.success('Webhook created.');
       }
     } catch (error) {
       console.error('Error creating webhook:', error);
+      toast.error('Failed to create webhook.');
     } finally {
       setCreating(false);
     }
@@ -125,12 +132,11 @@ export function WebhooksPage() {
       await loadWebhooks();
     } catch (error) {
       console.error('Error toggling webhook:', error);
+      toast.error('Failed to update webhook.');
     }
   }
 
   async function deleteWebhook(webhookId: string) {
-    if (!confirm('Are you sure you want to delete this webhook?')) return;
-    
     try {
       await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/manage-webhooks`, {
         method: 'POST',
@@ -141,8 +147,12 @@ export function WebhooksPage() {
         body: JSON.stringify({ action: 'delete', webhookId }),
       });
       await loadWebhooks();
+      toast.success('Webhook deleted.');
     } catch (error) {
       console.error('Error deleting webhook:', error);
+      toast.error('Failed to delete webhook.');
+    } finally {
+      setDeleteId(null);
     }
   }
 
@@ -166,6 +176,16 @@ export function WebhooksPage() {
   }
 
   return (
+    <>
+    <ConfirmDialog
+      open={deleteId !== null}
+      onOpenChange={(open) => { if (!open) setDeleteId(null); }}
+      title="Delete webhook?"
+      description="This will permanently remove the webhook endpoint and stop all event deliveries to it."
+      confirmLabel="Delete"
+      variant="danger"
+      onConfirm={() => { if (deleteId) deleteWebhook(deleteId); }}
+    />
     <div className="p-6 max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -314,7 +334,7 @@ export function WebhooksPage() {
                       {webhook.enabled ? <Check className="w-4 h-4" /> : <X className="w-4 h-4" />}
                     </button>
                     <button
-                      onClick={() => deleteWebhook(webhook.id)}
+                      onClick={() => setDeleteId(webhook.id)}
                       className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -361,5 +381,6 @@ export function WebhooksPage() {
         </div>
       )}
     </div>
+    </>
   );
 }

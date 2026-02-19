@@ -3,6 +3,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
 import { Key, Plus, Trash2, Copy, Check, AlertCircle, Activity } from 'lucide-react';
 import clsx from 'clsx';
+import { useToast } from '@/components/ui/Toast';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 
 interface ApiKey {
   id: string;
@@ -27,7 +29,9 @@ const AVAILABLE_PERMISSIONS = [
 
 export function ApiKeysPage() {
   const { session } = useAuth();
+  const { toast } = useToast();
   const [keys, setKeys] = useState<ApiKey[]>([]);
+  const [revokeId, setRevokeId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
   const [newKeyName, setNewKeyName] = useState('');
@@ -80,6 +84,7 @@ export function ApiKeysPage() {
       setKeys(data.keys || []);
     } catch (error) {
       console.error('Error loading keys:', error);
+      toast.error('Failed to load API keys.');
     } finally {
       setLoading(false);
     }
@@ -107,17 +112,17 @@ export function ApiKeysPage() {
         setShowCreate(false);
         setNewKeyName('');
         await loadKeys();
+        toast.success('API key created.');
       }
     } catch (error) {
       console.error('Error creating key:', error);
+      toast.error('Failed to create API key.');
     } finally {
       setCreating(false);
     }
   }
 
   async function revokeKey(keyId: string) {
-    if (!confirm('Are you sure you want to revoke this API key?')) return;
-    
     try {
       await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/manage-api-keys`, {
         method: 'POST',
@@ -128,8 +133,12 @@ export function ApiKeysPage() {
         body: JSON.stringify({ action: 'revoke', keyId }),
       });
       await loadKeys();
+      toast.success('API key revoked.');
     } catch (error) {
       console.error('Error revoking key:', error);
+      toast.error('Failed to revoke API key.');
+    } finally {
+      setRevokeId(null);
     }
   }
 
@@ -148,6 +157,16 @@ export function ApiKeysPage() {
   }
 
   return (
+    <>
+    <ConfirmDialog
+      open={revokeId !== null}
+      onOpenChange={(open) => { if (!open) setRevokeId(null); }}
+      title="Revoke API key?"
+      description="This will immediately invalidate the key. Any integrations using it will stop working."
+      confirmLabel="Revoke"
+      variant="danger"
+      onConfirm={() => { if (revokeId) revokeKey(revokeId); }}
+    />
     <div className="p-6 max-w-4xl mx-auto">
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -309,7 +328,7 @@ export function ApiKeysPage() {
                   <span className="text-sm text-red-600 dark:text-red-400">Revoked</span>
                 ) : (
                   <button
-                    onClick={() => revokeKey(key.id)}
+                    onClick={() => setRevokeId(key.id)}
                     className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -361,5 +380,6 @@ export function ApiKeysPage() {
         </div>
       )}
     </div>
+    </>
   );
 }

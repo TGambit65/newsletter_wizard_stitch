@@ -22,6 +22,7 @@ import {
 import clsx from 'clsx';
 import { format } from 'date-fns';
 import { api } from '@/lib/api';
+import { useToast } from '@/components/ui/Toast';
 
 interface AnalyticsData {
   totalSent: number;
@@ -46,6 +47,7 @@ interface PerformanceTip {
 
 export function AnalyticsPage() {
   const { tenant } = useAuth();
+  const { toast } = useToast();
   const { resolvedTheme } = useTheme();
   const ct = useMemo(() => getChartTheme(resolvedTheme), [resolvedTheme]);
   const [newsletters, setNewsletters] = useState<NewsletterWithStats[]>([]);
@@ -125,6 +127,7 @@ export function AnalyticsPage() {
       });
     } catch (error) {
       console.error('Error loading analytics:', error);
+      toast.error('Failed to load analytics data.');
     } finally {
       setLoading(false);
     }

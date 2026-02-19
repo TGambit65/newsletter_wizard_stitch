@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/components/ui/Toast';
 import { supabase, KnowledgeSource } from '@/lib/supabase';
 import { api } from '@/lib/api';
 import { 
@@ -48,6 +49,7 @@ interface AudiencePersona {
 export function WizardPage() {
   const { tenant, profile } = useAuth();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [step, setStep] = useState<WizardStep>('audience');
   const [sources, setSources] = useState<KnowledgeSource[]>([]);
   const [voiceProfiles, setVoiceProfiles] = useState<VoiceProfile[]>([]);
@@ -236,6 +238,7 @@ export function WizardPage() {
       setStep('editor');
     } catch (error) {
       console.error('Generation error:', error);
+      toast.error('Failed to generate newsletter. Please try again.');
     } finally {
       setGenerating(false);
     }
@@ -269,6 +272,7 @@ export function WizardPage() {
       }
     } catch (error) {
       console.error('Error saving newsletter:', error);
+      toast.error('Failed to save newsletter. Please try again.');
     } finally {
       setSaving(false);
     }

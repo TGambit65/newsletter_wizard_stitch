@@ -28,7 +28,9 @@ export function LoginPage() {
     setError(null);
     const { error: otpError } = await supabase.auth.signInWithOtp({ email: magicEmail.trim() });
     if (otpError) {
-      setError(otpError.message);
+      // Normalize to prevent email enumeration — don't reveal if the email exists
+      const isRateLimit = otpError.message.toLowerCase().includes('rate') || otpError.message.toLowerCase().includes('wait');
+      setError(isRateLimit ? 'Too many attempts. Please wait before requesting another link.' : 'If an account exists with this email, a sign-in link has been sent.');
     } else {
       setMagicSent(true);
     }

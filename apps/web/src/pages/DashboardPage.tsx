@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase, Newsletter, KnowledgeSource, TIER_LIMITS } from '@/lib/supabase';
+import { useToast } from '@/components/ui/Toast';
 import { 
   Wand2, 
   Database, 
@@ -25,6 +26,7 @@ interface DashboardStats {
 
 export function DashboardPage() {
   const { profile, tenant } = useAuth();
+  const { toast } = useToast();
   const [recentNewsletters, setRecentNewsletters] = useState<Newsletter[]>([]);
   const [sources, setSources] = useState<KnowledgeSource[]>([]);
   const [stats, setStats] = useState<DashboardStats>({
@@ -111,6 +113,7 @@ export function DashboardPage() {
       });
     } catch (error) {
       console.error('Error loading dashboard data:', error);
+      toast.error('Failed to load dashboard data. Please refresh.');
     } finally {
       setLoading(false);
     }
