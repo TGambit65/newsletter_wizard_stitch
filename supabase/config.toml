@@ -1,3 +1,41 @@
+[api]
+enabled = true
+port = 5075
+schemas = ["public", "storage", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 5432
+shadow_port = 5433
+major_version = 15
+
+[studio]
+enabled = true
+port = 5080
+
+[inbucket]
+enabled = true
+port = 5081
+
+[storage]
+enabled = true
+
+[auth]
+enabled = true
+site_url = "http://localhost:3075"
+additional_redirect_urls = ["http://localhost:3075"]
+jwt_expiry = 3600
+enable_signup = true
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = false
+enable_confirmations = false
+
+[edge_runtime]
+enabled = false
+
 [functions.upload-document]
 verify_jwt = false
 

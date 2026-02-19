@@ -37,7 +37,16 @@ export function useToast() {
   if (!context) {
     throw new Error('useToast must be used within a ToastProvider');
   }
-  return context;
+  // Expose a `toast` sub-object so call sites can use either
+  // `const { toast } = useToast(); toast.error(...)` or
+  // `const { error } = useToast(); error(...)`
+  const toast = {
+    success: context.success,
+    error: context.error,
+    warning: context.warning,
+    info: context.info,
+  };
+  return { ...context, toast };
 }
 
 interface ToastProviderProps {
