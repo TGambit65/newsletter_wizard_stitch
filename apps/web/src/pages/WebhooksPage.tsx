@@ -83,6 +83,7 @@ export function WebhooksPage() {
       setDeliveries(prev => ({ ...prev, [webhookId]: data.deliveries || [] }));
     } catch (error) {
       console.error('Error loading deliveries:', error);
+      toast.error('Failed to load delivery logs');
     }
   }
 
