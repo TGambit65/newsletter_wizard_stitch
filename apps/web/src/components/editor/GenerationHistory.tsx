@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { History, X, Clock, RotateCcw, GitCompare, ChevronRight } from 'lucide-react';
 import clsx from 'clsx';
+import { sanitizeHtml } from '@/lib/sanitize';
 
 interface GenerationHistoryItem {
   id: string;
@@ -183,14 +184,14 @@ export function GenerationHistory({
                 <h4 className="text-sm font-medium text-neutral-500 mb-2">Previous Version</h4>
                 <div 
                   className="prose dark:prose-invert prose-sm max-w-none p-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg"
-                  dangerouslySetInnerHTML={{ __html: selectedItem.content }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(selectedItem.content) }}
                 />
               </div>
               <div>
                 <h4 className="text-sm font-medium text-neutral-500 mb-2">Current Version</h4>
-                <div 
+                <div
                   className="prose dark:prose-invert prose-sm max-w-none p-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg"
-                  dangerouslySetInnerHTML={{ __html: currentContent }}
+                  dangerouslySetInnerHTML={{ __html: sanitizeHtml(currentContent) }}
                 />
               </div>
             </div>

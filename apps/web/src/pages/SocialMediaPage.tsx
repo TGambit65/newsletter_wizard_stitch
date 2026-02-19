@@ -125,6 +125,17 @@ export function SocialMediaPage() {
     }
   }, [id, tenant]);
 
+  // If the active tab has no data (e.g. posts loaded from DB without that platform),
+  // reset to the first available platform.
+  useEffect(() => {
+    if (editedPosts && !(activeTab in editedPosts)) {
+      const first = (Object.keys(PLATFORM_CONFIG) as PlatformKey[]).find(
+        (p) => p in editedPosts
+      );
+      if (first) setActiveTab(first);
+    }
+  }, [editedPosts]);
+
   async function loadNewsletter() {
     setLoading(true);
     try {
