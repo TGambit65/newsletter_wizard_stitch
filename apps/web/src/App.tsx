@@ -43,6 +43,8 @@ const ReferralPage = lazy(() => import('@/pages/ReferralPage').then(m => ({ defa
 const NewsletterSentPage = lazy(() => import('@/pages/NewsletterSentPage').then(m => ({ default: m.NewsletterSentPage })));
 const MaintenancePage = lazy(() => import('@/pages/MaintenancePage').then(m => ({ default: m.MaintenancePage })));
 const PressKitPage = lazy(() => import('@/pages/PressKitPage').then(m => ({ default: m.PressKitPage })));
+const ReactivatePage = lazy(() => import('@/pages/ReactivatePage').then(m => ({ default: m.ReactivatePage })));
+const AcceptInvitePage = lazy(() => import('@/pages/AcceptInvitePage').then(m => ({ default: m.AcceptInvitePage })));
 
 function LoadingSpinner() {
   return (
@@ -53,7 +55,7 @@ function LoadingSpinner() {
 }
 
 function ProtectedRoute({ children, skipOnboarding = false }: { children: React.ReactNode; skipOnboarding?: boolean }) {
-  const { user, loading } = useAuth();
+  const { user, profile, loading } = useAuth();
 
   if (loading) {
     return <SplashScreen />;
@@ -63,10 +65,26 @@ function ProtectedRoute({ children, skipOnboarding = false }: { children: React.
     return <Navigate to="/login" replace />;
   }
 
+  // Profile loaded and account is deactivated → send to reactivate page
+  if (profile !== null && profile.is_active === false) {
+    return <Navigate to="/reactivate" replace />;
+  }
+
   if (!skipOnboarding && !hasCompletedOnboarding(user.id)) {
     return <Navigate to="/onboarding" replace />;
   }
 
+  return <>{children}</>;
+}
+
+// Route accessible only to authenticated but deactivated users
+function ReactivateRoute({ children }: { children: React.ReactNode }) {
+  const { user, profile, loading } = useAuth();
+
+  if (loading) return <SplashScreen />;
+  if (!user) return <Navigate to="/login" replace />;
+  // If account is active, send to dashboard
+  if (profile !== null && profile.is_active !== false) return <Navigate to="/dashboard" replace />;
   return <>{children}</>;
 }
 
@@ -102,6 +120,12 @@ function AppRoutes() {
         <Route path="/embed" element={<EmbedWizardPage />} />
         <Route path="/embed/knowledge-base" element={<EmbedKnowledgeBasePage />} />
         
+        {/* Account reactivation */}
+        <Route path="/reactivate" element={<ReactivateRoute><ReactivatePage /></ReactivateRoute>} />
+
+        {/* Team invitation acceptance (public — user may not be logged in) */}
+        <Route path="/accept-invite" element={<AcceptInvitePage />} />
+
         {/* Public pages (no auth required) */}
         <Route path="/press" element={<PressKitPage />} />
         <Route path="/maintenance" element={<MaintenancePage />} />
