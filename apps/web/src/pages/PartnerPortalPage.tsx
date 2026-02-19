@@ -131,6 +131,7 @@ export function PartnerPortalPage() {
       setStats(data.stats || null);
     } catch (error) {
       console.error('Error loading stats:', error);
+      toast.error('Failed to load stats');
     }
   }
 
@@ -166,6 +167,7 @@ export function PartnerPortalPage() {
       if (!error && data) setBillingRecords(data);
     } catch (error) {
       console.error('Error loading billing:', error);
+      toast.error('Failed to load billing');
     }
   }
 

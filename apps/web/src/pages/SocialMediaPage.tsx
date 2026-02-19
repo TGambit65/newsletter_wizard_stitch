@@ -168,6 +168,7 @@ export function SocialMediaPage() {
       }
     } catch (error) {
       console.error('Error loading newsletter:', error);
+      toast.error('Failed to load newsletter');
     } finally {
       setLoading(false);
     }
@@ -189,6 +190,7 @@ export function SocialMediaPage() {
       }
     } catch (error) {
       console.error('Error generating social posts:', error);
+      toast.error('Failed to generate posts. Please try again.');
     } finally {
       setGenerating(false);
     }

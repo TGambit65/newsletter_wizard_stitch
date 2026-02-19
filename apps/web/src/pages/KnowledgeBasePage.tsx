@@ -3,6 +3,8 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase, KnowledgeSource, SourceType } from '@/lib/supabase';
 import { api } from '@/lib/api';
 import { useToast } from '@/components/ui/Toast';
+import { usePagination } from '@/hooks/usePagination';
+import { Pagination } from '@/components/ui/Pagination';
 import { KnowledgeBaseGridSkeleton } from '@/components/ui/Skeleton';
 import { HealthDashboard, SourceAgeBadge } from '@/components/knowledge-base/HealthDashboard';
 import { 
@@ -177,6 +179,7 @@ export function KnowledgeBasePage() {
       setSources(data || []);
     } catch (error) {
       console.error('Error loading sources:', error);
+      toast.error('Failed to load sources');
     } finally {
       setLoading(false);
     }
@@ -421,6 +424,7 @@ export function KnowledgeBasePage() {
       loadSources();
     } catch (error) {
       console.error('Error reprocessing:', error);
+      toast.error('Failed to reprocess source');
     }
   }
 
@@ -446,6 +450,8 @@ export function KnowledgeBasePage() {
     return source.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
            source.source_uri?.toLowerCase().includes(searchQuery.toLowerCase());
   });
+
+  const { page, setPage, totalPages, paginatedItems } = usePagination(filteredSources, 20);
 
   const filterButtons: { value: SourceFilter; label: string; count: number }[] = [
     { value: 'all', label: 'All', count: sources.length },
@@ -608,7 +614,7 @@ export function KnowledgeBasePage() {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredSources.map((source) => (
+          {paginatedItems.map((source) => (
             <div
               key={source.id}
               className={clsx(
@@ -734,6 +740,7 @@ export function KnowledgeBasePage() {
             </div>
           ))}
         </div>
+        <Pagination page={page} totalPages={totalPages} onPageChange={setPage} className="mt-6" />
       )}
 
       {/* Add Source Modal */}
