@@ -143,8 +143,8 @@ export function ABTestPage() {
     setVariants(newVariants);
   }
 
-  async function saveTest() {
-    if (!tenant || !id) return;
+  async function saveTest(): Promise<ABTest | null> {
+    if (!tenant || !id) return null;
     setSaving(true);
 
     try {
@@ -158,6 +158,7 @@ export function ABTestPage() {
             distribution,
           })
           .eq('id', test.id);
+        return test;
       } else {
         // Create new test
         const { data } = await supabase
@@ -172,10 +173,10 @@ export function ABTestPage() {
           })
           .select()
           .single();
-        
+
         if (data) {
           setTest(data);
-          
+
           // Create result entries for each variant
           const resultEntries = variants.map(v => ({
             test_id: data.id,
@@ -184,8 +185,9 @@ export function ABTestPage() {
             opens: 0,
             clicks: 0,
           }));
-          
+
           await supabase.from('ab_test_results').insert(resultEntries);
+          return data;
         }
       }
     } catch (error) {
@@ -194,19 +196,22 @@ export function ABTestPage() {
     } finally {
       setSaving(false);
     }
+    return null;
   }
 
   async function launchTest() {
-    if (!test) {
-      await saveTest();
-    }
-    
+    // Resolve the active test — save first if one doesn't exist yet.
+    // We use the returned value rather than reading `test` state to avoid
+    // a race where setState hasn't propagated before we read test?.id.
+    const activeTest = test ?? await saveTest();
+    if (!activeTest) return;
+
     // Update test status
     await supabase
       .from('ab_tests')
       .update({ status: 'running' })
-      .eq('id', test?.id);
-    
+      .eq('id', activeTest.id);
+
     // DEMO MODE: Simulated results for demonstration purposes.
     // Real A/B testing requires ESP webhook integration to track actual opens/clicks.
     // To implement real tracking:
@@ -214,13 +219,13 @@ export function ABTestPage() {
     // 2. The edge function should update ab_test_results based on webhook events
     // 3. Each email should include tracking pixels and unique link parameters
     const simulatedResults = variants.map(v => ({
-      test_id: test?.id,
+      test_id: activeTest.id,
       variant: v.name,
       sends: Math.floor(Math.random() * 500) + 100,
       opens: Math.floor(Math.random() * 200) + 50,
       clicks: Math.floor(Math.random() * 50) + 10,
     }));
-    
+
     for (const result of simulatedResults) {
       await supabase
         .from('ab_test_results')
@@ -228,7 +233,7 @@ export function ABTestPage() {
         .eq('test_id', result.test_id)
         .eq('variant', result.variant);
     }
-    
+
     await loadData();
   }
 

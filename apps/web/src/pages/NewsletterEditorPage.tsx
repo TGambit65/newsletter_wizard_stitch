@@ -6,6 +6,8 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
 import { useToast } from '@/components/ui/Toast';
+import { ConfirmDialog } from '@/components/ui/Dialog';
+import { useUnsavedChanges } from '@/hooks/useUnsavedChanges';
 import { sanitizeHtml } from '@/lib/sanitize';
 import { api } from '@/lib/api';
 import { EditorSkeleton } from '@/components/ui/Skeleton';
@@ -160,6 +162,7 @@ export function NewsletterEditorPage() {
   const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const [lastAutoSaved, setLastAutoSaved] = useState<Date | null>(null);
   const autosaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const { blocker } = useUnsavedChanges(hasUnsavedChanges);
   
   // AI Feedback Loop state
   const [showAIFeedback, setShowAIFeedback] = useState(false);
@@ -1360,6 +1363,18 @@ export function NewsletterEditorPage() {
         onCompare={() => {}}
         isOpen={showHistory}
         onClose={() => setShowHistory(false)}
+      />
+
+      {/* Unsaved changes — block in-app navigation */}
+      <ConfirmDialog
+        open={blocker.state === 'blocked'}
+        onOpenChange={(open) => { if (!open) blocker.reset?.(); }}
+        title="Leave without saving?"
+        description="You have unsaved changes. They will be lost if you leave this page."
+        confirmLabel="Leave"
+        cancelLabel="Stay"
+        variant="danger"
+        onConfirm={() => blocker.proceed?.()}
       />
     </div>
   );
