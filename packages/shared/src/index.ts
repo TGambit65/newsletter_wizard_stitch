@@ -33,7 +33,7 @@ export interface Profile {
   created_at: string;
 }
 
-export type SourceType = 'url' | 'document' | 'manual';
+export type SourceType = 'url' | 'document' | 'manual' | 'youtube' | 'rss' | 'gdrive';
 export type SourceStatus = 'pending' | 'processing' | 'ready' | 'error';
 
 export interface KnowledgeSource {

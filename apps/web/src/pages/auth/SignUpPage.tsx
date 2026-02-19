@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { useWhiteLabel } from '@/contexts/WhiteLabelContext';
 import { normalizeSignupError } from '@/lib/auth-errors';
 import { Wand2, Eye, EyeOff, AlertCircle, CheckCircle } from 'lucide-react';
 
 export function SignUpPage() {
   const { signUp } = useAuth();
+  const { config } = useWhiteLabel();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setFullName] = useState('');
@@ -66,10 +68,16 @@ export function SignUpPage() {
         <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8">
           {/* Logo */}
           <div className="flex items-center justify-center gap-2 mb-8">
-            <div className="w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center">
-              <Wand2 className="w-6 h-6 text-white" />
-            </div>
-            <span className="font-bold text-xl text-neutral-900 dark:text-white">Newsletter Wizard</span>
+            {config.logo_url ? (
+              <img src={config.logo_url} alt={config.brand_name} className="h-10 w-auto object-contain" />
+            ) : (
+              <>
+                <div className="w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center">
+                  <Wand2 className="w-6 h-6 text-white" />
+                </div>
+                <span className="font-bold text-xl text-neutral-900 dark:text-white">{config.brand_name}</span>
+              </>
+            )}
           </div>
 
           <h1 className="text-2xl font-bold text-center text-neutral-900 dark:text-white mb-2">

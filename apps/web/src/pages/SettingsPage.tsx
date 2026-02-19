@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase, TIER_LIMITS, SubscriptionTier } from '@/lib/supabase';
 import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
+import { useToast } from '@/components/ui/Toast';
 import { api } from '@/lib/api';
 import { 
   User, 
@@ -38,6 +39,7 @@ interface VoiceProfile {
 
 export function SettingsPage() {
   const { profile, tenant } = useAuth();
+  const toast = useToast();
   const [activeTab, setActiveTab] = useState<SettingsTab>('profile');
   const [saving, setSaving] = useState(false);
   const [upgrading, setUpgrading] = useState<string | null>(null);
@@ -144,7 +146,7 @@ export function SettingsPage() {
       setTimeout(() => setKeysSaved(false), 3000);
     } catch (error) {
       console.error('Error saving API keys:', error);
-      alert('Failed to save API keys');
+      toast.error('Failed to save API keys');
     } finally {
       setSavingKeys(false);
     }
@@ -164,7 +166,7 @@ export function SettingsPage() {
       .single();
     
     if (error) {
-      alert('Failed to create voice profile');
+      toast.error('Failed to create voice profile');
       return;
     }
     
@@ -184,7 +186,7 @@ export function SettingsPage() {
   async function trainVoiceProfile(profileId: string) {
     const samples = trainingSamples.filter(s => s.trim().length > 50);
     if (samples.length === 0) {
-      alert('Please add at least one training sample (minimum 50 characters)');
+      toast.warning('Please add at least one training sample (minimum 50 characters)');
       return;
     }
     
@@ -204,10 +206,10 @@ export function SettingsPage() {
       setVoiceProfiles(data || []);
       setTrainingProfile(null);
       setTrainingSamples(['']);
-      alert('Voice profile trained successfully!');
+      toast.success('Voice profile trained successfully!');
     } catch (error) {
       console.error('Training error:', error);
-      alert('Failed to train voice profile');
+      toast.error('Failed to train voice profile');
     } finally {
       setTraining(false);
     }
@@ -239,7 +241,7 @@ export function SettingsPage() {
       }
     } catch (error) {
       console.error('Upgrade error:', error);
-      alert('Stripe integration requires API key configuration. Contact support.');
+      toast.error('Stripe integration requires API key configuration. Contact support.');
     } finally {
       setUpgrading(null);
     }

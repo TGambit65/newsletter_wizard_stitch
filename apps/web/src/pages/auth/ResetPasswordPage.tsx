@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '@/lib/supabase';
+import { useWhiteLabel } from '@/contexts/WhiteLabelContext';
 import { Wand2, AlertCircle, CheckCircle, Eye, EyeOff } from 'lucide-react';
 
 export function ResetPasswordPage() {
   const navigate = useNavigate();
+  const { config } = useWhiteLabel();
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -105,10 +107,16 @@ export function ResetPasswordPage() {
       <div className="w-full max-w-md">
         <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-xl p-8">
           <div className="flex items-center justify-center gap-2 mb-8">
-            <div className="w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center">
-              <Wand2 className="w-6 h-6 text-white" />
-            </div>
-            <span className="font-bold text-xl text-neutral-900 dark:text-white">Newsletter Wizard</span>
+            {config.logo_url ? (
+              <img src={config.logo_url} alt={config.brand_name} className="h-10 w-auto object-contain" />
+            ) : (
+              <>
+                <div className="w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center">
+                  <Wand2 className="w-6 h-6 text-white" />
+                </div>
+                <span className="font-bold text-xl text-neutral-900 dark:text-white">{config.brand_name}</span>
+              </>
+            )}
           </div>
 
           <h1 className="text-2xl font-bold text-center text-neutral-900 dark:text-white mb-2">

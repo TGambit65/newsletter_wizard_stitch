@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { useWhiteLabel } from '@/contexts/WhiteLabelContext';
 import { normalizeResetError } from '@/lib/auth-errors';
 import { Wand2, AlertCircle, CheckCircle, ArrowLeft } from 'lucide-react';
 
 export function ForgotPasswordPage() {
   const { resetPassword } = useAuth();
+  const { config } = useWhiteLabel();
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -65,10 +67,16 @@ export function ForgotPasswordPage() {
 
           {/* Logo */}
           <div className="flex items-center justify-center gap-2 mb-8">
-            <div className="w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center">
-              <Wand2 className="w-6 h-6 text-white" />
-            </div>
-            <span className="font-bold text-xl text-neutral-900 dark:text-white">Newsletter Wizard</span>
+            {config.logo_url ? (
+              <img src={config.logo_url} alt={config.brand_name} className="h-10 w-auto object-contain" />
+            ) : (
+              <>
+                <div className="w-10 h-10 bg-primary-500 rounded-xl flex items-center justify-center">
+                  <Wand2 className="w-6 h-6 text-white" />
+                </div>
+                <span className="font-bold text-xl text-neutral-900 dark:text-white">{config.brand_name}</span>
+              </>
+            )}
           </div>
 
           <h1 className="text-2xl font-bold text-center text-neutral-900 dark:text-white mb-2">

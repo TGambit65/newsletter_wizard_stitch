@@ -1,6 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase, Newsletter } from '@/lib/supabase';
+import { useTheme } from '@/hooks/useTheme';
+import { getChartTheme } from '@/lib/chart-colors';
 import EChartsReact from 'echarts-for-react';
 
 const ReactECharts = EChartsReact as any;
@@ -27,6 +29,8 @@ interface AnalyticsData {
 
 export function AnalyticsPage() {
   const { tenant } = useAuth();
+  const { resolvedTheme } = useTheme();
+  const ct = useMemo(() => getChartTheme(resolvedTheme), [resolvedTheme]);
   const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
   const [loading, setLoading] = useState(true);
   const [dateRange, setDateRange] = useState<'7d' | '30d' | '90d'>('30d');
@@ -105,19 +109,19 @@ export function AnalyticsPage() {
     }
   ];
 
-  // Mock chart data
-  const engagementChartOption = {
+  // Mock chart data (theme-aware)
+  const engagementChartOption = useMemo(() => ({
     tooltip: {
       trigger: 'axis',
-      backgroundColor: '#fff',
-      borderColor: '#e5e5e5',
+      backgroundColor: ct.tooltipBg,
+      borderColor: ct.tooltipBorder,
       borderWidth: 1,
-      textStyle: { color: '#171717' }
+      textStyle: { color: ct.tooltipText }
     },
     legend: {
       data: ['Open Rate', 'Click Rate'],
       bottom: 0,
-      textStyle: { color: '#a3a3a3' }
+      textStyle: { color: ct.legendText }
     },
     grid: {
       left: '3%',
@@ -129,13 +133,13 @@ export function AnalyticsPage() {
     xAxis: {
       type: 'category',
       data: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-      axisLine: { lineStyle: { color: '#e5e5e5' } },
-      axisLabel: { color: '#a3a3a3' }
+      axisLine: { lineStyle: { color: ct.axisLine } },
+      axisLabel: { color: ct.axisLabel }
     },
     yAxis: {
       type: 'value',
-      axisLabel: { formatter: '{value}%', color: '#a3a3a3' },
-      splitLine: { lineStyle: { color: '#f5f5f5', type: 'dashed' } }
+      axisLabel: { formatter: '{value}%', color: ct.axisLabel },
+      splitLine: { lineStyle: { color: ct.splitLine, type: 'dashed' } }
     },
     series: [
       {
@@ -143,15 +147,15 @@ export function AnalyticsPage() {
         type: 'line',
         data: [22, 24, 23, 26],
         smooth: true,
-        lineStyle: { color: '#0066FF', width: 3 },
-        itemStyle: { color: '#0066FF' },
+        lineStyle: { color: ct.primary, width: 3 },
+        itemStyle: { color: ct.primary },
         areaStyle: {
           color: {
             type: 'linear',
             x: 0, y: 0, x2: 0, y2: 1,
             colorStops: [
-              { offset: 0, color: 'rgba(0, 102, 255, 0.2)' },
-              { offset: 1, color: 'rgba(0, 102, 255, 0)' }
+              { offset: 0, color: `${ct.primary}33` },
+              { offset: 1, color: `${ct.primary}00` }
             ]
           }
         }
@@ -161,15 +165,19 @@ export function AnalyticsPage() {
         type: 'line',
         data: [3.1, 3.4, 2.9, 3.5],
         smooth: true,
-        lineStyle: { color: '#3B82F6', width: 3 },
-        itemStyle: { color: '#3B82F6' }
+        lineStyle: { color: ct.secondary, width: 3 },
+        itemStyle: { color: ct.secondary }
       }
     ]
-  };
+  }), [ct]);
 
-  const subscriberChartOption = {
+  const subscriberChartOption = useMemo(() => ({
     tooltip: {
-      trigger: 'axis'
+      trigger: 'axis',
+      backgroundColor: ct.tooltipBg,
+      borderColor: ct.tooltipBorder,
+      borderWidth: 1,
+      textStyle: { color: ct.tooltipText }
     },
     grid: {
       left: '3%',
@@ -181,13 +189,13 @@ export function AnalyticsPage() {
     xAxis: {
       type: 'category',
       data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-      axisLine: { lineStyle: { color: '#e5e5e5' } },
-      axisLabel: { color: '#a3a3a3' }
+      axisLine: { lineStyle: { color: ct.axisLine } },
+      axisLabel: { color: ct.axisLabel }
     },
     yAxis: {
       type: 'value',
-      axisLabel: { color: '#a3a3a3' },
-      splitLine: { lineStyle: { color: '#f5f5f5', type: 'dashed' } }
+      axisLabel: { color: ct.axisLabel },
+      splitLine: { lineStyle: { color: ct.splitLine, type: 'dashed' } }
     },
     series: [
       {
@@ -198,15 +206,15 @@ export function AnalyticsPage() {
             type: 'linear',
             x: 0, y: 0, x2: 0, y2: 1,
             colorStops: [
-              { offset: 0, color: '#0066FF' },
-              { offset: 1, color: '#003D99' }
+              { offset: 0, color: ct.primary },
+              { offset: 1, color: ct.secondary }
             ]
           },
           borderRadius: [4, 4, 0, 0]
         }
       }
     ]
-  };
+  }), [ct]);
 
   const topLinks = [
     { url: 'example.com/product', clicks: 245, ctr: '4.2%' },

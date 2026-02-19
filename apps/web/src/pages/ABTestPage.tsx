@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { useToast } from '@/components/ui/Toast';
 import { supabase, Newsletter } from '@/lib/supabase';
 import { 
   ArrowLeft, 
@@ -47,6 +48,7 @@ export function ABTestPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { tenant } = useAuth();
+  const toast = useToast();
   const [newsletter, setNewsletter] = useState<Newsletter | null>(null);
   const [test, setTest] = useState<ABTest | null>(null);
   const [results, setResults] = useState<ABTestResult[]>([]);
@@ -188,7 +190,7 @@ export function ABTestPage() {
       }
     } catch (error) {
       console.error('Error saving test:', error);
-      alert('Failed to save test');
+      toast.error('Failed to save test');
     } finally {
       setSaving(false);
     }
