@@ -8,25 +8,13 @@ import Placeholder from '@tiptap/extension-placeholder';
 import { useToast } from '@/components/ui/Toast';
 import { ConfirmDialog } from '@/components/ui/Dialog';
 import { useUnsavedChanges } from '@/hooks/useUnsavedChanges';
-import { sanitizeHtml } from '@/lib/sanitize';
-import { api } from '@/lib/api';
 import { EditorSkeleton } from '@/components/ui/Skeleton';
-import { AIFeedback, InlineAIMenu, GenerationHistory } from '@/components/editor';
+import { InlineAIMenu, GenerationHistory, EditorToolbar, PreviewModal, ScheduleModal } from '@/components/editor';
 import {
   ArrowLeft,
   Save,
   Send,
   Eye,
-  Bold,
-  Italic,
-  List,
-  ListOrdered,
-  Heading1,
-  Heading2,
-  Quote,
-  Undo,
-  Redo,
-  Sparkles,
   X,
   Clock,
   Check,
@@ -35,72 +23,8 @@ import {
   Users,
   FlaskConical,
   Share2,
-  History,
-  Monitor,
-  Tablet,
-  Smartphone,
-  CheckCircle2,
-  XCircle,
-  ChevronDown,
-  ChevronUp,
 } from 'lucide-react';
 import clsx from 'clsx';
-
-type PreviewDevice = 'desktop' | 'tablet' | 'mobile';
-
-const DEVICE_WIDTHS: Record<PreviewDevice, string> = {
-  desktop: 'max-w-[650px]',
-  tablet: 'max-w-[480px]',
-  mobile: 'max-w-[375px]',
-};
-
-const SPAM_WORDS = [
-  'free!!!', 'guaranteed', 'winner', 'you\'ve been selected', 'act now',
-  'click here', 'make money', 'earn cash', 'no obligation', 'risk-free offer',
-  'limited time offer', 'order now', 'buy direct', 'cash bonus',
-];
-
-interface QualityResult {
-  subjectLength: { pass: boolean; value: number; message: string };
-  hasContent: { pass: boolean };
-  spamWords: { pass: boolean; found: string[] };
-  grade: 'A' | 'B' | 'C' | 'D' | 'F';
-}
-
-function runQualityCheck(subject: string, html: string): QualityResult {
-  const textContent = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
-  const subjectLen = subject.trim().length;
-  const subjectLength = {
-    pass: subjectLen > 0 && subjectLen <= 50,
-    value: subjectLen,
-    message: subjectLen === 0
-      ? 'No subject line set'
-      : subjectLen > 50
-      ? `${subjectLen} chars — aim for under 50`
-      : `${subjectLen} chars — good`,
-  };
-
-  const hasContent = { pass: textContent.length > 50 };
-
-  const textLower = textContent.toLowerCase();
-  const foundSpam = SPAM_WORDS.filter(w => textLower.includes(w));
-  const spamWords = { pass: foundSpam.length === 0, found: foundSpam };
-
-  const checks = [subjectLength.pass, hasContent.pass, spamWords.pass];
-  const passing = checks.filter(Boolean).length;
-  const grade: QualityResult['grade'] =
-    passing === 3 ? 'A' : passing === 2 ? 'B' : passing === 1 ? 'C' : 'F';
-
-  return { subjectLength, hasContent, spamWords, grade };
-}
-
-const GRADE_COLORS: Record<string, string> = {
-  A: 'text-success bg-success/10',
-  B: 'text-info bg-info/10',
-  C: 'text-warning bg-warning/10',
-  D: 'text-orange-500 bg-orange-50 dark:bg-orange-900/20',
-  F: 'text-error bg-error/10',
-};
 
 // Types for generation history
 interface GenerationHistoryItem {
@@ -126,19 +50,6 @@ export function NewsletterEditorPage() {
   const [aiPrompt, setAiPrompt] = useState('');
   const [generating, setGenerating] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
-  const [previewDevice, setPreviewDevice] = useState<PreviewDevice>('desktop');
-  const [qualityResult, setQualityResult] = useState<QualityResult | null>(null);
-  const [showQualityPanel, setShowQualityPanel] = useState(false);
-  const [richQuality, setRichQuality] = useState<{
-    readability_score: number;
-    spam_score: number;
-    spam_words_found: string[];
-    missing_alt_text: string[];
-    links_found: string[];
-    overall_score: number;
-    overall_grade: string;
-  } | null>(null);
-  const [richQualityLoading, setRichQualityLoading] = useState(false);
   
   // Send state
   const [showSendModal, setShowSendModal] = useState(false);
@@ -755,166 +666,23 @@ export function NewsletterEditorPage() {
 
           {/* Editor */}
           <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
-            {/* Toolbar */}
-            {!isSent && (
-              <div className="flex items-center gap-1 p-2 border-b border-neutral-200 dark:border-neutral-700 flex-wrap">
-                <button
-                  onClick={() => editor?.chain().focus().toggleBold().run()}
-                  className={clsx(
-                    'p-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700',
-                    editor?.isActive('bold') && 'bg-neutral-100 dark:bg-neutral-700'
-                  )}
-                >
-                  <Bold className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => editor?.chain().focus().toggleItalic().run()}
-                  className={clsx(
-                    'p-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700',
-                    editor?.isActive('italic') && 'bg-neutral-100 dark:bg-neutral-700'
-                  )}
-                >
-                  <Italic className="w-4 h-4" />
-                </button>
-                <div className="w-px h-6 bg-neutral-200 dark:bg-neutral-700 mx-1" />
-                <button
-                  onClick={() => editor?.chain().focus().toggleHeading({ level: 1 }).run()}
-                  className={clsx(
-                    'p-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700',
-                    editor?.isActive('heading', { level: 1 }) && 'bg-neutral-100 dark:bg-neutral-700'
-                  )}
-                >
-                  <Heading1 className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => editor?.chain().focus().toggleHeading({ level: 2 }).run()}
-                  className={clsx(
-                    'p-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700',
-                    editor?.isActive('heading', { level: 2 }) && 'bg-neutral-100 dark:bg-neutral-700'
-                  )}
-                >
-                  <Heading2 className="w-4 h-4" />
-                </button>
-                <div className="w-px h-6 bg-neutral-200 dark:bg-neutral-700 mx-1" />
-                <button
-                  onClick={() => editor?.chain().focus().toggleBulletList().run()}
-                  className={clsx(
-                    'p-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700',
-                    editor?.isActive('bulletList') && 'bg-neutral-100 dark:bg-neutral-700'
-                  )}
-                >
-                  <List className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => editor?.chain().focus().toggleOrderedList().run()}
-                  className={clsx(
-                    'p-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700',
-                    editor?.isActive('orderedList') && 'bg-neutral-100 dark:bg-neutral-700'
-                  )}
-                >
-                  <ListOrdered className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => editor?.chain().focus().toggleBlockquote().run()}
-                  className={clsx(
-                    'p-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700',
-                    editor?.isActive('blockquote') && 'bg-neutral-100 dark:bg-neutral-700'
-                  )}
-                >
-                  <Quote className="w-4 h-4" />
-                </button>
-                <div className="w-px h-6 bg-neutral-200 dark:bg-neutral-700 mx-1" />
-                <button
-                  onClick={() => editor?.chain().focus().undo().run()}
-                  className="p-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700"
-                >
-                  <Undo className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => editor?.chain().focus().redo().run()}
-                  className="p-2 rounded hover:bg-neutral-100 dark:hover:bg-neutral-700"
-                >
-                  <Redo className="w-4 h-4" />
-                </button>
-                <div className="flex-1" />
-                {generationHistory.length > 0 && (
-                  <button
-                    onClick={() => setShowHistory(true)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium text-sm text-neutral-600 dark:text-neutral-400 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
-                    title="View generation history"
-                  >
-                    <History className="w-4 h-4" />
-                    History ({generationHistory.length})
-                  </button>
-                )}
-                <button
-                  onClick={() => setShowAIPanel(!showAIPanel)}
-                  className={clsx(
-                    'inline-flex items-center gap-2 px-3 py-1.5 rounded-lg font-medium text-sm transition-colors',
-                    showAIPanel
-                      ? 'bg-primary-500 text-white'
-                      : 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 hover:bg-primary-100'
-                  )}
-                >
-                  <Sparkles className="w-4 h-4" />
-                  AI Assist
-                </button>
-              </div>
-            )}
-
-            {/* AI Panel */}
-            {showAIPanel && !isSent && (
-              <div className="p-4 border-b border-neutral-200 dark:border-neutral-700 bg-primary-50/50 dark:bg-primary-900/10">
-                <div className="flex gap-3">
-                  <input
-                    type="text"
-                    value={aiPrompt}
-                    onChange={(e) => setAiPrompt(e.target.value)}
-                    placeholder="What would you like to write about?"
-                    className="flex-1 px-3 py-2 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
-                    onKeyDown={(e) => e.key === 'Enter' && generateWithAI()}
-                  />
-                  <button
-                    onClick={() => generateWithAI()}
-                    disabled={generating || !aiPrompt.trim()}
-                    className="px-4 py-2 bg-primary-500 text-white font-medium rounded-lg hover:bg-primary-600 transition-colors disabled:opacity-50"
-                  >
-                    {generating ? <RefreshCw className="w-5 h-5 animate-spin" /> : 'Generate'}
-                  </button>
-                </div>
-                <div className="flex gap-2 mt-3">
-                  {['Expand on this', 'Make it punchier', 'Add a call to action', 'Summarize'].map((suggestion) => (
-                    <button
-                      key={suggestion}
-                      onClick={() => setAiPrompt(suggestion)}
-                      className="px-3 py-1 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-full text-sm text-neutral-600 dark:text-neutral-400 hover:border-primary-300"
-                    >
-                      {suggestion}
-                    </button>
-                  ))}
-                </div>
-                
-              </div>
-            )}
-
-            {/* AI Feedback — shown after generation, independent of the AI prompt panel */}
-            {showAIFeedback && !isSent && (
-              <div className="px-4 pb-3 border-b border-neutral-200 dark:border-neutral-700 bg-primary-50/30 dark:bg-primary-900/5">
-                <AIFeedback
-                  generationId={lastGenerationId || undefined}
-                  onRegenerate={handleRegenerate}
-                  onFeedback={handleAIFeedback}
-                  isRegenerating={generating}
-                  disabled={isSent}
-                />
-                <button
-                  onClick={() => setShowAIFeedback(false)}
-                  className="mt-2 text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300"
-                >
-                  Dismiss
-                </button>
-              </div>
-            )}
+            <EditorToolbar
+              editor={editor}
+              isSent={isSent}
+              generationHistoryCount={generationHistory.length}
+              showAIPanel={showAIPanel}
+              aiPrompt={aiPrompt}
+              generating={generating}
+              showAIFeedback={showAIFeedback}
+              lastGenerationId={lastGenerationId}
+              onToggleHistory={() => setShowHistory(true)}
+              onToggleAIPanel={() => setShowAIPanel(!showAIPanel)}
+              onAiPromptChange={setAiPrompt}
+              onGenerate={() => generateWithAI()}
+              onRegenerate={handleRegenerate}
+              onFeedback={handleAIFeedback}
+              onDismissAIFeedback={() => setShowAIFeedback(false)}
+            />
 
             {/* Editor Content */}
             <EditorContent 
@@ -1030,189 +798,13 @@ export function NewsletterEditorPage() {
       </div>
 
       {/* Preview Modal — Multi-Device */}
-      {showPreview && (() => {
-        const html = editor?.getHTML() ?? '';
-        const quality = qualityResult ?? runQualityCheck(subjectLine, html);
-        return (
-          <div className="fixed inset-0 bg-black/60 flex flex-col z-50">
-            {/* Modal toolbar */}
-            <div className="flex items-center justify-between gap-4 px-4 py-3 bg-white dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 flex-shrink-0">
-              <h2 className="font-semibold text-neutral-900 dark:text-white text-sm">Email Preview</h2>
-
-              {/* Device selector */}
-              <div className="flex items-center gap-1 bg-neutral-100 dark:bg-neutral-900 rounded-lg p-1">
-                {([
-                  { id: 'desktop' as PreviewDevice, icon: Monitor, label: 'Desktop (650px)' },
-                  { id: 'tablet' as PreviewDevice, icon: Tablet, label: 'Tablet (480px)' },
-                  { id: 'mobile' as PreviewDevice, icon: Smartphone, label: 'Mobile (375px)' },
-                ] as const).map(({ id, icon: Icon, label }) => (
-                  <button
-                    key={id}
-                    onClick={() => setPreviewDevice(id)}
-                    aria-label={label}
-                    className={clsx(
-                      'p-1.5 rounded transition-colors',
-                      previewDevice === id
-                        ? 'bg-white dark:bg-neutral-700 shadow-sm text-primary-600 dark:text-primary-400'
-                        : 'text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300'
-                    )}
-                  >
-                    <Icon className="w-4 h-4" />
-                  </button>
-                ))}
-              </div>
-
-              {/* Quality check toggle */}
-              <button
-                onClick={async () => {
-                  const localResult = runQualityCheck(subjectLine, html);
-                  setQualityResult(localResult);
-                  const wasOpen = showQualityPanel;
-                  setShowQualityPanel(v => !v);
-                  if (!wasOpen) {
-                    setRichQuality(null);
-                    setRichQualityLoading(true);
-                    try {
-                      const rich = await api.checkNewsletterQuality({ content_html: html, subject_line: subjectLine });
-                      setRichQuality(rich);
-                    } catch {
-                      // local-only fallback
-                    } finally {
-                      setRichQualityLoading(false);
-                    }
-                  }
-                }}
-                className={clsx(
-                  'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors',
-                  showQualityPanel
-                    ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/20 dark:text-primary-400'
-                    : 'bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-600'
-                )}
-              >
-                <span className={clsx('w-5 h-5 rounded font-bold text-xs flex items-center justify-center flex-shrink-0', GRADE_COLORS[quality.grade])}>
-                  {quality.grade}
-                </span>
-                Quality Check
-                {showQualityPanel ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
-              </button>
-
-              <button
-                onClick={() => { setShowPreview(false); setShowQualityPanel(false); setQualityResult(null); }}
-                aria-label="Close preview"
-                className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
-              >
-                <X className="w-5 h-5 text-neutral-500" />
-              </button>
-            </div>
-
-            {/* Quality check panel */}
-            {showQualityPanel && quality && (
-              <div className="flex-shrink-0 bg-white dark:bg-neutral-800 border-b border-neutral-200 dark:border-neutral-700 px-4 py-3">
-                <div className="max-w-4xl mx-auto flex flex-wrap items-center gap-4">
-                  <div className={clsx('w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold flex-shrink-0', GRADE_COLORS[richQuality ? richQuality.overall_grade : quality.grade])}>
-                    {richQuality ? richQuality.overall_grade : quality.grade}
-                  </div>
-                  <div className="flex flex-wrap gap-3">
-                    <div className="flex items-center gap-1.5">
-                      {quality.subjectLength.pass
-                        ? <CheckCircle2 className="w-4 h-4 text-success" />
-                        : <XCircle className="w-4 h-4 text-error" />}
-                      <span className="text-sm text-neutral-700 dark:text-neutral-300">Subject: {quality.subjectLength.message}</span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      {quality.hasContent.pass
-                        ? <CheckCircle2 className="w-4 h-4 text-success" />
-                        : <XCircle className="w-4 h-4 text-error" />}
-                      <span className="text-sm text-neutral-700 dark:text-neutral-300">
-                        {quality.hasContent.pass ? 'Has content' : 'Body is empty'}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-1.5">
-                      {quality.spamWords.pass
-                        ? <CheckCircle2 className="w-4 h-4 text-success" />
-                        : <XCircle className="w-4 h-4 text-warning" />}
-                      <span className="text-sm text-neutral-700 dark:text-neutral-300">
-                        {quality.spamWords.pass
-                          ? 'No spam keywords'
-                          : `Spam words: ${quality.spamWords.found.join(', ')}`}
-                      </span>
-                    </div>
-                    {richQuality && (
-                      <>
-                        <div className="flex items-center gap-1.5">
-                          <CheckCircle2 className={clsx('w-4 h-4', richQuality.readability_score >= 60 ? 'text-success' : richQuality.readability_score >= 30 ? 'text-warning' : 'text-error')} />
-                          <span className="text-sm text-neutral-700 dark:text-neutral-300">Readability: {richQuality.readability_score}/100</span>
-                        </div>
-                        {richQuality.missing_alt_text.length > 0 && (
-                          <div className="flex items-center gap-1.5">
-                            <XCircle className="w-4 h-4 text-warning" />
-                            <span className="text-sm text-neutral-700 dark:text-neutral-300">{richQuality.missing_alt_text.length} image(s) missing alt text</span>
-                          </div>
-                        )}
-                        {richQuality.links_found.length > 0 && (
-                          <div className="flex items-center gap-1.5">
-                            <CheckCircle2 className="w-4 h-4 text-info" />
-                            <span className="text-sm text-neutral-700 dark:text-neutral-300">{richQuality.links_found.length} link(s)</span>
-                          </div>
-                        )}
-                      </>
-                    )}
-                    {richQualityLoading && (
-                      <div className="flex items-center gap-1.5">
-                        <div className="h-3 w-3 animate-spin rounded-full border-2 border-primary-500 border-t-transparent" />
-                        <span className="text-xs text-neutral-400">Checking...</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Preview content — scrollable */}
-            <div className="flex-1 overflow-auto bg-neutral-100 dark:bg-neutral-900 py-6">
-              <div className={clsx('mx-auto transition-all duration-300', DEVICE_WIDTHS[previewDevice])}>
-                {/* Email chrome / inbox header */}
-                <div className="bg-white dark:bg-neutral-800 rounded-t-xl border border-neutral-200 dark:border-neutral-700 border-b-0 p-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-9 h-9 rounded-full bg-primary-100 dark:bg-primary-900/30 flex items-center justify-center flex-shrink-0 text-primary-600 dark:text-primary-400 font-semibold text-sm">
-                      N
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between gap-2">
-                        <p className="text-sm font-semibold text-neutral-900 dark:text-white">Newsletter Wizard</p>
-                        <p className="text-xs text-neutral-400 flex-shrink-0">just now</p>
-                      </div>
-                      <p className="text-sm font-medium text-neutral-800 dark:text-neutral-200 mt-0.5 truncate">
-                        {subjectLine || <span className="italic text-neutral-400">No subject line</span>}
-                      </p>
-                      {preheader && (
-                        <p className="text-xs text-neutral-400 truncate mt-0.5">{preheader}</p>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Email body */}
-                <div className="bg-white dark:bg-neutral-800 rounded-b-xl border border-neutral-200 dark:border-neutral-700 overflow-hidden">
-                  <div className="p-6">
-                    {/* HTML is sanitized via DOMPurify before rendering */}
-                    <div
-                      className="prose dark:prose-invert max-w-none"
-                      // eslint-disable-next-line react/no-danger
-                      dangerouslySetInnerHTML={{ __html: sanitizeHtml(html) }}
-                    />
-                  </div>
-                  <div className="px-6 py-4 border-t border-neutral-100 dark:border-neutral-700 text-center">
-                    <p className="text-xs text-neutral-400">
-                      You received this email because you subscribed. <span className="underline cursor-default">Unsubscribe</span>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
-      })()}
+      <PreviewModal
+        isOpen={showPreview}
+        onClose={() => setShowPreview(false)}
+        html={editor?.getHTML() ?? ''}
+        subjectLine={subjectLine}
+        preheader={preheader}
+      />
 
       {/* Send Modal */}
       {showSendModal && (
@@ -1277,71 +869,16 @@ export function NewsletterEditorPage() {
       )}
 
       {/* Schedule Modal */}
-      {showScheduleModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-neutral-800 rounded-2xl w-full max-w-md">
-            <div className="flex items-center justify-between p-4 border-b border-neutral-200 dark:border-neutral-700">
-              <h2 className="font-semibold text-neutral-900 dark:text-white flex items-center gap-2">
-                <Clock className="w-5 h-5" /> Schedule Newsletter
-              </h2>
-              <button
-                onClick={() => setShowScheduleModal(false)}
-                className="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg"
-              >
-                <X className="w-5 h-5 text-neutral-500" />
-              </button>
-            </div>
-            <div className="p-6">
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
-                    Date
-                  </label>
-                  <input
-                    type="date"
-                    value={scheduleDate}
-                    onChange={(e) => setScheduleDate(e.target.value)}
-                    min={new Date().toISOString().split('T')[0]}
-                    className="w-full px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-1.5">
-                    Time
-                  </label>
-                  <input
-                    type="time"
-                    value={scheduleTime}
-                    onChange={(e) => setScheduleTime(e.target.value)}
-                    className="w-full px-3 py-2 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 outline-none"
-                  />
-                </div>
-              </div>
-              
-              <p className="text-xs text-neutral-500 mt-4">
-                Note: Scheduled sends require a background cron job to be configured. For MVP, the schedule is stored but manual sending may be needed.
-              </p>
-              
-              <div className="flex gap-3 mt-6">
-                <button
-                  onClick={() => setShowScheduleModal(false)}
-                  className="flex-1 px-4 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg text-neutral-700 dark:text-neutral-300 font-medium hover:bg-neutral-50 dark:hover:bg-neutral-700"
-                >
-                  Cancel
-                </button>
-                <button
-                  onClick={scheduleNewsletter}
-                  disabled={scheduling || !scheduleDate || !scheduleTime}
-                  className="flex-1 px-4 py-2.5 bg-primary-500 text-white font-medium rounded-lg hover:bg-primary-600 disabled:opacity-50 flex items-center justify-center gap-2"
-                >
-                  {scheduling ? <RefreshCw className="w-4 h-4 animate-spin" /> : <Clock className="w-4 h-4" />}
-                  Schedule
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <ScheduleModal
+        isOpen={showScheduleModal}
+        onClose={() => setShowScheduleModal(false)}
+        scheduleDate={scheduleDate}
+        scheduleTime={scheduleTime}
+        scheduling={scheduling}
+        onDateChange={setScheduleDate}
+        onTimeChange={setScheduleTime}
+        onSchedule={scheduleNewsletter}
+      />
 
       {/* Inline AI Menu for text selection */}
       <InlineAIMenu
