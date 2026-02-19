@@ -1,3 +1,4 @@
+import { useRef, useState, useEffect } from 'react';
 import { Sun, Moon, Monitor } from 'lucide-react';
 import { useTheme, ThemeMode } from '@/hooks/useTheme';
 import clsx from 'clsx';
@@ -12,6 +13,113 @@ interface ThemeSwitcherProps {
   variant?: 'segmented' | 'dropdown' | 'icons';
   size?: 'sm' | 'md';
   className?: string;
+}
+
+function ThemeDropdown({ mode, setMode, CurrentIcon, size, className }: {
+  mode: ThemeMode;
+  setMode: (m: ThemeMode) => void;
+  CurrentIcon: typeof Sun;
+  size?: 'sm' | 'md';
+  className?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const [focusedIndex, setFocusedIndex] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const optionRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  useEffect(() => {
+    if (!open) return;
+    function handleClickOutside(e: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [open]);
+
+  useEffect(() => {
+    if (open) {
+      const idx = THEME_OPTIONS.findIndex(o => o.value === mode);
+      setFocusedIndex(idx >= 0 ? idx : 0);
+    }
+  }, [open, mode]);
+
+  useEffect(() => {
+    if (open) {
+      optionRefs.current[focusedIndex]?.focus();
+    }
+  }, [open, focusedIndex]);
+
+  function handleTriggerKeyDown(e: React.KeyboardEvent) {
+    if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      setOpen(true);
+    }
+  }
+
+  function handleOptionKeyDown(e: React.KeyboardEvent, idx: number) {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setFocusedIndex((idx + 1) % THEME_OPTIONS.length);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setFocusedIndex((idx - 1 + THEME_OPTIONS.length) % THEME_OPTIONS.length);
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setMode(THEME_OPTIONS[idx].value);
+      setOpen(false);
+    } else if (e.key === 'Escape' || e.key === 'Tab') {
+      setOpen(false);
+    }
+  }
+
+  return (
+    <div ref={containerRef} className={clsx('relative', className)}>
+      <button
+        onClick={() => setOpen(o => !o)}
+        onKeyDown={handleTriggerKeyDown}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label="Select theme"
+        className="p-2 rounded-lg text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors"
+      >
+        <CurrentIcon className={clsx(size === 'sm' ? 'w-4 h-4' : 'w-5 h-5')} />
+      </button>
+      {open && (
+        <div
+          role="listbox"
+          aria-label="Theme options"
+          className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-neutral-800 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 py-1 z-50"
+        >
+          {THEME_OPTIONS.map((option, idx) => {
+            const Icon = option.icon;
+            const isSelected = mode === option.value;
+            return (
+              <button
+                key={option.value}
+                ref={el => { optionRefs.current[idx] = el; }}
+                role="option"
+                aria-selected={isSelected}
+                onClick={() => { setMode(option.value); setOpen(false); }}
+                onKeyDown={e => handleOptionKeyDown(e, idx)}
+                tabIndex={-1}
+                className={clsx(
+                  'w-full px-3 py-2 text-left flex items-center gap-2 text-sm transition-colors focus:outline-none focus:bg-neutral-100 dark:focus:bg-neutral-700',
+                  isSelected
+                    ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400'
+                    : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700'
+                )}
+              >
+                <Icon className="w-4 h-4" />
+                {option.label}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export function ThemeSwitcher({ variant = 'segmented', size = 'md', className }: ThemeSwitcherProps) {
@@ -45,33 +153,7 @@ export function ThemeSwitcher({ variant = 'segmented', size = 'md', className }:
 
   if (variant === 'dropdown') {
     const CurrentIcon = THEME_OPTIONS.find(o => o.value === mode)?.icon || Monitor;
-    return (
-      <div className={clsx('relative group', className)}>
-        <button className="p-2 rounded-lg text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-700 transition-colors">
-          <CurrentIcon className={clsx(size === 'sm' ? 'w-4 h-4' : 'w-5 h-5')} />
-        </button>
-        <div className="absolute right-0 top-full mt-1 w-36 bg-white dark:bg-neutral-800 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 py-1 z-50 hidden group-hover:block">
-          {THEME_OPTIONS.map((option) => {
-            const Icon = option.icon;
-            return (
-              <button
-                key={option.value}
-                onClick={() => setMode(option.value)}
-                className={clsx(
-                  'w-full px-3 py-2 text-left flex items-center gap-2 text-sm transition-colors',
-                  mode === option.value
-                    ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400'
-                    : 'text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-700'
-                )}
-              >
-                <Icon className="w-4 h-4" />
-                {option.label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-    );
+    return <ThemeDropdown mode={mode} setMode={setMode} CurrentIcon={CurrentIcon} size={size} className={className} />;
   }
 
   // Default: segmented control

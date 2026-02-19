@@ -17,9 +17,10 @@ import clsx from 'clsx';
 
 interface DashboardStats {
   totalSources: number;
-  totalNewsletters: number;
-  avgOpenRate: number;
-  totalSubscribers: number;
+  sentNewsletters: number;
+  newslettersThisMonth: number;
+  avgOpenRate: number | null;
+  totalSubscribers: number | null;
 }
 
 export function DashboardPage() {
@@ -28,9 +29,10 @@ export function DashboardPage() {
   const [sources, setSources] = useState<KnowledgeSource[]>([]);
   const [stats, setStats] = useState<DashboardStats>({
     totalSources: 0,
-    totalNewsletters: 0,
-    avgOpenRate: 0,
-    totalSubscribers: 0
+    sentNewsletters: 0,
+    newslettersThisMonth: 0,
+    avgOpenRate: null,
+    totalSubscribers: null,
   });
   const [loading, setLoading] = useState(true);
 
@@ -43,30 +45,69 @@ export function DashboardPage() {
   async function loadDashboardData() {
     setLoading(true);
     try {
-      // Load recent newsletters
+      // Recent newsletters for list
       const { data: newsletters } = await supabase
         .from('newsletters')
         .select('*')
         .eq('tenant_id', tenant!.id)
         .order('created_at', { ascending: false })
         .limit(5);
-      
+
       setRecentNewsletters(newsletters || []);
 
-      // Load sources
+      // Sources
       const { data: sourcesData } = await supabase
         .from('knowledge_sources')
         .select('*')
         .eq('tenant_id', tenant!.id);
-      
+
       setSources(sourcesData || []);
 
-      // Calculate stats
+      // Count sent newsletters (all time)
+      const { count: sentCount } = await supabase
+        .from('newsletters')
+        .select('*', { count: 'exact', head: true })
+        .eq('tenant_id', tenant!.id)
+        .eq('status', 'sent');
+
+      // Count newsletters created this month (for usage bar)
+      const startOfMonth = new Date();
+      startOfMonth.setDate(1);
+      startOfMonth.setHours(0, 0, 0, 0);
+      const { count: monthCount } = await supabase
+        .from('newsletters')
+        .select('*', { count: 'exact', head: true })
+        .eq('tenant_id', tenant!.id)
+        .gte('created_at', startOfMonth.toISOString());
+
+      // Avg open rate from newsletter_stats
+      let avgOpenRate: number | null = null;
+      const sentIds = (sentCount && sentCount > 0)
+        ? await supabase
+            .from('newsletters')
+            .select('id')
+            .eq('tenant_id', tenant!.id)
+            .eq('status', 'sent')
+        : null;
+
+      if (sentIds?.data && sentIds.data.length > 0) {
+        const { data: statsData } = await supabase
+          .from('newsletter_stats')
+          .select('open_rate')
+          .in('newsletter_id', sentIds.data.map(n => n.id));
+
+        if (statsData && statsData.length > 0) {
+          const sum = statsData.reduce((s, r) => s + (r.open_rate || 0), 0);
+          avgOpenRate = Math.round((sum / statsData.length) * 10) / 10;
+        }
+      }
+
       setStats({
         totalSources: sourcesData?.length || 0,
-        totalNewsletters: newsletters?.length || 0,
-        avgOpenRate: 24.5, // Mock for demo
-        totalSubscribers: 1250 // Mock for demo
+        sentNewsletters: sentCount || 0,
+        newslettersThisMonth: monthCount || 0,
+        avgOpenRate,
+        totalSubscribers: null,
       });
     } catch (error) {
       console.error('Error loading dashboard data:', error);
@@ -93,9 +134,17 @@ export function DashboardPage() {
 
   const statCards = [
     { name: 'Knowledge Sources', value: stats.totalSources, icon: Database, limit: limits.sources },
-    { name: 'Newsletters Sent', value: stats.totalNewsletters, icon: Mail, limit: limits.newsletters },
-    { name: 'Avg. Open Rate', value: `${stats.avgOpenRate}%`, icon: TrendingUp },
-    { name: 'Total Subscribers', value: stats.totalSubscribers.toLocaleString(), icon: Users },
+    { name: 'Newsletters Sent', value: stats.sentNewsletters, icon: Mail, limit: limits.newsletters },
+    {
+      name: 'Avg. Open Rate',
+      value: stats.avgOpenRate !== null ? `${stats.avgOpenRate}%` : '—',
+      icon: TrendingUp,
+    },
+    {
+      name: 'Total Subscribers',
+      value: stats.totalSubscribers !== null ? stats.totalSubscribers.toLocaleString() : '—',
+      icon: Users,
+    },
   ];
 
   if (loading) {
@@ -236,15 +285,15 @@ export function DashboardPage() {
             <div className="space-y-4">
               <div>
                 <div className="flex justify-between text-sm mb-1">
-                  <span className="text-neutral-600 dark:text-neutral-400">AI Generations</span>
+                  <span className="text-neutral-600 dark:text-neutral-400">Newsletters Created</span>
                   <span className="font-medium text-neutral-900 dark:text-white">
-                    8 / {limits.aiGenerations}
+                    {stats.newslettersThisMonth} / {limits.aiGenerations}
                   </span>
                 </div>
                 <div className="h-2 bg-neutral-100 dark:bg-neutral-700 rounded-full overflow-hidden">
-                  <div 
+                  <div
                     className="h-full bg-primary-500 rounded-full transition-all duration-500"
-                    style={{ width: `${(8 / limits.aiGenerations) * 100}%` }}
+                    style={{ width: `${Math.min((stats.newslettersThisMonth / limits.aiGenerations) * 100, 100)}%` }}
                   />
                 </div>
               </div>

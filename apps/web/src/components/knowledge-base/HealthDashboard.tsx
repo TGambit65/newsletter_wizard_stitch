@@ -255,7 +255,13 @@ export function HealthDashboard({
             <div className="flex items-center justify-center gap-6">
               {/* SVG Donut Chart */}
               <div className="relative">
-                <svg width="120" height="120" viewBox="0 0 120 120">
+                <svg
+                  width="120"
+                  height="120"
+                  viewBox="0 0 120 120"
+                  role="img"
+                  aria-label={`Source status: ${chartData.map(d => `${d.label} ${d.count}`).join(', ')}`}
+                >
                   {chartData.length === 0 ? (
                     <circle
                       cx="60"
@@ -416,7 +422,14 @@ export function HealthDashboard({
                       <p className="text-sm font-medium text-neutral-900 dark:text-white truncate">
                         {source.title}
                       </p>
-                      <div className="mt-1 w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-1.5">
+                      <div
+                        className="mt-1 w-full bg-neutral-200 dark:bg-neutral-700 rounded-full h-1.5"
+                        role="progressbar"
+                        aria-label={`${source.title} ${source.status}`}
+                        aria-valuemin={0}
+                        aria-valuemax={100}
+                        aria-valuenow={source.status === 'processing' ? 60 : 20}
+                      >
                         <div
                           className="bg-primary-500 h-1.5 rounded-full animate-pulse"
                           style={{ width: source.status === 'processing' ? '60%' : '20%' }}

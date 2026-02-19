@@ -135,9 +135,22 @@ export function KnowledgeBasePage() {
   const [uploadProgress, setUploadProgress] = useState<string>('');
   const [selectedSources, setSelectedSources] = useState<Set<string>>(new Set());
   const [showDetailModal, setShowDetailModal] = useState<string | null>(null);
-  
+  const [openMenuId, setOpenMenuId] = useState<string | null>(null);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!openMenuId) return;
+    function handleClickOutside(e: MouseEvent) {
+      const target = e.target as Element;
+      if (!target.closest('[data-menu-container]')) {
+        setOpenMenuId(null);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [openMenuId]);
 
   useEffect(() => {
     if (tenant) {
@@ -650,33 +663,44 @@ export function KnowledgeBasePage() {
                   </div>
                   
                   {/* Action menu */}
-                  <div className="relative group/menu">
-                    <button className="p-1.5 text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="relative" data-menu-container>
+                    <button
+                      onClick={() => setOpenMenuId(openMenuId === source.id ? null : source.id)}
+                      aria-haspopup="menu"
+                      aria-expanded={openMenuId === source.id}
+                      aria-label="Source actions"
+                      className="p-1.5 text-neutral-400 hover:text-neutral-600 hover:bg-neutral-100 dark:hover:bg-neutral-700 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
                       <MoreHorizontal className="w-4 h-4" />
                     </button>
-                    <div className="absolute right-0 top-full mt-1 w-40 bg-white dark:bg-neutral-800 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 py-1 z-10 hidden group-hover/menu:block">
-                      <button
-                        onClick={() => setShowDetailModal(source.id)}
-                        className="w-full px-3 py-2 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 flex items-center gap-2"
-                      >
-                        <Eye className="w-4 h-4" />
-                        View Details
-                      </button>
-                      <button
-                        onClick={() => reprocessSource(source)}
-                        className="w-full px-3 py-2 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 flex items-center gap-2"
-                      >
-                        <RefreshCw className="w-4 h-4" />
-                        Reprocess
-                      </button>
-                      <button
-                        onClick={() => deleteSource(source.id)}
-                        className="w-full px-3 py-2 text-left text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center gap-2"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                        Delete
-                      </button>
-                    </div>
+                    {openMenuId === source.id && (
+                      <div role="menu" className="absolute right-0 top-full mt-1 w-40 bg-white dark:bg-neutral-800 rounded-lg shadow-lg border border-neutral-200 dark:border-neutral-700 py-1 z-10">
+                        <button
+                          role="menuitem"
+                          onClick={() => { setShowDetailModal(source.id); setOpenMenuId(null); }}
+                          className="w-full px-3 py-2 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 flex items-center gap-2"
+                        >
+                          <Eye className="w-4 h-4" />
+                          View Details
+                        </button>
+                        <button
+                          role="menuitem"
+                          onClick={() => { reprocessSource(source); setOpenMenuId(null); }}
+                          className="w-full px-3 py-2 text-left text-sm text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700 flex items-center gap-2"
+                        >
+                          <RefreshCw className="w-4 h-4" />
+                          Reprocess
+                        </button>
+                        <button
+                          role="menuitem"
+                          onClick={() => { deleteSource(source.id); setOpenMenuId(null); }}
+                          className="w-full px-3 py-2 text-left text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center gap-2"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                          Delete
+                        </button>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

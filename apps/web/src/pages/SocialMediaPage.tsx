@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase, Newsletter } from '@/lib/supabase';
 import { api } from '@/lib/api';
+import { useToast } from '@/components/ui/Toast';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 import { 
   ArrowLeft,
   Copy,
@@ -106,6 +108,8 @@ export function SocialMediaPage() {
   const [generating, setGenerating] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<PlatformKey>('twitter');
+  const [showRegenConfirm, setShowRegenConfirm] = useState(false);
+  const toast = useToast();
 
   useEffect(() => {
     if (id && tenant) {
@@ -164,6 +168,15 @@ export function SocialMediaPage() {
     navigator.clipboard.writeText(text);
     setCopied(platform);
     setTimeout(() => setCopied(null), 2000);
+    toast.success('Copied to clipboard!');
+  }
+
+  function handleRegenerateClick() {
+    if (editedPosts) {
+      setShowRegenConfirm(true);
+    } else {
+      handleRegenerate();
+    }
   }
 
   function getPostText(platform: PlatformKey): string {
@@ -330,7 +343,7 @@ export function SocialMediaPage() {
           </p>
         </div>
         <button
-          onClick={handleRegenerate}
+          onClick={handleRegenerateClick}
           disabled={generating}
           className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors disabled:opacity-50"
         >
@@ -499,6 +512,16 @@ export function SocialMediaPage() {
           </button>
         </div>
       )}
+
+      <ConfirmDialog
+        open={showRegenConfirm}
+        onOpenChange={setShowRegenConfirm}
+        title="Regenerate all posts?"
+        description="This will overwrite your current posts. Any edits you've made will be lost."
+        confirmLabel="Regenerate"
+        variant="danger"
+        onConfirm={() => { setShowRegenConfirm(false); handleRegenerate(); }}
+      />
     </div>
   );
 }

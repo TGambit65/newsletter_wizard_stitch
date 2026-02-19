@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/lib/supabase';
-import { 
-  Building2, Users, FileText, Key, Webhook, Palette, 
-  Plus, Trash2, Settings, BarChart3, ArrowUpRight, DollarSign 
+import { useToast } from '@/components/ui/Toast';
+import { ConfirmDialog } from '@/components/ui/Dialog';
+import {
+  Building2, Users, FileText, Key, Webhook, Palette,
+  Plus, Trash2, Settings, BarChart3, ArrowUpRight, DollarSign
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -49,6 +51,7 @@ interface WhiteLabelConfig {
 
 export function PartnerPortalPage() {
   const { session, tenant } = useAuth();
+  const toast = useToast();
   const [activeTab, setActiveTab] = useState<Tab>('dashboard');
   const [subTenants, setSubTenants] = useState<SubTenant[]>([]);
   const [stats, setStats] = useState<PartnerStats | null>(null);
@@ -66,6 +69,7 @@ export function PartnerPortalPage() {
   const [newTenantSlug, setNewTenantSlug] = useState('');
   const [isPartner, setIsPartner] = useState(false);
   const [billingRecords, setBillingRecords] = useState<BillingRecord[]>([]);
+  const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null);
 
   useEffect(() => {
     checkPartnerStatus();
@@ -109,6 +113,7 @@ export function PartnerPortalPage() {
       setSubTenants(data.tenants || []);
     } catch (error) {
       console.error('Error loading sub-tenants:', error);
+      toast.error('Failed to load sub-tenants');
     }
   }
 
@@ -166,7 +171,7 @@ export function PartnerPortalPage() {
 
   async function createSubTenant() {
     if (!newTenantName || !newTenantSlug) return;
-    
+
     try {
       await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/manage-sub-tenants`, {
         method: 'POST',
@@ -185,14 +190,14 @@ export function PartnerPortalPage() {
       setNewTenantSlug('');
       await loadSubTenants();
       await loadStats();
+      toast.success(`Tenant "${newTenantName}" created`);
     } catch (error) {
       console.error('Error creating sub-tenant:', error);
+      toast.error('Failed to create tenant');
     }
   }
 
   async function deleteSubTenant(tenantId: string) {
-    if (!confirm('Are you sure you want to delete this tenant?')) return;
-    
     try {
       await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/manage-sub-tenants`, {
         method: 'POST',
@@ -204,45 +209,53 @@ export function PartnerPortalPage() {
       });
       await loadSubTenants();
       await loadStats();
+      toast.success('Tenant deleted');
     } catch (error) {
       console.error('Error deleting sub-tenant:', error);
+      toast.error('Failed to delete tenant');
     }
   }
 
   async function saveWhiteLabelConfig() {
     if (!tenant) return;
-    
-    const { data: tenantData } = await supabase
-      .from('tenants')
-      .select('partner_id')
-      .eq('id', tenant.id)
-      .single();
-    
-    if (!tenantData?.partner_id) return;
 
-    if (whiteLabelConfig.id) {
-      await supabase
-        .from('white_label_config')
-        .update({
-          brand_name: whiteLabelConfig.brand_name,
-          logo_url: whiteLabelConfig.logo_url,
-          primary_color: whiteLabelConfig.primary_color,
-          secondary_color: whiteLabelConfig.secondary_color,
-          custom_domain: whiteLabelConfig.custom_domain,
-          feature_flags: whiteLabelConfig.feature_flags,
-          updated_at: new Date().toISOString(),
-        })
-        .eq('id', whiteLabelConfig.id);
-    } else {
-      await supabase
-        .from('white_label_config')
-        .insert({
-          partner_id: tenantData.partner_id,
-          ...whiteLabelConfig,
-        });
+    try {
+      const { data: tenantData } = await supabase
+        .from('tenants')
+        .select('partner_id')
+        .eq('id', tenant.id)
+        .single();
+
+      if (!tenantData?.partner_id) return;
+
+      if (whiteLabelConfig.id) {
+        await supabase
+          .from('white_label_config')
+          .update({
+            brand_name: whiteLabelConfig.brand_name,
+            logo_url: whiteLabelConfig.logo_url,
+            primary_color: whiteLabelConfig.primary_color,
+            secondary_color: whiteLabelConfig.secondary_color,
+            custom_domain: whiteLabelConfig.custom_domain,
+            feature_flags: whiteLabelConfig.feature_flags,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', whiteLabelConfig.id);
+      } else {
+        await supabase
+          .from('white_label_config')
+          .insert({
+            partner_id: tenantData.partner_id,
+            ...whiteLabelConfig,
+          });
+      }
+
+      await loadWhiteLabelConfig();
+      toast.success('White label configuration saved');
+    } catch (error) {
+      console.error('Error saving white label config:', error);
+      toast.error('Failed to save configuration');
     }
-    
-    await loadWhiteLabelConfig();
   }
 
   const tabs = [
@@ -402,7 +415,8 @@ export function PartnerPortalPage() {
                           <p className="text-sm text-neutral-500">{t.slug} | {t.subscription_tier}</p>
                         </div>
                         <button
-                          onClick={() => deleteSubTenant(t.id)}
+                          onClick={() => setDeleteConfirmId(t.id)}
+                          aria-label={`Delete ${t.name}`}
                           className="p-2 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg"
                         >
                           <Trash2 className="w-4 h-4" />
@@ -615,6 +629,19 @@ export function PartnerPortalPage() {
           )}
         </>
       )}
+
+      <ConfirmDialog
+        open={deleteConfirmId !== null}
+        onOpenChange={open => { if (!open) setDeleteConfirmId(null); }}
+        title="Delete tenant?"
+        description="This will permanently delete the tenant and all their data. This action cannot be undone."
+        confirmLabel="Delete"
+        variant="danger"
+        onConfirm={() => {
+          if (deleteConfirmId) deleteSubTenant(deleteConfirmId);
+          setDeleteConfirmId(null);
+        }}
+      />
     </div>
   );
 }

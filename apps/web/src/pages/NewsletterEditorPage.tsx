@@ -174,6 +174,36 @@ export function NewsletterEditorPage() {
     }
   }, [id, tenant]);
 
+  // Load generation history from localStorage on mount
+  useEffect(() => {
+    if (!id) return;
+    try {
+      const stored = localStorage.getItem(`newsletter-gen-history-${id}`);
+      if (stored) {
+        const parsed = JSON.parse(stored) as Array<Omit<GenerationHistoryItem, 'timestamp'> & { timestamp: string }>;
+        const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
+        const items = parsed
+          .map(item => ({ ...item, timestamp: new Date(item.timestamp) }))
+          .filter(item => item.timestamp.getTime() > thirtyDaysAgo)
+          .slice(0, 100);
+        setGenerationHistory(items);
+      }
+    } catch {
+      // ignore malformed data
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  // Persist generation history to localStorage whenever it changes
+  useEffect(() => {
+    if (!id) return;
+    try {
+      localStorage.setItem(`newsletter-gen-history-${id}`, JSON.stringify(generationHistory));
+    } catch {
+      // ignore quota errors
+    }
+  }, [id, generationHistory]);
+
   async function loadNewsletter() {
     setLoading(true);
     try {
@@ -357,7 +387,7 @@ export function NewsletterEditorPage() {
           timestamp: new Date(),
           prompt: aiPrompt
         };
-        setGenerationHistory(prev => [newHistoryItem, ...prev].slice(0, 5));
+        setGenerationHistory(prev => [newHistoryItem, ...prev].slice(0, 30));
       }
       
       // First do RAG search
