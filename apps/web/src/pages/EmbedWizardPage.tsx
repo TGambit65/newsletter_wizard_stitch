@@ -25,15 +25,18 @@ export function EmbedWizardPage() {
   useEffect(() => {
     // Parse config from URL params
     const params = new URLSearchParams(window.location.search);
+    const parentOrigin = params.get('parentOrigin') || undefined;
     setConfig({
       tenantId: params.get('tenantId') || undefined,
       apiKey: params.get('apiKey') || undefined,
       primaryColor: params.get('primaryColor') || '#6366f1',
       brandName: params.get('brandName') || 'Newsletter Wizard',
+      parentOrigin,
     });
 
-    // Listen for postMessage config
+    // Listen for postMessage config — only accept from expected origin
     const handleMessage = (event: MessageEvent) => {
+      if (parentOrigin && event.origin !== parentOrigin) return;
       if (event.data?.type === 'EMBED_CONFIG') {
         setConfig(prev => ({ ...prev, ...event.data.config }));
       }
@@ -78,8 +81,15 @@ export function EmbedWizardPage() {
   async function saveNewsletter() {
     setLoading(true);
     try {
-      // Notify parent window with secure origin
-      const targetOrigin = config.parentOrigin || (window.parent !== window && document.referrer ? new URL(document.referrer).origin : '*');
+      const referrerOrigin = window.parent !== window && document.referrer
+        ? new URL(document.referrer).origin
+        : null;
+      const targetOrigin = config.parentOrigin || referrerOrigin;
+      if (!targetOrigin) {
+        setError('Cannot save: parent origin not configured. Add ?parentOrigin=https://yoursite.com to the embed URL.');
+        setLoading(false);
+        return;
+      }
       window.parent.postMessage({
         type: 'NEWSLETTER_CREATED',
         data: {

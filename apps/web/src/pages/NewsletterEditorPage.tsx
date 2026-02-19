@@ -6,6 +6,7 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
 import { useToast } from '@/components/ui/Toast';
+import { sanitizeHtml } from '@/lib/sanitize';
 import { EditorSkeleton } from '@/components/ui/Skeleton';
 import { AIFeedback, InlineAIMenu, GenerationHistory } from '@/components/editor';
 import { 
@@ -794,16 +795,25 @@ export function NewsletterEditorPage() {
                   ))}
                 </div>
                 
-                {/* AI Feedback after generation */}
-                {showAIFeedback && (
-                  <AIFeedback
-                    generationId={lastGenerationId || undefined}
-                    onRegenerate={handleRegenerate}
-                    onFeedback={handleAIFeedback}
-                    isRegenerating={generating}
-                    disabled={isSent}
-                  />
-                )}
+              </div>
+            )}
+
+            {/* AI Feedback — shown after generation, independent of the AI prompt panel */}
+            {showAIFeedback && !isSent && (
+              <div className="px-4 pb-3 border-b border-neutral-200 dark:border-neutral-700 bg-primary-50/30 dark:bg-primary-900/5">
+                <AIFeedback
+                  generationId={lastGenerationId || undefined}
+                  onRegenerate={handleRegenerate}
+                  onFeedback={handleAIFeedback}
+                  isRegenerating={generating}
+                  disabled={isSent}
+                />
+                <button
+                  onClick={() => setShowAIFeedback(false)}
+                  className="mt-2 text-xs text-neutral-400 hover:text-neutral-600 dark:hover:text-neutral-300"
+                >
+                  Dismiss
+                </button>
               </div>
             )}
 
@@ -938,9 +948,11 @@ export function NewsletterEditorPage() {
                 <p className="text-sm text-neutral-500">Subject: <span className="text-neutral-900 dark:text-white">{subjectLine || 'No subject'}</span></p>
                 <p className="text-sm text-neutral-500 mt-1">Preheader: <span className="text-neutral-700 dark:text-neutral-300">{preheader || 'No preheader'}</span></p>
               </div>
-              <div 
+              {/* HTML is sanitized via DOMPurify before rendering */}
+              <div
                 className="prose dark:prose-invert max-w-none"
-                dangerouslySetInnerHTML={{ __html: editor?.getHTML() || '' }}
+                // eslint-disable-next-line react/no-danger
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(editor?.getHTML() ?? '') }}
               />
             </div>
           </div>

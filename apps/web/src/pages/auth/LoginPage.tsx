@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { normalizeLoginError } from '@/lib/auth-errors';
 import { Wand2, Eye, EyeOff, AlertCircle } from 'lucide-react';
 
 export function LoginPage() {
@@ -18,7 +19,7 @@ export function LoginPage() {
 
     const { error } = await signIn(email, password);
     if (error) {
-      setError(error.message);
+      setError(normalizeLoginError(error.message));
     }
     setLoading(false);
   };

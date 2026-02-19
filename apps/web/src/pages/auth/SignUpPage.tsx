@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { normalizeSignupError } from '@/lib/auth-errors';
 import { Wand2, Eye, EyeOff, AlertCircle, CheckCircle } from 'lucide-react';
 
 export function SignUpPage() {
@@ -26,7 +27,7 @@ export function SignUpPage() {
 
     const { error } = await signUp(email, password, fullName);
     if (error) {
-      setError(error.message);
+      setError(normalizeSignupError(error.message));
     } else {
       setSuccess(true);
     }

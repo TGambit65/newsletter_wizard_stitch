@@ -43,8 +43,10 @@ export function EmbedKnowledgeBasePage() {
       parentOrigin: params.get('parentOrigin') || undefined,
     });
 
-    // Listen for postMessage config
+    // Listen for postMessage config — only accept from expected origin
+    const parentOriginParam = params.get('parentOrigin') || undefined;
     const handleMessage = (event: MessageEvent) => {
+      if (parentOriginParam && event.origin !== parentOriginParam) return;
       if (event.data?.type === 'EMBED_CONFIG') {
         setConfig(prev => ({ ...prev, ...event.data.config }));
       }
@@ -143,8 +145,11 @@ export function EmbedKnowledgeBasePage() {
   }
 
   function notifyParent(type: string, data: unknown) {
-    const targetOrigin = config.parentOrigin || 
-      (window.parent !== window && document.referrer ? new URL(document.referrer).origin : '*');
+    const referrerOrigin = window.parent !== window && document.referrer
+      ? new URL(document.referrer).origin
+      : null;
+    const targetOrigin = config.parentOrigin || referrerOrigin;
+    if (!targetOrigin) return; // No known safe origin — skip notification
     window.parent.postMessage({ type, data }, targetOrigin);
   }
 

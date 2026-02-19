@@ -125,7 +125,8 @@ export function SocialMediaPage() {
       
       if (data) {
         setNewsletter(data);
-        await generatePosts(data);
+        // Do NOT auto-generate on load — user must click "Regenerate All"
+        // to avoid destroying any previously edited posts on every visit
       }
     } catch (error) {
       console.error('Error loading newsletter:', error);
@@ -307,7 +308,10 @@ export function SocialMediaPage() {
     );
   }
 
-  const platforms = Object.keys(PLATFORM_CONFIG) as PlatformKey[];
+  // Only show tabs for platforms that have data in the API response
+  const platforms = (Object.keys(PLATFORM_CONFIG) as PlatformKey[]).filter(
+    (p) => editedPosts && p in editedPosts
+  );
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -415,7 +419,7 @@ export function SocialMediaPage() {
             </div>
 
             {/* Video Platform Extras */}
-            {PLATFORM_CONFIG[activeTab].isVideo && editedPosts[activeTab] && (
+            {PLATFORM_CONFIG[activeTab].isVideo && editedPosts[activeTab] != null && (
               <div className="mt-6 space-y-4">
                 <div className="p-4 bg-neutral-50 dark:bg-neutral-900 rounded-lg border border-neutral-200 dark:border-neutral-700">
                   <h3 className="font-medium text-neutral-900 dark:text-white mb-2">Video Generation Prompt</h3>
@@ -437,7 +441,7 @@ export function SocialMediaPage() {
             )}
 
             {/* Instagram Image Suggestion */}
-            {activeTab === 'instagram' && editedPosts.instagram.image_suggestion && (
+            {activeTab === 'instagram' && editedPosts.instagram?.image_suggestion && (
               <div className="mt-6 p-4 bg-pink-50 dark:bg-pink-900/20 rounded-lg border border-pink-200 dark:border-pink-800">
                 <h3 className="font-medium text-pink-900 dark:text-pink-100 mb-2">Suggested Image</h3>
                 <p className="text-sm text-pink-700 dark:text-pink-300">
@@ -447,7 +451,7 @@ export function SocialMediaPage() {
             )}
 
             {/* Twitter Thread */}
-            {activeTab === 'twitter' && editedPosts.twitter.thread && editedPosts.twitter.thread.length > 0 && (
+            {activeTab === 'twitter' && editedPosts.twitter?.thread && editedPosts.twitter.thread.length > 0 && (
               <div className="mt-6">
                 <h3 className="font-medium text-neutral-900 dark:text-white mb-3">Thread Posts</h3>
                 <div className="space-y-3">
@@ -480,6 +484,19 @@ export function SocialMediaPage() {
         <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-12 text-center">
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary-500 border-t-transparent mx-auto mb-4" />
           <p className="text-neutral-500">Generating social media posts...</p>
+        </div>
+      )}
+
+      {!generating && !editedPosts && (
+        <div className="bg-white dark:bg-neutral-800 rounded-xl border border-neutral-200 dark:border-neutral-700 p-12 text-center">
+          <p className="text-neutral-500 mb-4">No posts generated yet.</p>
+          <button
+            onClick={handleRegenerate}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors font-medium"
+          >
+            <RefreshCw className="w-4 h-4" />
+            Generate Posts
+          </button>
         </div>
       )}
     </div>

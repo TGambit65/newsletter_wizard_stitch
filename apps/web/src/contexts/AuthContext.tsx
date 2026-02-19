@@ -41,12 +41,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     loadUser();
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
+      (event, session) => {
         setUser(session?.user || null);
         setSession(session);
         if (!session?.user) {
           setProfile(null);
           setTenant(null);
+        } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+          // Reload profile and tenant on sign-in and token refresh to prevent stale data
+          loadProfileAndTenant(session.user.id);
         }
       }
     );
@@ -91,38 +94,55 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     });
 
     if (!error && data.user) {
-      // Create tenant and profile
-      const tenantSlug = email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '-');
-      const { data: tenantData } = await supabase
-        .from('tenants')
-        .insert({
-          name: fullName || email.split('@')[0],
-          slug: `${tenantSlug}-${Date.now()}`,
-          subscription_tier: 'free'
-        })
-        .select()
-        .maybeSingle();
+      // Create tenant and profile — these are separate client-side calls.
+      // If either fails, the auth user exists but has no tenant/profile (broken state).
+      // TODO: Replace with a server-side edge function for atomic creation.
+      try {
+        const tenantSlug = email.split('@')[0].toLowerCase().replace(/[^a-z0-9]/g, '-');
+        const { data: tenantData, error: tenantError } = await supabase
+          .from('tenants')
+          .insert({
+            name: fullName || email.split('@')[0],
+            slug: `${tenantSlug}-${Date.now()}`,
+            subscription_tier: 'free'
+          })
+          .select()
+          .maybeSingle();
 
-      if (tenantData) {
-        await supabase.from('profiles').insert({
-          id: data.user.id,
-          tenant_id: tenantData.id,
-          email,
-          full_name: fullName,
-          role: 'owner'
-        });
-        setProfile({
-          id: data.user.id,
-          tenant_id: tenantData.id,
-          email,
-          full_name: fullName,
-          avatar_url: null,
-          role: 'owner',
-          timezone: 'UTC',
-          is_active: true,
-          created_at: new Date().toISOString()
-        });
-        setTenant(tenantData);
+        if (tenantError) throw tenantError;
+
+        if (tenantData) {
+          const { error: profileError } = await supabase.from('profiles').insert({
+            id: data.user.id,
+            tenant_id: tenantData.id,
+            email,
+            full_name: fullName,
+            role: 'owner'
+          });
+
+          if (profileError) {
+            // Rollback: remove the tenant we just created to avoid orphaned records
+            await supabase.from('tenants').delete().eq('id', tenantData.id);
+            throw profileError;
+          }
+
+          setProfile({
+            id: data.user.id,
+            tenant_id: tenantData.id,
+            email,
+            full_name: fullName,
+            avatar_url: null,
+            role: 'owner',
+            timezone: 'UTC',
+            is_active: true,
+            created_at: new Date().toISOString()
+          });
+          setTenant(tenantData);
+        }
+      } catch (setupError) {
+        // Sign the user out to prevent them being stuck in a broken logged-in state
+        await supabase.auth.signOut();
+        return { error: new Error('Account setup failed. Please try signing up again.') };
       }
     }
     return { error: error as Error | null };

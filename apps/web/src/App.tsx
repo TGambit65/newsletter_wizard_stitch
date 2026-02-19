@@ -11,6 +11,7 @@ const LoginPage = lazy(() => import('@/pages/auth/LoginPage').then(m => ({ defau
 const SignUpPage = lazy(() => import('@/pages/auth/SignUpPage').then(m => ({ default: m.SignUpPage })));
 const ForgotPasswordPage = lazy(() => import('@/pages/auth/ForgotPasswordPage').then(m => ({ default: m.ForgotPasswordPage })));
 const AuthCallbackPage = lazy(() => import('@/pages/auth/AuthCallbackPage').then(m => ({ default: m.AuthCallbackPage })));
+const ResetPasswordPage = lazy(() => import('@/pages/auth/ResetPasswordPage').then(m => ({ default: m.ResetPasswordPage })));
 const DashboardPage = lazy(() => import('@/pages/DashboardPage').then(m => ({ default: m.DashboardPage })));
 const KnowledgeBasePage = lazy(() => import('@/pages/KnowledgeBasePage').then(m => ({ default: m.KnowledgeBasePage })));
 const WizardPage = lazy(() => import('@/pages/WizardPage').then(m => ({ default: m.WizardPage })));
@@ -71,6 +72,7 @@ function AppRoutes() {
         <Route path="/signup" element={<PublicRoute><SignUpPage /></PublicRoute>} />
         <Route path="/forgot-password" element={<PublicRoute><ForgotPasswordPage /></PublicRoute>} />
         <Route path="/auth/callback" element={<AuthCallbackPage />} />
+        <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
         
         {/* Embeddable wizard (public) */}
         <Route path="/embed" element={<EmbedWizardPage />} />

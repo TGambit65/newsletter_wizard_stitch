@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
+import { normalizeResetError } from '@/lib/auth-errors';
 import { Wand2, AlertCircle, CheckCircle, ArrowLeft } from 'lucide-react';
 
 export function ForgotPasswordPage() {
@@ -17,7 +18,7 @@ export function ForgotPasswordPage() {
 
     const { error } = await resetPassword(email);
     if (error) {
-      setError(error.message);
+      setError(normalizeResetError(error.message));
     } else {
       setSuccess(true);
     }
