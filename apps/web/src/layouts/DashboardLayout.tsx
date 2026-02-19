@@ -5,6 +5,10 @@ import { useWhiteLabel } from '@/contexts/WhiteLabelContext';
 import { useTheme } from '@/hooks/useTheme';
 import { ThemeSwitcher } from '@/components/ui/ThemeSwitcher';
 import { CommandPalette } from '@/components/ui/CommandPalette';
+import { NetworkErrorBanner } from '@/components/NetworkErrorBanner';
+import { SessionSummary } from '@/components/SessionSummary';
+import { useSessionMetrics } from '@/contexts/SessionMetricsContext';
+import type { SessionMetrics } from '@/contexts/SessionMetricsContext';
 import {
   LayoutDashboard,
   Database,
@@ -24,10 +28,22 @@ import {
   Mic,
   Users,
   Search,
+  FlaskConical,
+  MessageSquarePlus,
+  Sparkles,
+  Gift,
 } from 'lucide-react';
 import clsx from 'clsx';
 import { Breadcrumbs, MobileBreadcrumb } from '@/components/ui/Breadcrumbs';
 import { MobileNavigation } from '@/components/ui/MobileNavigation';
+
+const WHATS_NEW_KEY = 'whats-new-last-read';
+const LATEST_ENTRY_DATE = '2026-02-19'; // bump when new entries added
+
+function getWhatsNewUnreadCount(): number {
+  const lastRead = localStorage.getItem(WHATS_NEW_KEY) || '';
+  return lastRead < LATEST_ENTRY_DATE ? 1 : 0;
+}
 
 const primaryNav = [
   { name: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
@@ -41,6 +57,10 @@ const secondaryNav = [
   { name: 'Brand Voice', href: '/brand-voice', icon: Mic },
   { name: 'Scheduling', href: '/scheduling', icon: Calendar },
   { name: 'Team', href: '/team', icon: Users },
+  { name: 'Beta Lab', href: '/beta', icon: FlaskConical },
+  { name: 'Feedback', href: '/feedback', icon: MessageSquarePlus },
+  { name: 'Referrals', href: '/referral', icon: Gift },
+  { name: "What's New", href: '/whats-new', icon: Sparkles, showBadge: true },
   { name: 'Settings', href: '/settings', icon: Settings },
   { name: 'Partner Portal', href: '/partner', icon: Building2 },
 ];
@@ -51,9 +71,30 @@ export function DashboardLayout() {
   const { mode } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
+  const { getMetrics } = useSessionMetrics();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
+  const [showSessionSummary, setShowSessionSummary] = useState(false);
+  const [pendingSignOutMetrics, setPendingSignOutMetrics] = useState<SessionMetrics | null>(null);
+  const [whatsNewUnread] = useState(getWhatsNewUnreadCount);
+
+  function handleSignOutClick() {
+    const metrics = getMetrics();
+    setPendingSignOutMetrics(metrics);
+    setShowSessionSummary(true);
+    setUserMenuOpen(false);
+  }
+
+  function handleConfirmSignOut() {
+    setShowSessionSummary(false);
+    signOut();
+  }
+
+  function handleDismissSessionSummary() {
+    setShowSessionSummary(false);
+    setPendingSignOutMetrics(null);
+  }
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -149,6 +190,7 @@ export function DashboardLayout() {
             {secondaryNav.map((item) => {
               const isActive = location.pathname === item.href ||
                 (item.href !== '/dashboard' && location.pathname.startsWith(item.href));
+              const hasBadge = item.showBadge && whatsNewUnread > 0;
               return (
                 <Link
                   key={item.name}
@@ -162,8 +204,11 @@ export function DashboardLayout() {
                   )}
                   onClick={() => setSidebarOpen(false)}
                 >
-                  <item.icon className={clsx('w-5 h-5', isActive ? 'text-primary-500' : 'text-neutral-500')} />
-                  {item.name}
+                  <item.icon className={clsx('w-5 h-5 flex-shrink-0', isActive ? 'text-primary-500' : 'text-neutral-500')} />
+                  <span className="flex-1">{item.name}</span>
+                  {hasBadge && (
+                    <span className="w-2 h-2 rounded-full bg-primary-500 flex-shrink-0" aria-label="New updates" />
+                  )}
                 </Link>
               );
             })}
@@ -204,7 +249,7 @@ export function DashboardLayout() {
                     <p className="text-xs text-neutral-500">Theme: {mode === 'system' ? 'System' : mode === 'dark' ? 'Dark' : 'Light'}</p>
                   </div>
                   <button
-                    onClick={signOut}
+                    onClick={handleSignOutClick}
                     className="w-full flex items-center gap-2 px-4 py-2 text-sm text-error hover:bg-error/10"
                   >
                     <LogOut className="w-4 h-4" />
@@ -277,6 +322,18 @@ export function DashboardLayout() {
 
       {/* Command Palette */}
       <CommandPalette open={commandPaletteOpen} onClose={() => setCommandPaletteOpen(false)} />
+
+      {/* Network error banner (fixed bottom) */}
+      <NetworkErrorBanner />
+
+      {/* Session summary shown before sign-out */}
+      {showSessionSummary && pendingSignOutMetrics && (
+        <SessionSummary
+          metrics={pendingSignOutMetrics}
+          onConfirmSignOut={handleConfirmSignOut}
+          onDismiss={handleDismissSessionSummary}
+        />
+      )}
     </div>
   );
 }

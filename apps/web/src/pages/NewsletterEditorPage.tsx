@@ -132,7 +132,6 @@ export function NewsletterEditorPage() {
   const [sendRecipients, setSendRecipients] = useState('');
   const [sending, setSending] = useState(false);
   const [sendError, setSendError] = useState('');
-  const [sendSuccess, setSendSuccess] = useState(false);
   
   // Test send state
   const [testEmail, setTestEmail] = useState('');
@@ -386,11 +385,8 @@ export function NewsletterEditorPage() {
       if (error) throw error;
       if (data?.error) throw new Error(data.error.message);
       
-      setSendSuccess(true);
       setShowSendModal(false);
-      
-      // Reload newsletter to get updated status
-      loadNewsletter();
+      navigate(`/newsletters/${id}/sent?recipients=${recipients.length}`);
     } catch (error: any) {
       setSendError(error.message || 'Failed to send newsletter');
     } finally {
@@ -703,13 +699,6 @@ export function NewsletterEditorPage() {
           )}
         </div>
       </div>
-
-      {sendSuccess && (
-        <div className="mb-6 p-4 bg-success/10 border border-success/20 rounded-lg flex items-center gap-3">
-          <Check className="w-5 h-5 text-success" />
-          <p className="text-success font-medium">Newsletter sent successfully!</p>
-        </div>
-      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Editor */}

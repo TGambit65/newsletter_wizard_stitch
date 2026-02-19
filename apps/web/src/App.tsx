@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from '@/contexts/AuthContext';
 import { WhiteLabelProvider } from '@/contexts/WhiteLabelContext';
 import { ThemeProvider } from '@/hooks/useTheme';
 import { ToastProvider } from '@/components/ui/Toast';
+import { SessionMetricsProvider } from '@/contexts/SessionMetricsContext';
 import { DashboardLayout } from '@/layouts/DashboardLayout';
 import { SplashScreen } from '@/components/SplashScreen';
 import { hasCompletedOnboarding } from '@/pages/OnboardingPage';
@@ -34,6 +35,14 @@ const SchedulingPage = lazy(() => import('@/pages/SchedulingPage').then(m => ({ 
 const BrandVoicePage = lazy(() => import('@/pages/BrandVoicePage').then(m => ({ default: m.BrandVoicePage })));
 const TeamPage = lazy(() => import('@/pages/TeamPage').then(m => ({ default: m.TeamPage })));
 const SearchPage = lazy(() => import('@/pages/SearchPage').then(m => ({ default: m.SearchPage })));
+const BetaLabPage = lazy(() => import('@/pages/BetaLabPage').then(m => ({ default: m.BetaLabPage })));
+const FeedbackPage = lazy(() => import('@/pages/FeedbackPage').then(m => ({ default: m.FeedbackPage })));
+const WhatsNewPage = lazy(() => import('@/pages/WhatsNewPage').then(m => ({ default: m.WhatsNewPage })));
+const DeleteAccountPage = lazy(() => import('@/pages/DeleteAccountPage').then(m => ({ default: m.DeleteAccountPage })));
+const ReferralPage = lazy(() => import('@/pages/ReferralPage').then(m => ({ default: m.ReferralPage })));
+const NewsletterSentPage = lazy(() => import('@/pages/NewsletterSentPage').then(m => ({ default: m.NewsletterSentPage })));
+const MaintenancePage = lazy(() => import('@/pages/MaintenancePage').then(m => ({ default: m.MaintenancePage })));
+const PressKitPage = lazy(() => import('@/pages/PressKitPage').then(m => ({ default: m.PressKitPage })));
 
 function LoadingSpinner() {
   return (
@@ -93,6 +102,10 @@ function AppRoutes() {
         <Route path="/embed" element={<EmbedWizardPage />} />
         <Route path="/embed/knowledge-base" element={<EmbedKnowledgeBasePage />} />
         
+        {/* Public pages (no auth required) */}
+        <Route path="/press" element={<PressKitPage />} />
+        <Route path="/maintenance" element={<MaintenancePage />} />
+
         {/* Protected routes */}
         <Route path="/" element={<ProtectedRoute><DashboardLayout /></ProtectedRoute>}>
           <Route index element={<Navigate to="/dashboard" replace />} />
@@ -102,19 +115,25 @@ function AppRoutes() {
           <Route path="newsletters/:id/edit" element={<NewsletterEditorPage />} />
           <Route path="newsletters/:id/ab-test" element={<ABTestPage />} />
           <Route path="newsletters/:id/social" element={<SocialMediaPage />} />
+          <Route path="newsletters/:id/sent" element={<NewsletterSentPage />} />
           <Route path="wizard" element={<WizardPage />} />
           <Route path="analytics" element={<AnalyticsPage />} />
           <Route path="settings" element={<SettingsPage />} />
           <Route path="settings/api-keys" element={<ApiKeysPage />} />
           <Route path="settings/webhooks" element={<WebhooksPage />} />
+          <Route path="settings/delete-account" element={<DeleteAccountPage />} />
           <Route path="partner" element={<PartnerPortalPage />} />
           <Route path="templates" element={<TemplatesPage />} />
           <Route path="scheduling" element={<SchedulingPage />} />
           <Route path="brand-voice" element={<BrandVoicePage />} />
           <Route path="team" element={<TeamPage />} />
           <Route path="search" element={<SearchPage />} />
+          <Route path="beta" element={<BetaLabPage />} />
+          <Route path="feedback" element={<FeedbackPage />} />
+          <Route path="whats-new" element={<WhatsNewPage />} />
+          <Route path="referral" element={<ReferralPage />} />
         </Route>
-        
+
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
@@ -129,7 +148,9 @@ export default function App() {
         <AuthProvider>
           <WhiteLabelProvider>
             <ToastProvider>
-              <AppRoutes />
+              <SessionMetricsProvider>
+                <AppRoutes />
+              </SessionMetricsProvider>
             </ToastProvider>
           </WhiteLabelProvider>
         </AuthProvider>

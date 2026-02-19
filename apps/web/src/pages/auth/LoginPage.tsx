@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { useWhiteLabel } from '@/contexts/WhiteLabelContext';
+import { supabase } from '@/lib/supabase';
 import { normalizeLoginError } from '@/lib/auth-errors';
-import { Wand2, Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { Wand2, Eye, EyeOff, AlertCircle, Mail, CheckCircle2 } from 'lucide-react';
 
 export function LoginPage() {
   const { signIn } = useAuth();
@@ -13,6 +14,26 @@ export function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Magic link state
+  const [magicMode, setMagicMode] = useState(false);
+  const [magicEmail, setMagicEmail] = useState('');
+  const [magicSent, setMagicSent] = useState(false);
+  const [magicLoading, setMagicLoading] = useState(false);
+
+  const handleMagicLink = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!magicEmail.trim()) return;
+    setMagicLoading(true);
+    setError(null);
+    const { error: otpError } = await supabase.auth.signInWithOtp({ email: magicEmail.trim() });
+    if (otpError) {
+      setError(otpError.message);
+    } else {
+      setMagicSent(true);
+    }
+    setMagicLoading(false);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,7 +137,65 @@ export function LoginPage() {
             </button>
           </form>
 
-          <p className="mt-8 text-center text-neutral-600 dark:text-neutral-400">
+          {/* Divider */}
+          <div className="flex items-center gap-3 my-6">
+            <div className="flex-1 border-t border-neutral-200 dark:border-neutral-700" />
+            <span className="text-xs text-neutral-400 uppercase tracking-wide">or</span>
+            <div className="flex-1 border-t border-neutral-200 dark:border-neutral-700" />
+          </div>
+
+          {/* Magic link section */}
+          {!magicMode ? (
+            <button
+              onClick={() => setMagicMode(true)}
+              className="w-full flex items-center justify-center gap-2 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg text-sm text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors font-medium"
+            >
+              <Mail className="w-4 h-4" />
+              Sign in with email link
+            </button>
+          ) : magicSent ? (
+            <div className="text-center py-4">
+              <CheckCircle2 className="w-10 h-10 text-success mx-auto mb-3" />
+              <p className="font-medium text-neutral-900 dark:text-white mb-1">Check your inbox</p>
+              <p className="text-sm text-neutral-500">We sent a sign-in link to <strong>{magicEmail}</strong></p>
+              <button
+                onClick={() => { setMagicMode(false); setMagicSent(false); setMagicEmail(''); }}
+                className="mt-4 text-sm text-primary-600 hover:underline"
+              >
+                Back to sign in
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleMagicLink} className="space-y-3">
+              <p className="text-sm text-neutral-500 text-center mb-3">We'll email you a magic sign-in link — no password needed.</p>
+              <input
+                type="email"
+                value={magicEmail}
+                onChange={e => setMagicEmail(e.target.value)}
+                required
+                placeholder="you@example.com"
+                className="w-full px-4 py-3 bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none"
+              />
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => setMagicMode(false)}
+                  className="flex-1 py-2.5 border border-neutral-200 dark:border-neutral-700 rounded-lg text-sm text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={magicLoading}
+                  className="flex-1 py-2.5 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors text-sm font-medium disabled:opacity-50"
+                >
+                  {magicLoading ? 'Sending...' : 'Send link'}
+                </button>
+              </div>
+            </form>
+          )}
+
+          <p className="mt-6 text-center text-neutral-600 dark:text-neutral-400">
             Do not have an account?{' '}
             <Link to="/signup" className="text-primary-600 hover:text-primary-700 font-medium">
               Sign up
