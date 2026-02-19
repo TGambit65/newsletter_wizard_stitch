@@ -9,9 +9,9 @@ export { supabaseUrl, supabaseAnonKey };
 // All shared types are defined in @newsletter-wizard/shared (packages/shared/src/index.ts).
 // Re-exported here for backwards compatibility — all existing `import { X } from '@/lib/supabase'`
 // imports continue to work without change.
-export {
+export { TIER_LIMITS } from '@newsletter-wizard/shared';
+export type {
   SubscriptionTier,
-  TIER_LIMITS,
   Tenant,
   Profile,
   SourceType,
