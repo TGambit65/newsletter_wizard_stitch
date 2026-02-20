@@ -613,6 +613,7 @@ export function KnowledgeBasePage() {
           </button>
         </div>
       ) : (
+        <>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {paginatedItems.map((source) => (
             <div
@@ -741,6 +742,7 @@ export function KnowledgeBasePage() {
           ))}
         </div>
         <Pagination page={page} totalPages={totalPages} onPageChange={setPage} className="mt-6" />
+        </>
       )}
 
       {/* Add Source Modal */}
