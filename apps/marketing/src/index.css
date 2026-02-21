@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-background-dark text-white font-sans antialiased;
+  }
+}
+
+@layer components {
+  .prose-guide h2 {
+    @apply text-2xl font-display font-semibold text-white mt-10 mb-4;
+  }
+  .prose-guide h3 {
+    @apply text-lg font-display font-semibold text-white/90 mt-6 mb-3;
+  }
+  .prose-guide p {
+    @apply text-white/70 leading-relaxed mb-4;
+  }
+  .prose-guide ul {
+    @apply space-y-2 mb-4;
+  }
+  .prose-guide li {
+    @apply text-white/70 flex gap-2;
+  }
+  .stat-card {
+    @apply bg-surface-dark border border-white/10 rounded-xl p-5;
+  }
+  .tip-card {
+    @apply bg-primary/10 border border-primary/30 rounded-xl p-5;
+  }
+  .warn-card {
+    @apply bg-amber-500/10 border border-amber-500/30 rounded-xl p-5;
+  }
+  .btn-primary {
+    @apply bg-primary hover:bg-primary-hover text-white font-semibold px-6 py-3 rounded-lg transition-all shadow-glow-sm hover:shadow-glow;
+  }
+  .btn-ghost {
+    @apply border border-white/20 hover:border-white/40 text-white/80 hover:text-white font-medium px-5 py-2.5 rounded-lg transition-all;
+  }
+  .platform-tab {
+    @apply px-4 py-2 rounded-lg font-medium text-sm transition-all cursor-pointer;
+  }
+  .platform-tab.active {
+    @apply bg-primary text-white shadow-glow-sm;
+  }
+  .platform-tab:not(.active) {
+    @apply text-white/60 hover:text-white/90 hover:bg-white/5;
+  }
+  .tool-card {
+    @apply bg-surface-dark border border-white/10 rounded-2xl p-6 hover:border-primary/40 transition-all;
+  }
+  .input-field {
+    @apply w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all;
+  }
+  .score-bar {
+    @apply h-3 rounded-full bg-white/10 overflow-hidden;
+  }
+  .score-fill {
+    @apply h-full rounded-full transition-all duration-500;
+  }
+}
